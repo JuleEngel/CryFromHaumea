@@ -1,0 +1,130 @@
+[gd_resource type="Theme" format=3 uid="uid://c2sxl83j3rate"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrrb4"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 10
+border_width_bottom = 2
+border_color = Color(0.105882, 0.243137, 0.486275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xc5rd"]
+bg_color = Color(0.870588, 0.870588, 0.870588, 0.054902)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 10
+border_width_bottom = 2
+border_color = Color(0, 0.337255, 0.470588, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ndexh"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 10
+border_width_bottom = 2
+border_color = Color(0.0784314, 0.811765, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hktmd"]
+bg_color = Color(0.870588, 0.870588, 0.870588, 0.054902)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 10
+border_width_bottom = 2
+border_color = Color(0, 0.337255, 0.470588, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ilei"]
+bg_color = Color(0.870588, 0.870588, 0.870588, 0.054902)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 10
+border_width_bottom = 2
+border_color = Color(0, 0.337255, 0.470588, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3sq7x"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 10
+border_width_bottom = 2
+border_color = Color(0.0793812, 0.813588, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5y5d"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 10
+border_width_bottom = 2
+border_color = Color(0.0793812, 0.813588, 1, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ru043"]
+color = Color(0.819608, 0.968627, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gju7g"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 10
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ug8w"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yc4rx"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 10
+border_width_bottom = 2
+border_color = Color(0.0793812, 0.813588, 1, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5m6ed"]
+bg_color = Color(0.00392157, 0.00392157, 0.168627, 1)
+border_width_bottom = 1
+border_color = Color(0.0793812, 0.813588, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yhfqt"]
+bg_color = Color(0.00392157, 0.00392157, 0.168627, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76blc"]
+bg_color = Color(0.00392157, 0.00392157, 0.168627, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 10
+border_width_bottom = 2
+border_color = Color(0.0793812, 0.813588, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jmdp"]
+
+[resource]
+Button/colors/font_color = Color(0.819608, 0.968627, 1, 1)
+Button/colors/font_hover_color = Color(0.819608, 0.968627, 1, 1)
+Button/font_sizes/font_size = 32
+Button/fonts/font = null
+Button/styles/disabled = SubResource("StyleBoxFlat_yrrb4")
+Button/styles/hover = SubResource("StyleBoxFlat_xc5rd")
+Button/styles/normal = SubResource("StyleBoxFlat_ndexh")
+CheckBox/styles/disabled = null
+CheckBox/styles/focus = null
+CheckBox/styles/hover = SubResource("StyleBoxFlat_hktmd")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_0ilei")
+CheckBox/styles/normal = SubResource("StyleBoxFlat_3sq7x")
+CheckBox/styles/pressed = SubResource("StyleBoxFlat_a5y5d")
+HSeparator/styles/separator = SubResource("StyleBoxLine_ru043")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_gju7g")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_8ug8w")
+HSlider/styles/slider = SubResource("StyleBoxFlat_yc4rx")
+Label/colors/font_color = Color(0.819608, 0.968627, 1, 1)
+Label/font_sizes/font_size = 20
+Label/fonts/font = null
+LineEdit/fonts/font = null
+LineEdit/styles/normal = SubResource("StyleBoxFlat_5m6ed")
+Panel/styles/panel = SubResource("StyleBoxFlat_yhfqt")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_76blc")
+RichTextLabel/colors/default_color = Color(0.819608, 0.968627, 1, 1)
+RichTextLabel/fonts/bold_font = null
+RichTextLabel/fonts/normal_font = null
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_2jmdp")

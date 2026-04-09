@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bm05tr65hiukv"]
+
+[ext_resource type="Theme" uid="uid://dqwuby34ylgsq" path="res://ui_scenes/main_menu/menu_theme2.tres" id="1_ng1ah"]
+[ext_resource type="Script" uid="uid://yickoxr78pso" path="res://ui_scenes/main_menu/options/options.gd" id="2_fqv7p"]
+
+[node name="Options" type="VBoxContainer" unique_id=1480835310]
+offset_right = 616.0
+offset_bottom = 56.0
+size_flags_horizontal = 8
+theme = ExtResource("1_ng1ah")
+script = ExtResource("2_fqv7p")
+
+[node name="Musik" type="HBoxContainer" parent="." unique_id=2093201608]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="Label" type="Label" parent="Musik" unique_id=2145444677]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="CenterContainer2" type="CenterContainer" parent="Musik" unique_id=1732398698]
+layout_mode = 2
+
+[node name="Music_Slide" type="HSlider" parent="Musik/CenterContainer2" unique_id=1012226916]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+value = 100.0
+ticks_on_borders = true
+
+[node name="MusicValueLabel" type="Label" parent="Musik" unique_id=1151802526]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="Sound" type="HBoxContainer" parent="." unique_id=328959553]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="Label" type="Label" parent="Sound" unique_id=1360145628]
+layout_mode = 2
+text = "Sound Effects Volume"
+
+[node name="CenterContainer" type="CenterContainer" parent="Sound" unique_id=2108169283]
+layout_mode = 2
+
+[node name="Sound_Slide" type="HSlider" parent="Sound/CenterContainer" unique_id=209707958]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+value = 100.0
+ticks_on_borders = true
+
+[node name="SoundValueLabel" type="Label" parent="Sound" unique_id=60120891]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[connection signal="value_changed" from="Musik/CenterContainer2/Music_Slide" to="." method="_on_music_slide_value_changed"]
+[connection signal="drag_ended" from="Sound/CenterContainer/Sound_Slide" to="." method="_on_sound_slide_drag_ended"]
+[connection signal="value_changed" from="Sound/CenterContainer/Sound_Slide" to="." method="_on_sound_slide_value_changed"]
