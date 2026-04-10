@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://dxx4cju371esd"]
+
+[ext_resource type="Texture2D" uid="uid://dkjge1p427ddy" path="res://game_objects/submarine/submarine.png" id="1_a6sr2"]
+[ext_resource type="Script" uid="uid://4h7krnmbiiul" path="res://game_objects/submarine/submarine.gd" id="2_script"]
+[ext_resource type="Texture2D" path="res://game_objects/submarine/bubble.png" id="3_bubble"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_col"]
+size = Vector2(94, 46)
+
+[sub_resource type="Curve" id="Curve_scale"]
+_data = [Vector2(0, 0.4), 0.0, 0.0, 0, 0, Vector2(0.3, 1.0), 0.0, 0.0, 0, 0, Vector2(1, 0.0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Submarine" type="CharacterBody2D" unique_id=1479136533 groups=["player"]]
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("2_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2021962477]
+position = Vector2(-8, -8)
+scale = Vector2(1.4153847, 1.4153847)
+texture = ExtResource("1_a6sr2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=274600755]
+position = Vector2(-5, 2)
+shape = SubResource("RectangleShape2D_col")
+
+[node name="RocketSpawn" type="Marker2D" parent="." unique_id=2142160484]
+position = Vector2(0, -20)
+
+[node name="BubbleParticles" type="CPUParticles2D" parent="."]
+position = Vector2(40, 5)
+emitting = false
+amount = 16
+lifetime = 2.5
+speed_scale = 1.0
+texture = ExtResource("3_bubble")
+emission_shape = 3
+emission_rect_extents = Vector2(8, 12)
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(0, -120)
+initial_velocity_min = 40.0
+initial_velocity_max = 80.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+scale_amount_min = 1.5
+scale_amount_max = 3.5
+scale_amount_curve = SubResource("Curve_scale")
+color = Color(0.85, 0.92, 1.0, 0.7)
+
+[node name="Headlight" type="PointLight2D" parent="."]
+position = Vector2(50, 0)
+energy = 1.2
+color = Color(0.9, 0.95, 1.0, 1)
+offset = Vector2(200, 0)
+texture_scale = 1.5
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1492380121]

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cufte051u5rd"]
+
+[ext_resource type="PackedScene" uid="uid://dxx4cju371esd" path="res://game_objects/submarine/submarine.tscn" id="1_x3vn1"]
+[ext_resource type="Texture2D" uid="uid://hy0fgtaqk61a" path="res://icon.svg" id="2_b8qyk"]
+[ext_resource type="PackedScene" uid="uid://dirkbudgjfg5" path="res://game_objects/alien1/alien1.tscn" id="3_b8qyk"]
+
+[node name="Underwater" type="Node2D" unique_id=741864157]
+
+[node name="Submarine" parent="." unique_id=482854008 instance=ExtResource("1_x3vn1")]
+position = Vector2(0, 5)
+collision_mask = 1
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=2124860155]
+position = Vector2(3, 119)
+texture = ExtResource("2_b8qyk")
+
+[node name="Alien1" parent="." unique_id=2062702134 instance=ExtResource("3_b8qyk")]
+position = Vector2(-171, -212)

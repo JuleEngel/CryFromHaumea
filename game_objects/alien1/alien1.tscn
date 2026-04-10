@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://dirkbudgjfg5"]
+
+[ext_resource type="Script" uid="uid://cntarlf85wy71" path="res://game_objects/alien1/alien1.gd" id="1_v4mij"]
+[ext_resource type="Texture2D" uid="uid://c6pplbqr0aoho" path="res://game_objects/alien1/alien1.png" id="2_itmmn"]
+
+[sub_resource type="Gradient" id="Gradient_light"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_light"]
+gradient = SubResource("Gradient_light")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v4mij"]
+radius = 12.0
+height = 202.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dash"]
+radius = 14.0
+height = 210.0
+
+[node name="Alien1" type="CharacterBody2D" unique_id=2062702134]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_v4mij")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1169292512]
+texture = ExtResource("2_itmmn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1347158515]
+rotation = -1.575439
+shape = SubResource("CapsuleShape2D_v4mij")
+
+[node name="AggroArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1
+monitoring = true
+monitorable = false
+
+[node name="DashHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DashHitbox"]
+rotation = -1.575439
+shape = SubResource("CapsuleShape2D_dash")
+
+[node name="DashProjection" type="Line2D" parent="."]
+width = 3.0
+default_color = Color(1, 0.3, 0.2, 0)
+points = PackedVector2Array(0, 0, 1, 0)
+
+[node name="ChargeLight" type="PointLight2D" parent="."]
+energy = 0.0
+color = Color(1, 0.3, 0.2, 1)
+texture = SubResource("GradientTexture2D_light")
+texture_scale = 2.0
