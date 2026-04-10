@@ -36,7 +36,15 @@ func _physics_process(delta: float) -> void:
 	var wobble := sin(_time * wobble_frequency) * wobble_strength
 	rotation = lerp_angle(rotation, desired_angle + wobble, turn_speed * delta)
 
-	global_position += Vector2.from_angle(rotation) * speed * delta
+	var movement := Vector2.from_angle(rotation) * speed * delta
+	var space_state := get_world_2d().direct_space_state
+	var query := PhysicsRayQueryParameters2D.create(global_position, global_position + movement, 4)
+	var result := space_state.intersect_ray(query)
+	if result:
+		global_position = result.position
+		_explode()
+		return
+	global_position += movement
 
 func _on_hit(body: Node2D) -> void:
 	if not _alive:

@@ -3,10 +3,10 @@ extends Enemy
 enum State { IDLE, SWIMMING, CHARGING, DASHING }
 
 @export var idle_speed: float = 40.0
-@export var swim_duration: float = 3.0
+@export var swim_duration: float = 0.6
 @export var swim_speed: float = 120.0
-@export var charge_duration: float = 1.2
-@export var dash_duration: float = 2.5
+@export var charge_duration: float = 0.8
+@export var dash_duration: float = 0.6
 @export var dash_speed: float = 500.0
 @export var dash_damage: float = 25.0
 @export var rotation_speed: float = 5.0
@@ -25,6 +25,9 @@ var _idle_direction := Vector2.ZERO
 var _idle_change_timer: float = 0.0
 var _base_scale := Vector2.ONE
 var _charge_tween: Tween
+var _aggro_tween: Tween
+const _AGGRO_COLOR := Color(1.0, 0.6, 0.6, 1.0)
+const _NORMAL_COLOR := Color.WHITE
 
 func _ready() -> void:
 	super()
@@ -58,9 +61,34 @@ func _physics_process(delta: float) -> void:
 	var angle := wrapf(rotation, -PI, PI)
 	sprite.flip_v = absf(angle) > PI / 2.0
 
+	# Wave intensity based on state
+	var target_wave := 0.0
+	match _state:
+		State.IDLE:
+			target_wave = 0.5
+		State.SWIMMING:
+			target_wave = 1.0
+		State.CHARGING:
+			target_wave = 0.2
+		State.DASHING:
+			target_wave = 0.0
+	var mat := sprite.material as ShaderMaterial
+	if mat:
+		var current: float = 1.0
+		var param = mat.get_shader_parameter("intensity")
+		if param != null:
+			current = param
+		mat.set_shader_parameter("intensity", lerpf(current, target_wave, 5.0 * delta))
+
 	move_and_slide()
 
 func _on_aggro_changed(is_aggressive: bool) -> void:
+	if _aggro_tween:
+		_aggro_tween.kill()
+	_aggro_tween = create_tween()
+	_aggro_tween.set_ease(Tween.EASE_IN_OUT)
+	_aggro_tween.set_trans(Tween.TRANS_CUBIC)
+	_aggro_tween.tween_property(sprite, "modulate", _AGGRO_COLOR if is_aggressive else _NORMAL_COLOR, 0.4)
 	if is_aggressive and _state == State.IDLE:
 		_start_swim()
 
@@ -77,15 +105,6 @@ func _process_idle(delta: float) -> void:
 func _start_swim() -> void:
 	_state = State.SWIMMING
 	_timer = swim_duration
-
-	var player := _find_player()
-	if player:
-		var to_player := (player.global_position - global_position).normalized()
-		_idle_direction = (to_player + Vector2.from_angle(randf() * TAU) * 0.5).normalized()
-	else:
-		_idle_direction = Vector2.from_angle(randf() * TAU)
-
-	velocity = _idle_direction * swim_speed
 
 func _start_charge() -> void:
 	_state = State.CHARGING
@@ -131,11 +150,19 @@ func _on_dash_hit(body: Node2D) -> void:
 	if body is Entity:
 		body.take_damage(dash_damage)
 
-func _process_swimming(_delta: float) -> void:
+func _process_swimming(delta: float) -> void:
 	if not aggressive:
 		_state = State.IDLE
 		_pick_idle_direction()
 		return
+
+	var player := _find_player()
+	if player:
+		var to_player := (player.global_position - global_position).normalized()
+		velocity = velocity.move_toward(to_player * swim_speed, 200.0 * delta)
+	else:
+		velocity = velocity.move_toward(Vector2.ZERO, 100.0 * delta)
+
 	if _timer <= 0.0:
 		_start_charge()
 

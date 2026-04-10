@@ -3,7 +3,7 @@ extends Entity
 
 signal aggro_changed(is_aggressive: bool)
 
-@export var aggro_range: float = 300.0
+@export var aggro_range: float = 600.0
 
 @onready var aggro_area: Area2D = $AggroArea
 
@@ -12,7 +12,7 @@ var aggressive := false
 func _ready() -> void:
 	super()
 	collision_layer = 2
-	collision_mask = 1
+	collision_mask = 5
 
 	var shape := CircleShape2D.new()
 	shape.radius = aggro_range

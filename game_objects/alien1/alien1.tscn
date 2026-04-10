@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cntarlf85wy71" path="res://game_objects/alien1/alien1.gd" id="1_v4mij"]
 [ext_resource type="Texture2D" uid="uid://c6pplbqr0aoho" path="res://game_objects/alien1/alien1.png" id="2_itmmn"]
+[ext_resource type="Shader" path="res://game_objects/alien1/swim_wave.gdshader" id="3_wave"]
 
 [sub_resource type="Gradient" id="Gradient_light"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -11,6 +12,9 @@ gradient = SubResource("Gradient_light")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wave"]
+shader = ExtResource("3_wave")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v4mij"]
 radius = 12.0
@@ -22,10 +26,11 @@ height = 210.0
 
 [node name="Alien1" type="CharacterBody2D" unique_id=2062702134]
 collision_layer = 2
-collision_mask = 1
+collision_mask = 5
 script = ExtResource("1_v4mij")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1169292512]
+material = SubResource("ShaderMaterial_wave")
 texture = ExtResource("2_itmmn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1347158515]

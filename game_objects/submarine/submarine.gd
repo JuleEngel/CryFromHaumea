@@ -12,13 +12,13 @@ const ROCKET_SCENE := preload("res://game_objects/rocket/rocket.tscn")
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var rocket_spawn: Marker2D = $RocketSpawn
 @onready var bubble_particles: CPUParticles2D = $BubbleParticles
-@onready var headlight: PointLight2D = $Headlight
+@onready var headlight: PointLight2D = $Sprite2D/Headlight
 
 var _fire_timer: float = 0.0
 
 func _ready() -> void:
 	super()
-	headlight.texture = _generate_cone_texture(512, 256, 0.4)
+	headlight.texture = _generate_cone_texture(512, 512)
 
 func _physics_process(delta: float) -> void:
 	_fire_timer -= delta
@@ -63,23 +63,41 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-static func _generate_cone_texture(width: int, height: int, half_angle_ratio: float) -> ImageTexture:
-	var img := Image.create(width, height, false, Image.FORMAT_RGBA8)
-	var center_y := height / 2.0
-	for x in width:
-		var t := float(x) / float(width)
-		var max_y_offset := t * half_angle_ratio * height
-		var fade_x := 1.0 - t
-		fade_x = fade_x * fade_x
-		for y in height:
-			var dist_from_center := absf(y - center_y)
-			if dist_from_center > max_y_offset or max_y_offset < 0.001:
+static func _generate_cone_texture(size: int, tex_size: int) -> ImageTexture:
+	# PointLight2D renders the texture centered on position.
+	# We build a texture where the bright point is at the center,
+	# and the cone opens to the right half only.
+	var img := Image.create(tex_size, tex_size, false, Image.FORMAT_RGBA8)
+	var center := Vector2(tex_size / 2.0, tex_size / 2.0)
+	var half_size := tex_size / 2.0
+	var cone_half_angle := deg_to_rad(25.0)
+
+	for x in tex_size:
+		for y in tex_size:
+			var px := Vector2(x, y) - center
+			# Only light the right half (cone opens rightward)
+			if px.x <= 0.0:
 				img.set_pixel(x, y, Color(1, 1, 1, 0))
-			else:
-				var fade_y := 1.0 - (dist_from_center / max_y_offset)
-				fade_y = fade_y * fade_y
-				var alpha := fade_x * fade_y
-				img.set_pixel(x, y, Color(1, 1, 1, alpha))
+				continue
+
+			var dist := px.length()
+			var angle := absf(px.angle())
+
+			if angle > cone_half_angle:
+				img.set_pixel(x, y, Color(1, 1, 1, 0))
+				continue
+
+			# Distance falloff (quadratic)
+			var dist_factor := 1.0 - clampf(dist / half_size, 0.0, 1.0)
+			dist_factor *= dist_factor
+
+			# Angular falloff (soft edges)
+			var angle_factor := 1.0 - (angle / cone_half_angle)
+			angle_factor *= angle_factor
+
+			var alpha := dist_factor * angle_factor
+			img.set_pixel(x, y, Color(1, 1, 1, alpha))
+
 	return ImageTexture.create_from_image(img)
 
 func _spawn_rocket() -> void:

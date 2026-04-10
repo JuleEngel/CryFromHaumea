@@ -1,18 +1,217 @@
-[gd_scene format=3 uid="uid://cufte051u5rd"]
+[gd_scene format=4 uid="uid://cufte051u5rd"]
 
-[ext_resource type="PackedScene" uid="uid://dxx4cju371esd" path="res://game_objects/submarine/submarine.tscn" id="1_x3vn1"]
-[ext_resource type="Texture2D" uid="uid://hy0fgtaqk61a" path="res://icon.svg" id="2_b8qyk"]
-[ext_resource type="PackedScene" uid="uid://dirkbudgjfg5" path="res://game_objects/alien1/alien1.tscn" id="3_b8qyk"]
+[ext_resource type="PackedScene" uid="uid://dxx4cju371esd" path="res://game_objects/submarine/submarine.tscn" id="1_sub"]
+[ext_resource type="PackedScene" uid="uid://dirkbudgjfg5" path="res://game_objects/alien1/alien1.tscn" id="2_alien"]
+[ext_resource type="TileSet" uid="uid://d3gybqjxnexfr" path="res://levels/tilesets/ice_cave_tileset.tres" id="3_tileset"]
+[ext_resource type="Shader" uid="uid://ba2rllqfa4v2m" path="res://visual_effects/underwater.gdshader" id="4_water"]
+[ext_resource type="Script" uid="uid://bk1nfycq07b4m" path="res://visual_effects/underwater_effect.gd" id="5_effect"]
+[ext_resource type="Texture2D" uid="uid://djftd7mdgmb5y" path="res://game_objects/submarine/bubble.png" id="6_bubble"]
+[ext_resource type="Texture2D" uid="uid://beqt3myvjiqna" path="res://levels/tilesets/debris_dot.png" id="7_debris"]
+[ext_resource type="Texture2D" uid="uid://dw5ab1ndhcs2o" path="res://levels/tilesets/stalactite_01.png" id="8_stal1"]
+[ext_resource type="Texture2D" uid="uid://cer8v158l8inq" path="res://levels/background/background2.png" id="9_pix5v"]
+[ext_resource type="Texture2D" uid="uid://ht1dbftcwlog" path="res://levels/tilesets/stalactite_02.png" id="9_stal2"]
+[ext_resource type="Texture2D" uid="uid://djubqnplqkybl" path="res://levels/tilesets/crystal_01.png" id="10_crystal"]
+[ext_resource type="Shader" uid="uid://cmw28irpsovmi" path="res://levels/tilesets/ice_edge_smooth.gdshader" id="11_edge"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_edge"]
+shader = ExtResource("11_edge")
+shader_parameter/blur_radius = 5.0
+shader_parameter/glow_radius = 4.0
+shader_parameter/glow_strength = 0.6
+shader_parameter/glow_color = Color(0.48, 0.72, 0.88, 1)
+
+[sub_resource type="Curve" id="Curve_debris_scale"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_biolum"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_biolum"]
+gradient = SubResource("Gradient_biolum")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_water"]
+shader = ExtResource("4_water")
+shader_parameter/distortion_strength = 0.002
+shader_parameter/distortion_speed = 0.3
+shader_parameter/distortion_scale = 12.0
+shader_parameter/caustic_strength = 0.06
+shader_parameter/caustic_speed = 0.4
+shader_parameter/caustic_scale = 8.0
+shader_parameter/vignette_strength = 0.3
+shader_parameter/tint_color = Color(0.05, 0.12, 0.22, 0.25)
+shader_parameter/camera_offset = Vector2(0, 0)
+shader_parameter/screen_pixel_size = Vector2(0.0005, 0.0005)
+shader_parameter/light_position_screen = Vector2(0.5, 0.5)
+shader_parameter/light_direction = Vector2(1, 0)
+shader_parameter/light_cone_angle = 0.44
+shader_parameter/light_range = 0.4
+shader_parameter/light_intensity = 0.15
+shader_parameter/light_color = Color(0.9, 0.95, 1, 1)
 
 [node name="Underwater" type="Node2D" unique_id=741864157]
 
-[node name="Submarine" parent="." unique_id=482854008 instance=ExtResource("1_x3vn1")]
-position = Vector2(0, 5)
-collision_mask = 1
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=426935816]
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=2124860155]
-position = Vector2(3, 119)
-texture = ExtResource("2_b8qyk")
+[node name="DeepLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=51909711]
+motion_scale = Vector2(0.15, 0.15)
 
-[node name="Alien1" parent="." unique_id=2062702134 instance=ExtResource("3_b8qyk")]
-position = Vector2(-171, -212)
+[node name="Background" type="ColorRect" parent="ParallaxBackground/DeepLayer" unique_id=2131422834]
+offset_left = -3000.0
+offset_top = -2000.0
+offset_right = 3000.0
+offset_bottom = 2000.0
+color = Color(0.02, 0.05, 0.1, 1)
+
+[node name="MidLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1440129891]
+motion_scale = Vector2(0.4, 0.4)
+
+[node name="IceSilhouette1" type="ColorRect" parent="ParallaxBackground/MidLayer" unique_id=152605171]
+offset_left = -600.0
+offset_top = -300.0
+offset_right = -450.0
+offset_bottom = 200.0
+color = Color(0.04, 0.08, 0.15, 0.6)
+
+[node name="IceSilhouette2" type="ColorRect" parent="ParallaxBackground/MidLayer" unique_id=784756311]
+offset_left = 300.0
+offset_top = -200.0
+offset_right = 500.0
+offset_bottom = 350.0
+color = Color(0.03, 0.07, 0.13, 0.5)
+
+[node name="IceSilhouette3" type="ColorRect" parent="ParallaxBackground/MidLayer" unique_id=148478512]
+offset_left = -100.0
+offset_top = 250.0
+offset_right = 150.0
+offset_bottom = 500.0
+color = Color(0.05, 0.09, 0.16, 0.4)
+
+[node name="CaveWalls" type="TileMapLayer" parent="."]
+material = SubResource("ShaderMaterial_edge")
+tile_map_data = PackedByteArray("AAD4/wAAAAAAAAIAAAD3/wAAAAADAAIAAAD2/wAAAAADAAMAAAD1/wAAAAADAAMAAAD0/wAAAAADAAEAAAD0////AAADAAEAAAD0//7/AAACAAEAAAD1//7/AAADAAMAAAD1/wIAAAADAAMAAAD1/wEAAAADAAMAAAD1////AAADAAMAAAD1/wMAAAADAAIAAAD2/wMAAAABAAIAAAD2/wIAAAABAAMAAAD2/wEAAAABAAMAAAD2//7/AAADAAMAAAD2////AAADAAMAAAD2//3/AAADAAMAAAD1//3/AAADAAEAAAD3////AAABAAMAAAD3//7/AAABAAMAAAD3//3/AAABAAMAAAD3//z/AAAAAAMAAAD2//z/AAACAAMAAAD1//z/AAACAAEAAAD0/wEAAAADAAMAAAD0/wMAAAADAAEAAAD0/wIAAAADAAMAAAD0/wQAAAABAAAAAADz/wEAAAACAAEAAADz/wIAAAADAAAAAAAFAP//AAABAAMAAAAEAP//AAADAAEAAAADAAAAAAACAAEAAAADAAEAAAADAAEAAAADAAIAAAADAAEAAAADAAMAAAADAAAAAAAEAAMAAAABAAIAAAAFAAIAAAABAAIAAAAFAAEAAAABAAMAAAAFAAAAAAABAAMAAAAFAP7/AAABAAMAAAAFAP3/AAAAAAEAAAAEAP7/AAACAAEAAAAEAAAAAAADAAMAAAAEAAEAAAADAAMAAAAEAAIAAAADAAMAAAABAO//AAACAAEAAAAAAPL/AAADAAEAAAAAAPH/AAACAAEAAAABAPD/AAADAAEAAAAAAPT/AAADAAEAAAAAAPP/AAADAAEAAAD///X/AAACAAEAAAD///b/AAADAAMAAAD+//b/AAACAAEAAAD+//f/AAADAAEAAAD+//j/AAADAAAAAAD///j/AAADAAIAAAABAPj/AAADAAMAAAAAAPj/AAADAAMAAAACAPj/AAADAAMAAAADAPj/AAADAAMAAAAEAPj/AAAAAAMAAAAEAPn/AAABAAIAAAADAPn/AAADAAMAAAADAPr/AAABAAIAAAACAPr/AAADAAAAAAABAPn/AAADAAIAAAABAPX/AAADAAMAAAABAPb/AAADAAMAAAABAPf/AAADAAMAAAABAPT/AAADAAMAAAABAPP/AAADAAMAAAACAO7/AAABAAEAAAACAO3/AAAAAAEAAAACAO//AAABAAMAAAABAPH/AAADAAMAAAABAPL/AAADAAMAAAD///f/AAADAAMAAAAAAPf/AAADAAMAAAAAAPb/AAADAAMAAAAAAPX/AAADAAMAAAAAAPn/AAADAAAAAAACAPn/AAADAAMAAAADAPf/AAABAAMAAAADAPb/AAABAAMAAAADAPX/AAAAAAMAAAACAPX/AAADAAMAAAACAPT/AAABAAMAAAACAPP/AAABAAMAAAACAPL/AAABAAMAAAACAPH/AAABAAMAAAACAPD/AAABAAMAAAACAPb/AAADAAMAAAACAPf/AAADAAMAAADt//D/AAAAAAEAAADt//H/AAABAAEAAADt//L/AAABAAEAAADt//P/AAABAAEAAADt//T/AAADAAAAAADu//T/AAACAAMAAADv//T/AAADAAMAAADw//T/AAADAAMAAADx//P/AAADAAMAAADx//L/AAABAAMAAADx//H/AAABAAMAAADx//D/AAAAAAMAAADw//D/AAACAAEAAADw//H/AAADAAEAAADv//L/AAACAAEAAADv//P/AAADAAEAAADx//T/AAADAAMAAADw//L/AAADAAMAAADw//P/AAADAAMAAADy//P/AAAAAAMAAADy//X/AAABAAIAAADy//T/AAABAAMAAADx//X/AAADAAMAAADw//X/AAADAAMAAADw//b/AAADAAMAAADv//b/AAADAAMAAADv//f/AAADAAAAAADw//f/AAABAAIAAADx//b/AAABAAIAAADv//X/AAADAAMAAADu//X/AAADAAEAAADu//b/AAADAAAAAAA=")
+tile_set = ExtResource("3_tileset")
+
+[node name="Decorations" type="Node2D" parent="." unique_id=1636511256]
+
+[node name="Stalactite1" type="Sprite2D" parent="Decorations" unique_id=734417571]
+position = Vector2(-480, -330)
+texture = ExtResource("8_stal1")
+
+[node name="Stalactite2" type="Sprite2D" parent="Decorations" unique_id=1049205508]
+position = Vector2(320, -310)
+texture = ExtResource("9_stal2")
+
+[node name="Stalactite3" type="Sprite2D" parent="Decorations" unique_id=1908236325]
+position = Vector2(-100, -350)
+scale = Vector2(-1, 1)
+texture = ExtResource("8_stal1")
+
+[node name="Stalactite4" type="Sprite2D" parent="Decorations" unique_id=1217325754]
+position = Vector2(650, -290)
+texture = ExtResource("9_stal2")
+
+[node name="Crystal1" type="Sprite2D" parent="Decorations" unique_id=974859334]
+position = Vector2(-350, 180)
+scale = Vector2(2, 2)
+texture = ExtResource("10_crystal")
+
+[node name="Crystal2" type="Sprite2D" parent="Decorations" unique_id=1674341667]
+position = Vector2(200, -100)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("10_crystal")
+
+[node name="Crystal3" type="Sprite2D" parent="Decorations" unique_id=1601229464]
+position = Vector2(500, 400)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("10_crystal")
+
+[node name="AmbientBubbles" type="CPUParticles2D" parent="." unique_id=1294968599]
+z_index = 1
+amount = 25
+texture = ExtResource("6_bubble")
+lifetime = 5.0
+emission_shape = 3
+emission_rect_extents = Vector2(1600, 1200)
+direction = Vector2(0, -1)
+spread = 15.0
+gravity = Vector2(0, -80)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+angular_velocity_min = -45.0
+angular_velocity_max = 45.0
+scale_amount_max = 2.5
+color = Color(0.8, 0.9, 1, 0.35)
+
+[node name="FloatingDebris" type="CPUParticles2D" parent="." unique_id=2086275620]
+z_index = 1
+amount = 40
+texture = ExtResource("7_debris")
+lifetime = 10.0
+emission_shape = 3
+emission_rect_extents = Vector2(1600, 1200)
+direction = Vector2(0.2, -0.3)
+spread = 180.0
+gravity = Vector2(0, -5)
+initial_velocity_min = 3.0
+initial_velocity_max = 12.0
+scale_amount_min = 0.8
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_debris_scale")
+color = Color(0.75, 0.85, 0.95, 0.15)
+
+[node name="BiolumLight1" type="PointLight2D" parent="." unique_id=963812595]
+position = Vector2(-550, -150)
+color = Color(0.2, 0.8, 0.9, 1)
+energy = 0.4
+texture = SubResource("GradientTexture2D_biolum")
+texture_scale = 3.0
+
+[node name="BiolumLight2" type="PointLight2D" parent="." unique_id=138640898]
+position = Vector2(400, 100)
+color = Color(0.3, 0.9, 0.5, 1)
+energy = 0.35
+texture = SubResource("GradientTexture2D_biolum")
+texture_scale = 2.5
+
+[node name="BiolumLight3" type="PointLight2D" parent="." unique_id=1863367704]
+position = Vector2(-200, 300)
+color = Color(0.2, 0.7, 0.95, 1)
+energy = 0.3
+texture = SubResource("GradientTexture2D_biolum")
+texture_scale = 2.0
+
+[node name="BiolumLight4" type="PointLight2D" parent="." unique_id=1089561092]
+position = Vector2(700, -200)
+color = Color(0.4, 0.85, 0.6, 1)
+energy = 0.35
+texture = SubResource("GradientTexture2D_biolum")
+texture_scale = 2.8
+
+[node name="Submarine" parent="." unique_id=482854008 instance=ExtResource("1_sub")]
+position = Vector2(-320, -320)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Submarine" unique_id=1251929346]
+modulate = Color(1, 1, 1, 0.23529412)
+z_index = -11
+position = Vector2(1, 11)
+scale = Vector2(1.4739583, 1.4739584)
+texture = ExtResource("9_pix5v")
+
+[node name="Alien1" parent="." unique_id=2062702134 instance=ExtResource("2_alien")]
+position = Vector2(300, 500)
+
+[node name="WaterEffect" type="CanvasLayer" parent="." unique_id=1768455716]
+layer = 100
+
+[node name="ColorRect" type="ColorRect" parent="WaterEffect" unique_id=408675937]
+material = SubResource("ShaderMaterial_water")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_effect")
