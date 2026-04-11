@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://d0xjijisx1woh" path="res://addons/rmsmartshape/materials/edge_material.gd" id="15_7fu2r"]
 [ext_resource type="Script" uid="uid://d218yx0d1ilsn" path="res://addons/rmsmartshape/normal_range.gd" id="16_5xpsa"]
 [ext_resource type="Texture2D" uid="uid://cer8v158l8inq" path="res://levels/background/background2.png" id="17_yn1es"]
+[ext_resource type="PackedScene" path="res://game_objects/iceblock/iceblock.tscn" id="18_tx362"]
 
 [sub_resource type="Environment" id="Environment_underwater"]
 background_mode = 3
@@ -946,3 +947,13 @@ modulate = Color(1, 1, 1, 0.38431373)
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("17_yn1es")
+
+[node name="IceBlock" parent="." unique_id=2127555679 instance=ExtResource("18_tx362")]
+position = Vector2(-976, -2272)
+rotation = -0.24188197
+scale = Vector2(1.0388354, 1.0557837)
+
+[node name="IceBlock2" parent="." unique_id=1719473995 instance=ExtResource("18_tx362")]
+position = Vector2(985.9999, -1342.0001)
+rotation = -0.24188197
+scale = Vector2(1.0388355, 1.0557837)
