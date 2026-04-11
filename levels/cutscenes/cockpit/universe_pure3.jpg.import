@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctvxip25pqq1"
-path="res://.godot/imported/universe_pure_HD.jpg-e5f99d51735d127ab631cab063d06c99.ctex"
+uid="uid://bokeik40eoo20"
+path="res://.godot/imported/universe_pure3.jpg-fdd662b55df8dc4a15429b6c56caa3a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/cutscenes/universe_pure_HD.jpg"
-dest_files=["res://.godot/imported/universe_pure_HD.jpg-e5f99d51735d127ab631cab063d06c99.ctex"]
+source_file="res://levels/cutscenes/cockpit/universe_pure3.jpg"
+dest_files=["res://.godot/imported/universe_pure3.jpg-fdd662b55df8dc4a15429b6c56caa3a5.ctex"]
 
 [params]
 

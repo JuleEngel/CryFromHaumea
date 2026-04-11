@@ -20,8 +20,8 @@ const GAME_OVER_SCENE := preload("res://ui_scenes/game_over/game_over.tscn")
 @onready var music_adventure: AudioStreamPlayer = $MusicAdventure
 @onready var music_combat: AudioStreamPlayer = $MusicCombat
 @onready var damage_sound: AudioStreamPlayer2D = $DamageSound
-@onready var camera: Camera2D = $Camera2D
 @onready var broken_screen: TextureRect = $BrokenScreenLayer/BrokenScreen
+@onready var ice_hit_sound: AudioStreamPlayer2D = $IceHitSound
 
 const DIVE_VOL_MIN := -40.0
 const DIVE_VOL_MAX := -2.0
@@ -31,7 +31,9 @@ const MUSIC_FADE_SPEED := 3.0
 var _fire_timer: float = 0.0
 var _in_combat := false
 var _headlight_base_y: float
-var _shake_tween: Tween
+var _stunned := false
+var _stun_timer: float = 0.0
+var _stun_overlay: ColorRect
 
 func _ready() -> void:
 	super()
@@ -61,13 +63,38 @@ func _process(delta: float) -> void:
 	# Broken screen overlay
 	broken_screen.self_modulate.a = (1.0 - hp_ratio) * 0.7
 
+func apply_stun(duration: float) -> void:
+	_stunned = true
+	_stun_timer = duration
+	velocity = velocity * 0.2
+	# Yellow ship tint
+	var tween := create_tween()
+	tween.tween_property(sprite, "modulate", Color(1.0, 1.0, 0.3), 0.1)
+	tween.tween_property(sprite, "modulate", Color.WHITE, duration)
+	# Yellow screen tint
+	if not _stun_overlay:
+		_stun_overlay = ColorRect.new()
+		_stun_overlay.anchors_preset = Control.PRESET_FULL_RECT
+		_stun_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		$BrokenScreenLayer.add_child(_stun_overlay)
+	_stun_overlay.color = Color(1.0, 1.0, 0.2, 0.25)
+	var screen_tween := create_tween()
+	screen_tween.tween_property(_stun_overlay, "color:a", 0.0, duration)
+
 func _physics_process(delta: float) -> void:
+	if _stunned:
+		_stun_timer -= delta
+		if _stun_timer <= 0.0:
+			_stunned = false
+
 	_fire_timer -= delta
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and _fire_timer <= 0.0:
+	if not _stunned and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and _fire_timer <= 0.0:
 		_fire_timer = fire_cooldown
 		_spawn_rocket()
 
-	var input_direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var input_direction := Vector2.ZERO
+	if not _stunned:
+		input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 	if input_direction != Vector2.ZERO:
 		velocity = velocity.move_toward(input_direction * max_speed, acceleration * delta)
@@ -125,6 +152,9 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+	if get_slide_collision_count() > 0 and not ice_hit_sound.playing:
+		ice_hit_sound.play()
+
 
 static func _generate_cone_texture(size: int, tex_size: int) -> ImageTexture:
 	# PointLight2D renders the texture centered on position.
@@ -165,21 +195,9 @@ static func _generate_cone_texture(size: int, tex_size: int) -> ImageTexture:
 
 func take_damage(amount: float) -> void:
 	super(amount)
+	var ratio := clampf(amount / max_hp, 0.0, 1.0)
+	damage_sound.volume_db = lerpf(-20.0, -4.0, ratio)
 	damage_sound.play()
-	_shake_camera()
-
-
-func _shake_camera() -> void:
-	if _shake_tween:
-		_shake_tween.kill()
-	_shake_tween = create_tween()
-	var strength := 8.0
-	var shakes := 4
-	for i in shakes:
-		var offset := Vector2(randf_range(-strength, strength), randf_range(-strength, strength))
-		_shake_tween.tween_property(camera, "offset", offset, 0.05)
-		strength *= 0.7
-	_shake_tween.tween_property(camera, "offset", Vector2.ZERO, 0.05)
 
 func _die() -> void:
 	died.emit()

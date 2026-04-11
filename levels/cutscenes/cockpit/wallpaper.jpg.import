@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://de2mkxlfoo6ii"
-path="res://.godot/imported/planet_pure.png-f13b443eabd586b15862cd8470d94900.ctex"
+uid="uid://cwpb33bfon3an"
+path="res://.godot/imported/wallpaper.jpg-406eba633534792a1f185a85d6d01c12.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/cutscenes/planet_pure.png"
-dest_files=["res://.godot/imported/planet_pure.png-f13b443eabd586b15862cd8470d94900.ctex"]
+source_file="res://levels/cutscenes/cockpit/wallpaper.jpg"
+dest_files=["res://.godot/imported/wallpaper.jpg-406eba633534792a1f185a85d6d01c12.ctex"]
 
 [params]
 
