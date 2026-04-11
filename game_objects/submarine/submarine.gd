@@ -6,6 +6,7 @@ extends Entity
 @export var visual_tilt_degrees: float = 15.0
 @export var tilt_speed: float = 8.0
 @export var fire_cooldown: float = 1.0
+@export var heal_rate: float = 5.0
 
 const ROCKET_SCENE := preload("res://game_objects/rocket/rocket.tscn")
 const GAME_OVER_SCENE := preload("res://ui_scenes/game_over/game_over.tscn")
@@ -19,6 +20,8 @@ const GAME_OVER_SCENE := preload("res://ui_scenes/game_over/game_over.tscn")
 @onready var music_adventure: AudioStreamPlayer = $MusicAdventure
 @onready var music_combat: AudioStreamPlayer = $MusicCombat
 @onready var damage_sound: AudioStreamPlayer2D = $DamageSound
+@onready var camera: Camera2D = $Camera2D
+@onready var broken_screen: TextureRect = $BrokenScreenLayer/BrokenScreen
 
 const DIVE_VOL_MIN := -40.0
 const DIVE_VOL_MAX := -2.0
@@ -28,6 +31,7 @@ const MUSIC_FADE_SPEED := 3.0
 var _fire_timer: float = 0.0
 var _in_combat := false
 var _headlight_base_y: float
+var _shake_tween: Tween
 
 func _ready() -> void:
 	super()
@@ -43,6 +47,19 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	super(delta)
 	headlight.position.y = _headlight_base_y + sin(_bob_time * bob_speed * TAU) * bob_amplitude
+
+	# Slow healing
+	if hp < max_hp:
+		hp = minf(hp + heal_rate * delta, max_hp)
+		health_changed.emit(hp, max_hp)
+
+	# Gray tint based on damage (modulate on CharacterBody2D, independent of sprite flash)
+	var hp_ratio := hp / max_hp
+	var gray := lerpf(0.4, 1.0, hp_ratio)
+	modulate = Color(gray, gray, gray, 1.0)
+
+	# Broken screen overlay
+	broken_screen.self_modulate.a = (1.0 - hp_ratio) * 0.7
 
 func _physics_process(delta: float) -> void:
 	_fire_timer -= delta
@@ -149,6 +166,20 @@ static func _generate_cone_texture(size: int, tex_size: int) -> ImageTexture:
 func take_damage(amount: float) -> void:
 	super(amount)
 	damage_sound.play()
+	_shake_camera()
+
+
+func _shake_camera() -> void:
+	if _shake_tween:
+		_shake_tween.kill()
+	_shake_tween = create_tween()
+	var strength := 8.0
+	var shakes := 4
+	for i in shakes:
+		var offset := Vector2(randf_range(-strength, strength), randf_range(-strength, strength))
+		_shake_tween.tween_property(camera, "offset", offset, 0.05)
+		strength *= 0.7
+	_shake_tween.tween_property(camera, "offset", Vector2.ZERO, 0.05)
 
 func _die() -> void:
 	died.emit()

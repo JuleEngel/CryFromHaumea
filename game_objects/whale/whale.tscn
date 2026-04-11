@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://o5kkadaw2lfk"]
+
+[ext_resource type="Script" uid="uid://cmgcy0kmjlmvt" path="res://game_objects/whale/whale.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://chg7ujgqsrx4b" path="res://game_objects/whale/whale.png" id="2_texture"]
+[ext_resource type="Texture2D" uid="uid://djftd7mdgmb5y" path="res://game_objects/submarine/bubble.png" id="3_bubble"]
+[ext_resource type="Shader" uid="uid://b5mlqwel5f78o" path="res://game_objects/alien1/swim_wave.gdshader" id="4_wave"]
+[ext_resource type="AudioStream" uid="uid://ccw1w67fk4lu8" path="res://audio/sound_effects/whale_scream.mp3" id="5_whale"]
+[ext_resource type="AudioStream" uid="uid://d1ha2xedw45ke" path="res://audio/sound_effects/alien_death.mp3" id="6_death"]
+[ext_resource type="AudioStream" uid="uid://df7b1sgwa3fnj" path="res://audio/sound_effects/alien_oscillation.mp3" id="7_oscillation"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wave"]
+shader = ExtResource("4_wave")
+shader_parameter/wave_amplitude = 0.03
+shader_parameter/wave_frequency = 3.0
+shader_parameter/wave_speed = 4.0
+shader_parameter/intensity = 1.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_body"]
+radius = 30.0
+height = 340.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_attack"]
+radius = 35.0
+height = 360.0
+
+[sub_resource type="Gradient" id="Gradient_laser"]
+colors = PackedColorArray(1, 1, 0.6, 1, 1, 1, 0.6, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_laser"]
+gradient = SubResource("Gradient_laser")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="Whale" type="CharacterBody2D" unique_id=315009043]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_script")
+laser_enabled = false
+aggro_range = 500.0
+max_hp = 200.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1984254770]
+material = SubResource("ShaderMaterial_wave")
+scale = Vector2(-1.5, 1.5)
+texture = ExtResource("2_texture")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1907974887]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_body")
+
+[node name="AggroArea" type="Area2D" parent="." unique_id=1901256340]
+collision_layer = 0
+monitorable = false
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=232994968]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=2108397798]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_attack")
+
+[node name="LaserPreview" type="Line2D" parent="." unique_id=857091078]
+z_index = 1
+points = PackedVector2Array(0, 0, 1, 0)
+width = 32.0
+default_color = Color(1, 1, 0.3, 0)
+
+[node name="LaserBeam" type="Line2D" parent="." unique_id=1001308170]
+z_index = 2
+points = PackedVector2Array(0, 0, 1, 0)
+width = 40.0
+default_color = Color(1, 1, 0.4, 0.9)
+
+[node name="LaserLight" type="PointLight2D" parent="." unique_id=920677188]
+color = Color(1, 1, 0.5, 1)
+energy = 0.0
+texture = SubResource("GradientTexture2D_laser")
+texture_scale = 3.0
+
+[node name="BubbleParticles" type="CPUParticles2D" parent="." unique_id=1189662028]
+z_index = -1
+position = Vector2(-60, 0)
+amount = 12
+texture = ExtResource("3_bubble")
+lifetime = 2.5
+emission_shape = 1
+emission_sphere_radius = 15.0
+direction = Vector2(0, -1)
+spread = 30.0
+gravity = Vector2(0, -60)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+angular_velocity_min = -60.0
+angular_velocity_max = 60.0
+scale_amount_min = 2.0
+scale_amount_max = 5.0
+color = Color(0.85, 0.92, 1, 0.4)
+
+[node name="WhaleSound" type="AudioStreamPlayer2D" parent="." unique_id=1786007014]
+stream = ExtResource("5_whale")
+max_distance = 2500.0
+
+[node name="DetectionSound" type="AudioStreamPlayer2D" parent="." unique_id=357015578]
+stream = ExtResource("5_whale")
+max_distance = 2500.0
+
+[node name="LaserSound" type="AudioStreamPlayer2D" parent="." unique_id=1658478126]
+stream = ExtResource("7_oscillation")
+max_distance = 2500.0
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=1087837535]
+stream = ExtResource("6_death")
+max_distance = 2500.0

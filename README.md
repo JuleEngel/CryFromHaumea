@@ -72,6 +72,8 @@ SmartShape2D tutorial can be found here (Thanks LucyLavend!):
 
 ### Issues
 
+Broken screen png: <a href=https://www.pngarts.com/explore/213144 target="_blank">Broken Screen PNG Background Image</a>
+
 If you have any suggestions or find any bugs, feel free to add an issue.
 
 Please include the following three bits of information in each issue posted:

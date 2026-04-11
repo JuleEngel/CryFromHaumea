@@ -1,0 +1,29 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" uid="uid://ctlg1sgegb48g" path="res://game_objects/iceblock/iceblock.png" id="1_tex"]
+[ext_resource type="Script" path="res://game_objects/iceblock/iceblock.gd" id="2_script"]
+[ext_resource type="Shader" path="res://game_objects/iceblock/ice_crumble.gdshader" id="3_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ice"]
+shader = ExtResource("3_shader")
+shader_parameter/damage_ratio = 0.0
+shader_parameter/crumble_progress = 0.0
+shader_parameter/cell_scale = 6.0
+shader_parameter/spread = 0.5
+shader_parameter/gravity_strength = 0.3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_col"]
+size = Vector2(300, 150)
+
+[node name="IceBlock" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_script")
+max_hp = 100.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ice")
+texture = ExtResource("1_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_col")

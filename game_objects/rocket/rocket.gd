@@ -76,6 +76,8 @@ func _physics_process(delta: float) -> void:
 	var result := space_state.intersect_ray(query)
 	if result:
 		global_position = result.position
+		if result.collider is Entity:
+			result.collider.take_damage(damage)
 		_explode()
 		return
 	global_position += movement
