@@ -1,25 +1,138 @@
 extends Node2D
 
-@export var duration: float = 30.0
 @export var next_scene: PackedScene
 
-@export var planet_start_scale := Vector2(0.35, 0.35)
-@export var planet_end_scale := Vector2(1.5, 1.5)
+@export_group("Audio")
+## Voiceline: "Such a headache... don't remember..."
+@export var headache_audio: AudioStream
+## Radio/SOS response voiceline
+@export var radio_audio: AudioStream
+## Engine rumble during planet approach
+@export var engine_audio: AudioStream
+
+@export_group("Subtitles")
+@export_multiline var radio_subtitle: String = "[SOS response - placeholder]"
 
 var _skip_pressed := false
 var _finished := false
 
-@onready var _planet: Sprite2D = $PlanetUniverse
+@onready var _universe: Sprite2D = $UniversePure
+@onready var _planet: Sprite2D = $PlanetPure
+@onready var _camera: Camera2D = $Camera2D
+@onready var _screen_target: Marker2D = $ScreenTarget
+@onready var _sos_label: Node2D = $ScreenTarget/SOSLabel
+@onready var _subtitle_label: Label = $UI/SubtitleLabel
 @onready var _skip_label: Label = $UI/SkipLabel
+@onready var _voice_player: AudioStreamPlayer = $VoicePlayer
+@onready var _engine_player: AudioStreamPlayer = $EnginePlayer
 
 
 func _ready() -> void:
-	_planet.scale = planet_start_scale
+	_sos_label.visible = false
+	_subtitle_label.visible = false
+	_run_cutscene()
 
+
+func _run_cutscene() -> void:
+	# Step 1 — cockpit + stars, stars drift slightly larger
+	await _step_stars_drift()
+	# Step 2 — headache voiceline
+	await _step_headache_voiceline()
+	# Step 3 — SOS on screen + camera zoom to cockpit monitor
+	await _step_sos_message()
+	# Step 4 — radio response with subtitles
+	await _step_radio_message()
+	# Step 5 — pan universe & planet into view
+	await _step_move_to_planet()
+	# Step 6 — planet grows (slow then fast) + engine audio
+	await _step_approach_planet()
+
+	_go_to_next_scene()
+
+
+# -- Steps -----------------------------------------------------------------
+
+func _step_stars_drift() -> void:
+	var end_scale := _universe.scale * 1.03
 	var tween := create_tween()
-	tween.tween_property(_planet, "scale", planet_end_scale, duration).set_ease(Tween.EASE_IN)
-	tween.tween_callback(_go_to_next_scene)
+	tween.tween_property(_universe, "scale", end_scale, 5.0) \
+		.set_ease(Tween.EASE_IN_OUT)
+	await tween.finished
 
+
+func _step_headache_voiceline() -> void:
+	if headache_audio:
+		_voice_player.stream = headache_audio
+		_voice_player.play()
+		await _voice_player.finished
+	else:
+		await get_tree().create_timer(2.0).timeout
+
+
+func _step_sos_message() -> void:
+	_sos_label.visible = true
+
+	var tween := create_tween().set_parallel(true)
+	tween.tween_property(_camera, "global_position",
+		_screen_target.global_position, 3.0) \
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(_camera, "zoom",
+		Vector2(1.8, 1.8), 3.0) \
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	await tween.finished
+
+	await get_tree().create_timer(2.0).timeout
+
+
+func _step_radio_message() -> void:
+	_subtitle_label.text = radio_subtitle
+	_subtitle_label.visible = true
+
+	if radio_audio:
+		_voice_player.stream = radio_audio
+		_voice_player.play()
+		await _voice_player.finished
+	else:
+		await get_tree().create_timer(3.0).timeout
+
+	_subtitle_label.visible = false
+
+
+func _step_move_to_planet() -> void:
+	_sos_label.visible = false
+
+	var center := Vector2(960, 540)
+	# Keep planet at the same offset relative to the universe
+	var offset := _planet.position - _universe.position
+	var universe_target := center - offset
+
+	var tween := create_tween().set_parallel(true)
+	# Zoom camera back out
+	tween.tween_property(_camera, "global_position", center, 2.5) \
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(_camera, "zoom", Vector2.ONE, 2.5) \
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	# Slide universe + planet together, planet lands at center
+	tween.tween_property(_universe, "position", universe_target, 3.5) \
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(_planet, "position", center, 3.5) \
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	await tween.finished
+
+
+func _step_approach_planet() -> void:
+	if engine_audio:
+		_engine_player.stream = engine_audio
+		_engine_player.play()
+
+	# Exponential ease-in: slow at first, then accelerates
+	var tween := create_tween()
+	tween.tween_property(_planet, "scale", Vector2(4.0, 4.0), 12.0) \
+		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
+	await tween.finished
+
+
+# -- Skip / navigation ------------------------------------------------------
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_pressed() or event.is_echo():
