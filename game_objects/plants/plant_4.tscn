@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dh8j6omqocr8x"]
+
+[ext_resource type="Texture2D" uid="uid://c0mfbk7jyvgt7" path="res://game_objects/plants/plant_4.png" id="1_j3u57"]
+
+[node name="Plant4" type="Sprite2D" unique_id=1557472760]
+texture = ExtResource("1_j3u57")

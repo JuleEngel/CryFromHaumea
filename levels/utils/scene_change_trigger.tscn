@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://00jhry2ru7jg"]
+
+[ext_resource type="Script" uid="uid://bgpy2bfqpvifg" path="res://levels/scene_change_trigger.gd" id="1_443up"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2nn5w"]
+radius = 79.40403
+
+[node name="SceneChangeTrigger" type="Area2D" unique_id=1304157233]
+script = ExtResource("1_443up")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1397631123]
+shape = SubResource("CircleShape2D_2nn5w")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

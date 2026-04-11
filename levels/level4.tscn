@@ -20,6 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://cer8v158l8inq" path="res://levels/background/background2.png" id="17_q0ied"]
 [ext_resource type="Script" uid="uid://bqtnk7c7mss1b" path="res://levels/trigger_iceblock_wall.gd" id="18_0halg"]
 [ext_resource type="PackedScene" uid="uid://10d6wm243vsf" path="res://game_objects/iceblock_wall/iceblock_wall.tscn" id="19_21lkn"]
+[ext_resource type="PackedScene" uid="uid://bdqt3uux8pjt3" path="res://game_objects/jellyfish/jellyfish.tscn" id="21_ok0nw"]
+[ext_resource type="PackedScene" uid="uid://o5kkadaw2lfk" path="res://game_objects/whale/whale.tscn" id="22_g2luv"]
+[ext_resource type="PackedScene" uid="uid://d03rqk6g5ksj5" path="res://game_objects/fish/fish.tscn" id="23_um8t4"]
 
 [sub_resource type="Environment" id="Environment_underwater"]
 background_mode = 3
@@ -1078,11 +1081,7 @@ scale_amount_max = 2.5
 color = Color(0.8, 0.9, 1, 0.35)
 
 [node name="Submarine" parent="." unique_id=482854008 instance=ExtResource("2_lrvx3")]
-position = Vector2(525, -5294)
-
-[node name="Alien1" parent="." unique_id=2062702134 instance=ExtResource("3_0halg")]
-position = Vector2(-744, -4220)
-rotation = -0.016147593
+position = Vector2(-1411, -6470)
 
 [node name="UnderwaterStation" parent="." unique_id=1246739373 instance=ExtResource("4_im0iu")]
 position = Vector2(4612, -1328)
@@ -1214,5 +1213,101 @@ visible = false
 position = Vector2(838.99994, -5313.0005)
 rotation = -0.14395629
 scale = Vector2(2.767586, 2.767586)
+
+[node name="Alien1" parent="." unique_id=2062702134 instance=ExtResource("3_0halg")]
+position = Vector2(-744, -4220)
+rotation = -0.016147591
+
+[node name="Alien2" parent="." unique_id=233042347 instance=ExtResource("3_0halg")]
+position = Vector2(418.75854, -4395.9736)
+rotation = -0.016147591
+
+[node name="Alien3" parent="." unique_id=622001945 instance=ExtResource("3_0halg")]
+position = Vector2(-793.30396, -2922.595)
+rotation = -0.016147591
+
+[node name="Alien4" parent="." unique_id=1696548875 instance=ExtResource("3_0halg")]
+position = Vector2(1441.7837, -2700.1982)
+rotation = -0.016147591
+
+[node name="Alien5" parent="." unique_id=1014721888 instance=ExtResource("3_0halg")]
+position = Vector2(4077.186, -1916.2515)
+rotation = -0.016147591
+
+[node name="Alien6" parent="." unique_id=1736070587 instance=ExtResource("3_0halg")]
+position = Vector2(2670.5261, -1037.7842)
+rotation = -0.016147591
+
+[node name="Alien7" parent="." unique_id=1084722144 instance=ExtResource("3_0halg")]
+position = Vector2(3248.7576, -3200.593)
+rotation = -0.016147591
+
+[node name="Jellyfish" parent="." unique_id=557505166 instance=ExtResource("21_ok0nw")]
+position = Vector2(536, -3695)
+
+[node name="Jellyfish2" parent="." unique_id=582988569 instance=ExtResource("21_ok0nw")]
+position = Vector2(-1732.9324, -3745.4631)
+
+[node name="Jellyfish3" parent="." unique_id=792051324 instance=ExtResource("21_ok0nw")]
+position = Vector2(2064.493, -1532.6155)
+
+[node name="Jellyfish4" parent="." unique_id=299191641 instance=ExtResource("21_ok0nw")]
+position = Vector2(2314.6895, -2983.7551)
+
+[node name="Jellyfish5" parent="." unique_id=888651853 instance=ExtResource("21_ok0nw")]
+position = Vector2(811, -2402)
+
+[node name="Whale" parent="." unique_id=315009043 instance=ExtResource("22_g2luv")]
+position = Vector2(-637.62744, -3356.2695)
+laser_enabled = true
+
+[node name="Whale2" parent="." unique_id=1049942229 instance=ExtResource("22_g2luv")]
+position = Vector2(2865.1218, -2121.9658)
+scale = Vector2(1.4, 1.4)
+laser_enabled = true
+
+[node name="Whale3" parent="." unique_id=476982935 instance=ExtResource("22_g2luv")]
+position = Vector2(-47.999992, -2682)
+scale = Vector2(1.4, 1.4)
+laser_enabled = true
+
+[node name="Fish" parent="." unique_id=1152681927 instance=ExtResource("23_um8t4")]
+position = Vector2(-1288.1382, -3167.2324)
+
+[node name="Fish2" parent="." unique_id=331762864 instance=ExtResource("23_um8t4")]
+position = Vector2(-1610.6119, -3211.7122)
+
+[node name="Fish3" parent="." unique_id=2134967356 instance=ExtResource("23_um8t4")]
+position = Vector2(-1343.7358, -2833.6377)
+
+[node name="Fish4" parent="." unique_id=664610208 instance=ExtResource("23_um8t4")]
+position = Vector2(-609.8263, -3928.942)
+
+[node name="Fish5" parent="." unique_id=560072523 instance=ExtResource("23_um8t4")]
+position = Vector2(-359.63, -3751.0244)
+
+[node name="Fish6" parent="." unique_id=168698802 instance=ExtResource("23_um8t4")]
+position = Vector2(1197.1475, -2033.0098)
+
+[node name="Fish7" parent="." unique_id=675305511 instance=ExtResource("23_um8t4")]
+position = Vector2(1452.9038, -1843.9727)
+
+[node name="Fish8" parent="." unique_id=1531197444 instance=ExtResource("23_um8t4")]
+position = Vector2(1147.1082, -1716.0945)
+
+[node name="Fish9" parent="." unique_id=861887130 instance=ExtResource("23_um8t4")]
+position = Vector2(3871.469, -1215.7017)
+
+[node name="Fish10" parent="." unique_id=1232936074 instance=ExtResource("23_um8t4")]
+position = Vector2(3749.1506, -1349.1396)
+
+[node name="Fish11" parent="." unique_id=1902452637 instance=ExtResource("23_um8t4")]
+position = Vector2(3904.8284, -3067.1548)
+
+[node name="Fish12" parent="." unique_id=1875102326 instance=ExtResource("23_um8t4")]
+position = Vector2(4138.3447, -2872.5576)
+
+[node name="Fish13" parent="." unique_id=1595634384 instance=ExtResource("23_um8t4")]
+position = Vector2(2676.0862, -3078.275)
 
 [connection signal="body_entered" from="TriggerIceBlockWall" to="TriggerIceBlockWall" method="_on_body_entered"]

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cnvbu81clxonu"]
+
+[ext_resource type="Texture2D" uid="uid://c3cxlctb2lwl8" path="res://game_objects/stone/geyser.png" id="1_3x44m"]
+
+[node name="Geyser" type="Sprite2D" unique_id=103536003]
+texture = ExtResource("1_3x44m")

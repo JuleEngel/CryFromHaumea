@@ -1,17 +1,14 @@
 [gd_scene format=3 uid="uid://edmplkpdkaup"]
 
 [ext_resource type="Texture2D" uid="uid://ccshh5r7cb18v" path="res://game_objects/underwater_station/underwater_station.png" id="1_0iwni"]
+[ext_resource type="PackedScene" uid="uid://00jhry2ru7jg" path="res://levels/utils/scene_change_trigger.tscn" id="2_vs5nx"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vs5nx"]
-radius = 53.997753
-height = 118.300995
-
-[node name="UnderwaterStation" type="Area2D" unique_id=1246739373]
+[node name="UnderwaterStation" type="Node2D" unique_id=379696581]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1865688721]
 texture = ExtResource("1_0iwni")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1219165365]
-position = Vector2(1.0000001, 17)
-rotation = 1.5316422
-shape = SubResource("CapsuleShape2D_vs5nx")
+[node name="SceneChangeTrigger" parent="." unique_id=1304157233 instance=ExtResource("2_vs5nx")]
+position = Vector2(-1, 14)
+rotation = -3.1415927
+scale = Vector2(0.73235077, 0.73235077)

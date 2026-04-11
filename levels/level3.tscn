@@ -7,7 +7,9 @@
 [ext_resource type="Script" uid="uid://bk1nfycq07b4m" path="res://visual_effects/underwater_effect.gd" id="5_ulrxl"]
 [ext_resource type="Script" uid="uid://dhdc4b8yddyej" path="res://addons/rmsmartshape/shapes/shape.gd" id="6_4lmri"]
 [ext_resource type="PackedScene" path="res://game_objects/iceblock/iceblock.tscn" id="6_k34hm"]
+[ext_resource type="PackedScene" uid="uid://00jhry2ru7jg" path="res://levels/utils/scene_change_trigger.tscn" id="7_283cd"]
 [ext_resource type="Script" uid="uid://bo5f7qe27jfje" path="res://addons/rmsmartshape/shapes/point_array.gd" id="7_i3cyh"]
+[ext_resource type="PackedScene" uid="uid://1ty1mkcl7e00" path="res://levels/level4.tscn" id="8_ulrxl"]
 [ext_resource type="Script" uid="uid://0lhxan4cqrc1" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="8_x6jsp"]
 [ext_resource type="Script" uid="uid://nc5bfedvnpgm" path="res://addons/rmsmartshape/materials/shape_material.gd" id="9_rg68n"]
 [ext_resource type="Script" uid="uid://c6kxvfqr4ewu1" path="res://addons/rmsmartshape/shapes/shape_closed.gd" id="10_g38f6"]
@@ -18,6 +20,9 @@
 [ext_resource type="Script" uid="uid://d0xjijisx1woh" path="res://addons/rmsmartshape/materials/edge_material.gd" id="15_5peto"]
 [ext_resource type="Script" uid="uid://d218yx0d1ilsn" path="res://addons/rmsmartshape/normal_range.gd" id="16_sv5e8"]
 [ext_resource type="Texture2D" uid="uid://cer8v158l8inq" path="res://levels/background/background2.png" id="17_vnxxs"]
+[ext_resource type="PackedScene" uid="uid://bdqt3uux8pjt3" path="res://game_objects/jellyfish/jellyfish.tscn" id="21_i3cyh"]
+[ext_resource type="PackedScene" uid="uid://o5kkadaw2lfk" path="res://game_objects/whale/whale.tscn" id="22_x6jsp"]
+[ext_resource type="PackedScene" uid="uid://d03rqk6g5ksj5" path="res://game_objects/fish/fish.tscn" id="23_rg68n"]
 
 [sub_resource type="Environment" id="Environment_underwater"]
 background_mode = 3
@@ -2796,6 +2801,17 @@ position = Vector2(5298.9995, 229)
 rotation = -0.03999037
 scale = Vector2(1.9723619, 1.9723619)
 
+[node name="IceBlock6" parent="." unique_id=1075428112 instance=ExtResource("6_k34hm")]
+position = Vector2(5483, 3595.0005)
+rotation = -0.039990373
+scale = Vector2(3.0467026, 3.0467026)
+
+[node name="SceneChangeTrigger" parent="." unique_id=1304157233 instance=ExtResource("7_283cd")]
+position = Vector2(6490, 2879.9998)
+rotation = -0.039990373
+scale = Vector2(3.0467026, 3.0467026)
+nextScene = ExtResource("8_ulrxl")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=167558109]
 collision_layer = 4
 collision_mask = 7
@@ -2925,3 +2941,57 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("17_vnxxs")
 metadata/_edit_lock_ = true
+
+[node name="Alien2" parent="." unique_id=1958740053 instance=ExtResource("3_c750c")]
+position = Vector2(896.37646, -2151.4282)
+
+[node name="Alien4" parent="." unique_id=1339781028 instance=ExtResource("3_c750c")]
+position = Vector2(2941, 4121)
+
+[node name="Alien5" parent="." unique_id=677649917 instance=ExtResource("3_c750c")]
+position = Vector2(2193, -893)
+
+[node name="Jellyfish3" parent="." unique_id=557505166 instance=ExtResource("21_i3cyh")]
+position = Vector2(-114.00012, 3287)
+scale = Vector2(0.7, 0.7)
+
+[node name="Jellyfish4" parent="." unique_id=2120692830 instance=ExtResource("21_i3cyh")]
+position = Vector2(4818, 3590.0002)
+scale = Vector2(0.7, 0.7)
+
+[node name="Whale" parent="." unique_id=315009043 instance=ExtResource("22_x6jsp")]
+position = Vector2(5542, -1222)
+scale = Vector2(0.7, 0.7)
+laser_enabled = true
+
+[node name="Fish" parent="." unique_id=1152681927 instance=ExtResource("23_rg68n")]
+position = Vector2(-1032.8696, -2647.9854)
+
+[node name="Fish6" parent="." unique_id=1741898389 instance=ExtResource("23_rg68n")]
+position = Vector2(3807.8274, 1251.7678)
+
+[node name="Fish7" parent="." unique_id=1256516510 instance=ExtResource("23_rg68n")]
+position = Vector2(3881.8298, 1043.2153)
+
+[node name="Fish4" parent="." unique_id=857212111 instance=ExtResource("23_rg68n")]
+position = Vector2(3041.5652, 3145.5596)
+
+[node name="Fish5" parent="." unique_id=264851022 instance=ExtResource("23_rg68n")]
+position = Vector2(2799.3748, 3078.2847)
+
+[node name="Fish2" parent="." unique_id=950803570 instance=ExtResource("23_rg68n")]
+position = Vector2(1995, -106)
+
+[node name="Fish3" parent="." unique_id=1647444064 instance=ExtResource("23_rg68n")]
+position = Vector2(2031, -15)
+
+[node name="Jellyfish" parent="." unique_id=987392092 instance=ExtResource("21_i3cyh")]
+position = Vector2(-813.0823, -905.9656)
+scale = Vector2(0.7, 0.7)
+
+[node name="Jellyfish2" parent="." unique_id=854324453 instance=ExtResource("21_i3cyh")]
+position = Vector2(5159, -2804.9998)
+scale = Vector2(0.7, 0.7)
+
+[node name="Alien3" parent="." unique_id=1068143463 instance=ExtResource("3_c750c")]
+position = Vector2(3175.6548, -2053.744)

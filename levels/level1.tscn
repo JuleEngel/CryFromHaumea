@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://djftd7mdgmb5y" path="res://game_objects/submarine/bubble.png" id="1_ls4ot"]
 [ext_resource type="PackedScene" uid="uid://dxx4cju371esd" path="res://game_objects/submarine/submarine.tscn" id="2_tx362"]
-[ext_resource type="PackedScene" uid="uid://dirkbudgjfg5" path="res://game_objects/alien1/alien1.tscn" id="3_l7nqg"]
+[ext_resource type="PackedScene" uid="uid://d0e610x3hwlk1" path="res://ui_scenes/info_screen/info_screen.tscn" id="3_2nn5w"]
 [ext_resource type="Shader" uid="uid://ba2rllqfa4v2m" path="res://visual_effects/underwater.gdshader" id="4_w7ck5"]
 [ext_resource type="Script" uid="uid://bk1nfycq07b4m" path="res://visual_effects/underwater_effect.gd" id="5_2nn5w"]
 [ext_resource type="Script" uid="uid://dhdc4b8yddyej" path="res://addons/rmsmartshape/shapes/shape.gd" id="6_ou4v7"]
@@ -17,7 +17,10 @@
 [ext_resource type="Script" uid="uid://d0xjijisx1woh" path="res://addons/rmsmartshape/materials/edge_material.gd" id="15_7fu2r"]
 [ext_resource type="Script" uid="uid://d218yx0d1ilsn" path="res://addons/rmsmartshape/normal_range.gd" id="16_5xpsa"]
 [ext_resource type="Texture2D" uid="uid://cer8v158l8inq" path="res://levels/background/background2.png" id="17_yn1es"]
+[ext_resource type="PackedScene" uid="uid://o5kkadaw2lfk" path="res://game_objects/whale/whale.tscn" id="18_l7nqg"]
 [ext_resource type="PackedScene" path="res://game_objects/iceblock/iceblock.tscn" id="18_tx362"]
+[ext_resource type="PackedScene" uid="uid://00jhry2ru7jg" path="res://levels/utils/scene_change_trigger.tscn" id="19_w7ck5"]
+[ext_resource type="PackedScene" uid="uid://cgs886llrq08l" path="res://levels/level2.tscn" id="20_2nn5w"]
 
 [sub_resource type="Environment" id="Environment_underwater"]
 background_mode = 3
@@ -898,12 +901,8 @@ scale_amount_max = 2.5
 color = Color(0.8, 0.9, 1, 0.35)
 
 [node name="Submarine" parent="." unique_id=482854008 instance=ExtResource("2_tx362")]
-position = Vector2(-1387.9999, -6416)
+position = Vector2(-1394.0001, -6379.9995)
 rotation = 0.014611467
-
-[node name="Alien1" parent="." unique_id=2062702134 instance=ExtResource("3_l7nqg")]
-position = Vector2(271, -1856.0002)
-rotation = -0.016147593
 
 [node name="WaterEffect" type="CanvasLayer" parent="." unique_id=1768455716]
 layer = 100
@@ -959,3 +958,24 @@ scale = Vector2(1.0388354, 1.0557837)
 position = Vector2(943.00006, -1331.0001)
 rotation = -0.24188197
 scale = Vector2(1.0388355, 1.0557837)
+
+[node name="IceBlock3" parent="." unique_id=1137046888 instance=ExtResource("18_tx362")]
+position = Vector2(3394, -1295)
+rotation = -0.24188197
+scale = Vector2(1.0388356, 1.0557837)
+
+[node name="Whale" parent="." unique_id=315009043 instance=ExtResource("18_l7nqg")]
+position = Vector2(331.4607, -1787.5991)
+max_hp = 100.0
+
+[node name="SceneChangeTrigger" parent="." unique_id=1304157233 instance=ExtResource("19_w7ck5")]
+position = Vector2(3781, -1354)
+collision_layer = 0
+nextScene = ExtResource("20_2nn5w")
+
+[node name="InfoScreen" parent="." unique_id=946549931 instance=ExtResource("3_2nn5w")]
+position = Vector2(-1389, -6307)
+scale = Vector2(1.52, 1)
+info_text = "Du befindest dich nun in der Eishöhle. Zeit, ein wenig erkunden zu gehen. 
+
+Bewege dein U-Boot mithilfe von WASD, um dich fortzubewegen."

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d1amwgxpqw1hh"]
+
+[ext_resource type="Texture2D" uid="uid://bm7lt1ghncc8a" path="res://game_objects/ice_spikes/ice_spike1.png" id="1_r7sp5"]
+
+[node name="IceSpike1" type="Sprite2D" unique_id=1163990920]
+texture = ExtResource("1_r7sp5")
