@@ -15,8 +15,6 @@ const GAME_OVER_SCENE := preload("res://ui_scenes/game_over/game_over.tscn")
 @onready var bubble_particles: CPUParticles2D = $BubbleParticles
 @onready var headlight: PointLight2D = $Headlight
 
-const _HEADLIGHT_OFFSET := Vector2(65.0, 30.0)
-
 var _fire_timer: float = 0.0
 
 func _ready() -> void:
@@ -38,8 +36,10 @@ func _physics_process(delta: float) -> void:
 
 	if velocity.x > 10.0:
 		sprite.flip_h = false
+		headlight.position.x = abs(headlight.position.x)
 	elif velocity.x < -10.0:
 		sprite.flip_h = true
+		headlight.position.x = -abs(headlight.position.x)
 
 	var target_tilt := 0.0
 	if velocity.length() > 10.0:
@@ -47,17 +47,12 @@ func _physics_process(delta: float) -> void:
 		target_tilt = direction.y * deg_to_rad(visual_tilt_degrees)
 		if sprite.flip_h:
 			target_tilt = -target_tilt
-	sprite.rotation = lerp_angle(sprite.rotation, target_tilt, tilt_speed * delta)
+	rotation = lerp_angle(rotation, target_tilt, tilt_speed * delta)
 
-	# Update headlight position and rotation to follow sprite tilt
-	var hl_offset := _HEADLIGHT_OFFSET
 	if sprite.flip_h:
-		hl_offset.x = -hl_offset.x
-	headlight.position = sprite.position + hl_offset.rotated(sprite.rotation)
-	if sprite.flip_h:
-		headlight.rotation = PI - sprite.rotation
+		headlight.global_rotation = rotation + PI
 	else:
-		headlight.rotation = sprite.rotation
+		headlight.global_rotation = rotation
 
 	# Bubble particles: emit from behind the submarine when moving
 	var is_moving := velocity.length() > 20.0
@@ -126,5 +121,5 @@ func _die() -> void:
 func _spawn_rocket() -> void:
 	var rocket := ROCKET_SCENE.instantiate()
 	rocket.global_position = rocket_spawn.global_position
-	rocket.rotation = -PI / 2.0  # Point up
+	rocket.rotation = -PI / 2.0
 	get_tree().current_scene.add_child(rocket)

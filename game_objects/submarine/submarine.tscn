@@ -21,12 +21,6 @@ position = Vector2(-8, -8)
 scale = Vector2(1.4153847, 1.4153847)
 texture = ExtResource("1_a6sr2")
 
-[node name="Headlight" type="PointLight2D" parent="." unique_id=793244188]
-position = Vector2(57, 22)
-color = Color(0.9, 0.95, 1, 1)
-energy = 1.5
-texture_scale = 2.0
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=274600755]
 position = Vector2(-2, 10)
 rotation = 1.5707964
@@ -56,3 +50,10 @@ scale_amount_curve = SubResource("Curve_scale")
 color = Color(0.85, 0.92, 1, 0.7)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1492380121]
+
+[node name="Headlight" type="PointLight2D" parent="." unique_id=793244188]
+position = Vector2(56.999992, 21.999998)
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.9, 0.95, 1, 1)
+energy = 1.5
+texture_scale = 2.0

@@ -6,7 +6,7 @@ extends Node2D
 @export var wobble_frequency: float = 8.0
 @export var lifetime: float = 5.0
 @export var damage: float = 20.0
-@export var eject_speed: float = 160.0
+@export var eject_speed: float = 400.0
 @export var eject_duration: float = 0.35
 
 @onready var sprite: Sprite2D = $Sprite2D

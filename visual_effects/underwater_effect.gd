@@ -14,14 +14,14 @@ func _process(_delta: float) -> void:
 	var players := get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
 		var sub := players[0]
-		var headlight := sub.get_node_or_null("Sprite2D/Headlight") as PointLight2D
+		var headlight := sub.get_node_or_null("Headlight") as PointLight2D
 		if headlight:
 			var canvas_transform := get_viewport().get_canvas_transform()
 			var screen_pos := canvas_transform * headlight.global_position
 			var screen_uv := screen_pos / vp_size
 			mat.set_shader_parameter("light_position_screen", screen_uv)
 
-			# Direction depends on which way the sub faces
+			# Direction depends on which way the sub faces + tilt
 			var sprite := sub.get_node("Sprite2D") as Sprite2D
-			var dir := Vector2(-1.0, 0.0) if sprite.flip_h else Vector2(1.0, 0.0)
-			mat.set_shader_parameter("light_direction", dir)
+			var base_dir := Vector2(-1.0, 0.0) if sprite.flip_h else Vector2(1.0, 0.0)
+			mat.set_shader_parameter("light_direction", base_dir.rotated(sub.rotation))
