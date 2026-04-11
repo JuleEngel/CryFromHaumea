@@ -126,6 +126,7 @@ func _explode() -> void:
 		return
 	_alive = false
 	_play_varied(explosion_sound, _explosion_base_vol)
+	_shake_player_camera()
 	engine_particles.emitting = false
 	bubble_particles.emitting = false
 	explosion_particles.emitting = true
@@ -139,6 +140,22 @@ func _explode() -> void:
 	var on_done := func(): remaining -= 1; if remaining == 0: queue_free()
 	explosion_particles.finished.connect(on_done)
 	explosion_sound.finished.connect(on_done)
+
+func _shake_player_camera() -> void:
+	var players := get_tree().get_nodes_in_group("player")
+	if players.is_empty():
+		return
+	var cam: Camera2D = players[0].get_node_or_null("Camera2D")
+	if not cam:
+		return
+	var tween := create_tween()
+	var strength := 4.0
+	for i in 3:
+		var offset := Vector2(randf_range(-strength, strength), randf_range(-strength, strength))
+		tween.tween_property(cam, "offset", offset, 0.04)
+		strength *= 0.6
+	tween.tween_property(cam, "offset", Vector2.ZERO, 0.04)
+
 
 static func _play_varied(player: AudioStreamPlayer2D, base_vol: float = 0.0) -> void:
 	player.pitch_scale = randf_range(0.85, 1.15)

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://d0e610x3hwlk1"]
+
+[ext_resource type="Script" uid="uid://ckwsnax34hstd" path="res://ui_scenes/info_screen/info_screen.gd" id="1_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(200, 200)
+
+[node name="InfoScreen" type="Area2D" unique_id=946549931]
+collision_layer = 0
+monitorable = false
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=818074840]
+shape = SubResource("RectangleShape2D_1")

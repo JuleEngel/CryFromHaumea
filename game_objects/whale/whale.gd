@@ -2,9 +2,9 @@ extends Enemy
 
 enum State { IDLE, PURSUING, ATTACKING, LASER_CHARGING, LASER_FIRING }
 
-@export var idle_speed: float = 25.0
-@export var pursue_speed: float = 60.0
-@export var rotation_speed: float = 2.0
+@export var idle_speed: float = 40.0
+@export var pursue_speed: float = 100.0
+@export var rotation_speed: float = 3.0
 @export var attack_damage: float = 20.0
 @export var attack_cooldown: float = 1.0
 @export var laser_enabled: bool = true
@@ -340,13 +340,14 @@ func _die() -> void:
 # -- Ambient sounds --
 
 func _schedule_whale_sound() -> void:
-	var delay := randf_range(5.0, 12.0)
+	var delay := randf_range(10.0, 25.0)
 	get_tree().create_timer(delay).timeout.connect(_play_whale_sound)
 
 func _play_whale_sound() -> void:
 	if dead:
 		return
 	whale_sound.pitch_scale = randf_range(0.8, 1.1)
+	whale_sound.volume_db = -6.0
 	whale_sound.play()
 	_schedule_whale_sound()
 

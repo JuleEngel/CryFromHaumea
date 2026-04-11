@@ -3,7 +3,8 @@ extends Entity
 
 signal aggro_changed(is_aggressive: bool)
 
-@export var aggro_range: float = 600.0
+@export var aggro_range: float = 780.0
+@export var deaggro_range_multiplier: float = 3.0
 
 @onready var aggro_area: Area2D = $AggroArea
 
@@ -22,17 +23,21 @@ func _ready() -> void:
 	col.shape = shape
 	aggro_area.add_child(col)
 	aggro_area.body_entered.connect(_on_aggro_body_entered)
-	aggro_area.body_exited.connect(_on_aggro_body_exited)
+
+func _process(delta: float) -> void:
+	super(delta)
+	if aggressive and not dead:
+		var players := get_tree().get_nodes_in_group("player")
+		if players.size() > 0:
+			var dist := global_position.distance_to(players[0].global_position)
+			if dist > aggro_range * deaggro_range_multiplier:
+				aggressive = false
+				aggro_changed.emit(false)
 
 func _on_aggro_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		aggressive = true
 		aggro_changed.emit(true)
-
-func _on_aggro_body_exited(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		aggressive = false
-		aggro_changed.emit(false)
 
 func _die() -> void:
 	died.emit()

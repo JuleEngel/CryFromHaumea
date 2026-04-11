@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://cufte051u5rd"]
 
 [ext_resource type="PackedScene" uid="uid://dxx4cju371esd" path="res://game_objects/submarine/submarine.tscn" id="1_sub"]
+[ext_resource type="PackedScene" uid="uid://d0e610x3hwlk1" path="res://ui_scenes/info_screen/info_screen.tscn" id="1_tgm20"]
 [ext_resource type="PackedScene" uid="uid://3cny73qogw0e" path="res://game_objects/iceblock/iceblock.tscn" id="1_xownd"]
 [ext_resource type="PackedScene" uid="uid://dirkbudgjfg5" path="res://game_objects/alien1/alien1.tscn" id="2_alien"]
 [ext_resource type="Shader" uid="uid://ba2rllqfa4v2m" path="res://visual_effects/underwater.gdshader" id="4_water"]
@@ -211,6 +212,10 @@ position = Vector2(755.2258, -2198.3015)
 script = ExtResource("12_oqq50")
 position = Vector2(1123.5334, -2480.8657)
 
+[sub_resource type="Resource" id="Resource_ofvca"]
+script = ExtResource("12_oqq50")
+position = Vector2(434.4414, -725.3406)
+
 [sub_resource type="Resource" id="Resource_tsfqf"]
 script = ExtResource("12_oqq50")
 position = Vector2(1805.3389, -3060.803)
@@ -222,6 +227,14 @@ position = Vector2(1395.2085, -3117.7656)
 [sub_resource type="Resource" id="Resource_wunuu"]
 script = ExtResource("12_oqq50")
 position = Vector2(1740.7813, -2578.521)
+
+[sub_resource type="Resource" id="Resource_6p7xc"]
+script = ExtResource("12_oqq50")
+position = Vector2(620.64404, -1230.5857)
+
+[sub_resource type="Resource" id="Resource_c6dvt"]
+script = ExtResource("12_oqq50")
+position = Vector2(787.73413, -1439.4482)
 
 [sub_resource type="Resource" id="Resource_hs0ky"]
 script = ExtResource("12_oqq50")
@@ -263,6 +276,22 @@ position = Vector2(-822.4053, -1424.4354)
 script = ExtResource("12_oqq50")
 position = Vector2(-727.4678, -1853.553)
 
+[sub_resource type="Resource" id="Resource_0p4iy"]
+script = ExtResource("12_oqq50")
+position = Vector2(-84.37207, -1243.5564)
+
+[sub_resource type="Resource" id="Resource_h3cl3"]
+script = ExtResource("12_oqq50")
+position = Vector2(220.56714, -1531.7866)
+
+[sub_resource type="Resource" id="Resource_isud3"]
+script = ExtResource("12_oqq50")
+position = Vector2(-17.536133, -1481.6597)
+
+[sub_resource type="Resource" id="Resource_vpo56"]
+script = ExtResource("12_oqq50")
+position = Vector2(40.945557, -926.08545)
+
 [sub_resource type="Resource" id="Resource_pvaqo"]
 script = ExtResource("12_oqq50")
 position = Vector2(1049.1327, -1441.2075)
@@ -278,34 +307,6 @@ position = Vector2(-901.4971, 1753.7222)
 [sub_resource type="Resource" id="Resource_a7uhn"]
 script = ExtResource("12_oqq50")
 position = Vector2(2704.1719, -283.17847)
-
-[sub_resource type="Resource" id="Resource_c6dvt"]
-script = ExtResource("12_oqq50")
-position = Vector2(787.73413, -1439.4482)
-
-[sub_resource type="Resource" id="Resource_6p7xc"]
-script = ExtResource("12_oqq50")
-position = Vector2(620.64404, -1230.5857)
-
-[sub_resource type="Resource" id="Resource_h3cl3"]
-script = ExtResource("12_oqq50")
-position = Vector2(220.56714, -1531.7866)
-
-[sub_resource type="Resource" id="Resource_isud3"]
-script = ExtResource("12_oqq50")
-position = Vector2(-17.536133, -1481.6597)
-
-[sub_resource type="Resource" id="Resource_0p4iy"]
-script = ExtResource("12_oqq50")
-position = Vector2(-84.37207, -1243.5564)
-
-[sub_resource type="Resource" id="Resource_vpo56"]
-script = ExtResource("12_oqq50")
-position = Vector2(40.945557, -926.08545)
-
-[sub_resource type="Resource" id="Resource_ofvca"]
-script = ExtResource("12_oqq50")
-position = Vector2(434.4414, -725.3406)
 
 [sub_resource type="Resource" id="Resource_q8fhb"]
 script = ExtResource("8_xownd")
@@ -438,6 +439,12 @@ _edge_meta_materials = Array[ExtResource("9_x5dt4")]([SubResource("Resource_i88f
 fill_textures = Array[Texture2D]([ExtResource("14_g8t11")])
 
 [node name="Underwater" type="Node2D" unique_id=741864157]
+position = Vector2(3, 0)
+
+[node name="InfoScreen" parent="." unique_id=304025723 instance=ExtResource("1_tgm20")]
+position = Vector2(-863.00006, -2872)
+rotation = 1.1261282
+info_text = "Information goes here.Information goes here.Information goes here.Information goes here.Information goes here."
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1477100749]
 environment = SubResource("Environment_underwater")

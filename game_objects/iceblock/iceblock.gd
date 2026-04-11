@@ -1,5 +1,12 @@
 extends Entity
 
+const TEXTURES: Array[CompressedTexture2D] = [
+	preload("res://game_objects/iceblock/iceblock.png"),
+	preload("res://game_objects/iceblock/iceblock_2.png"),
+	preload("res://game_objects/iceblock/iceblock_3.png"),
+	preload("res://game_objects/iceblock/iceblock_4.png"),
+]
+
 @export var crumble_duration: float = 1.2
 
 @onready var sprite: Sprite2D = $Sprite2D
@@ -10,6 +17,7 @@ func _ready() -> void:
 	collision_layer = 4  # walls
 	collision_mask = 0
 	sprite.material = sprite.material.duplicate()
+	sprite.texture = TEXTURES.pick_random()
 
 func take_damage(amount: float) -> void:
 	super(amount)
