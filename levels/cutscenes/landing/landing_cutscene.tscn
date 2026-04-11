@@ -45,4 +45,4 @@ offset_top = -50.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 20
-text = "Press again to skip"
+text = "Erneut drücken zum Überspringen"

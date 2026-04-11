@@ -9,7 +9,7 @@ const DialogTextScene := preload("res://ui_scenes/dialog_text/dialog_text.tscn")
 const InfoScreenScene := preload("res://ui_scenes/info_screen/info_screen.tscn")
 
 @export var action: Action = Action.SPEECH_TEXT
-@export_multiline var text: String = "Hello, explorer!"
+@export_multiline var text: String = "Hallo, Entdecker!"
 @export var one_shot := true
 
 var _triggered := false

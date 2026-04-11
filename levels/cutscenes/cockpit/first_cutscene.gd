@@ -13,7 +13,7 @@ extends Node2D
 @export var engine_audio: AudioStream
 
 @export_group("Subtitles")
-@export_multiline var radio_subtitle: String = "[SOS response - placeholder]"
+@export_multiline var radio_subtitle: String = "[SOS-Antwort - Platzhalter]"
 
 var _skip_pressed := false
 var _finished := false

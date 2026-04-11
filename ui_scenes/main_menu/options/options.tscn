@@ -17,7 +17,7 @@ alignment = 2
 
 [node name="Label" type="Label" parent="Musik" unique_id=2145444677]
 layout_mode = 2
-text = "Music Volume"
+text = "Musiklautstärke"
 
 [node name="CenterContainer2" type="CenterContainer" parent="Musik" unique_id=1732398698]
 layout_mode = 2
@@ -43,7 +43,7 @@ alignment = 2
 
 [node name="Label" type="Label" parent="Sound" unique_id=1360145628]
 layout_mode = 2
-text = "Sound Effects Volume"
+text = "Effektlautstärke"
 
 [node name="CenterContainer" type="CenterContainer" parent="Sound" unique_id=2108169283]
 layout_mode = 2

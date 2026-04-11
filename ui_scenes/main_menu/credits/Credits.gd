@@ -6,7 +6,7 @@ const light = preload("res://ui_scenes/fonts/NovaSquare-Regular.ttf")
 const regular = preload("res://ui_scenes/fonts/NovaSquare-Regular.ttf")
 
 const GAME_TITLE = "Cry from Haumea"
-const THANKS: String = "Thanks for Playing!"
+const THANKS: String = "Danke fürs Spielen!"
 
 var music_credit_entries: Array[LicensedCreditEntry] = [
 	LicensedCreditEntry.new(
@@ -61,23 +61,23 @@ func create_credits():
 
 
 func _create_game_design_section():
-	return _create_simple_author_section("Game Design", game_design_credit_entries)
+	return _create_simple_author_section("Spieldesign", game_design_credit_entries)
 
 
 func _create_programers_section():
-	return _create_simple_author_section("Programers", programing_credit_entries)
+	return _create_simple_author_section("Programmierung", programing_credit_entries)
 
 
 func _create_artists_section():
-	return _create_simple_author_section("Artists", artist_credit_entries)
+	return _create_simple_author_section("Grafik", artist_credit_entries)
 
 
 func _create_sound_design_section():
-	return _create_simple_author_section("Sound Design", sound_design_credit_entries)
+	return _create_simple_author_section("Sounddesign", sound_design_credit_entries)
 
 
 func _create_music_section():
-	return _create_licensed_section("Music", music_credit_entries)
+	return _create_licensed_section("Musik", music_credit_entries)
 
 
 func _create_end_section():
@@ -159,7 +159,7 @@ func _create_author_label(author_text: String) -> Label:
 func _create_license_label(license_text: String) -> Label:
 	var label = Label.new()
 	_format_label(label, light, 10)
-	label.text = "licensed under: " + license_text
+	label.text = "Lizenziert unter: " + license_text
 	return label
 
 

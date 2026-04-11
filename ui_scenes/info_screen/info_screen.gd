@@ -1,6 +1,6 @@
 extends Area2D
 
-@export_multiline var info_text: String = "Information goes here."
+@export_multiline var info_text: String = "Information folgt."
 
 const SCREEN_TEXTURE := preload("res://ui_scenes/info_screen/screen.png")
 const MENU_THEME := preload("res://ui_scenes/main_menu/menu_theme2.tres")
@@ -54,7 +54,7 @@ func _on_body_entered(body: Node2D) -> void:
 	label.add_theme_font_size_override("bold_font_size", 28)
 
 	var button := Button.new()
-	button.text = "Continue"
+	button.text = "Weiter"
 	button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	button.size_flags_vertical = Control.SIZE_SHRINK_END
 
