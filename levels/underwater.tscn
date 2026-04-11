@@ -20,6 +20,8 @@
 [ext_resource type="Script" uid="uid://d0xjijisx1woh" path="res://addons/rmsmartshape/materials/edge_material.gd" id="16_32gkd"]
 [ext_resource type="Script" uid="uid://d218yx0d1ilsn" path="res://addons/rmsmartshape/normal_range.gd" id="17_un6s0"]
 [ext_resource type="PackedScene" uid="uid://o5kkadaw2lfk" path="res://game_objects/whale/whale.tscn" id="19_x5dt4"]
+[ext_resource type="PackedScene" uid="uid://d03rqk6g5ksj5" path="res://game_objects/fish/fish.tscn" id="21_3m5he"]
+[ext_resource type="PackedScene" uid="uid://bdqt3uux8pjt3" path="res://game_objects/jellyfish/jellyfish.tscn" id="22_oqq50"]
 
 [sub_resource type="Environment" id="Environment_underwater"]
 background_mode = 3
@@ -530,7 +532,7 @@ offset_bottom = 1080.0
 texture = ExtResource("9_pix5v")
 
 [node name="Whale" parent="." unique_id=200099121 instance=ExtResource("19_x5dt4")]
-position = Vector2(-433, -603)
+position = Vector2(1656, -151)
 
 [node name="IceBlock" parent="." unique_id=277822450 instance=ExtResource("1_xownd")]
 position = Vector2(-854, -2191)
@@ -538,3 +540,9 @@ position = Vector2(-854, -2191)
 [node name="IceBlock2" parent="." unique_id=1137046888 instance=ExtResource("1_xownd")]
 position = Vector2(-962.99994, -2414)
 rotation = 1.1261282
+
+[node name="Fish" parent="." unique_id=1264635962 instance=ExtResource("21_3m5he")]
+position = Vector2(2660, 177)
+
+[node name="Jellyfish" parent="." unique_id=557505166 instance=ExtResource("22_oqq50")]
+position = Vector2(-500, -2185)

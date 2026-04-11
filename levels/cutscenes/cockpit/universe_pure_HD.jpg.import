@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlcmni1on1aej"
-path="res://.godot/imported/cockpit_pixelart.png-dac7d57ad51ef67083d0936bcdf47cbf.ctex"
+uid="uid://ctvxip25pqq1"
+path="res://.godot/imported/universe_pure_HD.jpg-ef536e57f8b8f7bf0760812b2039878c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/cutscenes/cockpit_pixelart.png"
-dest_files=["res://.godot/imported/cockpit_pixelart.png-dac7d57ad51ef67083d0936bcdf47cbf.ctex"]
+source_file="res://levels/cutscenes/cockpit/universe_pure_HD.jpg"
+dest_files=["res://.godot/imported/universe_pure_HD.jpg-ef536e57f8b8f7bf0760812b2039878c.ctex"]
 
 [params]
 

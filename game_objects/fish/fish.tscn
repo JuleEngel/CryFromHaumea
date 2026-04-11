@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://d03rqk6g5ksj5"]
+
+[ext_resource type="Script" uid="uid://b65hh16itb83h" path="res://game_objects/fish/fish.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cy7hfh4q57l1b" path="res://game_objects/fish/fish.png" id="2_texture"]
+[ext_resource type="Texture2D" uid="uid://djftd7mdgmb5y" path="res://game_objects/submarine/bubble.png" id="3_bubble"]
+[ext_resource type="Shader" uid="uid://b5mlqwel5f78o" path="res://game_objects/alien1/swim_wave.gdshader" id="4_wave"]
+[ext_resource type="AudioStream" uid="uid://cl6htb6sqlinf" path="res://audio/sound_effects/liquid_whoosh1.mp3" id="5_dash"]
+[ext_resource type="AudioStream" uid="uid://fa17taaum6uu" path="res://audio/sound_effects/alient_alert.mp3" id="6_detect"]
+[ext_resource type="AudioStream" uid="uid://d1ha2xedw45ke" path="res://audio/sound_effects/alien_death.mp3" id="7_death"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wave"]
+shader = ExtResource("4_wave")
+shader_parameter/wave_amplitude = 0.03
+shader_parameter/wave_frequency = 3.0
+shader_parameter/wave_speed = 4.0
+shader_parameter/intensity = 1.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_body"]
+height = 140.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dash"]
+radius = 12.0
+height = 150.0
+
+[sub_resource type="Gradient" id="Gradient_light"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_light"]
+gradient = SubResource("Gradient_light")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="Fish" type="CharacterBody2D" unique_id=1152681927]
+scale = Vector2(0.5, 0.5)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_script")
+aggro_range = 600.0
+max_hp = 30.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1595403522]
+material = SubResource("ShaderMaterial_wave")
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("2_texture")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1655080555]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_body")
+
+[node name="AggroArea" type="Area2D" parent="." unique_id=1942903319]
+collision_layer = 0
+monitorable = false
+
+[node name="DashHitbox" type="Area2D" parent="." unique_id=1424123826]
+collision_layer = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DashHitbox" unique_id=1176187630]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_dash")
+
+[node name="BubbleParticles" type="CPUParticles2D" parent="." unique_id=1477087167]
+z_index = -1
+position = Vector2(-30, 0)
+texture = ExtResource("3_bubble")
+lifetime = 1.5
+emission_shape = 1
+emission_sphere_radius = 6.0
+direction = Vector2(0, -1)
+spread = 25.0
+gravity = Vector2(0, -80)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+scale_amount_min = 0.8
+scale_amount_max = 2.0
+color = Color(0.85, 0.92, 1, 0.4)
+
+[node name="DashBubbles" type="CPUParticles2D" parent="." unique_id=924375077]
+z_index = -1
+emitting = false
+amount = 10
+texture = ExtResource("3_bubble")
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.9
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, -40)
+initial_velocity_min = 30.0
+initial_velocity_max = 100.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+scale_amount_max = 3.0
+color = Color(0.85, 0.92, 1, 0.6)
+
+[node name="GlowLight" type="PointLight2D" parent="." unique_id=1051943171]
+position = Vector2(-82, 2)
+color = Color(0.2, 1, 0.4, 1)
+energy = 1.58
+range_layer_min = -31
+texture = SubResource("GradientTexture2D_light")
+texture_scale = 3.9
+
+[node name="DashSound" type="AudioStreamPlayer2D" parent="." unique_id=534199839]
+stream = ExtResource("5_dash")
+
+[node name="DetectionSound" type="AudioStreamPlayer2D" parent="." unique_id=1890169173]
+stream = ExtResource("6_detect")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=211666944]
+stream = ExtResource("7_death")

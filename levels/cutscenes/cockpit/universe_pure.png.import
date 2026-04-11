@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bwqflv6uho1cn"
-path="res://.godot/imported/universe_pure.png-0a2cb7d9edbd86020b118e880f3a1416.ctex"
+path="res://.godot/imported/universe_pure.png-8dec1529e4e3807891fda04780ce3f41.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/cutscenes/universe_pure.png"
-dest_files=["res://.godot/imported/universe_pure.png-0a2cb7d9edbd86020b118e880f3a1416.ctex"]
+source_file="res://levels/cutscenes/cockpit/universe_pure.png"
+dest_files=["res://.godot/imported/universe_pure.png-8dec1529e4e3807891fda04780ce3f41.ctex"]
 
 [params]
 

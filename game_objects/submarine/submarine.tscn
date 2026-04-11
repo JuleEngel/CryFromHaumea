@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://uicopn5ikyb" path="res://audio/music/synthwave_combat.mp3" id="7_combat"]
 [ext_resource type="AudioStream" uid="uid://ouuwvu45bhly" path="res://audio/sound_effects/damage.mp3" id="8_damage"]
 [ext_resource type="Texture2D" uid="uid://bswh0nv4c72ak" path="res://visual_effects/broken_screen.png" id="9_broken"]
+[ext_resource type="AudioStream" uid="uid://c0bus7nbhjk2p" path="res://audio/sound_effects/ice_hit.mp3" id="10_ice_hit"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4qjti"]
 radius = 21.0
@@ -88,6 +89,10 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("9_broken")
 stretch_mode = 6
+
+[node name="IceHitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_ice_hit")
+volume_db = -12.0
 
 [node name="Headlight" type="PointLight2D" parent="." unique_id=793244188]
 position = Vector2(56.999992, 21.999998)
