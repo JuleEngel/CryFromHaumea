@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bgh2owhgm35e5"]
 
-[ext_resource type="Texture2D" uid="uid://bv8mqfvv06uae" path="res://game_objects/rocket/rocket.png" id="1_rocket"]
+[ext_resource type="Texture2D" uid="uid://dnvace6eno1f0" path="res://game_objects/rocket/torpedo.png" id="2_7n4j4"]
 [ext_resource type="Script" uid="uid://bg281my7mnxf1" path="res://game_objects/rocket/rocket.gd" id="2_script"]
 
 [sub_resource type="Gradient" id="Gradient_7n4j4"]
@@ -23,8 +23,9 @@ scale_min = 0.5
 scale_max = 1.5
 color_ramp = SubResource("GradientTexture1D_537th")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hitbox"]
-radius = 8.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_537th"]
+radius = 4.0
+height = 22.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_explosion"]
 direction = Vector3(0, 0, 0)
@@ -40,7 +41,8 @@ script = ExtResource("2_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=74509268]
 rotation = 1.5707964
-texture = ExtResource("1_rocket")
+scale = Vector2(0.29982355, 0.29982367)
+texture = ExtResource("2_7n4j4")
 
 [node name="EngineParticles" type="GPUParticles2D" parent="." unique_id=102773219]
 z_index = -2
@@ -50,14 +52,14 @@ amount = 20
 lifetime = 0.4
 process_material = SubResource("ParticleProcessMaterial_25c78")
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." unique_id=913855387]
 collision_layer = 0
 collision_mask = 6
-monitoring = true
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("CircleShape2D_hitbox")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=243875911]
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_537th")
 
 [node name="ExplosionParticles" type="GPUParticles2D" parent="." unique_id=1936580524]
 emitting = false

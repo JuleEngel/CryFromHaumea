@@ -20,7 +20,7 @@ func _ready() -> void:
 	var tween := create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_BACK)
-	tween.tween_property(sprite, "scale", Vector2.ONE, 0.3)
+	tween.tween_property(sprite, "scale", Vector2.ONE * .5, 0.3)
 
 	hitbox.body_entered.connect(_on_hit)
 	get_tree().create_timer(lifetime).timeout.connect(_explode)

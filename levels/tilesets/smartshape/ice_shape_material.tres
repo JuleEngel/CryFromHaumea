@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="SS2D_Material_Shape" load_steps=8 format=3]
+
+[ext_resource type="Script" uid="uid://nc5bfedvnpgm" path="res://addons/rmsmartshape/materials/shape_material.gd" id="1_shape_mat"]
+[ext_resource type="Script" uid="uid://0lhxan4cqrc1" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="2_edge_meta"]
+[ext_resource type="Script" uid="uid://d218yx0d1ilsn" path="res://addons/rmsmartshape/normal_range.gd" id="3_normal"]
+[ext_resource type="Resource" path="res://levels/tilesets/smartshape/ice_edge_material.tres" id="4_edge_mat"]
+[ext_resource type="Texture2D" path="res://levels/tilesets/smartshape/ice_fill.png" id="5_fill"]
+
+[sub_resource type="Resource" id="NormalRange_all"]
+script = ExtResource("3_normal")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="EdgeMeta_all"]
+script = ExtResource("2_edge_meta")
+edge_material = ExtResource("4_edge_mat")
+normal_range = SubResource("NormalRange_all")
+weld = true
+taper_sharp_corners = false
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[resource]
+script = ExtResource("1_shape_mat")
+_edge_meta_materials = Array[ExtResource("2_edge_meta")]([SubResource("EdgeMeta_all")])
+fill_textures = Array[Texture2D]([ExtResource("5_fill")])
+fill_texture_z_index = -10
+fill_texture_show_behind_parent = false
+fill_texture_scale = 1.0
+fill_texture_absolute_position = false
+fill_texture_absolute_rotation = false
+fill_texture_offset = Vector2(0, 0)
+fill_texture_angle_offset = 0.0
+fill_mesh_offset = 0.0
+render_offset = 0.0

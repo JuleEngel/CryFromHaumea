@@ -6,7 +6,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4qjti"]
 radius = 21.0
-height = 132.0
+height = 166.0
 
 [sub_resource type="Curve" id="Curve_scale"]
 _data = [Vector2(0, 0.4), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -29,7 +29,7 @@ energy = 1.5
 texture_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=274600755]
-position = Vector2(-1, 2)
+position = Vector2(-2, 10)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_4qjti")
 
