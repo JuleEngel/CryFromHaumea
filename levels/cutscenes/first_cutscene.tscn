@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfimm753c5gsy"]
+
+[ext_resource type="Texture2D" path="res://levels/cutscenes/planet_universe.jpg" id="1_planet"]
+[ext_resource type="Texture2D" path="res://levels/cutscenes/cockpit_pixelart.png" id="2_cockpit"]
+[ext_resource type="Script" path="res://levels/cutscenes/first_cutscene.gd" id="3_script"]
+
+[node name="FirstCutscene" type="Node2D"]
+script = ExtResource("3_script")
+
+[node name="PlanetUniverse" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_planet")
+
+[node name="CockpitPixelart" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+scale = Vector2(5, 5)
+z_index = 1
+texture = ExtResource("2_cockpit")
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="SkipLabel" type="Label" parent="UI"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -280.0
+offset_top = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "Press again to skip"

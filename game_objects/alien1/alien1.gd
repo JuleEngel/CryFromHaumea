@@ -18,6 +18,7 @@ enum State { IDLE, SWIMMING, CHARGING, DASHING }
 @onready var dash_hitbox: Area2D = $DashHitbox
 @onready var dash_projection: Line2D = $DashProjection
 @onready var bubble_particles: CPUParticles2D = $BubbleParticles
+@onready var dash_bubbles: CPUParticles2D = $DashBubbles
 @onready var dash_sound: AudioStreamPlayer2D = $DashSound
 @onready var detection_sound: AudioStreamPlayer2D = $DetectionSound
 @onready var quirring_sound: AudioStreamPlayer2D = $QuirringSound
@@ -158,6 +159,7 @@ func _start_dash() -> void:
 	_timer = dash_duration
 	velocity = _dash_direction * dash_speed
 	dash_hitbox.monitoring = true
+	dash_bubbles.emitting = true
 	dash_sound.pitch_scale = randf_range(0.85, 1.15)
 	dash_sound.volume_db = randf_range(-3.0, 3.0)
 	dash_sound.play()

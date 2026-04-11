@@ -495,6 +495,7 @@ layer = 100
 
 [node name="ColorRect" type="ColorRect" parent="WaterEffect" unique_id=408675937]
 material = SubResource("ShaderMaterial_water")
+mouse_filter = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
