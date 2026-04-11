@@ -7,6 +7,8 @@ extends Node2D
 @export var headache_audio: AudioStream
 ## Radio/SOS response voiceline
 @export var radio_audio: AudioStream
+## Modem sound during SOS typewriter
+@export var modem_audio: AudioStream
 ## Engine rumble during planet approach
 @export var engine_audio: AudioStream
 
@@ -20,8 +22,10 @@ var _finished := false
 @onready var _planet: Sprite2D = $PlanetPure
 @onready var _camera: Camera2D = $Camera2D
 @onready var _screen_target: Marker2D = $ScreenTarget
-@onready var _sos_label: Node2D = $ScreenTarget/SOSLabel
+@onready var _sos_label: Label = $ScreenTarget/SOSLabel
+@onready var _continue_label: Label = $ScreenTarget/ContinueLabel
 @onready var _subtitle_label: Label = $UI/SubtitleLabel
+@onready var _subtitle_continue_label: Label = $UI/SubtitleContinueLabel
 @onready var _skip_label: Label = $UI/SkipLabel
 @onready var _voice_player: AudioStreamPlayer = $VoicePlayer
 @onready var _engine_player: AudioStreamPlayer = $EnginePlayer
@@ -81,7 +85,14 @@ func _step_sos_message() -> void:
 		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 
-	await get_tree().create_timer(2.0).timeout
+	if modem_audio:
+		_voice_player.stream = modem_audio
+		_voice_player.play()
+	await _sos_label.play_typewriter()
+	_voice_player.stop()
+	_continue_label.visible = true
+	await _sos_label.wait_for_input()
+	_continue_label.visible = false
 
 
 func _step_radio_message() -> void:
@@ -92,9 +103,10 @@ func _step_radio_message() -> void:
 		_voice_player.stream = radio_audio
 		_voice_player.play()
 		await _voice_player.finished
-	else:
-		await get_tree().create_timer(3.0).timeout
 
+	_subtitle_continue_label.visible = true
+	await _sos_label.wait_for_input()
+	_subtitle_continue_label.visible = false
 	_subtitle_label.visible = false
 
 
@@ -125,11 +137,30 @@ func _step_approach_planet() -> void:
 		_engine_player.stream = engine_audio
 		_engine_player.play()
 
+	_shake_camera(12.0, 2.0, 12.0)
+
 	# Exponential ease-in: slow at first, then accelerates
 	var tween := create_tween()
 	tween.tween_property(_planet, "scale", Vector2(4.0, 4.0), 12.0) \
 		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
 	await tween.finished
+	_camera.offset = Vector2.ZERO
+
+
+# -- Camera shake -----------------------------------------------------------
+
+func _shake_camera(duration: float, min_strength: float, max_strength: float) -> void:
+	var elapsed := 0.0
+	while elapsed < duration:
+		var t := elapsed / duration
+		var strength := lerpf(min_strength, max_strength, t * t)
+		_camera.offset = Vector2(
+			randf_range(-strength, strength),
+			randf_range(-strength, strength),
+		)
+		await get_tree().process_frame
+		elapsed += get_process_delta_time()
+	_camera.offset = Vector2.ZERO
 
 
 # -- Skip / navigation ------------------------------------------------------

@@ -18,10 +18,10 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="EasterJam2026"
+config/name="Cry from Haumea"
 run/main_scene="uid://cufte051u5rd"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://cr03ljhlyfxgc"
 
 [display]
 
@@ -77,6 +77,10 @@ move_right={
 2d_physics/layer_1="player"
 2d_physics/layer_2="enemies"
 2d_physics/layer_3="walls"
+
+[gui]
+
+theme/custom="res://ui_scenes/main_menu/menu_theme2.tres"
 
 [rendering]
 

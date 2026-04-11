@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://dfhqbn65td4nj"]
+
+[ext_resource type="Texture2D" uid="uid://lnc4xl6loquh" path="res://levels/cutscenes/base_station/ice_base_inside.png" id="1_bg"]
+[ext_resource type="Texture2D" uid="uid://cjqyfc0n2y5gh" path="res://levels/cutscenes/base_station/ice_base_inside_book.png" id="2_book"]
+[ext_resource type="Texture2D" uid="uid://bi0no02h7sons" path="res://levels/cutscenes/base_station/ice_base_inside_chocolate.png" id="3_choc"]
+[ext_resource type="Texture2D" uid="uid://cuuxolqlh6s4q" path="res://levels/cutscenes/base_station/ice_base_inside_heater.png" id="4_heat"]
+[ext_resource type="Texture2D" uid="uid://cyw5mkbukofj1" path="res://levels/cutscenes/base_station/ice_base_inside_monitors.png" id="5_mon"]
+[ext_resource type="Texture2D" uid="uid://conmuwmk5k1i3" path="res://levels/cutscenes/base_station/ice_base_inside_tablet.png" id="6_tab"]
+[ext_resource type="Script" uid="uid://bpg6cj8rtow08" path="res://levels/cutscenes/base_station/base_station_cutscene.gd" id="7_script"]
+
+[node name="BaseStationCutscene" type="Node2D" unique_id=1185010348]
+script = ExtResource("7_script")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=438334581]
+position = Vector2(960, 540)
+scale = Vector2(1.45, 1.45)
+texture = ExtResource("1_bg")
+
+[node name="Monitors" type="Sprite2D" parent="." unique_id=1033558591]
+z_index = 1
+position = Vector2(960, 540)
+scale = Vector2(1.45, 1.45)
+texture = ExtResource("5_mon")
+
+[node name="Heater" type="Sprite2D" parent="." unique_id=868065435]
+z_index = 1
+position = Vector2(960, 540)
+scale = Vector2(1.45, 1.45)
+texture = ExtResource("4_heat")
+
+[node name="Book" type="Sprite2D" parent="." unique_id=324814719]
+z_index = 1
+position = Vector2(960, 540)
+scale = Vector2(1.45, 1.45)
+texture = ExtResource("2_book")
+
+[node name="Chocolate" type="Sprite2D" parent="." unique_id=63991049]
+z_index = 1
+position = Vector2(960, 540)
+scale = Vector2(1.45, 1.45)
+texture = ExtResource("3_choc")
+
+[node name="Tablet" type="Sprite2D" parent="." unique_id=508512993]
+z_index = 1
+position = Vector2(960, 540)
+scale = Vector2(1.45, 1.45)
+texture = ExtResource("6_tab")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=292882641]
+position = Vector2(960, 540)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1065999608]
+layer = 10
+
+[node name="HintLabel" type="Label" parent="UI" unique_id=1169027396]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 0.8)
+theme_override_font_sizes/font_size = 22
+text = "Click on highlighted objects to investigate"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="UI"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -80.0
+offset_right = 140.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Start the mission"
+
+[node name="SkipLabel" type="Label" parent="UI" unique_id=697459660]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -280.0
+offset_top = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "Press again to skip"

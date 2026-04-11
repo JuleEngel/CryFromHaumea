@@ -5,49 +5,43 @@ const bold = preload("res://ui_scenes/fonts/NovaSquare-Regular.ttf")
 const light = preload("res://ui_scenes/fonts/NovaSquare-Regular.ttf")
 const regular = preload("res://ui_scenes/fonts/NovaSquare-Regular.ttf")
 
-const GAME_TITLE = "<GAME_TITLE>"
+const GAME_TITLE = "Cry from Haumea"
 const THANKS: String = "Thanks for Playing!"
 
 var music_credit_entries: Array[LicensedCreditEntry] = [
 	LicensedCreditEntry.new(
 		"Track_Title", 
-		["Author1", "Author2"], 
+		["Justin Kreikemeyer"], 
 		"License"
 	)
 ]
 
 var shader_credit_entries: Array[LicensedCreditEntry] = [
-	LicensedCreditEntry.new(
-		"Track_Title", 
-		["Author1", "Author2"], 
-		"License"
-	)
+
 ]
 
 
 var sound_design_credit_entries: Array[AuthorCreditEntry] = [
-	AuthorCreditEntry.new("Author1")
+	AuthorCreditEntry.new("Jule Engel"),
+	AuthorCreditEntry.new("Brutenis Gliwa"),
 ]
 
 
 var artist_credit_entries: Array[AuthorCreditEntry] = [
-	AuthorCreditEntry.new("Author1"),
-	AuthorCreditEntry.new("Author2"),
-	AuthorCreditEntry.new("Author3")
+	AuthorCreditEntry.new("Jule Engel"),
+	AuthorCreditEntry.new("Brutenis Gliwa"),
 ]
 
 
 var programing_credit_entries: Array[AuthorCreditEntry] = [
-	AuthorCreditEntry.new("Author1"),
-	AuthorCreditEntry.new("Author2"),
-	AuthorCreditEntry.new("Author3")
+	AuthorCreditEntry.new("Jule Engel"),
+	AuthorCreditEntry.new("Brutenis Gliwa"),
 ]
 
 
 var game_design_credit_entries: Array[AuthorCreditEntry] = [
-	AuthorCreditEntry.new("Author1"),
-	AuthorCreditEntry.new("Author2"),
-	AuthorCreditEntry.new("Author3")
+	AuthorCreditEntry.new("Jule Engel"),
+	AuthorCreditEntry.new("Brutenis Gliwa"),
 ]
 
 var licensing: GameLicenseCreditEntry = GameLicenseCreditEntry.new("MIT_LICENSE", "2026", "Hephaistos' Forge")
