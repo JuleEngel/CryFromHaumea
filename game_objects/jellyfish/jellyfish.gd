@@ -14,7 +14,7 @@ enum State { IDLE, PURSUING, LASER_SHOOTING, STUN_CHARGING, STUN_RELEASING }
 # Stun wave
 @export var stun_interval: float = 8.0
 @export var stun_charge_duration: float = 2.0
-@export var stun_radius: float = 350.0
+@export var stun_radius: float = 400.0
 @export var stun_duration: float = 1.5
 
 @onready var sprite: Sprite2D = $Sprite2D

@@ -87,27 +87,27 @@ alignment = 2
 [node name="Play" type="Button" parent="VBoxContainer2/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=822627612]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "Play"
+text = "Spielen"
 
 [node name="HowToPlay" type="Button" parent="VBoxContainer2/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=1214131029]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
-text = "How To Play"
+text = "Anleitung"
 
 [node name="Options" type="Button" parent="VBoxContainer2/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=449663994]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "Options"
+text = "Einstellungen"
 
 [node name="Credits" type="Button" parent="VBoxContainer2/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=1804464247]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "Credits"
+text = "Mitwirkende"
 
 [node name="Exit" type="Button" parent="VBoxContainer2/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=1446693057]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "Exit"
+text = "Beenden"
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=657380671]
 clip_contents = true

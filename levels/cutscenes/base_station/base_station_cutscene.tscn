@@ -63,7 +63,7 @@ offset_bottom = 60.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 0.8)
 theme_override_font_sizes/font_size = 22
-text = "Click on highlighted objects to investigate"
+text = "Klicke auf markierte Objekte, um sie zu untersuchen"
 horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="UI"]
@@ -80,7 +80,7 @@ offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 24
-text = "Start the mission"
+text = "Mission starten"
 
 [node name="SkipLabel" type="Label" parent="UI" unique_id=697459660]
 visible = false
@@ -94,4 +94,4 @@ offset_top = -50.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 20
-text = "Press again to skip"
+text = "Erneut drücken zum Überspringen"

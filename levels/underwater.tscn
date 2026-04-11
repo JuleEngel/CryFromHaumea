@@ -447,7 +447,7 @@ position = Vector2(3, 0)
 [node name="InfoScreen" parent="." unique_id=304025723 instance=ExtResource("1_tgm20")]
 position = Vector2(-863.00006, -2872)
 rotation = 1.1261282
-info_text = "Information goes here.Information goes here.Information goes here.Information goes here.Information goes here."
+info_text = "Information folgt.Information folgt.Information folgt.Information folgt.Information folgt."
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1477100749]
 environment = SubResource("Environment_underwater")
@@ -557,7 +557,7 @@ position = Vector2(-289.1722, -2588.5693)
 position = Vector2(-330, -2827)
 action = 1
 speech_text = ""
-info_screen_text = "this is an info screen text"
+info_screen_text = "Dies ist ein Infobildschirm-Text"
 
 [node name="Fish2" parent="." unique_id=1152681927 instance=ExtResource("21_3m5he")]
 position = Vector2(726, 574)

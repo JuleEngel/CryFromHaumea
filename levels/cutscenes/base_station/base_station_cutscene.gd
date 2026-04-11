@@ -11,11 +11,11 @@ const WIDTH_HOVER := 4.0
 @export var next_scene: PackedScene
 
 @export_group("Dialog Texts")
-@export_multiline var book_text: String = "A research journal... the last entry mentions strange seismic readings."
-@export_multiline var chocolate_text: String = "A mug of hot chocolate. Still warm somehow."
-@export_multiline var heater_text: String = "A portable heater. It's been running for a while."
-@export_multiline var monitors_text: String = "Station monitors showing weather and seismic data. Something is off..."
-@export_multiline var tablet_text: String = "A tablet with expedition notes. The crew left in a hurry."
+@export_multiline var book_text: String = "Ein Forschungsjournal... der letzte Eintrag erwähnt seltsame seismische Messwerte."
+@export_multiline var chocolate_text: String = "Eine Tasse heiße Schokolade. Irgendwie noch warm."
+@export_multiline var heater_text: String = "Ein tragbarer Heizstrahler. Er läuft schon eine Weile."
+@export_multiline var monitors_text: String = "Stationsmonitore zeigen Wetter- und Seismikdaten. Irgendetwas stimmt nicht..."
+@export_multiline var tablet_text: String = "Ein Tablet mit Expeditionsnotizen. Die Crew ist überstürzt aufgebrochen."
 
 var _objects: Array[Dictionary] = []
 var _time := 0.0
