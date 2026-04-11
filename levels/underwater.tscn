@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://cufte051u5rd"]
 
 [ext_resource type="PackedScene" uid="uid://dxx4cju371esd" path="res://game_objects/submarine/submarine.tscn" id="1_sub"]
-[ext_resource type="PackedScene" path="res://game_objects/iceblock/iceblock.tscn" id="1_xownd"]
+[ext_resource type="PackedScene" uid="uid://3cny73qogw0e" path="res://game_objects/iceblock/iceblock.tscn" id="1_xownd"]
 [ext_resource type="PackedScene" uid="uid://dirkbudgjfg5" path="res://game_objects/alien1/alien1.tscn" id="2_alien"]
 [ext_resource type="Shader" uid="uid://ba2rllqfa4v2m" path="res://visual_effects/underwater.gdshader" id="4_water"]
 [ext_resource type="Script" uid="uid://bk1nfycq07b4m" path="res://visual_effects/underwater_effect.gd" id="5_effect"]
@@ -442,9 +442,6 @@ fill_textures = Array[Texture2D]([ExtResource("14_g8t11")])
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1477100749]
 environment = SubResource("Environment_underwater")
 
-[node name="IceBlock" parent="WorldEnvironment" unique_id=277822450 instance=ExtResource("1_xownd")]
-position = Vector2(-854, -2191)
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=426935816]
 
 [node name="DeepLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=51909711]
@@ -527,3 +524,10 @@ texture = ExtResource("9_pix5v")
 
 [node name="Whale" parent="." unique_id=200099121 instance=ExtResource("19_x5dt4")]
 position = Vector2(-433, -603)
+
+[node name="IceBlock" parent="." unique_id=277822450 instance=ExtResource("1_xownd")]
+position = Vector2(-854, -2191)
+
+[node name="IceBlock2" parent="." unique_id=1137046888 instance=ExtResource("1_xownd")]
+position = Vector2(-962.99994, -2414)
+rotation = 1.1261282

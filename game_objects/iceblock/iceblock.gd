@@ -9,6 +9,7 @@ func _ready() -> void:
 	super()
 	collision_layer = 4  # walls
 	collision_mask = 0
+	sprite.material = sprite.material.duplicate()
 
 func take_damage(amount: float) -> void:
 	super(amount)
