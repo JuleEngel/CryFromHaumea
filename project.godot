@@ -45,6 +45,10 @@ folder_colors={
 "res://visual_effects/": "yellow"
 }
 
+[gui]
+
+theme/custom="res://ui_scenes/main_menu/menu_theme2.tres"
+
 [input]
 
 move_up={
@@ -77,10 +81,6 @@ move_right={
 2d_physics/layer_1="player"
 2d_physics/layer_2="enemies"
 2d_physics/layer_3="walls"
-
-[gui]
-
-theme/custom="res://ui_scenes/main_menu/menu_theme2.tres"
 
 [rendering]
 

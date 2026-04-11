@@ -901,7 +901,7 @@ scale_amount_max = 2.5
 color = Color(0.8, 0.9, 1, 0.35)
 
 [node name="Submarine" parent="." unique_id=482854008 instance=ExtResource("2_tx362")]
-position = Vector2(-1394.0001, -6379.9995)
+position = Vector2(-1009.3069, -2808.641)
 rotation = 0.014611467
 
 [node name="WaterEffect" type="CanvasLayer" parent="." unique_id=1768455716]
@@ -986,4 +986,8 @@ Folge den Gängen, um tiefer in die Höhle zu gelangen."
 [node name="InfoScreen2" parent="." unique_id=1507405601 instance=ExtResource("3_2nn5w")]
 position = Vector2(-990, -2446)
 scale = Vector2(1.52, 1)
-info_text = "Ein Eisblock scheint den Weg zu versperren. "
+info_text = "Ein Eisblock scheint den Weg zu versperren. Zum Glück verfügt dein U-Boot über abschießbare Raketen.
+
+Schieße Raketen ab, indem du die linke Maustaste klickst. Alternativ kannst du sie auch gedrückt halten, um kontinuierlich Raketen abzuschießen.
+
+Um die Raketen zu steuern, lenke sie mit deinem Mauszeiger."
