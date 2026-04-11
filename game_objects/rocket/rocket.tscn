@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://rghfpad47d18" path="res://game_objects/light/light.png" id="3_537th"]
 [ext_resource type="Texture2D" uid="uid://djftd7mdgmb5y" path="res://game_objects/submarine/bubble.png" id="5_bubble"]
 [ext_resource type="Shader" path="res://game_objects/rocket/trajectory_dash.gdshader" id="4_dash"]
+[ext_resource type="AudioStreamMP3" uid="uid://nnk00c3t6g2q" path="res://audio/sound_effects/underwater_explosion.mp3" id="6_explosion"]
+[ext_resource type="AudioStreamMP3" uid="uid://bixrgju0rkefp" path="res://audio/sound_effects/rocket_release.mp3" id="7_release"]
 
 [sub_resource type="Gradient" id="Gradient_7n4j4"]
 offsets = PackedFloat32Array(0, 0.46721312, 1)
@@ -48,6 +50,10 @@ colors = PackedColorArray(1, 1, 1, 1, 0.98800004, 1, 0.64, 1, 1, 0.40600002, 0.0
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_25c78"]
 gradient = SubResource("Gradient_537th")
+
+[sub_resource type="Curve" id="Curve_launch_scale"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_explosion"]
 particle_flag_align_y = true
@@ -94,6 +100,28 @@ scale_amount_min = 0.5
 scale_amount_max = 1.5
 color = Color(0.85, 0.92, 1, 0.5)
 
+[node name="LaunchBubbles" type="CPUParticles2D" parent="."]
+z_index = -1
+emitting = false
+amount = 24
+texture = ExtResource("5_bubble")
+lifetime = 1.2
+one_shot = true
+explosiveness = 0.9
+emission_shape = 1
+emission_sphere_radius = 10.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, -40)
+initial_velocity_min = 40.0
+initial_velocity_max = 120.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+scale_amount_min = 2.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_launch_scale")
+color = Color(0.85, 0.92, 1, 0.7)
+
 [node name="Hitbox" type="Area2D" parent="." unique_id=913855387]
 collision_layer = 0
 collision_mask = 6
@@ -124,6 +152,15 @@ texture_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 antialiased = true
+
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_explosion")
+max_distance = 2000.0
+
+[node name="ReleaseSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_release")
+volume_db = -10.0
+max_distance = 2000.0
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=829971674]
 position = Vector2(3, 3)

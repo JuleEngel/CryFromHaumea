@@ -3,6 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://dkjge1p427ddy" path="res://game_objects/submarine/submarine.png" id="1_a6sr2"]
 [ext_resource type="Script" uid="uid://4h7krnmbiiul" path="res://game_objects/submarine/submarine.gd" id="2_script"]
 [ext_resource type="Texture2D" uid="uid://djftd7mdgmb5y" path="res://game_objects/submarine/bubble.png" id="3_bubble"]
+[ext_resource type="AudioStreamMP3" uid="uid://boxwlwejovwbl" path="res://audio/sound_effects/deep_sea_ambiance.mp3" id="4_ambiance"]
+[ext_resource type="AudioStreamMP3" uid="uid://o7mf7hb6s3m3" path="res://audio/sound_effects/dive_sound.mp3" id="5_dive"]
+[ext_resource type="AudioStreamMP3" uid="uid://cu4kcyulcwfr" path="res://audio/music/synthwave_adventure.mp3" id="6_adventure"]
+[ext_resource type="AudioStreamMP3" uid="uid://uicopn5ikyb" path="res://audio/music/synthwave_combat.mp3" id="7_combat"]
+[ext_resource type="AudioStreamMP3" path="res://audio/sound_effects/damage.mp3" id="8_damage"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4qjti"]
 radius = 21.0
@@ -50,6 +55,28 @@ scale_amount_curve = SubResource("Curve_scale")
 color = Color(0.85, 0.92, 1, 0.7)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1492380121]
+
+[node name="AmbianceSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ambiance")
+volume_db = -6.0
+autoplay = true
+
+[node name="DiveSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_dive")
+volume_db = -80.0
+max_distance = 2000.0
+autoplay = true
+
+[node name="MusicAdventure" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_adventure")
+
+[node name="MusicCombat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_combat")
+
+[node name="DamageSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_damage")
+volume_db = -4.0
+max_distance = 2000.0
 
 [node name="Headlight" type="PointLight2D" parent="." unique_id=793244188]
 position = Vector2(56.999992, 21.999998)

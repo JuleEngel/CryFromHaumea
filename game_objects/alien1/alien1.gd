@@ -18,6 +18,10 @@ enum State { IDLE, SWIMMING, CHARGING, DASHING }
 @onready var dash_hitbox: Area2D = $DashHitbox
 @onready var dash_projection: Line2D = $DashProjection
 @onready var bubble_particles: CPUParticles2D = $BubbleParticles
+@onready var dash_sound: AudioStreamPlayer2D = $DashSound
+@onready var detection_sound: AudioStreamPlayer2D = $DetectionSound
+@onready var quirring_sound: AudioStreamPlayer2D = $QuirringSound
+@onready var death_sound: AudioStreamPlayer2D = $DeathSound
 
 var _state := State.IDLE
 var _timer: float = 0.0
@@ -38,6 +42,8 @@ func _ready() -> void:
 	dash_hitbox.body_entered.connect(_on_dash_hit)
 	dash_projection.visible = false
 	aggro_changed.connect(_on_aggro_changed)
+	quirring_sound.finished.connect(_on_quirring_finished)
+	_schedule_quirring()
 	_pick_idle_direction()
 
 func _physics_process(delta: float) -> void:
@@ -102,6 +108,10 @@ func _on_aggro_changed(is_aggressive: bool) -> void:
 	_aggro_tween.set_ease(Tween.EASE_IN_OUT)
 	_aggro_tween.set_trans(Tween.TRANS_CUBIC)
 	_aggro_tween.tween_property(sprite, "modulate", _AGGRO_COLOR if is_aggressive else _NORMAL_COLOR, 0.4)
+	if is_aggressive:
+		detection_sound.pitch_scale = randf_range(0.85, 1.15)
+		detection_sound.volume_db = randf_range(-3.0, 3.0)
+		detection_sound.play()
 	if is_aggressive and _state == State.IDLE:
 		_start_swim()
 
@@ -148,6 +158,9 @@ func _start_dash() -> void:
 	_timer = dash_duration
 	velocity = _dash_direction * dash_speed
 	dash_hitbox.monitoring = true
+	dash_sound.pitch_scale = randf_range(0.85, 1.15)
+	dash_sound.volume_db = randf_range(-3.0, 3.0)
+	dash_sound.play()
 	dash_projection.visible = false
 
 	if _charge_tween:
@@ -220,11 +233,29 @@ func _die() -> void:
 		_aggro_tween.kill()
 	charge_light.energy = 0.0
 	bubble_particles.emitting = false
+	quirring_sound.stop()
+	death_sound.pitch_scale = randf_range(0.85, 1.15)
+	death_sound.volume_db = randf_range(-3.0, 3.0)
+	death_sound.play()
 	dash_projection.visible = false
 	dash_hitbox.monitoring = false
 	sprite.scale = _base_scale
 	sprite.modulate = _NORMAL_COLOR
 	super()
+
+func _schedule_quirring() -> void:
+	var delay := randf_range(3.0, 7.0)
+	get_tree().create_timer(delay).timeout.connect(_play_quirring)
+
+func _play_quirring() -> void:
+	if dead:
+		return
+	quirring_sound.pitch_scale = randf_range(0.85, 1.15)
+	quirring_sound.play()
+
+func _on_quirring_finished() -> void:
+	if not dead:
+		_schedule_quirring()
 
 func _find_player() -> Node2D:
 	var players := get_tree().get_nodes_in_group("player")

@@ -4,6 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://c6pplbqr0aoho" path="res://game_objects/alien1/alien1.png" id="2_itmmn"]
 [ext_resource type="Texture2D" uid="uid://djftd7mdgmb5y" path="res://game_objects/submarine/bubble.png" id="4_bubble"]
 [ext_resource type="Shader" path="res://game_objects/alien1/swim_wave.gdshader" id="3_wave"]
+[ext_resource type="AudioStreamMP3" uid="uid://c75pnkxv5eafp" path="res://audio/sound_effects/water_dash.mp3" id="5_dash"]
+[ext_resource type="AudioStreamMP3" uid="uid://d2uuw67ck31ml" path="res://audio/sound_effects/creepy_detection.mp3" id="6_detect"]
+[ext_resource type="AudioStreamMP3" uid="uid://cfmldmsrkng5w" path="res://audio/sound_effects/alient_quirring.mp3" id="7_quirr"]
+[ext_resource type="AudioStreamMP3" uid="uid://d1ha2xedw45ke" path="res://audio/sound_effects/alien_death.mp3" id="8_death"]
 
 [sub_resource type="Gradient" id="Gradient_light"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -77,6 +81,22 @@ angular_velocity_max = 90.0
 scale_amount_min = 1.2
 scale_amount_max = 3.0
 color = Color(0.85, 0.92, 1, 0.5)
+
+[node name="QuirringSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_quirr")
+max_distance = 2000.0
+
+[node name="DetectionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_detect")
+max_distance = 2000.0
+
+[node name="DashSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_dash")
+max_distance = 2000.0
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_death")
+max_distance = 2000.0
 
 [node name="ChargeLight" type="PointLight2D" parent="."]
 energy = 0.0

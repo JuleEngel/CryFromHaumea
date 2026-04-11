@@ -14,12 +14,35 @@ const GAME_OVER_SCENE := preload("res://ui_scenes/game_over/game_over.tscn")
 @onready var rocket_spawn: Marker2D = $RocketSpawn
 @onready var bubble_particles: CPUParticles2D = $BubbleParticles
 @onready var headlight: PointLight2D = $Headlight
+@onready var ambiance_sound: AudioStreamPlayer = $AmbianceSound
+@onready var dive_sound: AudioStreamPlayer2D = $DiveSound
+@onready var music_adventure: AudioStreamPlayer = $MusicAdventure
+@onready var music_combat: AudioStreamPlayer = $MusicCombat
+@onready var damage_sound: AudioStreamPlayer2D = $DamageSound
+
+const DIVE_VOL_MIN := -40.0
+const DIVE_VOL_MAX := -2.0
+const MUSIC_VOL := -6.0
+const MUSIC_FADE_SPEED := 3.0
 
 var _fire_timer: float = 0.0
+var _in_combat := false
+var _headlight_base_y: float
 
 func _ready() -> void:
 	super()
 	headlight.texture = _generate_cone_texture(512, 512)
+	ambiance_sound.stream.loop = true
+	dive_sound.stream.loop = true
+	music_adventure.volume_db = MUSIC_VOL
+	music_combat.volume_db = -80.0
+	music_adventure.play()
+	music_combat.play()
+	_headlight_base_y = headlight.position.y
+
+func _process(delta: float) -> void:
+	super(delta)
+	headlight.position.y = _headlight_base_y + sin(_bob_time * bob_speed * TAU) * bob_amplitude
 
 func _physics_process(delta: float) -> void:
 	_fire_timer -= delta
@@ -64,6 +87,25 @@ func _physics_process(delta: float) -> void:
 		bubble_particles.position.x = -abs(bubble_particles.position.x)
 		bubble_particles.direction.x = -1.0
 
+	# Dive sound volume scales with speed
+	var speed_ratio := clampf(velocity.length() / max_speed, 0.0, 1.0)
+	dive_sound.volume_db = lerpf(DIVE_VOL_MIN, DIVE_VOL_MAX, speed_ratio)
+
+	# Crossfade music based on combat state
+	var any_aggro := false
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		if enemy is Enemy and enemy.aggressive:
+			any_aggro = true
+			break
+	_in_combat = any_aggro
+	var fade := MUSIC_FADE_SPEED * delta
+	if _in_combat:
+		music_combat.volume_db = move_toward(music_combat.volume_db, MUSIC_VOL, fade * 80.0)
+		music_adventure.volume_db = move_toward(music_adventure.volume_db, -80.0, fade * 80.0)
+	else:
+		music_adventure.volume_db = move_toward(music_adventure.volume_db, MUSIC_VOL, fade * 80.0)
+		music_combat.volume_db = move_toward(music_combat.volume_db, -80.0, fade * 80.0)
+
 	move_and_slide()
 
 
@@ -104,12 +146,17 @@ static func _generate_cone_texture(size: int, tex_size: int) -> ImageTexture:
 
 	return ImageTexture.create_from_image(img)
 
+func take_damage(amount: float) -> void:
+	super(amount)
+	damage_sound.play()
+
 func _die() -> void:
 	died.emit()
 	set_physics_process(false)
 	set_process(false)
 	bubble_particles.emitting = false
 	headlight.energy = 0.0
+	dive_sound.stop()
 	# Turn grey and tilt
 	var tween := create_tween()
 	tween.set_parallel(true)

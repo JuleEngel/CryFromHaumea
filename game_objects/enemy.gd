@@ -12,6 +12,7 @@ var dead := false
 
 func _ready() -> void:
 	super()
+	add_to_group("enemy")
 	collision_layer = 2
 	collision_mask = 5
 

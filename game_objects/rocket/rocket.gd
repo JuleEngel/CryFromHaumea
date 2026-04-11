@@ -15,6 +15,12 @@ extends Node2D
 @onready var hitbox: Area2D = $Hitbox
 @onready var trajectory_line: Line2D = $TrajectoryLine
 @onready var bubble_particles: CPUParticles2D = $BubbleParticles
+@onready var explosion_sound: AudioStreamPlayer2D = $ExplosionSound
+@onready var release_sound: AudioStreamPlayer2D = $ReleaseSound
+@onready var launch_bubbles: CPUParticles2D = $LaunchBubbles
+
+var _explosion_base_vol: float
+var _release_base_vol: float
 
 var _time: float = 0.0
 var _alive := true
@@ -22,11 +28,16 @@ var _powered := false
 var _eject_timer: float = 0.0
 
 func _ready() -> void:
+	_explosion_base_vol = explosion_sound.volume_db
+	_release_base_vol = release_sound.volume_db
 	sprite.scale = Vector2.ZERO
 	var tween := create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_BACK)
 	tween.tween_property(sprite, "scale", Vector2.ONE * .5, 0.3)
+
+	_play_varied(release_sound, _release_base_vol)
+	launch_bubbles.emitting = true
 
 	# Start unpowered: no engine, no hitbox
 	engine_particles.emitting = false
@@ -112,6 +123,7 @@ func _explode() -> void:
 	if not _alive:
 		return
 	_alive = false
+	_play_varied(explosion_sound, _explosion_base_vol)
 	engine_particles.emitting = false
 	bubble_particles.emitting = false
 	explosion_particles.emitting = true
@@ -120,4 +132,13 @@ func _explode() -> void:
 	var tween := create_tween()
 	tween.tween_property(sprite, "modulate:a", 0.0, 0.3)
 	tween.tween_callback(func(): sprite.visible = false)
-	explosion_particles.finished.connect(queue_free)
+	# Free after both particles and sound finish
+	var remaining := 2
+	var on_done := func(): remaining -= 1; if remaining == 0: queue_free()
+	explosion_particles.finished.connect(on_done)
+	explosion_sound.finished.connect(on_done)
+
+static func _play_varied(player: AudioStreamPlayer2D, base_vol: float = 0.0) -> void:
+	player.pitch_scale = randf_range(0.85, 1.15)
+	player.volume_db = base_vol + randf_range(-3.0, 3.0)
+	player.play()
