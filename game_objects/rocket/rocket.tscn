@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://dnvace6eno1f0" path="res://game_objects/rocket/torpedo.png" id="2_7n4j4"]
 [ext_resource type="Script" uid="uid://bg281my7mnxf1" path="res://game_objects/rocket/rocket.gd" id="2_script"]
+[ext_resource type="Texture2D" uid="uid://rghfpad47d18" path="res://game_objects/light/light.png" id="3_537th"]
+[ext_resource type="Texture2D" uid="uid://djftd7mdgmb5y" path="res://game_objects/submarine/bubble.png" id="5_bubble"]
+[ext_resource type="Shader" path="res://game_objects/rocket/trajectory_dash.gdshader" id="4_dash"]
 
 [sub_resource type="Gradient" id="Gradient_7n4j4"]
 offsets = PackedFloat32Array(0, 0.46721312, 1)
@@ -23,18 +26,38 @@ scale_min = 0.5
 scale_max = 1.5
 color_ramp = SubResource("GradientTexture1D_537th")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dash"]
+shader = ExtResource("4_dash")
+shader_parameter/dash_count = 15.0
+shader_parameter/dash_ratio = 0.5
+
+[sub_resource type="Curve" id="Curve_traj_width"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_traj"]
+colors = PackedColorArray(0.5, 0.8, 1, 0.4, 0.5, 0.8, 1, 0)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_537th"]
 radius = 4.0
 height = 22.0
 
+[sub_resource type="Gradient" id="Gradient_537th"]
+offsets = PackedFloat32Array(0, 0.15837105, 0.3438914, 0.54298645, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.98800004, 1, 0.64, 1, 1, 0.40600002, 0.00999999, 1, 0.73, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_25c78"]
+gradient = SubResource("Gradient_537th")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_explosion"]
+particle_flag_align_y = true
 direction = Vector3(0, 0, 0)
 spread = 180.0
-initial_velocity_min = 50.0
-initial_velocity_max = 150.0
+initial_velocity_min = 0.88
+initial_velocity_max = 100.88
 gravity = Vector3(0, 0, 0)
 scale_max = 3.0
-color = Color(1, 0.4, 0, 1)
+color_ramp = SubResource("GradientTexture1D_25c78")
 
 [node name="Rocket" type="Node2D" unique_id=796727577]
 script = ExtResource("2_script")
@@ -52,6 +75,25 @@ amount = 20
 lifetime = 0.4
 process_material = SubResource("ParticleProcessMaterial_25c78")
 
+[node name="BubbleParticles" type="CPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(-14, 0)
+amount = 8
+texture = ExtResource("5_bubble")
+lifetime = 1.5
+emission_shape = 1
+emission_sphere_radius = 4.0
+direction = Vector2(0, -1)
+spread = 30.0
+gravity = Vector2(0, -60)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+scale_amount_min = 0.5
+scale_amount_max = 1.5
+color = Color(0.85, 0.92, 1, 0.5)
+
 [node name="Hitbox" type="Area2D" parent="." unique_id=913855387]
 collision_layer = 0
 collision_mask = 6
@@ -63,8 +105,31 @@ shape = SubResource("CapsuleShape2D_537th")
 
 [node name="ExplosionParticles" type="GPUParticles2D" parent="." unique_id=1936580524]
 emitting = false
-amount = 30
+amount = 200
 lifetime = 0.6
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_explosion")
+
+[node name="TrajectoryLine" type="Line2D" parent="."]
+visible = false
+top_level = true
+z_index = -1
+material = SubResource("ShaderMaterial_dash")
+width = 2.0
+width_curve = SubResource("Curve_traj_width")
+default_color = Color(0.5, 0.8, 1, 0.4)
+gradient = SubResource("Gradient_traj")
+texture_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=829971674]
+position = Vector2(3, 3)
+energy = 1.41
+blend_mode = 2
+range_layer_min = -5
+range_layer_max = 5
+texture = ExtResource("3_537th")
+texture_scale = 0.2

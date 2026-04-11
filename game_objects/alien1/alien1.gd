@@ -17,6 +17,7 @@ enum State { IDLE, SWIMMING, CHARGING, DASHING }
 @onready var charge_light: PointLight2D = $ChargeLight
 @onready var dash_hitbox: Area2D = $DashHitbox
 @onready var dash_projection: Line2D = $DashProjection
+@onready var bubble_particles: CPUParticles2D = $BubbleParticles
 
 var _state := State.IDLE
 var _timer: float = 0.0
@@ -40,6 +41,13 @@ func _ready() -> void:
 	_pick_idle_direction()
 
 func _physics_process(delta: float) -> void:
+	if dead:
+		velocity.y += 40.0 * delta
+		velocity.x = move_toward(velocity.x, 0.0, 10.0 * delta)
+		rotation += 0.3 * delta
+		move_and_slide()
+		return
+
 	_timer -= delta
 
 	match _state:
@@ -79,6 +87,11 @@ func _physics_process(delta: float) -> void:
 		if param != null:
 			current = param
 		mat.set_shader_parameter("intensity", lerpf(current, target_wave, 5.0 * delta))
+
+	# Bubble emission scales with speed
+	var spd := velocity.length()
+	bubble_particles.emitting = spd > 15.0
+	bubble_particles.amount = clampi(int(spd / 30.0), 2, 20)
 
 	move_and_slide()
 
@@ -147,6 +160,8 @@ func _start_dash() -> void:
 	tween.tween_property(charge_light, "energy", 0.3, dash_duration)
 
 func _on_dash_hit(body: Node2D) -> void:
+	if dead:
+		return
 	if body is Entity:
 		body.take_damage(dash_damage)
 
@@ -196,6 +211,20 @@ func _process_dashing(_delta: float) -> void:
 		else:
 			_state = State.IDLE
 			_pick_idle_direction()
+
+func _die() -> void:
+	# Clean up charge/dash visuals
+	if _charge_tween:
+		_charge_tween.kill()
+	if _aggro_tween:
+		_aggro_tween.kill()
+	charge_light.energy = 0.0
+	bubble_particles.emitting = false
+	dash_projection.visible = false
+	dash_hitbox.monitoring = false
+	sprite.scale = _base_scale
+	sprite.modulate = _NORMAL_COLOR
+	super()
 
 func _find_player() -> Node2D:
 	var players := get_tree().get_nodes_in_group("player")

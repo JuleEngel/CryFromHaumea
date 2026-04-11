@@ -8,11 +8,14 @@ extends Entity
 @export var fire_cooldown: float = 1.0
 
 const ROCKET_SCENE := preload("res://game_objects/rocket/rocket.tscn")
+const GAME_OVER_SCENE := preload("res://ui_scenes/game_over/game_over.tscn")
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var rocket_spawn: Marker2D = $RocketSpawn
 @onready var bubble_particles: CPUParticles2D = $BubbleParticles
-@onready var headlight: PointLight2D = $Sprite2D/Headlight
+@onready var headlight: PointLight2D = $Headlight
+
+const _HEADLIGHT_OFFSET := Vector2(65.0, 30.0)
 
 var _fire_timer: float = 0.0
 
@@ -35,12 +38,8 @@ func _physics_process(delta: float) -> void:
 
 	if velocity.x > 10.0:
 		sprite.flip_h = false
-		headlight.position.x = abs(headlight.position.x)
-		headlight.scale.x = 1.0
 	elif velocity.x < -10.0:
 		sprite.flip_h = true
-		headlight.position.x = -abs(headlight.position.x)
-		headlight.scale.x = -1.0
 
 	var target_tilt := 0.0
 	if velocity.length() > 10.0:
@@ -49,6 +48,16 @@ func _physics_process(delta: float) -> void:
 		if sprite.flip_h:
 			target_tilt = -target_tilt
 	sprite.rotation = lerp_angle(sprite.rotation, target_tilt, tilt_speed * delta)
+
+	# Update headlight position and rotation to follow sprite tilt
+	var hl_offset := _HEADLIGHT_OFFSET
+	if sprite.flip_h:
+		hl_offset.x = -hl_offset.x
+	headlight.position = sprite.position + hl_offset.rotated(sprite.rotation)
+	if sprite.flip_h:
+		headlight.rotation = PI - sprite.rotation
+	else:
+		headlight.rotation = sprite.rotation
 
 	# Bubble particles: emit from behind the submarine when moving
 	var is_moving := velocity.length() > 20.0
@@ -100,8 +109,22 @@ static func _generate_cone_texture(size: int, tex_size: int) -> ImageTexture:
 
 	return ImageTexture.create_from_image(img)
 
+func _die() -> void:
+	died.emit()
+	set_physics_process(false)
+	set_process(false)
+	bubble_particles.emitting = false
+	headlight.energy = 0.0
+	# Turn grey and tilt
+	var tween := create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(self, "modulate", Color(0.35, 0.35, 0.35, 1.0), 0.8)
+	tween.tween_property(self, "rotation", randf_range(-0.15, 0.15), 1.5)
+	# Show game over screen
+	get_tree().current_scene.add_child(GAME_OVER_SCENE.instantiate())
+
 func _spawn_rocket() -> void:
 	var rocket := ROCKET_SCENE.instantiate()
 	rocket.global_position = rocket_spawn.global_position
-	rocket.rotation = (get_global_mouse_position() - rocket_spawn.global_position).angle()
+	rocket.rotation = -PI / 2.0  # Point up
 	get_tree().current_scene.add_child(rocket)

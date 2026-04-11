@@ -18,6 +18,27 @@
 [ext_resource type="Script" uid="uid://d0xjijisx1woh" path="res://addons/rmsmartshape/materials/edge_material.gd" id="16_32gkd"]
 [ext_resource type="Script" uid="uid://d218yx0d1ilsn" path="res://addons/rmsmartshape/normal_range.gd" id="17_un6s0"]
 
+[sub_resource type="Environment" id="Environment_underwater"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 0.75
+glow_strength = 1.2
+glow_bloom = 0.1
+glow_blend_mode = 0
+glow_hdr_threshold = 0.8
+glow_hdr_scale = 2.0
+glow_levels/1 = true
+glow_levels/2 = true
+glow_levels/3 = true
+glow_levels/4 = true
+glow_levels/5 = false
+glow_levels/6 = false
+glow_levels/7 = false
+adjustment_enabled = true
+adjustment_brightness = 0.95
+adjustment_contrast = 1.1
+adjustment_saturation = 0.9
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_water"]
 shader = ExtResource("4_water")
 shader_parameter/distortion_strength = 0.002
@@ -434,6 +455,9 @@ _edge_meta_materials = Array[ExtResource("9_x5dt4")]([SubResource("Resource_i88f
 fill_textures = Array[Texture2D]([ExtResource("14_g8t11")])
 
 [node name="Underwater" type="Node2D" unique_id=741864157]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_underwater")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=426935816]
 
