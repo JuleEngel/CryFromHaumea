@@ -978,4 +978,11 @@ position = Vector2(-1389, -6307)
 scale = Vector2(1.52, 1)
 info_text = "Du befindest dich nun in der Eishöhle. Zeit, ein wenig erkunden zu gehen. 
 
-Bewege dein U-Boot mithilfe von WASD, um dich fortzubewegen."
+Bewege dein U-Boot mithilfe von WASD, um dich fortzubewegen.
+
+Folge den Gängen, um tiefer in die Höhle zu gelangen."
+
+[node name="InfoScreen2" parent="." unique_id=1507405601 instance=ExtResource("3_2nn5w")]
+position = Vector2(-990, -2446)
+scale = Vector2(1.52, 1)
+info_text = "Ein Eisblock scheint den Weg zu versperren. "
