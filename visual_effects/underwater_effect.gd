@@ -16,7 +16,7 @@ func _process(_delta: float) -> void:
 		var sub := players[0]
 		var headlight := sub.get_node_or_null("Headlight") as PointLight2D
 		if headlight:
-			if headlight.energy <= 0.0:
+			if not headlight.visible:
 				mat.set_shader_parameter("light_intensity", 0.0)
 				return
 

@@ -204,8 +204,13 @@ func _die() -> void:
 	set_physics_process(false)
 	set_process(false)
 	bubble_particles.emitting = false
-	headlight.energy = 0.0
+	headlight.visible = false
+	var water_rect := get_tree().current_scene.get_node_or_null("WaterEffect/ColorRect")
+	if water_rect and water_rect.material is ShaderMaterial:
+		(water_rect.material as ShaderMaterial).set_shader_parameter("light_intensity", 0.0)
 	dive_sound.stop()
+	music_adventure.stop()
+	music_combat.stop()
 	# Turn grey and tilt
 	var tween := create_tween()
 	tween.set_parallel(true)

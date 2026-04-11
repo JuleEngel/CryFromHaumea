@@ -1,6 +1,7 @@
 extends Area2D
 
 @export_multiline var info_text: String = "Information folgt."
+var info_image: Texture2D
 
 const SCREEN_TEXTURE := preload("res://ui_scenes/info_screen/screen.png")
 const MENU_THEME := preload("res://ui_scenes/main_menu/menu_theme2.tres")
@@ -57,6 +58,14 @@ func _on_body_entered(body: Node2D) -> void:
 	button.text = "Weiter"
 	button.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	button.size_flags_vertical = Control.SIZE_SHRINK_END
+
+	if info_image:
+		var img := TextureRect.new()
+		img.texture = info_image
+		img.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+		img.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		img.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		vbox.add_child(img)
 
 	vbox.add_child(label)
 	vbox.add_child(button)

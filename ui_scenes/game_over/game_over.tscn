@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://ui_scenes/game_over/game_over.gd" id="1_script"]
+[ext_resource type="AudioStream" uid="uid://cu4kcyulcwfr" path="res://audio/music/synthwave_adventure.mp3" id="2_music"]
 
 [node name="GameOver" type="CanvasLayer"]
 layer = 50
@@ -36,7 +37,7 @@ layout_mode = 2
 [node name="ButtonContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
 layout_mode = 2
 alignment = 1
-theme_override_constants/separation = 30
+theme_override_constants/separation = 80
 
 [node name="RestartButton" type="Button" parent="Panel/VBoxContainer/ButtonContainer"]
 unique_name_in_owner = true
@@ -51,3 +52,9 @@ custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Hauptmenü"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("2_music")
+volume_db = -6.0
+autoplay = true
