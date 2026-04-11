@@ -62,16 +62,28 @@ rotation = -1.5708
 shape = SubResource("CapsuleShape2D_attack")
 
 [node name="LaserPreview" type="Line2D" parent="." unique_id=857091078]
-z_index = 1
+z_index = -1
 points = PackedVector2Array(0, 0, 1, 0)
 width = 32.0
 default_color = Color(1, 1, 0.3, 0)
 
+[node name="LaserGlow" type="Line2D" parent="."]
+z_index = -3
+points = PackedVector2Array(0, 0, 1, 0)
+width = 120.0
+default_color = Color(1, 0.3, 0.1, 0.3)
+
 [node name="LaserBeam" type="Line2D" parent="." unique_id=1001308170]
-z_index = 2
+z_index = -2
 points = PackedVector2Array(0, 0, 1, 0)
 width = 40.0
-default_color = Color(1, 1, 0.4, 0.9)
+default_color = Color(1, 0.8, 0.2, 0.9)
+
+[node name="LaserCore" type="Line2D" parent="."]
+z_index = -1
+points = PackedVector2Array(0, 0, 1, 0)
+width = 12.0
+default_color = Color(1, 1, 0.9, 1)
 
 [node name="LaserLight" type="PointLight2D" parent="." unique_id=920677188]
 color = Color(1, 1, 0.5, 1)

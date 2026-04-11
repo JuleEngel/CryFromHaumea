@@ -534,6 +534,7 @@ texture = ExtResource("9_pix5v")
 
 [node name="Whale" parent="." unique_id=200099121 instance=ExtResource("19_x5dt4")]
 position = Vector2(1656, -151)
+laser_enabled = true
 
 [node name="IceBlock" parent="." unique_id=277822450 instance=ExtResource("1_xownd")]
 position = Vector2(-854, -2191)
@@ -551,6 +552,12 @@ position = Vector2(-512, 74)
 
 [node name="TriggerOrb" parent="." unique_id=1215731499 instance=ExtResource("23_4ihsm")]
 position = Vector2(-289.1722, -2588.5693)
+
+[node name="TriggerOrb2" parent="." unique_id=244708857 instance=ExtResource("23_4ihsm")]
+position = Vector2(-330, -2827)
+action = 1
+speech_text = ""
+info_screen_text = "this is an info screen text"
 
 [node name="Fish2" parent="." unique_id=1152681927 instance=ExtResource("21_3m5he")]
 position = Vector2(726, 574)
