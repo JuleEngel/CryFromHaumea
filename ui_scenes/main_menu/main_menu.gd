@@ -4,7 +4,7 @@ const CREDITS_SCENE = preload("uid://t2fq0e5biqhp")
 const OPTIONS_SCENE = preload("uid://bm05tr65hiukv")
 const TUTORIAL_SCENE = preload("uid://cq5crd7456h8s")
 
-const MAIN_SCENE_PATH: String = ""
+const MAIN_SCENE_PATH: String = "res://levels/cutscenes/cockpit/first_cutscene.tscn"
 
 enum ContentType {
 	OPTIONS,

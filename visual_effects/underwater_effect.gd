@@ -16,6 +16,10 @@ func _process(_delta: float) -> void:
 		var sub := players[0]
 		var headlight := sub.get_node_or_null("Headlight") as PointLight2D
 		if headlight:
+			if headlight.energy <= 0.0:
+				mat.set_shader_parameter("light_intensity", 0.0)
+				return
+
 			var canvas_transform := get_viewport().get_canvas_transform()
 			var screen_pos := canvas_transform * headlight.global_position
 			var screen_uv := screen_pos / vp_size

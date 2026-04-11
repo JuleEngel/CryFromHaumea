@@ -2,17 +2,17 @@ extends Enemy
 
 enum State { IDLE, PURSUING, ATTACKING, LASER_CHARGING, LASER_FIRING }
 
-@export var idle_speed: float = 40.0
-@export var pursue_speed: float = 100.0
-@export var rotation_speed: float = 3.0
+@export var idle_speed: float = 60.0
+@export var pursue_speed: float = 160.0
+@export var rotation_speed: float = 5.0
 @export var attack_damage: float = 20.0
 @export var attack_cooldown: float = 1.0
 @export var laser_enabled: bool = true
-@export var laser_cooldown: float = 8.0
-@export var laser_charge_duration: float = 2.0
-@export var laser_fire_duration: float = 0.8
+@export var laser_cooldown: float = 3.0
+@export var laser_charge_duration: float = 0.6
+@export var laser_fire_duration: float = 2.0
 @export var laser_damage: float = 40.0
-@export var laser_range: float = 600.0
+@export var laser_range: float = 900.0
 @export var laser_width: float = 40.0
 
 @onready var sprite: Sprite2D = $Sprite2D
@@ -24,6 +24,8 @@ enum State { IDLE, PURSUING, ATTACKING, LASER_CHARGING, LASER_FIRING }
 @onready var laser_sound: AudioStreamPlayer2D = $LaserSound
 @onready var laser_beam: Line2D = $LaserBeam
 @onready var laser_preview: Line2D = $LaserPreview
+@onready var laser_glow: Line2D = $LaserGlow
+@onready var laser_core: Line2D = $LaserCore
 @onready var laser_light: PointLight2D = $LaserLight
 
 var _state := State.IDLE
@@ -50,6 +52,8 @@ func _ready() -> void:
 	_schedule_whale_sound()
 	laser_beam.visible = false
 	laser_preview.visible = false
+	laser_glow.visible = false
+	laser_core.visible = false
 	laser_light.energy = 0.0
 
 func _physics_process(delta: float) -> void:
@@ -119,7 +123,7 @@ func _on_aggro_changed(is_aggressive: bool) -> void:
 		detection_sound.play()
 		if _state == State.IDLE:
 			_state = State.PURSUING
-			_laser_timer = laser_cooldown
+			_laser_timer = 1.0
 
 func _pick_idle_direction() -> void:
 	_idle_direction = Vector2.from_angle(randf() * TAU)
@@ -129,7 +133,7 @@ func _process_idle(delta: float) -> void:
 	_idle_change_timer -= delta
 	if _idle_change_timer <= 0.0:
 		_pick_idle_direction()
-	velocity = velocity.move_toward(_idle_direction * idle_speed, 30.0 * delta)
+	velocity = velocity.move_toward(_idle_direction * idle_speed, 50.0 * delta)
 
 func _process_pursuing(delta: float) -> void:
 	if not aggressive:
@@ -145,7 +149,7 @@ func _process_pursuing(delta: float) -> void:
 	var player := _find_player()
 	if player:
 		var to_player := (player.global_position - global_position).normalized()
-		velocity = velocity.move_toward(to_player * pursue_speed, 80.0 * delta)
+		velocity = velocity.move_toward(to_player * pursue_speed, 150.0 * delta)
 		if not laser_enabled:
 			var dist := global_position.distance_to(player.global_position)
 			if dist < 120.0:
@@ -211,6 +215,8 @@ func _start_laser_charge() -> void:
 	# Show preview beam
 	laser_preview.visible = true
 	laser_beam.visible = false
+	laser_glow.visible = false
+	laser_core.visible = false
 	_update_laser_preview(0.0)
 
 	# Tween whale to yellow glow
@@ -229,7 +235,7 @@ func _process_laser_charging(delta: float) -> void:
 	var player := _find_player()
 	if player:
 		var desired := (player.global_position - global_position).normalized()
-		_laser_direction = _laser_direction.lerp(desired, 1.5 * delta).normalized()
+		_laser_direction = _laser_direction.lerp(desired, 2.5 * delta).normalized()
 
 	# Rotate whale to face laser direction
 	var target_angle := _laser_direction.angle()
@@ -255,20 +261,43 @@ func _start_laser_fire() -> void:
 	_state = State.LASER_FIRING
 	_state_timer = laser_fire_duration
 	_laser_hit_this_fire = false
-
-	# Lock direction at fire time
 	laser_preview.visible = false
+
+	var beam_points := PackedVector2Array([Vector2.ZERO, Vector2(laser_range, 0)])
+
+	# Outer glow layer (wide, soft red-orange)
+	laser_glow.visible = true
+	laser_glow.points = beam_points
+	laser_glow.width = laser_width * 3.0
+	var glow_grad := Gradient.new()
+	glow_grad.colors = PackedColorArray([Color(1.0, 0.3, 0.1, 0.35), Color(1.0, 0.3, 0.1, 0.35), Color(1.0, 0.2, 0.05, 0.0)])
+	glow_grad.offsets = PackedFloat32Array([0.0, 0.6, 1.0])
+	laser_glow.gradient = glow_grad
+
+	# Main beam layer (yellow-orange)
 	laser_beam.visible = true
+	laser_beam.points = beam_points
 	laser_beam.width = laser_width
-	laser_beam.points = PackedVector2Array([Vector2.ZERO, Vector2(laser_range, 0)])
-	laser_beam.default_color = Color(1.0, 1.0, 0.4, 0.9)
+	var beam_grad := Gradient.new()
+	beam_grad.colors = PackedColorArray([Color(1.0, 0.8, 0.2, 0.9), Color(1.0, 0.7, 0.15, 0.9), Color(1.0, 0.5, 0.1, 0.0)])
+	beam_grad.offsets = PackedFloat32Array([0.0, 0.75, 1.0])
+	laser_beam.gradient = beam_grad
+
+	# Bright inner core (white-hot)
+	laser_core.visible = true
+	laser_core.points = beam_points
+	laser_core.width = laser_width * 0.3
+	var core_grad := Gradient.new()
+	core_grad.colors = PackedColorArray([Color(1.0, 1.0, 0.9, 1.0), Color(1.0, 1.0, 0.85, 1.0), Color(1.0, 1.0, 0.7, 0.0)])
+	core_grad.offsets = PackedFloat32Array([0.0, 0.8, 1.0])
+	laser_core.gradient = core_grad
 
 	# Bright flash on light
 	if _laser_tween:
 		_laser_tween.kill()
 	_laser_tween = create_tween()
-	_laser_tween.tween_property(laser_light, "energy", 4.0, 0.1)
-	_laser_tween.tween_property(laser_light, "energy", 2.5, laser_fire_duration - 0.1)
+	_laser_tween.tween_property(laser_light, "energy", 5.0, 0.1)
+	_laser_tween.tween_property(laser_light, "energy", 3.0, laser_fire_duration - 0.1)
 
 func _process_laser_firing(delta: float) -> void:
 	if dead:
@@ -276,8 +305,12 @@ func _process_laser_firing(delta: float) -> void:
 
 	# Beam visual flicker
 	var flicker := 0.85 + randf() * 0.15
-	laser_beam.default_color = Color(1.0 * flicker, 1.0 * flicker, 0.3 * flicker, 0.9)
+	laser_glow.self_modulate = Color(flicker, flicker, flicker, 0.8 + randf() * 0.2)
+	laser_glow.width = laser_width * 3.0 * (0.9 + randf() * 0.2)
+	laser_beam.self_modulate = Color(flicker, flicker, flicker, 1.0)
 	laser_beam.width = laser_width * (0.9 + randf() * 0.2)
+	laser_core.self_modulate = Color(1.0, 1.0, 1.0, 0.9 + randf() * 0.1)
+	laser_core.width = laser_width * 0.3 * (0.85 + randf() * 0.3)
 
 	# Check for player hits along the beam (in global space)
 	var player := _find_player()
@@ -294,6 +327,8 @@ func _process_laser_firing(delta: float) -> void:
 
 func _end_laser() -> void:
 	laser_beam.visible = false
+	laser_glow.visible = false
+	laser_core.visible = false
 	laser_preview.visible = false
 	_laser_timer = laser_cooldown
 
@@ -326,6 +361,8 @@ func _die() -> void:
 	if _laser_tween:
 		_laser_tween.kill()
 	laser_beam.visible = false
+	laser_glow.visible = false
+	laser_core.visible = false
 	laser_preview.visible = false
 	laser_light.energy = 0.0
 	bubble_particles.emitting = false

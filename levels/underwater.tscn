@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://o5kkadaw2lfk" path="res://game_objects/whale/whale.tscn" id="19_x5dt4"]
 [ext_resource type="PackedScene" uid="uid://d03rqk6g5ksj5" path="res://game_objects/fish/fish.tscn" id="21_3m5he"]
 [ext_resource type="PackedScene" uid="uid://bdqt3uux8pjt3" path="res://game_objects/jellyfish/jellyfish.tscn" id="22_oqq50"]
+[ext_resource type="PackedScene" path="res://game_objects/trigger_orb/trigger_orb.tscn" id="23_4ihsm"]
 
 [sub_resource type="Environment" id="Environment_underwater"]
 background_mode = 3
@@ -533,6 +534,7 @@ texture = ExtResource("9_pix5v")
 
 [node name="Whale" parent="." unique_id=200099121 instance=ExtResource("19_x5dt4")]
 position = Vector2(1656, -151)
+laser_enabled = true
 
 [node name="IceBlock" parent="." unique_id=277822450 instance=ExtResource("1_xownd")]
 position = Vector2(-854, -2191)
@@ -543,6 +545,25 @@ rotation = 1.1261282
 
 [node name="Fish" parent="." unique_id=1264635962 instance=ExtResource("21_3m5he")]
 position = Vector2(2660, 177)
+aggro_range = 600.0
 
 [node name="Jellyfish" parent="." unique_id=557505166 instance=ExtResource("22_oqq50")]
-position = Vector2(-500, -2185)
+position = Vector2(-512, 74)
+
+[node name="TriggerOrb" parent="." unique_id=1215731499 instance=ExtResource("23_4ihsm")]
+position = Vector2(-289.1722, -2588.5693)
+
+[node name="TriggerOrb2" parent="." unique_id=244708857 instance=ExtResource("23_4ihsm")]
+position = Vector2(-330, -2827)
+action = 1
+speech_text = ""
+info_screen_text = "this is an info screen text"
+
+[node name="Fish2" parent="." unique_id=1152681927 instance=ExtResource("21_3m5he")]
+position = Vector2(726, 574)
+
+[node name="Fish3" parent="." unique_id=1576124815 instance=ExtResource("21_3m5he")]
+position = Vector2(925, -1851)
+
+[node name="Fish4" parent="." unique_id=1195155667 instance=ExtResource("21_3m5he")]
+position = Vector2(878, -2015)

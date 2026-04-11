@@ -1,23 +1,37 @@
-extends Node2D
+extends Label
 
-@export var text: String = "S.O.S."
-@export var font_size: int = 32
+@export var chars_per_second: float = 20.0
 
-var font: Font
+var _waiting_for_input := false
 
 
 func _ready() -> void:
-	font = load("res://ui_scenes/fonts/Orbitron-VariableFont_wght.ttf")
+	visible_characters = 0
 
 
-func _draw() -> void:
-	var resolved_text := text.replace("\\n", "\n")
-	var lines := resolved_text.split("\n")
-	var line_height := font.get_height(font_size)
-	var total_height := line_height * lines.size()
-	var y_offset := -total_height / 2.0 + line_height
-	for line in lines:
-		var text_size := font.get_string_size(line, HORIZONTAL_ALIGNMENT_CENTER, -1, font_size)
-		draw_string(font, Vector2(-text_size.x / 2.0, y_offset), line,
-			HORIZONTAL_ALIGNMENT_CENTER, -1, font_size)
-		y_offset += line_height
+func play_typewriter() -> void:
+	visible_characters = 0
+	var total := text.length()
+	var tween := create_tween()
+	tween.tween_property(self, "visible_characters", total, total / chars_per_second)
+	await tween.finished
+
+
+func wait_for_input() -> void:
+	_waiting_for_input = true
+	await pressed_continue
+	_waiting_for_input = false
+
+
+signal pressed_continue
+
+
+func _input(event: InputEvent) -> void:
+	if not _waiting_for_input:
+		return
+	if event is InputEventKey and event.pressed and not event.echo:
+		pressed_continue.emit()
+		get_viewport().set_input_as_handled()
+	elif event is InputEventMouseButton and event.pressed:
+		pressed_continue.emit()
+		get_viewport().set_input_as_handled()
