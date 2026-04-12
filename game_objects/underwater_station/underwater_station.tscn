@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ccshh5r7cb18v" path="res://game_objects/underwater_station/underwater_station.png" id="1_0iwni"]
 [ext_resource type="PackedScene" uid="uid://00jhry2ru7jg" path="res://levels/utils/scene_change_trigger.tscn" id="2_vs5nx"]
+[ext_resource type="PackedScene" uid="uid://c4uw8bk2mtn6r" path="res://levels/cutscenes/underwater_base/underwater_base_cutscene.tscn" id="3_yvq75"]
 
 [node name="UnderwaterStation" type="Node2D" unique_id=379696581]
 
@@ -12,3 +13,5 @@ texture = ExtResource("1_0iwni")
 position = Vector2(-1, 14)
 rotation = -3.1415927
 scale = Vector2(0.73235077, 0.73235077)
+next_scene = ExtResource("3_yvq75")
+show_loading_screen = false
