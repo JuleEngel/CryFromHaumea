@@ -22,6 +22,16 @@ func _physics_process(delta: float) -> void:
 
 	_time += delta
 	var movement := Vector2.from_angle(rotation) * speed * delta
+
+	# Check for wall collision before moving
+	var space_state := get_world_2d().direct_space_state
+	var query := PhysicsRayQueryParameters2D.create(global_position, global_position + movement, 4)
+	var result := space_state.intersect_ray(query)
+	if result:
+		global_position = result.position
+		_dissipate()
+		return
+
 	global_position += movement
 	_traveled += movement.length()
 

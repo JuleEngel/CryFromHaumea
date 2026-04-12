@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cb423v041owmf"]
 
-[ext_resource type="Script" uid="uid://8fyycg9baw6ju" path="res://game_objects/jellyfish/jellyfish_laser.gd" id="1_script"]
+[ext_resource type="Script" path="res://game_objects/jellyfish/jellyfish_laser.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://rghfpad47d18" path="res://game_objects/light/light.png" id="2_light"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hit"]
