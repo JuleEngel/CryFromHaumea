@@ -6079,7 +6079,7 @@ angular_velocity_max = 45.0
 scale_amount_max = 2.5
 color = Color(0.8, 0.9, 1, 0.35)
 
-[node name="FloatingParticles" parent="." instance=ExtResource("22_float")]
+[node name="FloatingParticles" parent="." unique_id=741916955 instance=ExtResource("22_float")]
 
 [node name="Submarine" parent="." unique_id=482854008 instance=ExtResource("2_w8ofq")]
 position = Vector2(-2204, -8894)
@@ -6229,7 +6229,7 @@ metadata/_edit_lock_ = true
 [node name="SceneChangeTrigger" parent="." unique_id=1304157233 instance=ExtResource("17_s0tuf")]
 position = Vector2(-1491, 4674)
 scale = Vector2(2.2999952, 2.2999952)
-nextScene = ExtResource("18_hfi3b")
+next_scene = ExtResource("18_hfi3b")
 
 [node name="Whale" parent="." unique_id=315009043 instance=ExtResource("19_hfi3b")]
 position = Vector2(3959.756, -10227.74)
