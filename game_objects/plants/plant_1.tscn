@@ -1,6 +1,30 @@
-[gd_scene format=3 uid="uid://8gwcludxojva"]
+[gd_scene format=3 uid="uid://b2ogtd3373hpp"]
 
 [ext_resource type="Texture2D" uid="uid://c0mfbk7jyvgt7" path="res://game_objects/plants/plant_4.png" id="1_4v873"]
+[ext_resource type="Shader" uid="uid://c54ck2qf5br7r" path="res://game_objects/plants/water_sway.gdshader" id="2_sway"]
+[ext_resource type="Texture2D" uid="uid://rghfpad47d18" path="res://game_objects/light/light.png" id="3_mcn6b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sway"]
+shader = ExtResource("2_sway")
+shader_parameter/sway_amplitude = 6.0
+shader_parameter/sway_speed = 1.5
+shader_parameter/sway_frequency = 2.0
 
 [node name="Plant1" type="Sprite2D" unique_id=2105559584]
+z_index = -1
+material = SubResource("ShaderMaterial_sway")
 texture = ExtResource("1_4v873")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=479022564]
+position = Vector2(-13, -69)
+scale = Vector2(0.6149545, 0.6149545)
+color = Color(0.61425424, 0.81008285, 1, 1)
+energy = 0.43
+texture = ExtResource("3_mcn6b")
+
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=1011364653]
+position = Vector2(49, -65)
+scale = Vector2(0.37065777, 0.37065777)
+color = Color(1, 0.62, 0.79099995, 1)
+energy = 0.43
+texture = ExtResource("3_mcn6b")

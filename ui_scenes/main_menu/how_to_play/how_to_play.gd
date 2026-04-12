@@ -4,27 +4,27 @@ const TUTORIAL_ITEM_PREFAB = preload("res://ui_scenes/main_menu/how_to_play/how_
 
 var tutorial_items = [
 	[
-		preload("res://icon.svg"), 
+		preload("res://icon.png"), 
 		"Überschrift", 
 		"Beschreibung"
 	],	
 	[
-		preload("res://icon.svg"), 
+		preload("res://icon.png"), 
 		"Überschrift", 
 		"Beschreibung"
 	],
 	[
-		preload("res://icon.svg"), 
+		preload("res://icon.png"), 
 		"Überschrift", 
 		"Beschreibung"
 	],
 	[
-		preload("res://icon.svg"), 
+		preload("res://icon.png"), 
 		"Überschrift", 
 		"Beschreibung"
 	],
 	[
-		preload("res://icon.svg"), 
+		preload("res://icon.png"), 
 		"Überschrift", 
 		"Beschreibung"
 	]

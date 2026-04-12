@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dydv0nl24fm7p"]
+
+[ext_resource type="Script" uid="uid://ci0m7fnerxteg" path="res://game_objects/premature_exit_trigger/premature_exit_trigger.gd" id="1_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(200, 200)
+
+[node name="PrematureExitTrigger" type="Area2D" unique_id=888935396]
+collision_layer = 0
+monitorable = false
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=736038989]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="ContinueTarget" type="Marker2D" parent="." unique_id=1299375509]
+position = Vector2(0, -225)
