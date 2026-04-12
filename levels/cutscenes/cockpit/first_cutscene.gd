@@ -13,7 +13,8 @@ extends Node2D
 @export var engine_audio: AudioStream
 
 @export_group("Subtitles")
-@export_multiline var radio_subtitle: String = "[SOS-Antwort - Platzhalter]"
+@export_multiline var radio_subtitle: String = "Ein neuer Tag im Weltraum. Ein neuer Tag im Kuiper-Gürtel."
+@export_multiline var radio_subtitle_2: String = "Ein"
 
 var _skip_pressed := false
 var _finished := false
@@ -42,13 +43,15 @@ func _run_cutscene() -> void:
 	await _step_stars_drift()
 	# Step 2 — headache voiceline
 	await _step_headache_voiceline()
-	# Step 3 — SOS on screen + camera zoom to cockpit monitor
-	await _step_sos_message()
-	# Step 4 — radio response with subtitles
+	# Step 3 — radio response with subtitles
 	await _step_radio_message()
-	# Step 5 — pan universe & planet into view
+	# Step 4 — SOS on screen + camera zoom to cockpit monitor
+	await _step_sos_message()
+	# Step 5 — radio response with subtitles
+	await _step_radio_message_2()
+	# Step 6 — pan universe & planet into view
 	await _step_move_to_planet()
-	# Step 6 — planet grows (slow then fast) + engine audio
+	# Step 7 — planet grows (slow then fast) + engine audio
 	await _step_approach_planet()
 
 	_go_to_next_scene()
@@ -97,6 +100,20 @@ func _step_sos_message() -> void:
 
 func _step_radio_message() -> void:
 	_subtitle_label.text = radio_subtitle
+	_subtitle_label.visible = true
+
+	if radio_audio:
+		_voice_player.stream = radio_audio
+		_voice_player.play()
+		await _voice_player.finished
+
+	_subtitle_continue_label.visible = true
+	await _sos_label.wait_for_input()
+	_subtitle_continue_label.visible = false
+	_subtitle_label.visible = false
+	
+func _step_radio_message_2() -> void:
+	_subtitle_label.text = radio_subtitle_2
 	_subtitle_label.visible = true
 
 	if radio_audio:
