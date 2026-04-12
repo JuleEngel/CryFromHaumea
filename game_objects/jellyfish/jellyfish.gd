@@ -3,18 +3,18 @@ extends Enemy
 enum State { IDLE, PURSUING, LASER_SHOOTING, STUN_CHARGING, STUN_RELEASING }
 
 @export var idle_speed: float = 25.0
-@export var pursue_speed: float = 60.0
+@export var pursue_speed: float = 90.0
 # Laser
 @export var laser_cooldown: float = 1.5
 @export var laser_damage: float = 15.0
-@export var laser_speed: float = 320.0
+@export var laser_speed: float = 450.0
 @export var laser_count: int = 3
-@export var laser_range: float = 500.0
+@export var laser_range: float = 800.0
 
 # Stun wave
 @export var stun_interval: float = 8.0
 @export var stun_charge_duration: float = 2.0
-@export var stun_radius: float = 400.0
+@export var stun_radius: float = 450.0
 @export var stun_duration: float = 1.5
 
 @onready var sprite: Sprite2D = $Sprite2D
@@ -120,8 +120,8 @@ func _on_aggro_changed(is_aggressive: bool) -> void:
 		detection_sound.play()
 		if _state == State.IDLE:
 			_state = State.PURSUING
-			_stun_timer = stun_interval
-			_laser_timer = laser_cooldown * 0.5
+			_stun_timer = stun_interval * randf_range(0.6, 1.4)
+			_laser_timer = laser_cooldown * randf_range(0.3, 1.0)
 
 # -- Idle --
 
@@ -150,7 +150,7 @@ func _process_pursuing(delta: float) -> void:
 
 	if _laser_timer <= 0.0:
 		_shoot_laser()
-		_laser_timer = laser_cooldown
+		_laser_timer = laser_cooldown * randf_range(0.8, 1.3)
 		return
 
 	var player := _find_player()

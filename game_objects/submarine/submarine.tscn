@@ -80,6 +80,7 @@ color = Color(0.85, 0.92, 1, 0.7)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1492380121]
 
 [node name="AmbianceSound" type="AudioStreamPlayer" parent="." unique_id=1339061281]
+process_mode = 3
 stream = ExtResource("4_ambiance")
 volume_db = -6.0
 autoplay = true
@@ -90,9 +91,11 @@ volume_db = -80.0
 autoplay = true
 
 [node name="MusicAdventure" type="AudioStreamPlayer" parent="." unique_id=66186965]
+process_mode = 3
 stream = ExtResource("6_adventure")
 
 [node name="MusicCombat" type="AudioStreamPlayer" parent="." unique_id=1168046095]
+process_mode = 3
 stream = ExtResource("7_combat")
 
 [node name="DamageSound" type="AudioStreamPlayer2D" parent="." unique_id=889687302]

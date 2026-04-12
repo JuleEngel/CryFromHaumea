@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h6fa5wabwpp1"
-path="res://.godot/imported/underwater_base_inside.jpg-e8f63d882f32c80b97a7b69290bc8403.ctex"
+uid="uid://cc6sddx6yp5nk"
+path="res://.godot/imported/underwater_base_inside.png-437b608a56281d36e93fa7e35eebdfae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/cutscenes/underwater_base_inside.jpg"
-dest_files=["res://.godot/imported/underwater_base_inside.jpg-e8f63d882f32c80b97a7b69290bc8403.ctex"]
+source_file="res://levels/cutscenes/underwater_base_inside/underwater_base_inside.png"
+dest_files=["res://.godot/imported/underwater_base_inside.png-437b608a56281d36e93fa7e35eebdfae.ctex"]
 
 [params]
 

@@ -125,6 +125,7 @@ func _scatter_plants() -> void:
 		var angle := Vector2.UP.angle_to(normal_dir)
 
 		var plant := (_plant_scenes.pick_random() as PackedScene).instantiate()
+		plant.name = "Plant_%d" % placed_positions.size()
 		plant.position = pos
 		plant.rotation = angle
 		var s := randf_range(scale_min, scale_max)

@@ -3,7 +3,7 @@ extends Enemy
 enum State { IDLE, PURSUING, ZIGZAG_CHARGING, ZIGZAG_DASHING }
 
 @export var idle_speed: float = 50.0
-@export var pursue_speed: float = 160.0
+@export var pursue_speed: float = 1000.0
 @export var pursue_duration: float = 0.8
 @export var charge_duration: float = 0.35
 @export var zigzag_dash_count: int = 4
@@ -12,6 +12,7 @@ enum State { IDLE, PURSUING, ZIGZAG_CHARGING, ZIGZAG_DASHING }
 @export var zigzag_dash_speed: float = 420.0
 @export var zigzag_angle_offset: float = 0.55
 @export var zigzag_damage: float = 8.0
+@export var attack_range: float = 350.0
 @export var rotation_speed: float = 6.0
 @export var charge_rotation_speed: float = 5.0
 
@@ -133,7 +134,7 @@ func _process_idle(delta: float) -> void:
 
 func _start_pursue() -> void:
 	_state = State.PURSUING
-	_timer = pursue_duration
+	_timer = pursue_duration * randf_range(0.6, 1.5)
 
 
 func _process_pursuing(delta: float) -> void:
@@ -150,7 +151,13 @@ func _process_pursuing(delta: float) -> void:
 		velocity = velocity.move_toward(Vector2.ZERO, 100.0 * delta)
 
 	if _timer <= 0.0:
-		_start_charge()
+		var close_enough := false
+		if player:
+			close_enough = global_position.distance_to(player.global_position) <= attack_range
+		if close_enough:
+			_start_charge()
+		else:
+			_timer = pursue_duration * randf_range(0.3, 0.6)
 
 
 func _start_charge() -> void:

@@ -53,8 +53,10 @@ func _process(delta: float) -> void:
 		if players.size() > 0:
 			var any_in_range := false
 			for e in _group:
+				if not is_instance_valid(e):
+					continue
 				var member := e as Enemy
-				if not is_instance_valid(member) or member.dead:
+				if member.dead:
 					continue
 				var dist := member.global_position.distance_to(players[0].global_position)
 				if dist <= member.aggro_range * member.deaggro_range_multiplier:
@@ -65,16 +67,20 @@ func _process(delta: float) -> void:
 
 func _group_aggro() -> void:
 	for e in _group:
+		if not is_instance_valid(e):
+			continue
 		var member := e as Enemy
-		if not is_instance_valid(member) or member.dead or member.aggressive:
+		if member.dead or member.aggressive:
 			continue
 		member.aggressive = true
 		member.aggro_changed.emit(true)
 
 func _group_deaggro() -> void:
 	for e in _group:
+		if not is_instance_valid(e):
+			continue
 		var member := e as Enemy
-		if not is_instance_valid(member) or member.dead or not member.aggressive:
+		if member.dead or not member.aggressive:
 			continue
 		member.aggressive = false
 		member.aggro_changed.emit(false)
