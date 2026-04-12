@@ -18,6 +18,7 @@ const CUTSCENE_ENV := preload("res://levels/cutscenes/cutscene_environment.tres"
 @export_multiline var dialog_6: String = ""
 @export_multiline var dialog_7: String = ""
 @export_multiline var dialog_8: String = ""
+@export_multiline var dialog_9: String = ""
 
 @export_group("Memory Texts")
 @export_multiline var cockpit_text: String = "Ein ganz normaler Tag im Weltraum. Ein Hilferuf kam rein. Natuerlich bin ich hingeflogen - das haette jeder getan."
@@ -160,8 +161,11 @@ func _run_cutscene() -> void:
 	# Alien continues
 	await _do_alien_dialog(dialog_7)
 
-	# Final alien scene
+	# Alien continues
 	await _do_alien_dialog(dialog_8)
+	
+	# Final alien scene
+	await _do_alien_dialog(dialog_9)
 
 	# Longer transition to outro
 	await _transition_to_outro()

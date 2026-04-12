@@ -105,6 +105,49 @@ Warum ich nichts weiß…
 A: Wir ließen dich gehen. In der Annahme, dass du verschwindest. Und uns vergisst.
 E: Ich bin geflohen…
  Ich habe es geschafft…"
+dialog_6 = "A: Du bist zurückgekehrt. Durch deine eigene Handlung.
+A: Durch dein eigenes Signal.
+E: Nein…Also ja..
+ Aber ich wollte ja nur dem Notruf folgen.
+A: Du hast um Hilfe gerufen. Hier. In dieser Station.
+E: Der Notruf…
+ Den ich empfangen habe…
+A: War deiner. Von dir gesendet. An dich selbst.
+E: Ich… habe mich selbst… hierher gebracht…
+A: Ein geschlossener Kreis. Ein Fehler deiner Spezies.
+A: Leider nicht durch uns vorhersehbar.
+E: Das kann nicht…
+ Ich hätte es bemerkt…
+A: Du hast es bemerkt. Mehrmals.
+A: Und es ignoriert."
+dialog_7 = "E: Aber das Raumschiff, mit dem ich in den Höhlen war… Warum hat es keine Schäden mehr?
+A: Wissen wir nicht. Ist nicht wichtig.
+E: Ich weiß es. Das Mutterschiff… Die automatische Reparatur.
+ Das Raumschiff wurde repariert. Deshalb ist es mir nicht aufgefallen…
+A: Du bist jetzt wieder hier. Und ein weiterer Ruf nach Hilfe wurde gesendet.
+A: Durch dich.
+E: Ich wollte nur helfen… Ich…
+A: Du gefährdest uns erneut. Das ist inakzeptabel.
+A: Dies endet hier.
+E: Wartet—
+ Ich kann—
+A: Nein. Kein weiterer Versuch.
+A: Keine weitere Korrektur."
+dialog_8 = "E: Gebt mir eine Chance!
+ Ich verrate niemandem von euch.
+A: Menschen kann nicht vertraut werden. Wir haben uns nicht ohne Grund nie bemerkbar gemacht.
+A: Keiner darf von uns wissen.
+E: …
+A: Dein Schiff muss natürlich verschwinden. Sonst findet es jemand. Wir brauchen nicht noch mehr Neugierige.
+E: Mein… Schiff…?
+A: Ein Unfall ist unauffällig. Ein plötzliches und grundloses Verschwinden vom Piloten ist es nicht.
+A: Wir haben gelernt. Dein Schiff wird auf diesen Planeten stürzen. Genau auf deine Basis auf dem Eis. 
+E: Ihr… bitte nicht… lasst mich gehen… keiner wird etwas erfahren.
+A: Du bist nicht länger notwendig. Dein Zweck ist erfüllt. Das Problem mit dem Signal wurde behoben.
+A: Nun bist du nur noch eine Gefahr.
+E: Nein …"
+dialog_9 = "A: Zu spät.
+A: Leb wohl, Mensch"
 cockpit_text = "Ich kann mich erinnern. Ein ganz normaler Tag im Weltraum. Ich war auf der Suche nach Deuterium...
 
 Und dann kam da die Meldung vom Computer. Ein unbekanntes Signal, ausgehend vom Planeten Heumea. "
@@ -112,6 +155,9 @@ cave_text = "Die Schlucht... Der Eingang zu einer Höhle in der Eiswand. Ich eri
 underwater_text = "Die Station bot Schutz. Die ganzen Wesen konnten nicht in sie eindringen. Für einen Moment dachte ich, hier wäre ich sicher.
 
 Doch dann tauchten diese neuen Wesen auf. Diese intelligenten Wesen. Und diese wussten, wie man eine Luke öffnen kann..."
+outro_text = "Verlassen schwebt das Raumschiff langsam auf Haumea zu. Gesteuert durch einen Befehl, den es von einer Station erhalten hat, von der auch zwei Rettungsnachrichten eingetroffen sind. 
+
+Eine neue und eine alte Nachricht leuchten auf dem Bildschirm. Ein Ruf nach Hilfe. Und eine letzte Warnung."
 modem_audio = ExtResource("13_modem")
 
 [node name="Backgrounds" type="Node2D" parent="." unique_id=263258568]
