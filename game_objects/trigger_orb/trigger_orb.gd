@@ -12,6 +12,7 @@ const InfoScreenScene := preload("res://ui_scenes/info_screen/info_screen.tscn")
 @export_multiline var text: String = "Hallo, Entdecker!"
 @export var image: Texture2D
 @export var one_shot := true
+@export var set_invisible := false
 
 var _triggered := false
 var _time := 0.0
@@ -21,6 +22,7 @@ var _time := 0.0
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
+	visible = not(set_invisible)
 
 func _process(delta: float) -> void:
 	_time += delta

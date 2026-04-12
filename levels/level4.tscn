@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://bdqt3uux8pjt3" path="res://game_objects/jellyfish/jellyfish.tscn" id="21_ok0nw"]
 [ext_resource type="PackedScene" uid="uid://o5kkadaw2lfk" path="res://game_objects/whale/whale.tscn" id="22_g2luv"]
 [ext_resource type="PackedScene" uid="uid://d03rqk6g5ksj5" path="res://game_objects/fish/fish.tscn" id="23_um8t4"]
+[ext_resource type="PackedScene" path="res://game_objects/trigger_orb/trigger_orb.tscn" id="24_g2luv"]
 
 [sub_resource type="Environment" id="Environment_underwater"]
 background_mode = 3
@@ -1310,5 +1311,27 @@ position = Vector2(4138.3447, -2872.5576)
 
 [node name="Fish13" parent="." unique_id=1595634384 instance=ExtResource("23_um8t4")]
 position = Vector2(2676.0862, -3078.275)
+
+[node name="StoryTell" parent="." unique_id=1616024388 instance=ExtResource("24_g2luv")]
+position = Vector2(-958, -5950)
+scale = Vector2(3.48, 3.48)
+text = "Ich bin jetzt schon sehr tief. Aber die Spuren sind noch frisch. Es kann nicht mehr lange dauern, bis ich den Piloten gefunden habe!"
+set_invisible = true
+
+[node name="StoryTell2" parent="." unique_id=161114816 instance=ExtResource("24_g2luv")]
+position = Vector2(-487, -5253)
+scale = Vector2(3.48, 3.48)
+text = "Verdammt! Die herabgestürzten Eismassen sind zu dicht für meine Raketen. Hier komme ich nicht mehr raus.
+<next>Verdammt, sind hier viele Viecher in der Höhle!
+<next>Es sind zu viele. Dagegen komme ich nicht an.
+<next>Ich muss hier weg!"
+set_invisible = true
+
+[node name="StoryTell3" parent="." unique_id=1999265566 instance=ExtResource("24_g2luv")]
+position = Vector2(3267, -1983.9998)
+rotation = 0.4559485
+scale = Vector2(0.98480314, 26.335909)
+text = "Da ist eine Unterwasserstation! Rein da! Schnell!"
+set_invisible = true
 
 [connection signal="body_entered" from="TriggerIceBlockWall" to="TriggerIceBlockWall" method="_on_body_entered"]
