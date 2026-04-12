@@ -1,6 +1,6 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://ytxxgs1skyes"]
 
-[ext_resource type="Script" path="res://levels/cutscenes/final_scene/final_scene_cutscene.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://iap3r0fkcduj" path="res://levels/cutscenes/final_scene/final_scene_cutscene.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://bwqflv6uho1cn" path="res://levels/cutscenes/cockpit/universe_pure.png" id="2_universe"]
 [ext_resource type="Texture2D" uid="uid://de2mkxlfoo6ii" path="res://levels/cutscenes/cockpit/planet_pure.png" id="3_planet"]
 [ext_resource type="Texture2D" uid="uid://dlcmni1on1aej" path="res://levels/cutscenes/cockpit/cockpit_pixelart.png" id="4_cockpit"]
@@ -11,99 +11,170 @@
 [ext_resource type="FontFile" uid="uid://53bvl4qu6g5q" path="res://ui_scenes/fonts/Orbitron-VariableFont_wght.ttf" id="9_orbitron"]
 [ext_resource type="Script" uid="uid://bho57h03dg7xu" path="res://levels/cutscenes/cockpit/sos_label.gd" id="10_sos"]
 [ext_resource type="AudioStream" uid="uid://dd1gt6gg2ywd7" path="res://audio/sound_effects/alien_underworld.mp3" id="11_glitch_sfx"]
-[ext_resource type="AudioStream" uid="uid://cv5w0712ofthb" path="res://audio/sound_effects/engine_launch.mp3" id="12_engine"]
 [ext_resource type="AudioStream" uid="uid://bsgpigaprmndc" path="res://audio/sound_effects/modem.mp3" id="13_modem"]
 [ext_resource type="PackedScene" uid="uid://co1vd8dbimgqj" path="res://ui_scenes/main_menu/main_menu.tscn" id="14_main_menu"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_subtitle"]
-bg_color = Color(0, 0, 0, 0.75)
-content_margin_left = 20.0
-content_margin_top = 15.0
-content_margin_right = 20.0
-content_margin_bottom = 15.0
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glitch"]
-bg_color = Color(0.1, 0, 0.05, 0.8)
 content_margin_left = 30.0
 content_margin_top = 20.0
 content_margin_right = 30.0
 content_margin_bottom = 20.0
+bg_color = Color(0.1, 0, 0.05, 0.8)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[node name="FinalSceneCutscene" type="Node2D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_subtitle"]
+content_margin_left = 20.0
+content_margin_top = 15.0
+content_margin_right = 20.0
+content_margin_bottom = 15.0
+bg_color = Color(0, 0, 0, 0.75)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="FinalSceneCutscene" type="Node2D" unique_id=1233228881]
 script = ExtResource("1_script")
 next_scene = ExtResource("14_main_menu")
 glitch_audio = ExtResource("11_glitch_sfx")
+dialog_1 = "A: Mensch. Warum bist du wieder hier?
+A: Warum kehrst du zurück?
+E: Wieder?
+ Ich… war noch nie hier.
+ Ich folge nur einem Notruf.
+A: Falsch. Du kennst diesen Ort.
+A: Du warst bereits in unseren Tiefen.
+E: Nein.
+ Das ergibt keinen Sinn.
+ Ich hätte mich erinnert.
+A: Erinnerungen sind unzuverlässig.
+A: Deine wurden verändert.
+A: Von uns.
+E: Was?
+ Warum sollte ich hier gewesen sein?
+ Das ist unmöglich."
+dialog_2 = "A: Du hast ein Signal empfangen, das nicht für dich bestimmt war.
+A: Du bist ihm gefolgt.
+A: Neugierig darauf zu erfahren, woher das Signal stammt.
+E: Das… weiß ich nicht mehr.
+ Was für ein Signal?
+A: Du bist eingedrungen. Du hast unsere äußeren Höhlen betreten.
+A: Du bist immer tiefer gegangen. Du bist uns zu nah gekommen."
+dialog_3 = "E: Die Höhlen…
+ Die Kreaturen…
+ Das alles…
+A: Unsere niederen Formen griffen dich an.
+A: Sie sollten dich vertreiben. Du bist geblieben.
+E: Ich… erinnere mich nicht.
+ Aber es fühlt sich… bekannt an.
+A: Du hast gekämpft. Du hast sie verletzt. Du hättest fast unser Reich betreten.
+E: Die toten Wesen…
+ Die Wrackteile…
+ Das war… ich?
+A: Ja. Du hast deine Spuren gesehen. Und sie nicht erkannt.
+E: Das kann nicht sein.
+A: Du hast hier sogar eine Station errichtet. Um darin Schutz zu suchen.
+A: So wie jetzt."
+dialog_4 = "E: Die Station… Ich war dort… Ich…
+A: Wir haben dich gestoppt, bevor du noch mehr erfahren konntest.
+A: Wir sind in deinen Geist eingedrungen. So wie jetzt.
+E: Ihr… wart das…
+ Dieses Gefühl…
+A: Wir suchten die Ursache. Warum du uns gefunden hast.
+A: Warum du uns entdeckt hast.
+E: Das Signal…
+ Es kam aus der Tiefe…
+A: Ein Fehler. Ein einmaliges Ereignis.
+A: Wir haben es korrigiert.
+E: Und ich…war zur falschen Zeit dort…?
+A: Du wusstest zu viel. Wir wollten dich entfernen.
+A: Endgültig."
+dialog_5 = "E: Dann… warum lebe ich noch?
+A: Du hast gesprochen. Du hast gedroht. Andere würden dich suchen.
+E: Mein Schiff… Das Mutterschiff…
+A: Ein Risiko. Wir vermeiden Risiken.
+A: Also wählten wir eine Alternative.
+E: …
+A: Wir nahmen dir deine Erinnerung. Die letzten Zyklen.
+A: Alles.
+E: Das…Das ist der Grund…
+Warum ich nichts weiß…
+A: Wir ließen dich gehen. In der Annahme, dass du verschwindest. Und uns vergisst.
+E: Ich bin geflohen…
+ Ich habe es geschafft…"
+cockpit_text = "Ich kann mich erinnern. Ein ganz normaler Tag im Weltraum. Ich war auf der Suche nach Deuterium...
+
+Und dann kam da die Meldung vom Computer. Ein unbekanntes Signal, ausgehend vom Planeten Heumea. "
+cave_text = "Die Schlucht... Der Eingang zu einer Höhle in der Eiswand. Ich erinnere mich an die seltsamen Kreaturen und all die Pflanzen. An das Gefühl, beobachtet zu werden."
+underwater_text = "Die Station bot Schutz. Die ganzen Wesen konnten nicht in sie eindringen. Für einen Moment dachte ich, hier wäre ich sicher.
+
+Doch dann tauchten diese neuen Wesen auf. Diese intelligenten Wesen. Und diese wussten, wie man eine Luke öffnen kann..."
 modem_audio = ExtResource("13_modem")
 
-[node name="Backgrounds" type="Node2D" parent="."]
+[node name="Backgrounds" type="Node2D" parent="." unique_id=263258568]
 
-[node name="CockpitUniverseBg" type="Sprite2D" parent="Backgrounds"]
+[node name="CockpitUniverseBg" type="Sprite2D" parent="Backgrounds" unique_id=2012604927]
 visible = false
 position = Vector2(101, 709)
 scale = Vector2(4.58, 4.58)
 texture = ExtResource("2_universe")
 
-[node name="CockpitBg" type="Sprite2D" parent="Backgrounds"]
+[node name="CockpitBg" type="Sprite2D" parent="Backgrounds" unique_id=2018529650]
 visible = false
 position = Vector2(960, 540)
 scale = Vector2(5, 5)
 texture = ExtResource("4_cockpit")
 
-[node name="CaveBg" type="Sprite2D" parent="Backgrounds"]
+[node name="CaveBg" type="Sprite2D" parent="Backgrounds" unique_id=2069420070]
 visible = false
 position = Vector2(960, 540)
 scale = Vector2(3, 3)
 texture = ExtResource("5_cave")
 
-[node name="UnderwaterBg" type="Sprite2D" parent="Backgrounds"]
+[node name="UnderwaterBg" type="Sprite2D" parent="Backgrounds" unique_id=127606762]
 visible = false
 position = Vector2(960, 540)
 scale = Vector2(3, 3)
 texture = ExtResource("6_uw_base")
 
-[node name="RescueBg" type="Sprite2D" parent="Backgrounds"]
+[node name="RescueBg" type="Sprite2D" parent="Backgrounds" unique_id=1371036767]
 visible = false
 position = Vector2(960, 540)
 scale = Vector2(3, 3)
 texture = ExtResource("7_uw_inside")
 
-[node name="Outro" type="Node2D" parent="."]
+[node name="Outro" type="Node2D" parent="." unique_id=1702364118]
 
-[node name="UniversePure" type="Sprite2D" parent="Outro"]
+[node name="UniversePure" type="Sprite2D" parent="Outro" unique_id=54347079]
 visible = false
 position = Vector2(101, 709)
 scale = Vector2(4.58, 4.58)
 texture = ExtResource("2_universe")
 
-[node name="PlanetPure" type="Sprite2D" parent="Outro"]
+[node name="PlanetPure" type="Sprite2D" parent="Outro" unique_id=444248769]
 visible = false
 z_index = 1
 position = Vector2(-903, 698)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_planet")
 
-[node name="CockpitPixelart" type="Sprite2D" parent="Outro"]
+[node name="CockpitPixelart" type="Sprite2D" parent="Outro" unique_id=1863972240]
 visible = false
 z_index = 2
 position = Vector2(960, 540)
 scale = Vector2(5, 5)
 texture = ExtResource("4_cockpit")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1598661638]
 position = Vector2(960, 540)
 
-[node name="ScreenTarget" type="Marker2D" parent="."]
+[node name="ScreenTarget" type="Marker2D" parent="." unique_id=279652085]
 position = Vector2(960, 750)
 
-[node name="SOSLabel" type="Label" parent="ScreenTarget"]
+[node name="SOSLabel" type="Label" parent="ScreenTarget" unique_id=1365866404]
 visible = false
 z_index = 3
 offset_left = -300.0
@@ -123,7 +194,7 @@ visible_characters = 0
 visible_ratio = 0.0
 script = ExtResource("10_sos")
 
-[node name="ContinueLabel" type="Label" parent="ScreenTarget"]
+[node name="ContinueLabel" type="Label" parent="ScreenTarget" unique_id=193733242]
 visible = false
 z_index = 3
 offset_left = -150.0
@@ -136,19 +207,19 @@ theme_override_font_sizes/font_size = 14
 text = "Beliebige Taste druecken zum Fortfahren..."
 horizontal_alignment = 1
 
-[node name="GlitchPlayer" type="AudioStreamPlayer" parent="."]
+[node name="GlitchPlayer" type="AudioStreamPlayer" parent="." unique_id=748239019]
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1615403598]
 layer = 10
 
-[node name="GlitchOverlay" type="ColorRect" parent="UI"]
+[node name="GlitchOverlay" type="ColorRect" parent="UI" unique_id=105543497]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0, 0, 1)
 
-[node name="GlitchTextLabel" type="Label" parent="UI"]
+[node name="GlitchTextLabel" type="Label" parent="UI" unique_id=1215270663]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -168,7 +239,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="SubtitleLabel" type="Label" parent="UI"]
+[node name="SubtitleLabel" type="Label" parent="UI" unique_id=2048034732]
 visible = false
 anchors_preset = 7
 anchor_left = 0.5
@@ -187,7 +258,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_subtitle")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="SubtitleContinueLabel" type="Label" parent="UI"]
+[node name="SubtitleContinueLabel" type="Label" parent="UI" unique_id=1678575454]
 visible = false
 anchors_preset = 7
 anchor_left = 0.5
@@ -206,7 +277,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="EndeLabel" type="Label" parent="UI"]
+[node name="EndeLabel" type="Label" parent="UI" unique_id=830563658]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -226,7 +297,7 @@ text = "ENDE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SkipLabel" type="Label" parent="UI"]
+[node name="SkipLabel" type="Label" parent="UI" unique_id=903237002]
 visible = false
 anchors_preset = 3
 anchor_left = 1.0
