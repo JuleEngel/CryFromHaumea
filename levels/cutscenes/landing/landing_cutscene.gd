@@ -1,11 +1,15 @@
 extends Node2D
 
+const CUTSCENE_MUSIC := preload("res://audio/music/exploration_track.ogg")
+
 @export var next_scene: PackedScene
 @export_multiline var landing_text: String = ""
 
 var _skip_pressed := false
 var _finished := false
 var _waiting_for_input := false
+var _fade_overlay: ColorRect
+var _music_player: AudioStreamPlayer
 
 signal _pressed_continue
 
@@ -21,10 +25,24 @@ signal _pressed_continue
 func _ready() -> void:
 	# Start submarine off-screen at top
 	_submarine.position = Vector2(_landing_target.position.x, -200)
+	_create_fade_overlay()
+	_start_music()
 	_run_cutscene()
 
 
+func _start_music() -> void:
+	_music_player = AudioStreamPlayer.new()
+	_music_player.stream = CUTSCENE_MUSIC
+	_music_player.volume_db = -40.0
+	add_child(_music_player)
+	_music_player.play()
+	create_tween().tween_property(_music_player, "volume_db", 0.0, 1.5)
+
+
 func _run_cutscene() -> void:
+	# Fade in from black
+	create_tween().tween_property(_fade_overlay, "color:a", 0.0, 1.0)
+
 	# Brief pause before descent
 	await get_tree().create_timer(1.0).timeout
 
@@ -53,8 +71,8 @@ func _show_landing_text() -> void:
 		if text.is_empty():
 			continue
 		_subtitle_label.text = text
-		_subtitle_label.visible = true
-		_subtitle_continue_label.visible = true
+		_fade_in_label(_subtitle_label)
+		_fade_in_label(_subtitle_continue_label)
 		await _wait_for_input()
 		_subtitle_continue_label.visible = false
 	_subtitle_label.visible = false
@@ -77,6 +95,22 @@ func _input(event: InputEvent) -> void:
 	elif event is InputEventMouseButton and event.pressed:
 		_pressed_continue.emit()
 		get_viewport().set_input_as_handled()
+
+
+# -- Fade helpers -----------------------------------------------------------
+
+func _create_fade_overlay() -> void:
+	_fade_overlay = ColorRect.new()
+	_fade_overlay.color = Color.BLACK
+	_fade_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_fade_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	$UI.add_child(_fade_overlay)
+
+
+func _fade_in_label(label: Control) -> void:
+	label.modulate.a = 0.0
+	label.visible = true
+	create_tween().tween_property(label, "modulate:a", 1.0, 0.3)
 
 
 # -- Skip / navigation ------------------------------------------------------
@@ -102,6 +136,11 @@ func _go_to_next_scene() -> void:
 	if _finished:
 		return
 	_finished = true
+
+	var tween := create_tween().set_parallel(true)
+	tween.tween_property(_fade_overlay, "color:a", 1.0, 0.5)
+	tween.tween_property(_music_player, "volume_db", -40.0, 0.5)
+	await tween.finished
 
 	if next_scene:
 		get_tree().change_scene_to_packed(next_scene)

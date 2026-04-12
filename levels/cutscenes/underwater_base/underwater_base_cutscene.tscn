@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://pfbxyiik5i3t" path="res://levels/cutscenes/underwater_base/underwater_base.png" id="1_bg"]
 [ext_resource type="Script" uid="uid://wj8l8m5sonry" path="res://levels/cutscenes/underwater_base/underwater_base_cutscene.gd" id="2_script"]
 [ext_resource type="PackedScene" uid="uid://b7uxadk3nps5t" path="res://levels/cutscenes/underwater_base_inside/underwater_base_inside_cutscene.tscn" id="3_next"]
+[ext_resource type="Texture2D" uid="uid://dkjge1p427ddy" path="res://game_objects/submarine/submarine.png" id="4_sub"]
+[ext_resource type="AudioStream" uid="uid://o7mf7hb6s3m3" path="res://audio/sound_effects/dive_sound.mp3" id="5_dive"]
 
 [node name="UnderwaterBaseCutscene" type="Node2D" unique_id=425153288]
 script = ExtResource("2_script")
@@ -13,8 +15,20 @@ position = Vector2(960, 540)
 scale = Vector2(3, 3)
 texture = ExtResource("1_bg")
 
+[node name="Submarine" type="Sprite2D" parent="." unique_id=2024064609]
+z_index = 1
+position = Vector2(182, 790)
+scale = Vector2(4, 4)
+texture = ExtResource("4_sub")
+
+[node name="LandingTarget" type="Marker2D" parent="." unique_id=1572546923]
+position = Vector2(960, 490)
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2073102547]
 position = Vector2(960, 540)
+
+[node name="DiveSoundPlayer" type="AudioStreamPlayer" parent="." unique_id=1466114614]
+stream = ExtResource("5_dive")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1487777315]
 layer = 10

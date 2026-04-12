@@ -2,6 +2,7 @@ extends Node2D
 
 const DialogTextScene := preload("res://ui_scenes/dialog_text/dialog_text.tscn")
 const OutlineShader := preload("res://levels/cutscenes/base_station/outline.gdshader")
+const CUTSCENE_MUSIC := preload("res://audio/music/exploration_track.ogg")
 
 const COLOR_UNSELECTED := Color(1.0, 0.85, 0.0, 1.0)
 const COLOR_SELECTED := Color(0.0, 1.0, 0.3, 1.0)
@@ -22,6 +23,8 @@ var _time := 0.0
 var _finished := false
 var _skip_pressed := false
 var _active_dialog: Node = null
+var _fade_overlay: ColorRect
+var _music_player: AudioStreamPlayer
 
 @onready var _skip_label: Label = $UI/SkipLabel
 @onready var _hint_label: Label = $UI/HintLabel
@@ -50,6 +53,20 @@ func _ready() -> void:
 			image = image,
 			selected = false,
 		})
+
+	_create_fade_overlay()
+	_start_music()
+	# Fade in from black
+	create_tween().tween_property(_fade_overlay, "color:a", 0.0, 1.0)
+
+
+func _start_music() -> void:
+	_music_player = AudioStreamPlayer.new()
+	_music_player.stream = CUTSCENE_MUSIC
+	_music_player.volume_db = -40.0
+	add_child(_music_player)
+	_music_player.play()
+	create_tween().tween_property(_music_player, "volume_db", 0.0, 1.5)
 
 
 func _process(delta: float) -> void:
@@ -130,8 +147,24 @@ func _check_all_selected() -> void:
 		if not obj.selected:
 			return
 	_hint_label.visible = false
-	_start_button.visible = true
+	_fade_in_label(_start_button)
 	_start_button.pressed.connect(_go_to_next_scene)
+
+
+# -- Fade helpers -----------------------------------------------------------
+
+func _create_fade_overlay() -> void:
+	_fade_overlay = ColorRect.new()
+	_fade_overlay.color = Color.BLACK
+	_fade_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_fade_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	$UI.add_child(_fade_overlay)
+
+
+func _fade_in_label(label: Control) -> void:
+	label.modulate.a = 0.0
+	label.visible = true
+	create_tween().tween_property(label, "modulate:a", 1.0, 0.3)
 
 
 func _reset_skip() -> void:
@@ -143,5 +176,11 @@ func _go_to_next_scene() -> void:
 	if _finished:
 		return
 	_finished = true
+
+	var tween := create_tween().set_parallel(true)
+	tween.tween_property(_fade_overlay, "color:a", 1.0, 0.5)
+	tween.tween_property(_music_player, "volume_db", -40.0, 0.5)
+	await tween.finished
+
 	if next_scene:
 		get_tree().change_scene_to_packed(next_scene)

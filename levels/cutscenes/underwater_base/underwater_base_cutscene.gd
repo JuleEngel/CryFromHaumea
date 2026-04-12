@@ -5,15 +5,35 @@ extends Node2D
 var _skip_pressed := false
 var _finished := false
 
+@onready var _submarine: Sprite2D = $Submarine
+@onready var _landing_target: Marker2D = $LandingTarget
+@onready var _camera: Camera2D = $Camera2D
 @onready var _skip_label: Label = $UI/SkipLabel
+@onready var _dive_player: AudioStreamPlayer = $DiveSoundPlayer
 
 
 func _ready() -> void:
+	#_submarine.position = Vector2(1800, 200)
 	_run_cutscene()
 
 
 func _run_cutscene() -> void:
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(0.5).timeout
+
+	_dive_player.play()
+
+	# Animate submarine descending to the base
+	var tween := create_tween()
+	tween.tween_property(_submarine, "position",
+		_landing_target.position, 5.0) \
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property(_submarine, "scale",
+		Vector2.ONE * 0.6, 5.0) \
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	await tween.finished
+
+	await get_tree().create_timer(1.0).timeout
+
 	_go_to_next_scene()
 
 

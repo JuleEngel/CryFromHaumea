@@ -41,16 +41,15 @@ corner_radius_bottom_left = 4
 script = ExtResource("1_script")
 next_scene = ExtResource("14_main_menu")
 glitch_audio = ExtResource("11_glitch_sfx")
-engine_audio = ExtResource("12_engine")
 modem_audio = ExtResource("13_modem")
 
 [node name="Backgrounds" type="Node2D" parent="."]
 
-[node name="AlienBg" type="Sprite2D" parent="Backgrounds"]
+[node name="CockpitUniverseBg" type="Sprite2D" parent="Backgrounds"]
 visible = false
-z_index = 5
-position = Vector2(960, 540)
-scale = Vector2(3, 3)
+position = Vector2(101, 709)
+scale = Vector2(4.58, 4.58)
+texture = ExtResource("2_universe")
 
 [node name="CockpitBg" type="Sprite2D" parent="Backgrounds"]
 visible = false
@@ -138,8 +137,6 @@ text = "Beliebige Taste druecken zum Fortfahren..."
 horizontal_alignment = 1
 
 [node name="GlitchPlayer" type="AudioStreamPlayer" parent="."]
-
-[node name="EnginePlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 10

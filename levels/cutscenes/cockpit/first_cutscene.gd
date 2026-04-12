@@ -18,6 +18,7 @@ extends Node2D
 
 var _skip_pressed := false
 var _finished := false
+var _fade_overlay: ColorRect
 
 @onready var _universe: Sprite2D = $UniversePure
 @onready var _planet: Sprite2D = $PlanetPure
@@ -30,15 +31,19 @@ var _finished := false
 @onready var _skip_label: Label = $UI/SkipLabel
 @onready var _voice_player: AudioStreamPlayer = $VoicePlayer
 @onready var _engine_player: AudioStreamPlayer = $EnginePlayer
+@onready var _music: AudioStreamPlayer = $Music
 
 
 func _ready() -> void:
 	_sos_label.visible = false
 	_subtitle_label.visible = false
+	_create_fade_overlay()
 	_run_cutscene()
 
 
 func _run_cutscene() -> void:
+	# Fade in from black (runs concurrently with stars drift)
+	create_tween().tween_property(_fade_overlay, "color:a", 0.0, 1.0)
 	# Step 1 — cockpit + stars, stars drift slightly larger
 	await _step_stars_drift()
 	# Step 2 — headache voiceline
@@ -93,7 +98,7 @@ func _step_sos_message() -> void:
 		_voice_player.play()
 	await _sos_label.play_typewriter()
 	_voice_player.stop()
-	_continue_label.visible = true
+	_fade_in_label(_continue_label)
 	await _sos_label.wait_for_input()
 	_continue_label.visible = false
 
@@ -113,14 +118,14 @@ func _show_radio_pages(full_text: String, audio: AudioStream = null) -> void:
 		if page.is_empty():
 			continue
 		_subtitle_label.text = page
-		_subtitle_label.visible = true
+		_fade_in_label(_subtitle_label)
 
 		if i == 0 and audio:
 			_voice_player.stream = audio
 			_voice_player.play()
 			await _voice_player.finished
 
-		_subtitle_continue_label.visible = true
+		_fade_in_label(_subtitle_continue_label)
 		await _sos_label.wait_for_input()
 		_subtitle_continue_label.visible = false
 	_subtitle_label.visible = false
@@ -179,6 +184,22 @@ func _shake_camera(duration: float, min_strength: float, max_strength: float) ->
 	_camera.offset = Vector2.ZERO
 
 
+# -- Fade helpers -----------------------------------------------------------
+
+func _create_fade_overlay() -> void:
+	_fade_overlay = ColorRect.new()
+	_fade_overlay.color = Color.BLACK
+	_fade_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_fade_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	$UI.add_child(_fade_overlay)
+
+
+func _fade_in_label(label: Control) -> void:
+	label.modulate.a = 0.0
+	label.visible = true
+	create_tween().tween_property(label, "modulate:a", 1.0, 0.3)
+
+
 # -- Skip / navigation ------------------------------------------------------
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -202,6 +223,11 @@ func _go_to_next_scene() -> void:
 	if _finished:
 		return
 	_finished = true
+
+	var tween := create_tween().set_parallel(true)
+	tween.tween_property(_fade_overlay, "color:a", 1.0, 0.5)
+	tween.tween_property(_music, "volume_db", -40.0, 0.5)
+	await tween.finished
 
 	if next_scene:
 		get_tree().change_scene_to_packed(next_scene)

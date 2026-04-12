@@ -2,25 +2,174 @@
 
 [ext_resource type="Texture2D" uid="uid://cc6sddx6yp5nk" path="res://levels/cutscenes/underwater_base_inside/underwater_base_inside.png" id="1_bg"]
 [ext_resource type="Script" uid="uid://du1jbwrfexps6" path="res://levels/cutscenes/underwater_base_inside/underwater_base_inside_cutscene.gd" id="2_script"]
-[ext_resource type="Theme" uid="uid://dqwuby34ylgsq" path="res://ui_scenes/main_menu/menu_theme2.tres" id="3_kri1b"]
+[ext_resource type="Theme" uid="uid://dqwuby34ylgsq" path="res://ui_scenes/main_menu/menu_theme2.tres" id="3_theme"]
 [ext_resource type="PackedScene" path="res://levels/cutscenes/final_scene/final_scene_cutscene.tscn" id="4_next"]
+[ext_resource type="Texture2D" uid="uid://escyvl1o4xf6" path="res://game_objects/alien_boss/alien_boss_var1.png" id="5_alien_boss"]
+[ext_resource type="FontFile" uid="uid://53bvl4qu6g5q" path="res://ui_scenes/fonts/Orbitron-VariableFont_wght.ttf" id="6_orbitron"]
+[ext_resource type="Script" uid="uid://bho57h03dg7xu" path="res://levels/cutscenes/cockpit/sos_label.gd" id="7_sos"]
+[ext_resource type="AudioStream" uid="uid://boxwlwejovwbl" path="res://audio/sound_effects/deep_sea_ambiance.mp3" id="8_ambiance"]
+[ext_resource type="AudioStream" uid="uid://bsgpigaprmndc" path="res://audio/sound_effects/modem.mp3" id="9_modem"]
+[ext_resource type="AudioStream" uid="uid://d2uuw67ck31ml" path="res://audio/sound_effects/creepy_detection.mp3" id="10_attack"]
 
-[node name="UnderwaterBaseInsideCutscene" type="Node2D" unique_id=1967742451]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_subtitle"]
+bg_color = Color(0, 0, 0, 0.75)
+content_margin_left = 20.0
+content_margin_top = 15.0
+content_margin_right = 20.0
+content_margin_bottom = 15.0
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="UnderwaterBaseInsideCutscene" type="Node2D"]
 script = ExtResource("2_script")
 next_scene = ExtResource("4_next")
+text_1 = "Das war knapp. Zu knapp. Beinahe hätten die Viecher mich erwischt. Zum Glück hat der in Not geratene Pilot hier eine Unterwasser-Station errichtet.
 
-[node name="Background" type="Sprite2D" parent="." unique_id=743403060]
+Aber wo ist der Pilot? Hier drin ist er jedenfalls nicht."
+text_2 = "Was zum Teufel ist das da am Fenster? Dieses Wesen sieht viel gefährlicher aus als der Rest. Und viel intelligenter...
+
+Scheiße, da sind noch mehr von denen. Und sie machen sich an der Luke zu schaffen. Aber sie werden sie doch nicht aufbekommen, oder?
+
+Ich muss dringend einen Hilferuf absetzen. Hoffentlich empfängt den jemand..."
+text_3 = "Moment mal...
+
+Scheiße, das ist ja dieselbe Nachricht, die ich vorhin auf meinem Raumschiff erhalten habe...
+
+Und ist diese Unterwasserstation nicht dieselbe, die ich auch für solche Expeditionen habe?
+
+Warum kommt mir das alles nur so seltsam bekannt vor? Als wäre ich schon einmal in dieser Situation gewesen."
+text_4 = "Mist, diese Viecher sind in der Station. Hier wird alles geflutet!
+
+Ich kann ihnen nicht mehr entkommen, es sind drei von ihnen zwischen mir und dem Ausgang. Und meine Waffe liegt noch im U-Boot. Dumm, dumm, DUMM
+
+Eins der Viecher hat mich gepackt, ich kann mich nicht mehr bewegen. Verdammt, ihr Tentakel dringt in meinen Anzug ein. Bleib weg von meinen Augen mit deinen schleimigen Tentakeln! Nein, hör auf! Stopp! HILFE..."
+
+[node name="Background" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
 scale = Vector2(3, 3)
 texture = ExtResource("1_bg")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=2056985179]
+[node name="BackgroundFlooded" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(960, 540)
+scale = Vector2(3, 3)
+texture = ExtResource("1_bg")
+modulate = Color(0.4, 0.5, 0.7, 1)
+
+[node name="AlienWindow" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+position = Vector2(1450, 420)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_alien_boss")
+
+[node name="AlienInside" type="Sprite2D" parent="."]
+visible = false
+z_index = 2
+position = Vector2(600, 500)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_alien_boss")
+flip_h = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
 
-[node name="UI" type="CanvasLayer" parent="." unique_id=1365541739]
+[node name="ScreenTarget" type="Marker2D" parent="."]
+position = Vector2(880, 560)
+
+[node name="SOSLabel" type="Label" parent="ScreenTarget"]
+visible = false
+z_index = 3
+offset_left = -200.0
+offset_top = -40.0
+offset_right = 200.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0.5, 1, 0.5, 1)
+theme_override_fonts/font = ExtResource("6_orbitron")
+theme_override_font_sizes/font_size = 18
+text = "S.O.S. - BITTE UM HILFE.
+HAUMEA SEKTOR 27E.
+PASST AUF, HIER SIND F"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+visible_characters = 0
+visible_ratio = 0.0
+script = ExtResource("7_sos")
+
+[node name="ContinueLabel" type="Label" parent="ScreenTarget"]
+visible = false
+z_index = 3
+offset_left = -150.0
+offset_top = 50.0
+offset_right = 150.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_fonts/font = ExtResource("6_orbitron")
+theme_override_font_sizes/font_size = 12
+text = "Beliebige Taste drücken zum Fortfahren..."
+horizontal_alignment = 1
+
+[node name="AmbiancePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ambiance")
+
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_modem")
+
+[node name="AttackPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_attack")
+
+[node name="UI" type="CanvasLayer" parent="."]
 layer = 10
 
-[node name="SkipLabel" type="Label" parent="UI" unique_id=80767974]
+[node name="WaterOverlay" type="ColorRect" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0.1, 0.3, 0)
+
+[node name="SubtitleLabel" type="Label" parent="UI"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -450.0
+offset_top = -200.0
+offset_right = 450.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_theme")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_subtitle")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="SubtitleContinueLabel" type="Label" parent="UI"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -30.0
+offset_right = 150.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 14
+text = "Beliebige Taste drücken zum Fortfahren..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SkipLabel" type="Label" parent="UI"]
 visible = false
 anchors_preset = 3
 anchor_left = 1.0
@@ -33,51 +182,3 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 20
 text = "Erneut drücken zum Überspringen"
-
-[node name="Label" type="Label" parent="UI" unique_id=1973169923]
-offset_left = 948.0
-offset_top = 967.0
-offset_right = 988.0
-offset_bottom = 993.0
-theme = ExtResource("3_kri1b")
-text = "Das war knapp. Zu knapp. Beinahe hätten die Viecher mich erwischt. Zum Glück hat der in Not geratene Pilot hier eine Unterwasser-Station errichtet.
-
-Aber wo ist der Pilot? Hier  drin ist er jedenfalls nicht. "
-
-[node name="Label2" type="Label" parent="UI" unique_id=1578760388]
-offset_left = 948.0
-offset_top = 967.0
-offset_right = 988.0
-offset_bottom = 993.0
-theme = ExtResource("3_kri1b")
-text = "Was zum Teufel ist das da am Fenster? Dieses Wesen sieht viel gefährlicher aus als der Rest. Und viel intelligenter...
-
-Scheiße, da sind noch mehr von. Und sie machen sich an der Luke zu schaffen. Aber sie werden sie doch nicht aufbekommen, oder?
-
-Ich muss dringend einen Hilferuf absetzen. Hoffentlich empfängt den jemand..."
-
-[node name="Label3" type="Label" parent="UI" unique_id=259256753]
-offset_left = 948.0
-offset_top = 967.0
-offset_right = 988.0
-offset_bottom = 993.0
-theme = ExtResource("3_kri1b")
-text = "Moment mal...
-
-Scheiße, das ist ja dieselbe Nachricht, die ich vorhin auf meinem Raumschiff erhalten habe...
-
-Und ist diese Unterwasserstation nicht dieselbe, die ich auch für solche Expeditionen habe?
-
-Warum kommt mir das alles nur so seltsam bekannt vor? Als wäre ich schon einmal in dieser Situation gewesen."
-
-[node name="Label4" type="Label" parent="UI" unique_id=2071181928]
-offset_left = 948.0
-offset_top = 967.0
-offset_right = 988.0
-offset_bottom = 993.0
-theme = ExtResource("3_kri1b")
-text = "Mist, diese Viecher sind in der Station. Hier wird alles geflutet! 
-
-Ich kann ihnen nicht mehr entkommen, es sind drei von ihnen zwischen mir und dem Ausgang. Und meine Waffe liegt noch im U-Boot. Dumm, dumm, DUMM
-
-Eins der Viecher hat mich gepackt, ich kann mich nicht mehr bewegen. Verdammt, ihr Tentakel dringt in meinen Anzug ein. Bleib weg von meinen Augen mit deinen schleimigen Tentakeln! Nein, hör auf! Stopp! HILFE..."

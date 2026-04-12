@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://co1vd8dbimgqj"]
 
-[ext_resource type="Texture2D" path="res://levels/cutscenes/cockpit/wallpaper.png" id="2_3yx56"]
+[ext_resource type="Texture2D" uid="uid://btmsihk4vrc7m" path="res://levels/cutscenes/cockpit/wallpaper.png" id="2_3yx56"]
 [ext_resource type="Script" uid="uid://cshsdm4qnco75" path="res://ui_scenes/main_menu/main_menu.gd" id="2_va1mr"]
 [ext_resource type="Theme" uid="uid://dqwuby34ylgsq" path="res://ui_scenes/main_menu/menu_theme2.tres" id="2_ycjyd"]
 
@@ -82,6 +82,7 @@ layout_mode = 2
 text = "Spielen"
 
 [node name="HowToPlay" type="Button" parent="VBoxContainer2/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=1214131029]
+visible = false
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 text = "Anleitung"
