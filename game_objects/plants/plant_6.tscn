@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://dxqeomcm08bwl"]
+[gd_scene format=3 uid="uid://cms85u3sjxd73"]
 
-[ext_resource type="Texture2D" uid="uid://dsokfei5226wi" path="res://game_objects/plants/plant_5.png" id="1_ppcum"]
-[ext_resource type="Shader" uid="uid://c54ck2qf5br7r" path="res://game_objects/plants/water_sway.gdshader" id="2_sway"]
+[ext_resource type="Shader" uid="uid://c54ck2qf5br7r" path="res://game_objects/plants/water_sway.gdshader" id="1_i7hdh"]
+[ext_resource type="Texture2D" uid="uid://dhycbunxvmke2" path="res://game_objects/plants/plant_6.png" id="2_yi6s7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sway"]
-shader = ExtResource("2_sway")
+shader = ExtResource("1_i7hdh")
 shader_parameter/sway_amplitude = 6.0
 shader_parameter/sway_speed = 1.5
 shader_parameter/sway_frequency = 2.0
@@ -15,4 +15,4 @@ shader_parameter/sway_frequency = 2.0
 z_index = -1
 material = SubResource("ShaderMaterial_sway")
 position = Vector2(1, -74)
-texture = ExtResource("1_ppcum")
+texture = ExtResource("2_yi6s7")

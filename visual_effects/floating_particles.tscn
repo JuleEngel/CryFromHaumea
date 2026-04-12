@@ -1,0 +1,70 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" uid="uid://djftd7mdgmb5y" path="res://game_objects/submarine/bubble.png" id="1_bubble"]
+[ext_resource type="Script" path="res://visual_effects/floating_particles.gd" id="2_script"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_additive"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_spore_initial"]
+offsets = PackedFloat32Array(0, 0.35, 0.65, 1)
+colors = PackedColorArray(0.4, 0.9, 1, 0.8, 0.3, 1, 0.55, 0.7, 1, 0.45, 0.75, 0.7, 0.85, 0.5, 1, 0.6)
+
+[sub_resource type="Gradient" id="Gradient_spore_lifetime"]
+offsets = PackedFloat32Array(0, 0.15, 0.5, 0.85, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.7, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_spore_scale"]
+_data = [Vector2(0, 0.3), 0.0, 2.0, 0, 1, Vector2(0.4, 1), 0.0, 0.0, 0, 0, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.2), -2.0, 0.0, 1, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_algae_initial"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.25, 0.55, 0.35, 0.25, 0.45, 0.65, 0.4, 0.2, 0.35, 0.5, 0.25, 0.15)
+
+[sub_resource type="Gradient" id="Gradient_algae_lifetime"]
+offsets = PackedFloat32Array(0, 0.2, 0.8, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="FloatingParticles" type="Node2D"]
+script = ExtResource("2_script")
+
+[node name="FluorescentSpores" type="CPUParticles2D" parent="."]
+z_index = 1
+material = SubResource("CanvasItemMaterial_additive")
+amount = 35
+texture = ExtResource("1_bubble")
+lifetime = 8.0
+emission_shape = 3
+emission_rect_extents = Vector2(1000, 600)
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, -12)
+initial_velocity_min = 4.0
+initial_velocity_max = 15.0
+angular_velocity_min = -15.0
+angular_velocity_max = 15.0
+scale_amount_min = 0.5
+scale_amount_max = 1.8
+scale_amount_curve = SubResource("Curve_spore_scale")
+color_initial_ramp = SubResource("Gradient_spore_initial")
+color_ramp = SubResource("Gradient_spore_lifetime")
+
+[node name="FloatingAlgae" type="CPUParticles2D" parent="."]
+z_index = 1
+amount = 12
+texture = ExtResource("1_bubble")
+lifetime = 14.0
+emission_shape = 3
+emission_rect_extents = Vector2(1000, 600)
+direction = Vector2(1, -0.3)
+spread = 60.0
+gravity = Vector2(0, -5)
+initial_velocity_min = 2.0
+initial_velocity_max = 8.0
+angular_velocity_min = -8.0
+angular_velocity_max = 8.0
+scale_amount_min = 2.5
+scale_amount_max = 5.0
+color_initial_ramp = SubResource("Gradient_algae_initial")
+color_ramp = SubResource("Gradient_algae_lifetime")

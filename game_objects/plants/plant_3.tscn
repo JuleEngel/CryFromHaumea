@@ -10,12 +10,15 @@ shader_parameter/sway_amplitude = 6.0
 shader_parameter/sway_speed = 1.5
 shader_parameter/sway_frequency = 2.0
 
-[node name="Plant3" type="Sprite2D" unique_id=1814657334]
+[node name="Node2D" type="Node2D"]
+
+[node name="Plant3" type="Sprite2D" parent="." unique_id=1814657334]
 z_index = -1
 material = SubResource("ShaderMaterial_sway")
+position = Vector2(-3, -69)
 texture = ExtResource("1_2e8rw")
 
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1587509805]
+[node name="PointLight2D" type="PointLight2D" parent="Plant3" unique_id=1587509805]
 position = Vector2(4, -38)
 scale = Vector2(1.3044677, 1.2525319)
 color = Color(0.61425424, 0.81008285, 1, 1)

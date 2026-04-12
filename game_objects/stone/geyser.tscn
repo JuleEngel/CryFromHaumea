@@ -1,16 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnvbu81clxonu"]
+[gd_scene format=3 uid="uid://cnvbu81clxonu"]
 
 [ext_resource type="Texture2D" uid="uid://c3cxlctb2lwl8" path="res://game_objects/stone/geyser.png" id="1_3x44m"]
 [ext_resource type="Texture2D" uid="uid://djftd7mdgmb5y" path="res://game_objects/submarine/bubble.png" id="2_bubble"]
 
-[node name="Geyser" type="Sprite2D" unique_id=103536003]
+[node name="Node2D" type="Node2D" unique_id=701914808]
+
+[node name="Geyser" type="Sprite2D" parent="." unique_id=103536003]
+position = Vector2(0, -37)
 texture = ExtResource("1_3x44m")
 
-[node name="BubbleParticles" type="CPUParticles2D" parent="."]
-position = Vector2(0, -50)
-amount = 20
+[node name="BubbleParticles" type="CPUParticles2D" parent="Geyser" unique_id=1999833837]
+position = Vector2(26, -36)
+amount = 300
 texture = ExtResource("2_bubble")
-lifetime = 3.0
+lifetime = 10.0
 emission_shape = 1
 emission_sphere_radius = 20.0
 direction = Vector2(0, -1)

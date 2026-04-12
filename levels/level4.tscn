@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://bdqt3uux8pjt3" path="res://game_objects/jellyfish/jellyfish.tscn" id="21_ok0nw"]
 [ext_resource type="PackedScene" uid="uid://o5kkadaw2lfk" path="res://game_objects/whale/whale.tscn" id="22_g2luv"]
 [ext_resource type="PackedScene" uid="uid://d03rqk6g5ksj5" path="res://game_objects/fish/fish.tscn" id="23_um8t4"]
+[ext_resource type="PackedScene" path="res://visual_effects/floating_particles.tscn" id="24_float"]
 
 [sub_resource type="Environment" id="Environment_underwater"]
 background_mode = 3
@@ -1079,6 +1080,8 @@ angular_velocity_min = -45.0
 angular_velocity_max = 45.0
 scale_amount_max = 2.5
 color = Color(0.8, 0.9, 1, 0.35)
+
+[node name="FloatingParticles" parent="." instance=ExtResource("24_float")]
 
 [node name="Submarine" parent="." unique_id=482854008 instance=ExtResource("2_lrvx3")]
 position = Vector2(-1411, -6470)

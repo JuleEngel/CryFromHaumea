@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://00jhry2ru7jg" path="res://levels/utils/scene_change_trigger.tscn" id="19_w7ck5"]
 [ext_resource type="PackedScene" uid="uid://cgs886llrq08l" path="res://levels/level2.tscn" id="20_2nn5w"]
 [ext_resource type="PackedScene" path="res://game_objects/trigger_orb/trigger_orb.tscn" id="22_ou4v7"]
+[ext_resource type="PackedScene" path="res://visual_effects/floating_particles.tscn" id="23_float"]
 
 [sub_resource type="Environment" id="Environment_underwater"]
 background_mode = 3
@@ -930,6 +931,8 @@ angular_velocity_min = -45.0
 angular_velocity_max = 45.0
 scale_amount_max = 2.5
 color = Color(0.8, 0.9, 1, 0.35)
+
+[node name="FloatingParticles" parent="." instance=ExtResource("23_float")]
 
 [node name="Submarine" parent="." unique_id=482854008 instance=ExtResource("2_tx362")]
 position = Vector2(-858.8968, -2060.7922)
