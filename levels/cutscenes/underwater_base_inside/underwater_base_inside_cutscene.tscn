@@ -12,17 +12,17 @@
 [ext_resource type="AudioStream" uid="uid://d2uuw67ck31ml" path="res://audio/sound_effects/creepy_detection.mp3" id="10_attack"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_subtitle"]
-bg_color = Color(0, 0, 0, 0.75)
 content_margin_left = 20.0
 content_margin_top = 15.0
 content_margin_right = 20.0
 content_margin_bottom = 15.0
+bg_color = Color(0, 0, 0, 0.75)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="UnderwaterBaseInsideCutscene" type="Node2D"]
+[node name="UnderwaterBaseInsideCutscene" type="Node2D" unique_id=1787655508]
 script = ExtResource("2_script")
 next_scene = ExtResource("4_next")
 text_1 = "Das war knapp. Zu knapp. Beinahe hätten die Viecher mich erwischt. Zum Glück hat der in Not geratene Pilot hier eine Unterwasser-Station errichtet.
@@ -46,40 +46,46 @@ Ich kann ihnen nicht mehr entkommen, es sind drei von ihnen zwischen mir und dem
 
 Eins der Viecher hat mich gepackt, ich kann mich nicht mehr bewegen. Verdammt, ihr Tentakel dringt in meinen Anzug ein. Bleib weg von meinen Augen mit deinen schleimigen Tentakeln! Nein, hör auf! Stopp! HILFE..."
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="." unique_id=725867603]
 position = Vector2(960, 540)
 scale = Vector2(3, 3)
 texture = ExtResource("1_bg")
 
-[node name="BackgroundFlooded" type="Sprite2D" parent="."]
+[node name="BackgroundFlooded" type="Sprite2D" parent="." unique_id=1390525729]
 visible = false
-position = Vector2(960, 540)
-scale = Vector2(3, 3)
-texture = ExtResource("1_bg")
 modulate = Color(0.4, 0.5, 0.7, 1)
+position = Vector2(960, 540)
+scale = Vector2(3, 3)
+texture = ExtResource("1_bg")
 
-[node name="AlienWindow" type="Sprite2D" parent="."]
+[node name="AlienWindow" type="Sprite2D" parent="." unique_id=1013987398]
 visible = false
+modulate = Color(0.5544, 0.72, 0.69792, 0.90588236)
 z_index = 1
-position = Vector2(1450, 420)
+position = Vector2(1344, 421)
+rotation = 0.14874884
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_alien_boss")
 
-[node name="AlienInside" type="Sprite2D" parent="."]
+[node name="AlienInside" type="Sprite2D" parent="." unique_id=1741712844]
 visible = false
+modulate = Color(1, 1, 1, 0.75686276)
 z_index = 2
-position = Vector2(600, 500)
-scale = Vector2(0.6, 0.6)
+position = Vector2(1197, 515)
+rotation = 0.065066144
+scale = Vector2(1.3233079, 1.3233079)
 texture = ExtResource("5_alien_boss")
 flip_h = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=35313076]
 position = Vector2(960, 540)
 
-[node name="ScreenTarget" type="Marker2D" parent="."]
+[node name="ScreenTarget" type="Marker2D" parent="." unique_id=1270955251]
 position = Vector2(880, 560)
+rotation = 0.12391838
+scale = Vector2(inf, -67)
 
-[node name="SOSLabel" type="Label" parent="ScreenTarget"]
+[node name="SOSLabel" type="Label" parent="ScreenTarget" unique_id=771911921]
 visible = false
 z_index = 3
 offset_left = -200.0
@@ -99,7 +105,7 @@ visible_characters = 0
 visible_ratio = 0.0
 script = ExtResource("7_sos")
 
-[node name="ContinueLabel" type="Label" parent="ScreenTarget"]
+[node name="ContinueLabel" type="Label" parent="ScreenTarget" unique_id=676944479]
 visible = false
 z_index = 3
 offset_left = -150.0
@@ -112,26 +118,26 @@ theme_override_font_sizes/font_size = 12
 text = "Beliebige Taste drücken zum Fortfahren..."
 horizontal_alignment = 1
 
-[node name="AmbiancePlayer" type="AudioStreamPlayer" parent="."]
+[node name="AmbiancePlayer" type="AudioStreamPlayer" parent="." unique_id=372198100]
 stream = ExtResource("8_ambiance")
 
-[node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="." unique_id=1958085041]
 stream = ExtResource("9_modem")
 
-[node name="AttackPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AttackPlayer" type="AudioStreamPlayer" parent="." unique_id=1974683668]
 stream = ExtResource("10_attack")
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=13939058]
 layer = 10
 
-[node name="WaterOverlay" type="ColorRect" parent="UI"]
+[node name="WaterOverlay" type="ColorRect" parent="UI" unique_id=583303367]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0.1, 0.3, 0)
 
-[node name="SubtitleLabel" type="Label" parent="UI"]
+[node name="SubtitleLabel" type="Label" parent="UI" unique_id=823615173]
 visible = false
 anchors_preset = 7
 anchor_left = 0.5
@@ -150,7 +156,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_subtitle")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="SubtitleContinueLabel" type="Label" parent="UI"]
+[node name="SubtitleContinueLabel" type="Label" parent="UI" unique_id=555704726]
 visible = false
 anchors_preset = 7
 anchor_left = 0.5
@@ -169,7 +175,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="SkipLabel" type="Label" parent="UI"]
+[node name="SkipLabel" type="Label" parent="UI" unique_id=1026505684]
 visible = false
 anchors_preset = 3
 anchor_left = 1.0

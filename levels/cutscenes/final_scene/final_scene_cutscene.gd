@@ -141,31 +141,39 @@ func _run_cutscene() -> void:
 
 # -- Transitions ---------------------------------------------------------------
 
-func _transition_to_alien() -> void:
-	_subtitle_label.visible = false
-	_subtitle_continue_label.visible = false
-
+func _do_glitch_effect() -> void:
 	if glitch_audio:
 		_glitch_player.stream = glitch_audio
 		_glitch_player.play()
 
-	_glitch_overlay.color = Color.BLACK
+	_glitch_overlay.visible = true
 
-	# Flicker effect
-	for i in range(8):
-		_glitch_overlay.visible = not _glitch_overlay.visible
+	# Mystical matrix-like glitch: subtle alpha pulses with faint green tint
+	for i in range(10):
+		var alpha := randf_range(0.15, 0.85)
+		var green := randf_range(0.0, 0.05)
+		_glitch_overlay.color = Color(0.0, green, 0.0, alpha)
 		await get_tree().create_timer(0.05 + randf() * 0.1).timeout
 
-	# End on solid black
-	_glitch_overlay.visible = true
+	# Settle to solid black
 	_glitch_overlay.color = Color.BLACK
+
+
+func _transition_to_alien() -> void:
+	_subtitle_label.visible = false
+	_subtitle_continue_label.visible = false
+
+	await _do_glitch_effect()
+
 	_hide_all_backgrounds()
 	await get_tree().create_timer(0.3).timeout
 
 
 func _transition_to_memory(bg: Sprite2D, show_universe: bool = false) -> void:
-	_glitch_player.stop()
 	_dialog_container.visible = false
+
+	await _do_glitch_effect()
+	_glitch_player.stop()
 
 	# Prepare memory background behind the black overlay
 	_hide_all_backgrounds()
@@ -174,7 +182,6 @@ func _transition_to_memory(bg: Sprite2D, show_universe: bool = false) -> void:
 	bg.visible = true
 
 	# Soft fade: black overlay fades out to reveal memory
-	_glitch_overlay.visible = true
 	_glitch_overlay.color = Color.BLACK
 	var tween := create_tween()
 	tween.tween_property(_glitch_overlay, "color:a", 0.0, 2.0) \
@@ -293,6 +300,11 @@ func _hide_all_backgrounds() -> void:
 # -- Outro ---------------------------------------------------------------------
 
 func _run_outro() -> void:
+	# Start slow moon approach from the very beginning (runs in background)
+	var moon_tween := create_tween()
+	moon_tween.tween_property(_planet, "scale", Vector2(1.5, 1.5), 60.0) \
+		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+
 	# Outro text
 	if not outro_text.is_empty():
 		var pages := outro_text.split("\n\n")
@@ -337,11 +349,12 @@ func _run_outro() -> void:
 		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	await tween2.finished
 
-	# Moon slowly approaches (no shake, no engine sound)
-	var tween3 := create_tween()
-	tween3.tween_property(_planet, "scale", Vector2(4.0, 4.0), 15.0) \
+	# Stop slow approach, accelerate moon from current scale
+	moon_tween.kill()
+	var fast_tween := create_tween()
+	fast_tween.tween_property(_planet, "scale", Vector2(5.0, 5.0), 10.0) \
 		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
-	await tween3.finished
+	await fast_tween.finished
 
 	# Fade to black
 	_glitch_overlay.visible = true

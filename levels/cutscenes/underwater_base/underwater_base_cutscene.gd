@@ -18,7 +18,7 @@ func _ready() -> void:
 
 
 func _run_cutscene() -> void:
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.1).timeout
 
 	_dive_player.play()
 
@@ -32,7 +32,7 @@ func _run_cutscene() -> void:
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.1).timeout
 
 	_go_to_next_scene()
 

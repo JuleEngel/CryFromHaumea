@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://b7uxadk3nps5t" path="res://levels/cutscenes/underwater_base_inside/underwater_base_inside_cutscene.tscn" id="3_next"]
 [ext_resource type="Texture2D" uid="uid://dkjge1p427ddy" path="res://game_objects/submarine/submarine.png" id="4_sub"]
 [ext_resource type="AudioStream" uid="uid://o7mf7hb6s3m3" path="res://audio/sound_effects/dive_sound.mp3" id="5_dive"]
+[ext_resource type="PackedScene" uid="uid://dirkbudgjfg5" path="res://game_objects/alien1/alien1.tscn" id="7_pn7lf"]
+[ext_resource type="PackedScene" uid="uid://d03rqk6g5ksj5" path="res://game_objects/fish/fish.tscn" id="7_sfo04"]
+[ext_resource type="PackedScene" uid="uid://bdqt3uux8pjt3" path="res://game_objects/jellyfish/jellyfish.tscn" id="8_pn7lf"]
 
 [node name="UnderwaterBaseCutscene" type="Node2D" unique_id=425153288]
 script = ExtResource("2_script")
@@ -22,7 +25,7 @@ scale = Vector2(4, 4)
 texture = ExtResource("4_sub")
 
 [node name="LandingTarget" type="Marker2D" parent="." unique_id=1572546923]
-position = Vector2(960, 490)
+position = Vector2(1052, 501)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2073102547]
 position = Vector2(960, 540)
@@ -46,3 +49,27 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 20
 text = "Erneut drücken zum Überspringen"
+
+[node name="Alien3" parent="." unique_id=2062702134 instance=ExtResource("7_pn7lf")]
+position = Vector2(1392, 872)
+
+[node name="Alien4" parent="." unique_id=1508542047 instance=ExtResource("7_pn7lf")]
+modulate = Color(0.46229059, 0.46229059, 0.46229059, 1)
+position = Vector2(676, 365)
+scale = Vector2(0.4, 0.4)
+
+[node name="Alien5" parent="." unique_id=902989481 instance=ExtResource("7_pn7lf")]
+modulate = Color(0.46229059, 0.46229059, 0.46229059, 1)
+position = Vector2(1077, 282)
+scale = Vector2(0.4, 0.4)
+
+[node name="Fish" parent="." unique_id=1152681927 instance=ExtResource("7_sfo04")]
+position = Vector2(410, 465)
+
+[node name="Fish2" parent="." unique_id=1332965322 instance=ExtResource("7_sfo04")]
+position = Vector2(1614, 256)
+
+[node name="Jellyfish" parent="." unique_id=557505166 instance=ExtResource("8_pn7lf")]
+modulate = Color(0.41981313, 0.41981313, 0.4198131, 1)
+position = Vector2(922, 407)
+scale = Vector2(0.3568437, 0.3568437)
