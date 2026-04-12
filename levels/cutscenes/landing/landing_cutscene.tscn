@@ -6,9 +6,23 @@
 [ext_resource type="AudioStream" uid="uid://dp04cbb668ott" path="res://audio/sound_effects/rocket_landing.mp3" id="4_landing_sfx"]
 [ext_resource type="PackedScene" path="res://levels/cutscenes/base_station/base_station_cutscene.tscn" id="5_next"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_subtitle"]
+bg_color = Color(0, 0, 0, 0.75)
+content_margin_left = 20.0
+content_margin_top = 15.0
+content_margin_right = 20.0
+content_margin_bottom = 15.0
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [node name="LandingCutscene" type="Node2D" unique_id=1553817285]
 script = ExtResource("3_script")
 next_scene = ExtResource("5_next")
+landing_text = "Da ist die Basis. Sieht verlassen aus. Hoffentlich bin ich nicht zu spät.
+
+Erst mal landen und nachsehen, was hier los ist."
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1900397496]
 position = Vector2(960, 540)
@@ -32,6 +46,43 @@ stream = ExtResource("4_landing_sfx")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=371927937]
 layer = 10
+
+[node name="SubtitleLabel" type="Label" parent="UI"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -450.0
+offset_top = -200.0
+offset_right = 450.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_subtitle")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="SubtitleContinueLabel" type="Label" parent="UI"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -30.0
+offset_right = 150.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 14
+text = "Beliebige Taste drücken zum Fortfahren..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="SkipLabel" type="Label" parent="UI" unique_id=194559219]
 visible = false

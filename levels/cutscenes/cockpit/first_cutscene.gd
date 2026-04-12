@@ -99,31 +99,30 @@ func _step_sos_message() -> void:
 
 
 func _step_radio_message() -> void:
-	_subtitle_label.text = radio_subtitle
-	_subtitle_label.visible = true
+	await _show_radio_pages(radio_subtitle, radio_audio)
 
-	if radio_audio:
-		_voice_player.stream = radio_audio
-		_voice_player.play()
-		await _voice_player.finished
 
-	_subtitle_continue_label.visible = true
-	await _sos_label.wait_for_input()
-	_subtitle_continue_label.visible = false
-	_subtitle_label.visible = false
-	
 func _step_radio_message_2() -> void:
-	_subtitle_label.text = radio_subtitle_2
-	_subtitle_label.visible = true
+	await _show_radio_pages(radio_subtitle_2, radio_audio)
 
-	if radio_audio:
-		_voice_player.stream = radio_audio
-		_voice_player.play()
-		await _voice_player.finished
 
-	_subtitle_continue_label.visible = true
-	await _sos_label.wait_for_input()
-	_subtitle_continue_label.visible = false
+func _show_radio_pages(full_text: String, audio: AudioStream = null) -> void:
+	var pages := full_text.split("\n\n")
+	for i in pages.size():
+		var page := pages[i].strip_edges()
+		if page.is_empty():
+			continue
+		_subtitle_label.text = page
+		_subtitle_label.visible = true
+
+		if i == 0 and audio:
+			_voice_player.stream = audio
+			_voice_player.play()
+			await _voice_player.finished
+
+		_subtitle_continue_label.visible = true
+		await _sos_label.wait_for_input()
+		_subtitle_continue_label.visible = false
 	_subtitle_label.visible = false
 
 
