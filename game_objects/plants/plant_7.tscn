@@ -3,7 +3,7 @@
 [ext_resource type="Shader" uid="uid://c54ck2qf5br7r" path="res://game_objects/plants/water_sway.gdshader" id="1_uvrmx"]
 [ext_resource type="Texture2D" uid="uid://dbuwf1ptdoif8" path="res://game_objects/plants/plant_7.png" id="2_uvrmx"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sway"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g2rt8"]
 shader = ExtResource("1_uvrmx")
 shader_parameter/sway_amplitude = 6.0
 shader_parameter/sway_speed = 1.5
@@ -13,6 +13,7 @@ shader_parameter/sway_frequency = 2.0
 
 [node name="Plant5" type="Sprite2D" parent="." unique_id=1557472760]
 z_index = -1
-material = SubResource("ShaderMaterial_sway")
+material = SubResource("ShaderMaterial_g2rt8")
 position = Vector2(1, -74)
 texture = ExtResource("2_uvrmx")
+metadata/_edit_lock_ = true

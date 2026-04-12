@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bve17bs25y4ss" path="res://audio/music/exploration_track.ogg" id="5_music"]
 [ext_resource type="Script" uid="uid://bho57h03dg7xu" path="res://levels/cutscenes/cockpit/sos_label.gd" id="6_sos"]
 [ext_resource type="FontFile" uid="uid://53bvl4qu6g5q" path="res://ui_scenes/fonts/Orbitron-VariableFont_wght.ttf" id="7_orbitron"]
-[ext_resource type="AudioStream" path="res://audio/sound_effects/modem.mp3" id="8_modem"]
+[ext_resource type="AudioStream" uid="uid://bsgpigaprmndc" path="res://audio/sound_effects/modem.mp3" id="8_modem"]
 
 [sub_resource type="Environment" id="Environment_ngf02"]
 background_mode = 3
@@ -131,7 +131,7 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 22
 horizontal_alignment = 1
 
-[node name="SubtitleContinueLabel" type="Label" parent="UI"]
+[node name="SubtitleContinueLabel" type="Label" parent="UI" unique_id=1024854588]
 visible = false
 anchors_preset = 7
 anchor_left = 0.5

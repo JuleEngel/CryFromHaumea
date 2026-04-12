@@ -16,3 +16,4 @@ z_index = -1
 material = SubResource("ShaderMaterial_55bpa")
 position = Vector2(0, -64)
 texture = ExtResource("1_72kl0")
+metadata/_edit_lock_ = true

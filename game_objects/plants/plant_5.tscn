@@ -16,3 +16,4 @@ z_index = -1
 material = SubResource("ShaderMaterial_sway")
 position = Vector2(1, -74)
 texture = ExtResource("1_ppcum")
+metadata/_edit_lock_ = true

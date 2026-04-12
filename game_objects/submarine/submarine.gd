@@ -154,6 +154,7 @@ func _physics_process(delta: float) -> void:
 		music_combat.volume_db = move_toward(music_combat.volume_db, -80.0, fade * 80.0)
 
 	move_and_slide()
+	RenderingServer.global_shader_parameter_set(&"submarine_position", global_position)
 
 	if get_slide_collision_count() > 0 and not ice_hit_sound.playing:
 		ice_hit_sound.play()
