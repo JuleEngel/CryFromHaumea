@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dswwrb6jo8wxc"]
+[gd_scene format=3 uid="uid://dswwrb6jo8wxc"]
 
-[ext_resource type="Script" path="res://ui_scenes/main_menu/how_to_play/how_to_play_item.gd" id="1_6mblk"]
-[ext_resource type="Texture2D" uid="uid://hy0fgtaqk61a" path="res://icon.svg" id="2_w82a5"]
+[ext_resource type="Script" uid="uid://tapanm61x8ep" path="res://ui_scenes/main_menu/how_to_play/how_to_play_item.gd" id="1_6mblk"]
+[ext_resource type="Texture2D" uid="uid://cr03ljhlyfxgc" path="res://icon.png" id="2_w82a5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6p5cb"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
