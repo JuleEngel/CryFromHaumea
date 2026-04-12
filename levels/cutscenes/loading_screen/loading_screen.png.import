@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bauqfku7cslqr"
-path="res://.godot/imported/wallpaper_loading_screen.jpg-a447b10d6105f5d44bae00e6664525a4.ctex"
+uid="uid://w10cr6kmv66e"
+path="res://.godot/imported/loading_screen.png-1b637f0b314baf1356ea9c8f61dd5d7a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/cutscenes/loading_screen/wallpaper_loading_screen.jpg"
-dest_files=["res://.godot/imported/wallpaper_loading_screen.jpg-a447b10d6105f5d44bae00e6664525a4.ctex"]
+source_file="res://levels/cutscenes/loading_screen/loading_screen.png"
+dest_files=["res://.godot/imported/loading_screen.png-1b637f0b314baf1356ea9c8f61dd5d7a.ctex"]
 
 [params]
 

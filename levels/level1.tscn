@@ -977,7 +977,7 @@ color = Color(0.8, 0.9, 1, 0.35)
 [node name="FloatingParticles" parent="." unique_id=1316794344 instance=ExtResource("23_float")]
 
 [node name="Submarine" parent="." unique_id=482854008 instance=ExtResource("2_tx362")]
-position = Vector2(3545.6833, -1300.1377)
+position = Vector2(-1415.5906, -6349.1035)
 rotation = 0.014611467
 
 [node name="WaterEffect" type="CanvasLayer" parent="." unique_id=1768455716]
