@@ -1,23 +1,24 @@
 [gd_scene format=3 uid="uid://b7uxadk3nps5t"]
 
 [ext_resource type="Texture2D" uid="uid://cc6sddx6yp5nk" path="res://levels/cutscenes/underwater_base_inside/underwater_base_inside.png" id="1_bg"]
-[ext_resource type="Script" path="res://levels/cutscenes/underwater_base_inside/underwater_base_inside_cutscene.gd" id="2_script"]
+[ext_resource type="Script" uid="uid://du1jbwrfexps6" path="res://levels/cutscenes/underwater_base_inside/underwater_base_inside_cutscene.gd" id="2_script"]
+[ext_resource type="Theme" uid="uid://dqwuby34ylgsq" path="res://ui_scenes/main_menu/menu_theme2.tres" id="3_kri1b"]
 
-[node name="UnderwaterBaseInsideCutscene" type="Node2D"]
+[node name="UnderwaterBaseInsideCutscene" type="Node2D" unique_id=1967742451]
 script = ExtResource("2_script")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="." unique_id=743403060]
 position = Vector2(960, 540)
-scale = Vector2(3.0, 3.0)
+scale = Vector2(3, 3)
 texture = ExtResource("1_bg")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2056985179]
 position = Vector2(960, 540)
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1365541739]
 layer = 10
 
-[node name="SkipLabel" type="Label" parent="UI"]
+[node name="SkipLabel" type="Label" parent="UI" unique_id=80767974]
 visible = false
 anchors_preset = 3
 anchor_left = 1.0
@@ -30,3 +31,51 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 20
 text = "Erneut drücken zum Überspringen"
+
+[node name="Label" type="Label" parent="UI" unique_id=1973169923]
+offset_left = 948.0
+offset_top = 967.0
+offset_right = 988.0
+offset_bottom = 993.0
+theme = ExtResource("3_kri1b")
+text = "Das war knapp. Zu knapp. Beinahe hätten die Viecher mich erwischt. Zum Glück hat der in Not geratene Pilot hier eine Unterwasser-Station errichtet.
+
+Aber wo ist der Pilot? Hier  drin ist er jedenfalls nicht. "
+
+[node name="Label2" type="Label" parent="UI" unique_id=1578760388]
+offset_left = 948.0
+offset_top = 967.0
+offset_right = 988.0
+offset_bottom = 993.0
+theme = ExtResource("3_kri1b")
+text = "Was zum Teufel ist das da am Fenster? Dieses Wesen sieht viel gefährlicher aus als der Rest. Und viel intelligenter...
+
+Scheiße, da sind noch mehr von. Und sie machen sich an der Luke zu schaffen. Aber sie werden sie doch nicht aufbekommen, oder?
+
+Ich muss dringend einen Hilferuf absetzen. Hoffentlich empfängt den jemand..."
+
+[node name="Label3" type="Label" parent="UI" unique_id=259256753]
+offset_left = 948.0
+offset_top = 967.0
+offset_right = 988.0
+offset_bottom = 993.0
+theme = ExtResource("3_kri1b")
+text = "Moment mal...
+
+Scheiße, das ist ja dieselbe Nachricht, die ich vorhin auf meinem Raumschiff erhalten habe...
+
+Und ist diese Unterwasserstation nicht dieselbe, die ich auch für solche Expeditionen habe?
+
+Warum kommt mir das alles nur so seltsam bekannt vor? Als wäre ich schon einmal in dieser Situation gewesen."
+
+[node name="Label4" type="Label" parent="UI" unique_id=2071181928]
+offset_left = 948.0
+offset_top = 967.0
+offset_right = 988.0
+offset_bottom = 993.0
+theme = ExtResource("3_kri1b")
+text = "Mist, diese Viecher sind in der Station. Hier wird alles geflutet! 
+
+Ich kann ihnen nicht mehr entkommen, es sind drei von ihnen zwischen mir und dem Ausgang. Und meine Waffe liegt noch im U-Boot. Dumm, dumm, DUMM
+
+Eins der Viecher hat mich gepackt, ich kann mich nicht mehr bewegen. Verdammt, ihr Tentakel dringt in meinen Anzug ein. Bleib weg von meinen Augen mit deinen schleimigen Tentakeln! Nein, hör auf! Stopp! HILFE..."
