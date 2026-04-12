@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bjqjhef2hju1d"]
+
+[ext_resource type="Script" uid="uid://imrw8fdu3lw2" path="res://levels/cutscenes/loading_screen/loading_screen.gd" id="1_450lv"]
+[ext_resource type="Texture2D" uid="uid://bauqfku7cslqr" path="res://levels/cutscenes/loading_screen/wallpaper_loading_screen.jpg" id="2_ub2xy"]
+
+[node name="LoadingScreen" type="Node2D" unique_id=163757683]
+script = ExtResource("1_450lv")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=866244365]
+position = Vector2(960, 540)
+scale = Vector2(1.45, 1.45)
+texture = ExtResource("2_ub2xy")

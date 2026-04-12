@@ -2893,7 +2893,7 @@ angular_velocity_max = 45.0
 scale_amount_max = 2.5
 color = Color(0.8, 0.9, 1, 0.35)
 
-[node name="FloatingParticles" parent="." instance=ExtResource("24_float")]
+[node name="FloatingParticles" parent="." unique_id=1982492448 instance=ExtResource("24_float")]
 
 [node name="Submarine" parent="." unique_id=482854008 instance=ExtResource("2_k34hm")]
 position = Vector2(-2373, 2559)
@@ -2949,7 +2949,7 @@ scale = Vector2(3.0467026, 3.0467026)
 position = Vector2(7841.9995, 1218.0002)
 rotation = -0.039990373
 scale = Vector2(3.0467026, 3.0467026)
-nextScene = ExtResource("8_ulrxl")
+next_scene = ExtResource("8_ulrxl")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=167558109]
 collision_layer = 4

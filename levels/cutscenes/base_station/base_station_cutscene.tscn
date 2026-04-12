@@ -68,7 +68,7 @@ theme_override_font_sizes/font_size = 22
 text = "Klicke auf markierte Objekte, um sie zu untersuchen"
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="UI"]
+[node name="StartButton" type="Button" parent="UI" unique_id=411089097]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
