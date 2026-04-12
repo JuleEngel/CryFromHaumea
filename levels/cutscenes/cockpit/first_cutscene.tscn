@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bve17bs25y4ss" path="res://audio/music/exploration_track.ogg" id="5_music"]
 [ext_resource type="Script" uid="uid://bho57h03dg7xu" path="res://levels/cutscenes/cockpit/sos_label.gd" id="6_sos"]
 [ext_resource type="FontFile" uid="uid://53bvl4qu6g5q" path="res://ui_scenes/fonts/Orbitron-VariableFont_wght.ttf" id="7_orbitron"]
-[ext_resource type="AudioStream" path="res://audio/sound_effects/modem.mp3" id="8_modem"]
+[ext_resource type="AudioStream" uid="uid://bsgpigaprmndc" path="res://audio/sound_effects/modem.mp3" id="8_modem"]
 
 [sub_resource type="Environment" id="Environment_ngf02"]
 background_mode = 3
@@ -33,6 +33,17 @@ script = ExtResource("4_script")
 next_scene = ExtResource("2_rvwn8")
 modem_audio = ExtResource("8_modem")
 engine_audio = ExtResource("2_3edyl")
+radio_subtitle = "Ein neuer Tag im Weltraum. Ein neuer Tag im Kuiper-Gürtel. Ein neuer Tag auf der Suche nach Deuterium-Vorkommen für den Fusionsreaktor auf dem Pluto. 
+
+Mir brummt der Schädel. Habe ich gestern schon wieder zu tief in Glas geschaut? Oder werde ich krank? Egal. Die Arbeit ruft. Irgendeiner dieser Planeten hier im Umfeld wird schon ergiebig sein.
+
+Was will der Bordcomputer denn schon wieder von mir?"
+radio_subtitle_2 = "Ein Hilfe-Ruf von Haumea Sektor 27E?
+Ich wusste gar nicht, dass sich außer mir noch wer in diesem gottverlassenen Teil des Universums aufhält. Naja, man lernt jeden Tag was neues. 
+
+Scheint aber was ernstes zu sein und ist auch erst ein paar Stunden alt. Blöd nur, dass die letzte Warnung nicht vollständig geschickt wurde. Was ist da nur passiert? 
+
+Die Arbeit muss warten. Eine Rettungsaktion steht an. Neuer Kurs: Haumea"
 
 [node name="UniversePure" type="Sprite2D" parent="." unique_id=1439629270]
 position = Vector2(101.00012, 709)
@@ -69,7 +80,7 @@ theme_override_fonts/font = ExtResource("7_orbitron")
 theme_override_font_sizes/font_size = 24
 text = "S.O.S. - BITTE UM HILFE.
 HAUMEA SEKTOR 27E.
-LETZTE WARNUNG."
+PASST AUF, HIER SIND F"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -116,7 +127,6 @@ theme_override_font_sizes/font_size = 20
 text = "Erneut drücken zum Überspringen"
 
 [node name="SubtitleLabel" type="Label" parent="UI" unique_id=1279736718]
-visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -131,7 +141,7 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 22
 horizontal_alignment = 1
 
-[node name="SubtitleContinueLabel" type="Label" parent="UI"]
+[node name="SubtitleContinueLabel" type="Label" parent="UI" unique_id=1898654192]
 visible = false
 anchors_preset = 7
 anchor_left = 0.5
