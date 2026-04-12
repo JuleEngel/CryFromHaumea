@@ -25,6 +25,13 @@
 [ext_resource type="PackedScene" uid="uid://d03rqk6g5ksj5" path="res://game_objects/fish/fish.tscn" id="23_rg68n"]
 [ext_resource type="PackedScene" uid="uid://dvh3i70uarhyb" path="res://game_objects/trigger_orb/trigger_orb.tscn" id="24_x6jsp"]
 [ext_resource type="PackedScene" uid="uid://dydv0nl24fm7p" path="res://game_objects/premature_exit_trigger/premature_exit_trigger.tscn" id="25_rg68n"]
+[ext_resource type="Texture2D" uid="uid://rvbj66v2khy4" path="res://game_objects/clues/dead_fish2.png" id="26_sv5e8"]
+[ext_resource type="Texture2D" uid="uid://jikey7dql1hh" path="res://game_objects/clues/damaged_submarine_wall.png" id="27_vnxxs"]
+[ext_resource type="Texture2D" uid="uid://dl5252wmxexqc" path="res://game_objects/clues/damaged_rocket.png" id="28_gxq45"]
+[ext_resource type="Texture2D" uid="uid://benitdyq4xau" path="res://game_objects/clues/dead_fish.png" id="29_el2p7"]
+[ext_resource type="Texture2D" uid="uid://dvyi7ovbhq8yt" path="res://game_objects/clues/dead_alien.png" id="30_gg5ra"]
+[ext_resource type="Texture2D" uid="uid://ulq7qumev44a" path="res://game_objects/clues/damaged_plant.png" id="31_bmipv"]
+[ext_resource type="Texture2D" uid="uid://b28b8xlqk8bur" path="res://game_objects/clues/damaged_submarine_light.png" id="32_478y7"]
 
 [sub_resource type="Environment" id="Environment_underwater"]
 background_mode = 3
@@ -3203,3 +3210,67 @@ set_invisible = true
 position = Vector2(-4244.0005, 2632)
 rotation = 1.5465192
 scale = Vector2(2.600005, 2.600005)
+
+[node name="TriggerOrb" parent="." unique_id=1625650002 instance=ExtResource("24_x6jsp")]
+position = Vector2(-417, 909)
+rotation = 1.5465192
+scale = Vector2(2.600005, 2.600005)
+action = 1
+text = "Überall tote Wesen. Scheinbar wurde der verschollene Pilot ebenso hartnäckig angegriffen wie ich."
+image = ExtResource("26_sv5e8")
+
+[node name="TriggerOrb2" parent="." unique_id=2120017798 instance=ExtResource("24_x6jsp")]
+position = Vector2(-516.99994, -2576)
+rotation = 1.5465192
+scale = Vector2(2.600005, 2.600005)
+action = 1
+text = "Dieser andere Pilot… er muss denselben Weg genommen haben. Die Trümmerteile sehen aus wie Hüllenplatten, sein U-Boot hat wohl ordentlich was abbekommen."
+image = ExtResource("27_vnxxs")
+
+[node name="TriggerOrb3" parent="." unique_id=946961728 instance=ExtResource("24_x6jsp")]
+position = Vector2(5214.2534, -2629.9143)
+rotation = 1.5465192
+scale = Vector2(2.600005, 2.600005)
+action = 1
+text = "Schon wieder ein Fehlstarter. Hoffentlich hatte der andere Pilot genug Raketen an Board."
+image = ExtResource("28_gxq45")
+
+[node name="TriggerOrb4" parent="." unique_id=1324682267 instance=ExtResource("24_x6jsp")]
+position = Vector2(1284, 1005)
+rotation = 1.5465192
+scale = Vector2(2.600005, 2.600005)
+action = 1
+text = "Die Fische sind hier wohl häufiger anzutreffen als die anderen Wesen."
+image = ExtResource("29_el2p7")
+
+[node name="TriggerOrb5" parent="." unique_id=85309071 instance=ExtResource("24_x6jsp")]
+position = Vector2(1847, 3674)
+rotation = 1.5465192
+scale = Vector2(2.600005, 2.600005)
+action = 1
+text = "Schon wieder ein totes Alien."
+image = ExtResource("30_gg5ra")
+
+[node name="TriggerOrb6" parent="." unique_id=1389303104 instance=ExtResource("24_x6jsp")]
+position = Vector2(6136, 2358)
+rotation = 1.5465192
+scale = Vector2(2.600005, 2.600005)
+action = 1
+text = "Ein paar der Spuren sind noch erstaunlich frisch. Der andere Pilot muss erst vor kurzem hier gewesen sein."
+image = ExtResource("31_bmipv")
+
+[node name="TriggerOrb7" parent="." unique_id=1996050433 instance=ExtResource("24_x6jsp")]
+position = Vector2(3611, 2071.0002)
+rotation = 1.5465192
+scale = Vector2(2.600005, 2.600005)
+action = 1
+text = "Eine Lampe. Hoffentlich konnte der andere Pilot noch genug sehen, um sich zu verteidigen!"
+image = ExtResource("32_478y7")
+
+[node name="TriggerOrb8" parent="." unique_id=1104754728 instance=ExtResource("24_x6jsp")]
+position = Vector2(2861.9998, 4309)
+rotation = 1.5465192
+scale = Vector2(2.600005, 2.600005)
+action = 1
+text = "Das Wesen eben hat wohl seinen Freund verteidigen wollen. Da kam es leider zu spät."
+image = ExtResource("30_gg5ra")

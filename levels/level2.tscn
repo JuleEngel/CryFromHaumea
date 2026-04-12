@@ -25,6 +25,12 @@
 [ext_resource type="PackedScene" uid="uid://bdqt3uux8pjt3" path="res://game_objects/jellyfish/jellyfish.tscn" id="21_giimr"]
 [ext_resource type="PackedScene" uid="uid://dvh3i70uarhyb" path="res://game_objects/trigger_orb/trigger_orb.tscn" id="24_giimr"]
 [ext_resource type="PackedScene" uid="uid://dydv0nl24fm7p" path="res://game_objects/premature_exit_trigger/premature_exit_trigger.tscn" id="25_vuw6k"]
+[ext_resource type="Texture2D" uid="uid://c3cxlctb2lwl8" path="res://game_objects/stone/geyser.png" id="26_08mxr"]
+[ext_resource type="Texture2D" uid="uid://rvbj66v2khy4" path="res://game_objects/clues/dead_fish2.png" id="27_sxrw6"]
+[ext_resource type="Texture2D" uid="uid://d1vuwbx0xgw0y" path="res://game_objects/clues/damaged_submarine_part2.png" id="28_sxrw6"]
+[ext_resource type="Texture2D" uid="uid://benitdyq4xau" path="res://game_objects/clues/dead_fish.png" id="28_vko8m"]
+[ext_resource type="Texture2D" uid="uid://dl5252wmxexqc" path="res://game_objects/clues/damaged_rocket.png" id="29_jriot"]
+[ext_resource type="Texture2D" uid="uid://ulq7qumev44a" path="res://game_objects/clues/damaged_plant.png" id="30_hieke"]
 
 [sub_resource type="Environment" id="Environment_underwater"]
 background_mode = 3
@@ -6469,3 +6475,45 @@ set_invisible = true
 position = Vector2(-3879, -9081)
 rotation = 1.6514786
 scale = Vector2(2.600005, 2.600005)
+
+[node name="TriggerOrb" parent="." unique_id=1625650002 instance=ExtResource("24_giimr")]
+position = Vector2(5121, -9753)
+scale = Vector2(1.2, 1.2)
+action = 1
+text = "Diese Termalquelle hier versorgt das umliegende Wasser mit Wärme."
+image = ExtResource("26_08mxr")
+
+[node name="TriggerOrb2" parent="." unique_id=1994455694 instance=ExtResource("24_giimr")]
+position = Vector2(6815, -7565)
+scale = Vector2(1.2, 1.2)
+action = 1
+text = "Dieses Wesen sieht sehr tot aus. Hier wurde auf jeden Fall gekämpft. Scheinbar bin ich auf dem richtigen Weg."
+image = ExtResource("27_sxrw6")
+
+[node name="TriggerOrb3" parent="." unique_id=345124821 instance=ExtResource("24_giimr")]
+position = Vector2(11218, -4866)
+scale = Vector2(1.2, 1.2)
+action = 1
+text = "Das ist ein Teil von einem U-Boot!"
+image = ExtResource("28_sxrw6")
+
+[node name="TriggerOrb4" parent="." unique_id=359343507 instance=ExtResource("24_giimr")]
+position = Vector2(1772, -6038)
+scale = Vector2(1.2, 1.2)
+action = 1
+text = "Noch mehr tote Tiere. Anscheinend wurde hier heftig gekämpft."
+image = ExtResource("28_vko8m")
+
+[node name="TriggerOrb5" parent="." unique_id=314176533 instance=ExtResource("24_giimr")]
+position = Vector2(-530, -2402)
+scale = Vector2(1.2, 1.2)
+action = 1
+text = "Diese Rakete scheint nicht hochgegangen zu sein. Fehlstarter gibt es leider immer wieder."
+image = ExtResource("29_jriot")
+
+[node name="TriggerOrb6" parent="." unique_id=188089030 instance=ExtResource("24_giimr")]
+position = Vector2(-1843, 1592)
+scale = Vector2(1.2, 1.2)
+action = 1
+text = "Die Pflanze wurde offensichtlich von einem U-Boot getroffen. Ich bin noch auf dem richtigen Weg!"
+image = ExtResource("30_hieke")

@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://o5kkadaw2lfk" path="res://game_objects/whale/whale.tscn" id="22_g2luv"]
 [ext_resource type="PackedScene" uid="uid://d03rqk6g5ksj5" path="res://game_objects/fish/fish.tscn" id="23_um8t4"]
 [ext_resource type="PackedScene" uid="uid://dvh3i70uarhyb" path="res://game_objects/trigger_orb/trigger_orb.tscn" id="24_g2luv"]
+[ext_resource type="Texture2D" uid="uid://yy5k7kplogrq" path="res://game_objects/clues/damaged_submarine_part.png" id="25_jyx7s"]
 [ext_resource type="PackedScene" uid="uid://dydv0nl24fm7p" path="res://game_objects/premature_exit_trigger/premature_exit_trigger.tscn" id="25_um8t4"]
 
 [sub_resource type="Environment" id="Environment_underwater"]
@@ -1334,6 +1335,14 @@ rotation = 0.4559485
 scale = Vector2(0.88958323, 25.989801)
 text = "Da ist eine Unterwasserstation! Rein da! Schnell!"
 set_invisible = true
+
+[node name="TriggerOrb" parent="." unique_id=1625650002 instance=ExtResource("24_g2luv")]
+position = Vector2(1042, -5270)
+rotation = -1.5907217
+scale = Vector2(2.9433823, 2.9433823)
+action = 1
+text = "Wieder ein Teil vom U-Boot. Ich muss nah dran sein!"
+image = ExtResource("25_jyx7s")
 
 [node name="PrematureExitTrigger" parent="." unique_id=888935396 instance=ExtResource("25_um8t4")]
 position = Vector2(-1454, -8007.9995)
