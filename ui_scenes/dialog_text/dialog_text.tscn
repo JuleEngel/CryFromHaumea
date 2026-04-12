@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://ui_scenes/dialog_text/dialog_text.gd" id="1_script"]
 
 [node name="DialogText" type="CanvasLayer"]
-layer = 40
+layer = 101
 script = ExtResource("1_script")
 
 [node name="Panel" type="PanelContainer" parent="."]

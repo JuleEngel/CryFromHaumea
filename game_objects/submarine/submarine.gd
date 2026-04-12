@@ -22,6 +22,9 @@ const GAME_OVER_SCENE := preload("res://ui_scenes/game_over/game_over.tscn")
 @onready var damage_sound: AudioStreamPlayer2D = $DamageSound
 @onready var broken_screen: TextureRect = $BrokenScreenLayer/BrokenScreen
 @onready var ice_hit_sound: AudioStreamPlayer2D = $IceHitSound
+@onready var explosion_particles: GPUParticles2D = $ExplosionParticles
+@onready var explosion_sound: AudioStreamPlayer2D = $ExplosionSound
+@onready var camera: Camera2D = $Camera2D
 
 const DIVE_VOL_MIN := -40.0
 const DIVE_VOL_MAX := -2.0
@@ -209,18 +212,49 @@ func _die() -> void:
 	if water_rect and water_rect.material is ShaderMaterial:
 		(water_rect.material as ShaderMaterial).set_shader_parameter("light_intensity", 0.0)
 	dive_sound.stop()
+
+	# Fade out music slowly
+	var music_tween := create_tween()
+	music_tween.set_parallel(true)
+	music_tween.tween_property(music_adventure, "volume_db", -80.0, 2.0)
+	music_tween.tween_property(music_combat, "volume_db", -80.0, 2.0)
+
+	# Explosion particles and sound
+	explosion_particles.emitting = true
+	explosion_sound.play()
+
+	# Screen shake
+	_shake_camera(12.0, 6)
+
+	# Flash black quickly, then fade out over 2 seconds
+	var tween := create_tween()
+	tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0, 1.0), 0.15)
+	tween.tween_property(self, "modulate:a", 0.0, 2.0)
+	# Tilt while fading
+	var tilt_tween := create_tween()
+	tilt_tween.tween_property(self, "rotation", randf_range(-0.15, 0.15), 1.5)
+
+	# Show game over screen after effects settle
+	await get_tree().create_timer(2.0).timeout
 	music_adventure.stop()
 	music_combat.stop()
-	# Turn grey and tilt
-	var tween := create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(self, "modulate", Color(0.35, 0.35, 0.35, 1.0), 0.8)
-	tween.tween_property(self, "rotation", randf_range(-0.15, 0.15), 1.5)
-	# Show game over screen
 	get_tree().current_scene.add_child(GAME_OVER_SCENE.instantiate())
+
+func _shake_camera(strength: float, iterations: int) -> void:
+	var tween := create_tween()
+	for i in iterations:
+		var offset := Vector2(randf_range(-strength, strength), randf_range(-strength, strength))
+		tween.tween_property(camera, "offset", offset, 0.05)
+		strength *= 0.7
+	tween.tween_property(camera, "offset", Vector2.ZERO, 0.05)
 
 func _spawn_rocket() -> void:
 	var rocket := ROCKET_SCENE.instantiate()
 	rocket.global_position = rocket_spawn.global_position
 	rocket.rotation = -PI / 2.0
 	get_tree().current_scene.add_child(rocket)
+
+	# Visual recoil dip
+	var tween := create_tween()
+	tween.tween_property(sprite, "position:y", sprite.position.y + 12.0, 0.1).set_ease(Tween.EASE_OUT)
+	tween.tween_property(sprite, "position:y", sprite.position.y, 0.25).set_ease(Tween.EASE_IN_OUT)
