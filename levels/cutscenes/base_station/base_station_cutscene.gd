@@ -3,6 +3,7 @@ extends Node2D
 const DialogTextScene := preload("res://ui_scenes/dialog_text/dialog_text.tscn")
 const OutlineShader := preload("res://levels/cutscenes/base_station/outline.gdshader")
 const CUTSCENE_MUSIC := preload("res://audio/music/exploration_track.ogg")
+const CUTSCENE_ENV := preload("res://levels/cutscenes/cutscene_environment.tres")
 
 const COLOR_UNSELECTED := Color(1.0, 0.85, 0.0, 1.0)
 const COLOR_SELECTED := Color(0.0, 1.0, 0.3, 1.0)
@@ -55,6 +56,7 @@ func _ready() -> void:
 		})
 
 	_create_fade_overlay()
+	_create_world_environment()
 	_start_music()
 	# Fade in from black
 	create_tween().tween_property(_fade_overlay, "color:a", 0.0, 1.0)
@@ -92,8 +94,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		_handle_click(get_global_mouse_position())
 		return
 
-	if not event.is_pressed() or event.is_echo():
+	if not event is InputEventKey or not event.pressed or event.echo:
 		return
+	if event.keycode != KEY_ESCAPE:
+		return
+
 	if _skip_pressed:
 		_go_to_next_scene()
 	else:
@@ -159,6 +164,12 @@ func _create_fade_overlay() -> void:
 	_fade_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_fade_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	$UI.add_child(_fade_overlay)
+
+
+func _create_world_environment() -> void:
+	var we := WorldEnvironment.new()
+	we.environment = CUTSCENE_ENV
+	add_child(we)
 
 
 func _fade_in_label(label: Control) -> void:

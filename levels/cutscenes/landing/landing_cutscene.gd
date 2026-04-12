@@ -1,6 +1,7 @@
 extends Node2D
 
 const CUTSCENE_MUSIC := preload("res://audio/music/exploration_track.ogg")
+const CUTSCENE_ENV := preload("res://levels/cutscenes/cutscene_environment.tres")
 
 @export var next_scene: PackedScene
 @export_multiline var landing_text: String = ""
@@ -26,6 +27,8 @@ func _ready() -> void:
 	# Start submarine off-screen at top
 	_submarine.position = Vector2(_landing_target.position.x, -200)
 	_create_fade_overlay()
+	_create_world_environment()
+	_start_label_pulse(_subtitle_continue_label)
 	_start_music()
 	_run_cutscene()
 
@@ -89,7 +92,7 @@ func _wait_for_input() -> void:
 func _input(event: InputEvent) -> void:
 	if not _waiting_for_input:
 		return
-	if event is InputEventKey and event.pressed and not event.echo:
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode != KEY_ESCAPE:
 		_pressed_continue.emit()
 		get_viewport().set_input_as_handled()
 	elif event is InputEventMouseButton and event.pressed:
@@ -107,16 +110,34 @@ func _create_fade_overlay() -> void:
 	$UI.add_child(_fade_overlay)
 
 
+func _create_world_environment() -> void:
+	var we := WorldEnvironment.new()
+	we.environment = CUTSCENE_ENV
+	add_child(we)
+
+
 func _fade_in_label(label: Control) -> void:
 	label.modulate.a = 0.0
 	label.visible = true
 	create_tween().tween_property(label, "modulate:a", 1.0, 0.3)
 
 
+func _start_label_pulse(label: Label) -> void:
+	var base_color := Color(0.7, 0.7, 0.7, 1.0)
+	var pulse_color := Color(1.0, 0.85, 0.2, 1.0)
+	var tween := create_tween().set_loops()
+	tween.tween_property(label, "theme_override_colors/font_color", pulse_color, 0.8) \
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(label, "theme_override_colors/font_color", base_color, 0.8) \
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+
+
 # -- Skip / navigation ------------------------------------------------------
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not event.is_pressed() or event.is_echo():
+	if not event is InputEventKey or not event.pressed or event.echo:
+		return
+	if event.keycode != KEY_ESCAPE:
 		return
 
 	if _skip_pressed:

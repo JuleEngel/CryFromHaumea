@@ -1,5 +1,8 @@
 extends Node2D
 
+const EXPLORATION_MUSIC := preload("res://audio/music/exploration_track.ogg")
+const CUTSCENE_ENV := preload("res://levels/cutscenes/cutscene_environment.tres")
+
 @export var next_scene: PackedScene
 
 @export_group("Glitch Audio")
@@ -12,6 +15,9 @@ extends Node2D
 @export_multiline var dialog_3: String = "A: Erinnerung gefunden.\nA: Entdeckung. Angst. Flucht.\nE: Diese Kreaturen... ich erinnere mich..."
 @export_multiline var dialog_4: String = "A: Erinnerung gefunden.\nA: Verzweiflung. Hilferuf. Hoffnung.\nE: Der Hilferuf... das war ICH!"
 @export_multiline var dialog_5: String = "A: Uebernahme... abgeschlossen.\nA: Neuer Wirt.\nA: Neuer Zyklus.\nE: Nein... NEIN!"
+@export_multiline var dialog_6: String = ""
+@export_multiline var dialog_7: String = ""
+@export_multiline var dialog_8: String = ""
 
 @export_group("Memory Texts")
 @export_multiline var cockpit_text: String = "Ein ganz normaler Tag im Weltraum. Ein Hilferuf kam rein. Natuerlich bin ich hingeflogen - das haette jeder getan."
@@ -27,6 +33,8 @@ var _skip_pressed := false
 var _finished := false
 var _waiting_for_input := false
 var _dialog_container: VBoxContainer
+var _fade_overlay: ColorRect
+var _music_player: AudioStreamPlayer
 
 signal _pressed_continue
 
@@ -59,7 +67,21 @@ func _ready() -> void:
 	_all_backgrounds = [_cockpit_bg, _cockpit_universe_bg, _cave_bg, _underwater_bg, _rescue_bg]
 	_create_dialog_ui()
 	_hide_all()
+	_create_fade_overlay()
+	_create_world_environment()
+	_start_label_pulse(_subtitle_continue_label)
+	_start_label_pulse(_sos_continue_label)
+	_start_music()
 	_run_cutscene()
+
+
+func _start_music() -> void:
+	_music_player = AudioStreamPlayer.new()
+	_music_player.stream = EXPLORATION_MUSIC
+	_music_player.volume_db = -40.0
+	add_child(_music_player)
+	_music_player.play()
+	create_tween().tween_property(_music_player, "volume_db", 0.0, 1.5)
 
 
 func _create_dialog_ui() -> void:
@@ -96,7 +118,7 @@ func _hide_all() -> void:
 
 
 func _run_cutscene() -> void:
-	# Alien scene 1
+	# Alien intro
 	await _transition_to_alien()
 	await _do_alien_dialog(dialog_1)
 
@@ -104,7 +126,7 @@ func _run_cutscene() -> void:
 	await _transition_to_memory(_cockpit_bg, true)
 	await _show_memory(cockpit_text)
 
-	# Alien scene 2
+	# Alien reaction to memory 1
 	await _transition_to_alien()
 	await _do_alien_dialog(dialog_2)
 
@@ -112,7 +134,7 @@ func _run_cutscene() -> void:
 	await _transition_to_memory(_cave_bg)
 	await _show_memory(cave_text)
 
-	# Alien scene 3
+	# Alien reaction to memory 2
 	await _transition_to_alien()
 	await _do_alien_dialog(dialog_3)
 
@@ -120,7 +142,7 @@ func _run_cutscene() -> void:
 	await _transition_to_memory(_underwater_bg)
 	await _show_memory(underwater_text)
 
-	# Alien scene 4
+	# Alien reaction to memory 3
 	await _transition_to_alien()
 	await _do_alien_dialog(dialog_4)
 
@@ -128,9 +150,18 @@ func _run_cutscene() -> void:
 	await _transition_to_memory(_rescue_bg)
 	await _show_memory(rescue_text)
 
-	# Final alien scene
+	# Alien reaction to memory 4
 	await _transition_to_alien()
 	await _do_alien_dialog(dialog_5)
+
+	# Alien continues
+	await _do_alien_dialog(dialog_6)
+
+	# Alien continues
+	await _do_alien_dialog(dialog_7)
+
+	# Final alien scene
+	await _do_alien_dialog(dialog_8)
 
 	# Longer transition to outro
 	await _transition_to_outro()
@@ -249,7 +280,7 @@ func _do_alien_dialog(dialog_text: String) -> void:
 		_add_dialog_message(speaker, message)
 		await get_tree().process_frame
 
-		_subtitle_continue_label.visible = true
+		_fade_in_label(_subtitle_continue_label)
 		await _wait_for_input()
 		_subtitle_continue_label.visible = false
 
@@ -285,8 +316,8 @@ func _show_memory(text: String) -> void:
 		if t.is_empty():
 			continue
 		_subtitle_label.text = t
-		_subtitle_label.visible = true
-		_subtitle_continue_label.visible = true
+		_fade_in_label(_subtitle_label)
+		_fade_in_label(_subtitle_continue_label)
 		await _wait_for_input()
 		_subtitle_continue_label.visible = false
 	_subtitle_label.visible = false
@@ -313,8 +344,8 @@ func _run_outro() -> void:
 			if t.is_empty():
 				continue
 			_subtitle_label.text = t
-			_subtitle_label.visible = true
-			_subtitle_continue_label.visible = true
+			_fade_in_label(_subtitle_label)
+			_fade_in_label(_subtitle_continue_label)
 			await _wait_for_input()
 			_subtitle_continue_label.visible = false
 		_subtitle_label.visible = false
@@ -335,7 +366,7 @@ func _run_outro() -> void:
 		_glitch_player.play()
 	await _sos_label.play_typewriter()
 	_glitch_player.stop()
-	_sos_continue_label.visible = true
+	_fade_in_label(_sos_continue_label)
 	await _sos_label.wait_for_input()
 	_sos_continue_label.visible = false
 
@@ -387,7 +418,7 @@ func _wait_for_input() -> void:
 func _input(event: InputEvent) -> void:
 	if not _waiting_for_input:
 		return
-	if event is InputEventKey and event.pressed and not event.echo:
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode != KEY_ESCAPE:
 		_pressed_continue.emit()
 		get_viewport().set_input_as_handled()
 	elif event is InputEventMouseButton and event.pressed:
@@ -396,7 +427,9 @@ func _input(event: InputEvent) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not event.is_pressed() or event.is_echo():
+	if not event is InputEventKey or not event.pressed or event.echo:
+		return
+	if event.keycode != KEY_ESCAPE:
 		return
 
 	if _skip_pressed:
@@ -412,10 +445,47 @@ func _reset_skip() -> void:
 	_skip_label.visible = false
 
 
+# -- Fade helpers -----------------------------------------------------------
+
+func _create_fade_overlay() -> void:
+	_fade_overlay = ColorRect.new()
+	_fade_overlay.color = Color(0, 0, 0, 0)
+	_fade_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_fade_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	$UI.add_child(_fade_overlay)
+
+
+func _create_world_environment() -> void:
+	var we := WorldEnvironment.new()
+	we.environment = CUTSCENE_ENV
+	add_child(we)
+
+
+func _fade_in_label(label: Control) -> void:
+	label.modulate.a = 0.0
+	label.visible = true
+	create_tween().tween_property(label, "modulate:a", 1.0, 0.3)
+
+
+func _start_label_pulse(label: Label) -> void:
+	var base_color := Color(0.7, 0.7, 0.7, 1.0)
+	var pulse_color := Color(1.0, 0.85, 0.2, 1.0)
+	var tween := create_tween().set_loops()
+	tween.tween_property(label, "theme_override_colors/font_color", pulse_color, 0.8) \
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(label, "theme_override_colors/font_color", base_color, 0.8) \
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+
+
 func _go_to_next_scene() -> void:
 	if _finished:
 		return
 	_finished = true
+
+	var tween := create_tween().set_parallel(true)
+	tween.tween_property(_fade_overlay, "color:a", 1.0, 0.5)
+	tween.tween_property(_music_player, "volume_db", -40.0, 0.5)
+	await tween.finished
 
 	if next_scene:
 		get_tree().change_scene_to_packed(next_scene)

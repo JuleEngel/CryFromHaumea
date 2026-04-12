@@ -1,9 +1,14 @@
 extends Node2D
 
+const COMBAT_MUSIC := preload("res://audio/music/synthwave_combat.mp3")
+const CUTSCENE_ENV := preload("res://levels/cutscenes/cutscene_environment.tres")
+
 @export var next_scene: PackedScene
 
 var _skip_pressed := false
 var _finished := false
+var _fade_overlay: ColorRect
+var _music_player: AudioStreamPlayer
 
 @onready var _submarine: Sprite2D = $Submarine
 @onready var _landing_target: Marker2D = $LandingTarget
@@ -14,10 +19,24 @@ var _finished := false
 
 func _ready() -> void:
 	#_submarine.position = Vector2(1800, 200)
+	_create_fade_overlay()
+	_create_world_environment()
+	_start_music()
 	_run_cutscene()
 
 
+func _start_music() -> void:
+	_music_player = AudioStreamPlayer.new()
+	_music_player.stream = COMBAT_MUSIC
+	_music_player.volume_db = -40.0
+	add_child(_music_player)
+	_music_player.play()
+	create_tween().tween_property(_music_player, "volume_db", 0.0, 1.5)
+
+
 func _run_cutscene() -> void:
+	# Fade in from black
+	create_tween().tween_property(_fade_overlay, "color:a", 0.0, 1.0)
 	await get_tree().create_timer(0.1).timeout
 
 	_dive_player.play()
@@ -40,7 +59,9 @@ func _run_cutscene() -> void:
 # -- Skip / navigation ------------------------------------------------------
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not event.is_pressed() or event.is_echo():
+	if not event is InputEventKey or not event.pressed or event.echo:
+		return
+	if event.keycode != KEY_ESCAPE:
 		return
 
 	if _skip_pressed:
@@ -56,10 +77,29 @@ func _reset_skip() -> void:
 	_skip_label.visible = false
 
 
+func _create_fade_overlay() -> void:
+	_fade_overlay = ColorRect.new()
+	_fade_overlay.color = Color.BLACK
+	_fade_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_fade_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	$UI.add_child(_fade_overlay)
+
+
+func _create_world_environment() -> void:
+	var we := WorldEnvironment.new()
+	we.environment = CUTSCENE_ENV
+	add_child(we)
+
+
 func _go_to_next_scene() -> void:
 	if _finished:
 		return
 	_finished = true
+
+	var tween := create_tween().set_parallel(true)
+	tween.tween_property(_fade_overlay, "color:a", 1.0, 0.5)
+	tween.tween_property(_music_player, "volume_db", -40.0, 0.5)
+	await tween.finished
 
 	if next_scene:
 		get_tree().change_scene_to_packed(next_scene)

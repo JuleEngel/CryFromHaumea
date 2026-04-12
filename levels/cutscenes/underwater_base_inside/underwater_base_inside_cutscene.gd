@@ -1,5 +1,8 @@
 extends Node2D
 
+const COMBAT_MUSIC := preload("res://audio/music/synthwave_combat.mp3")
+const CUTSCENE_ENV := preload("res://levels/cutscenes/cutscene_environment.tres")
+
 @export var next_scene: PackedScene
 
 @export_group("Texts")
@@ -12,6 +15,8 @@ var _skip_pressed := false
 var _finished := false
 var _waiting_for_input := false
 var _shaking := false
+var _fade_overlay: ColorRect
+var _music_player: AudioStreamPlayer
 
 signal _pressed_continue
 
@@ -41,10 +46,26 @@ func _ready() -> void:
 	_sos_continue_label.visible = false
 	_subtitle_label.visible = false
 	_subtitle_continue_label.visible = false
+	_create_fade_overlay()
+	_create_world_environment()
+	_start_label_pulse(_subtitle_continue_label)
+	_start_label_pulse(_sos_continue_label)
+	_start_music()
 	_run_cutscene()
 
 
+func _start_music() -> void:
+	_music_player = AudioStreamPlayer.new()
+	_music_player.stream = COMBAT_MUSIC
+	_music_player.volume_db = -40.0
+	add_child(_music_player)
+	_music_player.play()
+	create_tween().tween_property(_music_player, "volume_db", 0.0, 1.5)
+
+
 func _run_cutscene() -> void:
+	# Fade in from black
+	create_tween().tween_property(_fade_overlay, "color:a", 0.0, 0.4)
 	# Start ambiance and light shaking (attacks on base)
 	_ambiance_player.play()
 	_start_attack_shaking()
@@ -88,8 +109,8 @@ func _show_text_pages(full_text: String) -> void:
 		if t.is_empty():
 			continue
 		_subtitle_label.text = t
-		_subtitle_label.visible = true
-		_subtitle_continue_label.visible = true
+		_fade_in_label(_subtitle_label)
+		_fade_in_label(_subtitle_continue_label)
 		await _wait_for_input()
 		_subtitle_continue_label.visible = false
 	_subtitle_label.visible = false
@@ -102,7 +123,7 @@ func _step_alien_at_window() -> void:
 	_alien_window.modulate.a = 0.0
 	_alien_window.visible = true
 	var tween := create_tween()
-	tween.tween_property(_alien_window, "modulate:a", 1.0, 1.5) \
+	tween.tween_property(_alien_window, "modulate:a", 1.0, 0.5) \
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 
@@ -118,10 +139,10 @@ func _step_sos_message() -> void:
 	# Zoom camera to the computer screen
 	var tween := create_tween().set_parallel(true)
 	tween.tween_property(_camera, "global_position",
-		_screen_target.global_position, 3.0) \
+		_screen_target.global_position, 1.0) \
 		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(_camera, "zoom",
-		Vector2(2.5, 2.5), 3.0) \
+		Vector2(2.5, 2.5), 1.0) \
 		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 
@@ -130,7 +151,7 @@ func _step_sos_message() -> void:
 	await _sos_label.play_typewriter()
 	_sfx_player.stop()
 
-	_sos_continue_label.visible = true
+	_fade_in_label(_sos_continue_label)
 	await _sos_label.wait_for_input()
 	_sos_continue_label.visible = false
 
@@ -160,7 +181,7 @@ func _step_flooding() -> void:
 	_water_overlay.color = Color(0.0, 0.1, 0.3, 0.0)
 	var tween := create_tween()
 	tween.tween_property(_water_overlay, "color",
-		Color(0.0, 0.1, 0.3, 0.5), 3.0) \
+		Color(0.0, 0.1, 0.3, 0.5), 1.0) \
 		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 
 	# Alien disappears from window, appears inside
@@ -170,7 +191,7 @@ func _step_flooding() -> void:
 	_alien_inside.modulate.a = 0.0
 	_alien_inside.visible = true
 	var tween2 := create_tween()
-	tween2.tween_property(_alien_inside, "modulate:a", 1.0, 1.5) \
+	tween2.tween_property(_alien_inside, "modulate:a", 1.0, 0.5) \
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	await tween2.finished
 
@@ -214,7 +235,7 @@ func _wait_for_input() -> void:
 func _input(event: InputEvent) -> void:
 	if not _waiting_for_input:
 		return
-	if event is InputEventKey and event.pressed and not event.echo:
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode != KEY_ESCAPE:
 		_pressed_continue.emit()
 		get_viewport().set_input_as_handled()
 	elif event is InputEventMouseButton and event.pressed:
@@ -223,7 +244,9 @@ func _input(event: InputEvent) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not event.is_pressed() or event.is_echo():
+	if not event is InputEventKey or not event.pressed or event.echo:
+		return
+	if event.keycode != KEY_ESCAPE:
 		return
 
 	if _skip_pressed:
@@ -239,10 +262,45 @@ func _reset_skip() -> void:
 	_skip_label.visible = false
 
 
+func _create_fade_overlay() -> void:
+	_fade_overlay = ColorRect.new()
+	_fade_overlay.color = Color.BLACK
+	_fade_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_fade_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	$UI.add_child(_fade_overlay)
+
+
+func _create_world_environment() -> void:
+	var we := WorldEnvironment.new()
+	we.environment = CUTSCENE_ENV
+	add_child(we)
+
+
+func _fade_in_label(label: Control) -> void:
+	label.modulate.a = 0.0
+	label.visible = true
+	create_tween().tween_property(label, "modulate:a", 1.0, 0.3)
+
+
+func _start_label_pulse(label: Label) -> void:
+	var base_color := Color(0.7, 0.7, 0.7, 1.0)
+	var pulse_color := Color(1.0, 0.85, 0.2, 1.0)
+	var tween := create_tween().set_loops()
+	tween.tween_property(label, "theme_override_colors/font_color", pulse_color, 0.8) \
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(label, "theme_override_colors/font_color", base_color, 0.8) \
+		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+
+
 func _go_to_next_scene() -> void:
 	if _finished:
 		return
 	_finished = true
+
+	var tween := create_tween().set_parallel(true)
+	tween.tween_property(_fade_overlay, "color:a", 1.0, 0.5)
+	tween.tween_property(_music_player, "volume_db", -40.0, 0.5)
+	await tween.finished
 
 	if next_scene:
 		get_tree().change_scene_to_packed(next_scene)

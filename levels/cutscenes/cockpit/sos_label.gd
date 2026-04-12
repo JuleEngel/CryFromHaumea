@@ -29,7 +29,7 @@ signal pressed_continue
 func _input(event: InputEvent) -> void:
 	if not _waiting_for_input:
 		return
-	if event is InputEventKey and event.pressed and not event.echo:
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode != KEY_ESCAPE:
 		pressed_continue.emit()
 		get_viewport().set_input_as_handled()
 	elif event is InputEventMouseButton and event.pressed:
