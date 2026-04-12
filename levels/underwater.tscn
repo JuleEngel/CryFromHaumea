@@ -25,7 +25,8 @@
 [ext_resource type="PackedScene" uid="uid://dvh3i70uarhyb" path="res://game_objects/trigger_orb/trigger_orb.tscn" id="23_4ihsm"]
 [ext_resource type="Texture2D" uid="uid://c0mfbk7jyvgt7" path="res://game_objects/plants/plant_4.png" id="24_g8t11"]
 [ext_resource type="PackedScene" uid="uid://dydv0nl24fm7p" path="res://game_objects/premature_exit_trigger/premature_exit_trigger.tscn" id="25_uf4wj"]
-[ext_resource type="PackedScene" path="res://game_objects/plants/plant_1.tscn" id="26_32gkd"]
+[ext_resource type="PackedScene" uid="uid://b2ogtd3373hpp" path="res://game_objects/plants/plant_1.tscn" id="26_32gkd"]
+[ext_resource type="PackedScene" uid="uid://b24n4djhf23ft" path="res://game_objects/plants/plant_3.tscn" id="28_nf3ti"]
 
 [sub_resource type="Environment" id="Environment_underwater"]
 background_mode = 3
@@ -580,7 +581,7 @@ position = Vector2(1656, -151)
 laser_enabled = true
 
 [node name="IceBlock" parent="." unique_id=277822450 instance=ExtResource("1_xownd")]
-position = Vector2(-854, -2191)
+position = Vector2(-871, -2153)
 
 [node name="IceBlock2" parent="." unique_id=1137046888 instance=ExtResource("1_xownd")]
 position = Vector2(-1005.99994, -2377)
@@ -621,6 +622,10 @@ position = Vector2(-1514.1255, -2715.196)
 rotation = 1.6298531
 
 [node name="Plant1" parent="." unique_id=2105559584 instance=ExtResource("26_32gkd")]
-z_index = -1
 position = Vector2(-997.99994, -2827)
 rotation = 2.051812
+
+[node name="Plant3" parent="." unique_id=1814657334 instance=ExtResource("28_nf3ti")]
+position = Vector2(-718.00006, -2982.0002)
+rotation = 2.8808599
+scale = Vector2(0.6149545, 0.6149545)

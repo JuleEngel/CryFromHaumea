@@ -12,11 +12,14 @@ enum State { IDLE, SWIMMING, CHARGING, DASHING }
 @export var rotation_speed: float = 5.0
 @export var charge_rotation_speed: float = 4.0
 @export var dash_projection_length: float = 300.0
+@export var projection_width: float = 6.0
+@export var projection_glow_width: float = 18.0
+@export var projection_dash_length: float = 16.0
+@export var projection_gap_length: float = 10.0
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var charge_light: PointLight2D = $ChargeLight
 @onready var dash_hitbox: Area2D = $DashHitbox
-@onready var dash_projection: Line2D = $DashProjection
 @onready var bubble_particles: CPUParticles2D = $BubbleParticles
 @onready var dash_bubbles: CPUParticles2D = $DashBubbles
 @onready var dash_sound: AudioStreamPlayer2D = $DashSound
@@ -32,6 +35,8 @@ var _idle_change_timer: float = 0.0
 var _base_scale := Vector2.ONE
 var _charge_tween: Tween
 var _aggro_tween: Tween
+var _projection_visible := false
+var _projection_progress := 0.0
 const _AGGRO_COLOR := Color(1.0, 0.6, 0.6, 1.0)
 const _NORMAL_COLOR := Color.WHITE
 
@@ -41,7 +46,6 @@ func _ready() -> void:
 	charge_light.energy = 0.0
 	dash_hitbox.monitoring = false
 	dash_hitbox.body_entered.connect(_on_dash_hit)
-	dash_projection.visible = false
 	aggro_changed.connect(_on_aggro_changed)
 	quirring_sound.finished.connect(_on_quirring_finished)
 	_schedule_quirring()
@@ -142,8 +146,9 @@ func _start_charge() -> void:
 		_dash_direction = Vector2.from_angle(randf() * TAU)
 
 	# Show projection line
-	dash_projection.visible = true
-	_update_projection(0.0)
+	_projection_visible = true
+	_projection_progress = 0.0
+	queue_redraw()
 
 	# Subtle stretch with exponential ease (slow start, fast end)
 	if _charge_tween:
@@ -163,7 +168,8 @@ func _start_dash() -> void:
 	dash_sound.pitch_scale = randf_range(0.85, 1.15)
 	dash_sound.volume_db = randf_range(-3.0, 3.0)
 	dash_sound.play()
-	dash_projection.visible = false
+	_projection_visible = false
+	queue_redraw()
 
 	if _charge_tween:
 		_charge_tween.kill()
@@ -205,18 +211,52 @@ func _process_charging(delta: float) -> void:
 	var target_angle := _dash_direction.angle()
 	rotation = lerp_angle(rotation, target_angle, charge_rotation_speed * delta)
 
-	# Update projection opacity and direction
-	var charge_progress := 1.0 - (_timer / charge_duration)
-	_update_projection(charge_progress)
+	# Update projection
+	_projection_progress = 1.0 - (_timer / charge_duration)
+	queue_redraw()
 
 	if _timer <= 0.0:
 		_start_dash()
 
-func _update_projection(progress: float) -> void:
-	# Line is in local space; the node rotates, so point along local X
-	var length := dash_projection_length * progress
-	dash_projection.points = PackedVector2Array([Vector2.ZERO, Vector2(length, 0)])
-	dash_projection.default_color = Color(1, 0.3, 0.2, 0.6 * progress)
+func _draw() -> void:
+	if not _projection_visible or _projection_progress <= 0.0:
+		return
+
+	var total_length := dash_projection_length * _projection_progress
+	var segment := projection_dash_length + projection_gap_length
+	var base_alpha := 0.7 * _projection_progress
+	var pos := 0.0
+
+	while pos < total_length:
+		var dash_end := minf(pos + projection_dash_length, total_length)
+		var t_start := pos / total_length
+		var t_end := dash_end / total_length
+		# Fade alpha along the length (1 at start -> 0 at tip)
+		var alpha_start := base_alpha * (1.0 - t_start * t_start)
+		var alpha_end := base_alpha * (1.0 - t_end * t_end)
+		var from := Vector2(pos, 0)
+		var to := Vector2(dash_end, 0)
+
+		# Glow layer (wider, more transparent)
+		var glow_alpha_start := alpha_start * 0.3
+		var glow_alpha_end := alpha_end * 0.3
+		var glow_color_start := Color(1, 0.4, 0.25, glow_alpha_start)
+		var glow_color_end := Color(1, 0.4, 0.25, glow_alpha_end)
+		draw_line(from, to, glow_color_start.lerp(glow_color_end, 0.5), projection_glow_width, true)
+
+		# Core line (bright, narrower)
+		var core_color_start := Color(1, 0.5, 0.3, alpha_start)
+		var core_color_end := Color(1, 0.5, 0.3, alpha_end)
+		draw_line(from, to, core_color_start.lerp(core_color_end, 0.5), projection_width, true)
+
+		# Hot center (very narrow, bright white-ish)
+		var center_alpha_start := alpha_start * 0.6
+		var center_alpha_end := alpha_end * 0.6
+		var center_color_start := Color(1, 0.85, 0.7, center_alpha_start)
+		var center_color_end := Color(1, 0.85, 0.7, center_alpha_end)
+		draw_line(from, to, center_color_start.lerp(center_color_end, 0.5), projection_width * 0.35, true)
+
+		pos += segment
 
 func _process_dashing(_delta: float) -> void:
 	if _timer <= 0.0:
@@ -239,7 +279,8 @@ func _die() -> void:
 	death_sound.pitch_scale = randf_range(0.85, 1.15)
 	death_sound.volume_db = randf_range(-3.0, 3.0)
 	death_sound.play()
-	dash_projection.visible = false
+	_projection_visible = false
+	queue_redraw()
 	dash_hitbox.monitoring = false
 	sprite.scale = _base_scale
 	sprite.modulate = _NORMAL_COLOR

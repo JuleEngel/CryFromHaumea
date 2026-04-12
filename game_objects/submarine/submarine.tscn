@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://ouuwvu45bhly" path="res://audio/sound_effects/damage.mp3" id="8_damage"]
 [ext_resource type="Texture2D" uid="uid://bswh0nv4c72ak" path="res://visual_effects/broken_screen.png" id="9_broken"]
 [ext_resource type="AudioStream" uid="uid://c0bus7nbhjk2p" path="res://audio/sound_effects/ice_hit.mp3" id="10_ice_hit"]
+[ext_resource type="AudioStream" uid="uid://nnk00c3t6g2q" path="res://audio/sound_effects/underwater_explosion.mp3" id="11_explosion"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4qjti"]
 radius = 21.0
@@ -18,6 +19,26 @@ height = 166.0
 [sub_resource type="Curve" id="Curve_scale"]
 _data = [Vector2(0, 0.4), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_explode"]
+offsets = PackedFloat32Array(0, 0.2, 0.5, 1)
+colors = PackedColorArray(1, 1, 0.9, 1, 1, 0.5, 0.1, 1, 0.7, 0.15, 0, 1, 0.05, 0.05, 0.05, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_explode"]
+gradient = SubResource("Gradient_explode")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_explode"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 25.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 20.0
+initial_velocity_max = 350.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 10.0
+color_ramp = SubResource("GradientTexture1D_explode")
 
 [node name="Submarine" type="CharacterBody2D" unique_id=1479136533 groups=["player"]]
 collision_mask = 6
@@ -100,3 +121,16 @@ scale = Vector2(0.9999999, 0.9999999)
 color = Color(0.9, 0.95, 1, 1)
 energy = 1.5
 texture_scale = 2.0
+
+[node name="ExplosionParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 500
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_explode")
+
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_explosion")
+volume_db = 8.0
+max_distance = 3000.0
