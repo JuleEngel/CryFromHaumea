@@ -21,8 +21,9 @@
 [ext_resource type="PackedScene" path="res://game_objects/iceblock/iceblock.tscn" id="18_tx362"]
 [ext_resource type="PackedScene" uid="uid://00jhry2ru7jg" path="res://levels/utils/scene_change_trigger.tscn" id="19_w7ck5"]
 [ext_resource type="PackedScene" uid="uid://cgs886llrq08l" path="res://levels/level2.tscn" id="20_2nn5w"]
-[ext_resource type="PackedScene" path="res://game_objects/trigger_orb/trigger_orb.tscn" id="22_ou4v7"]
+[ext_resource type="PackedScene" uid="uid://dvh3i70uarhyb" path="res://game_objects/trigger_orb/trigger_orb.tscn" id="22_ou4v7"]
 [ext_resource type="Texture2D" uid="uid://dhycbunxvmke2" path="res://game_objects/plants/plant_6.png" id="23_53hnx"]
+[ext_resource type="PackedScene" uid="uid://dydv0nl24fm7p" path="res://game_objects/premature_exit_trigger/premature_exit_trigger.tscn" id="24_mxqdg"]
 
 [sub_resource type="Environment" id="Environment_underwater"]
 background_mode = 3
@@ -1068,3 +1069,8 @@ scale = Vector2(3.1141138, 3.1141138)
 text = "Ich habe schon viele Planeten gesehen. Aber keiner hat sich so… verborgen angefühlt.
 Fast so, als wolle dieser hier nicht entdeckt werden."
 set_invisible = true
+
+[node name="PrematureExitTrigger" parent="." unique_id=888935396 instance=ExtResource("24_mxqdg")]
+position = Vector2(-1363.0002, -7505)
+rotation = 3.1373549
+scale = Vector2(2.600005, 2.600005)
