@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://dxqeomcm08bwl" path="res://game_objects/plants/plant_5.tscn" id="19_43kcp"]
 [ext_resource type="PackedScene" uid="uid://o5kkadaw2lfk" path="res://game_objects/whale/whale.tscn" id="19_x5dt4"]
 [ext_resource type="Shader" uid="uid://c54ck2qf5br7r" path="res://game_objects/plants/water_sway.gdshader" id="20_iuaof"]
+[ext_resource type="PackedScene" uid="uid://clh6u6i86ogaq" path="res://game_objects/checkpoint/checkpoint.tscn" id="20_u3th0"]
 [ext_resource type="PackedScene" uid="uid://d03rqk6g5ksj5" path="res://game_objects/fish/fish.tscn" id="21_3m5he"]
 [ext_resource type="Texture2D" uid="uid://dsokfei5226wi" path="res://game_objects/plants/plant_5.png" id="21_dofxk"]
 [ext_resource type="Texture2D" uid="uid://d3npms8ao8cl" path="res://game_objects/plants/plant_1.png" id="21_xk873"]
@@ -505,30 +506,75 @@ fill_textures = Array[Texture2D]([ExtResource("14_g8t11")])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ucymq"]
 shader = ExtResource("20_iuaof")
+shader_parameter/sway_amplitude = 6.0
+shader_parameter/sway_speed = 1.5
+shader_parameter/sway_frequency = 2.0
+shader_parameter/brush_radius = 300.0
+shader_parameter/brush_strength = 30.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_klma6"]
 shader = ExtResource("20_iuaof")
+shader_parameter/sway_amplitude = 6.0
+shader_parameter/sway_speed = 1.5
+shader_parameter/sway_frequency = 2.0
+shader_parameter/brush_radius = 300.0
+shader_parameter/brush_strength = 30.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oubm0"]
 shader = ExtResource("20_iuaof")
+shader_parameter/sway_amplitude = 6.0
+shader_parameter/sway_speed = 1.5
+shader_parameter/sway_frequency = 2.0
+shader_parameter/brush_radius = 300.0
+shader_parameter/brush_strength = 30.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b5w0j"]
 shader = ExtResource("20_iuaof")
+shader_parameter/sway_amplitude = 6.0
+shader_parameter/sway_speed = 1.5
+shader_parameter/sway_frequency = 2.0
+shader_parameter/brush_radius = 300.0
+shader_parameter/brush_strength = 30.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_niomh"]
 shader = ExtResource("20_iuaof")
+shader_parameter/sway_amplitude = 6.0
+shader_parameter/sway_speed = 1.5
+shader_parameter/sway_frequency = 2.0
+shader_parameter/brush_radius = 300.0
+shader_parameter/brush_strength = 30.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_55bpa"]
 shader = ExtResource("20_iuaof")
+shader_parameter/sway_amplitude = 6.0
+shader_parameter/sway_speed = 1.5
+shader_parameter/sway_frequency = 2.0
+shader_parameter/brush_radius = 300.0
+shader_parameter/brush_strength = 30.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sway"]
 shader = ExtResource("20_iuaof")
+shader_parameter/sway_amplitude = 6.0
+shader_parameter/sway_speed = 1.5
+shader_parameter/sway_frequency = 2.0
+shader_parameter/brush_radius = 300.0
+shader_parameter/brush_strength = 30.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rtn2m"]
 shader = ExtResource("20_iuaof")
+shader_parameter/sway_amplitude = 6.0
+shader_parameter/sway_speed = 1.5
+shader_parameter/sway_frequency = 2.0
+shader_parameter/brush_radius = 300.0
+shader_parameter/brush_strength = 30.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ghujt"]
 shader = ExtResource("20_iuaof")
+shader_parameter/sway_amplitude = 6.0
+shader_parameter/sway_speed = 1.5
+shader_parameter/sway_frequency = 2.0
+shader_parameter/brush_radius = 300.0
+shader_parameter/brush_strength = 30.0
 
 [node name="Underwater" type="Node2D" unique_id=741864157]
 position = Vector2(3, 0)
@@ -6118,3 +6164,7 @@ position = Vector2(878, -2015)
 [node name="PrematureExitTrigger" parent="." unique_id=892045478 instance=ExtResource("25_uf4wj")]
 position = Vector2(-1514.1255, -2715.196)
 rotation = 1.6298531
+
+[node name="Checkpoint" parent="." unique_id=846633253 instance=ExtResource("20_u3th0")]
+position = Vector2(-432, -2193)
+rotation = 1.6565814

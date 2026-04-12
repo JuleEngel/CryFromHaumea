@@ -4,6 +4,7 @@ extends Area2D
 const loading_screen = preload("res://levels/cutscenes/loading_screen/loading_screen.tscn")
 
 func _on_body_entered(body: Node2D) -> void:
+	CheckpointManager.clear()
 	if show_loading_screen:
 		var current = loading_screen.instantiate()
 		current.next_scene = next_scene

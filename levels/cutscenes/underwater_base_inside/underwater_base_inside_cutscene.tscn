@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cc6sddx6yp5nk" path="res://levels/cutscenes/underwater_base_inside/underwater_base_inside.png" id="1_bg"]
 [ext_resource type="Script" uid="uid://du1jbwrfexps6" path="res://levels/cutscenes/underwater_base_inside/underwater_base_inside_cutscene.gd" id="2_script"]
 [ext_resource type="Theme" uid="uid://dqwuby34ylgsq" path="res://ui_scenes/main_menu/menu_theme2.tres" id="3_theme"]
-[ext_resource type="PackedScene" path="res://levels/cutscenes/final_scene/final_scene_cutscene.tscn" id="4_next"]
+[ext_resource type="PackedScene" uid="uid://ytxxgs1skyes" path="res://levels/cutscenes/final_scene/final_scene_cutscene.tscn" id="4_next"]
 [ext_resource type="Texture2D" uid="uid://escyvl1o4xf6" path="res://game_objects/alien_boss/alien_boss_var1.png" id="5_alien_boss"]
 [ext_resource type="FontFile" uid="uid://53bvl4qu6g5q" path="res://ui_scenes/fonts/Orbitron-VariableFont_wght.ttf" id="6_orbitron"]
 [ext_resource type="Script" uid="uid://bho57h03dg7xu" path="res://levels/cutscenes/cockpit/sos_label.gd" id="7_sos"]
@@ -69,7 +69,7 @@ texture = ExtResource("5_alien_boss")
 
 [node name="AlienInside" type="Sprite2D" parent="." unique_id=1741712844]
 visible = false
-modulate = Color(1, 1, 1, 0.75686276)
+modulate = Color(1, 1, 1, 0.92156863)
 z_index = 2
 position = Vector2(1197, 515)
 rotation = 0.065066144

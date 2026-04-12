@@ -42,6 +42,13 @@ var _propeller_speed: float = 0.0
 
 func _ready() -> void:
 	super()
+	if CheckpointManager.has_checkpoint:
+		global_position = CheckpointManager.checkpoint_position
+		sprite.flip_h = CheckpointManager.facing_left
+		if CheckpointManager.facing_left:
+			headlight.position.x = -abs(headlight.position.x)
+		else:
+			headlight.position.x = abs(headlight.position.x)
 	headlight.texture = _generate_cone_texture(512, 512)
 	ambiance_sound.stream.loop = true
 	dive_sound.stream.loop = true

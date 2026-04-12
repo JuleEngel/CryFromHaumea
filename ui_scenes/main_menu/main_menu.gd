@@ -5,6 +5,7 @@ const OPTIONS_SCENE = preload("uid://bm05tr65hiukv")
 const TUTORIAL_SCENE = preload("uid://cq5crd7456h8s")
 
 const MAIN_SCENE_PATH: String = "res://levels/cutscenes/cockpit/first_cutscene.tscn"
+const EXPLORATION_MUSIC := preload("res://audio/music/exploration_track.ogg")
 
 enum ContentType {
 	OPTIONS,
@@ -22,10 +23,16 @@ var currently_displayed_type = null
 var target: Vector2 = Vector2.ZERO
 var curr: Vector2 = Vector2.ZERO
 var speed = 20
+var _music_player: AudioStreamPlayer
 
 
 func _ready() -> void:
-	pass
+	_music_player = AudioStreamPlayer.new()
+	_music_player.stream = EXPLORATION_MUSIC
+	_music_player.volume_db = -40.0
+	add_child(_music_player)
+	_music_player.play()
+	create_tween().tween_property(_music_player, "volume_db", 0.0, 1.5)
 
 func _process(delta: float) -> void:
 	if currently_displayed == null:

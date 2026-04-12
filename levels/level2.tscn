@@ -54,6 +54,7 @@
 [ext_resource type="PackedScene" uid="uid://bac7mi85h6bjx" path="res://game_objects/plants/plant_4.tscn" id="36_yivi8"]
 [ext_resource type="Texture2D" uid="uid://c0mfbk7jyvgt7" path="res://game_objects/plants/plant_4.png" id="37_oba6s"]
 [ext_resource type="PackedScene" uid="uid://cnvbu81clxonu" path="res://game_objects/stone/geyser.tscn" id="54_2yfox"]
+[ext_resource type="PackedScene" path="res://game_objects/checkpoint/checkpoint.tscn" id="55_rv22o"]
 
 [sub_resource type="Environment" id="Environment_underwater"]
 background_mode = 3
@@ -6069,30 +6070,75 @@ mesh = SubResource("ArrayMesh_3dhmv")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oqhqt"]
 shader = ExtResource("19_2yfox")
+shader_parameter/sway_amplitude = 6.0
+shader_parameter/sway_speed = 1.5
+shader_parameter/sway_frequency = 2.0
+shader_parameter/brush_radius = 300.0
+shader_parameter/brush_strength = 30.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g2rt8"]
 shader = ExtResource("19_2yfox")
+shader_parameter/sway_amplitude = 6.0
+shader_parameter/sway_speed = 1.5
+shader_parameter/sway_frequency = 2.0
+shader_parameter/brush_radius = 300.0
+shader_parameter/brush_strength = 30.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ip6jy"]
 shader = ExtResource("19_2yfox")
+shader_parameter/sway_amplitude = 6.0
+shader_parameter/sway_speed = 1.5
+shader_parameter/sway_frequency = 2.0
+shader_parameter/brush_radius = 300.0
+shader_parameter/brush_strength = 30.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_55bpa"]
 shader = ExtResource("19_2yfox")
+shader_parameter/sway_amplitude = 6.0
+shader_parameter/sway_speed = 1.5
+shader_parameter/sway_frequency = 2.0
+shader_parameter/brush_radius = 300.0
+shader_parameter/brush_strength = 30.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m4w37"]
 shader = ExtResource("19_2yfox")
+shader_parameter/sway_amplitude = 6.0
+shader_parameter/sway_speed = 1.5
+shader_parameter/sway_frequency = 2.0
+shader_parameter/brush_radius = 300.0
+shader_parameter/brush_strength = 30.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oubm0"]
 shader = ExtResource("19_2yfox")
+shader_parameter/sway_amplitude = 6.0
+shader_parameter/sway_speed = 1.5
+shader_parameter/sway_frequency = 2.0
+shader_parameter/brush_radius = 300.0
+shader_parameter/brush_strength = 30.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ps4y6"]
 shader = ExtResource("19_2yfox")
+shader_parameter/sway_amplitude = 6.0
+shader_parameter/sway_speed = 1.5
+shader_parameter/sway_frequency = 2.0
+shader_parameter/brush_radius = 300.0
+shader_parameter/brush_strength = 30.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sway"]
 shader = ExtResource("19_2yfox")
+shader_parameter/sway_amplitude = 6.0
+shader_parameter/sway_speed = 1.5
+shader_parameter/sway_frequency = 2.0
+shader_parameter/brush_radius = 300.0
+shader_parameter/brush_strength = 30.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fia2g"]
 shader = ExtResource("19_2yfox")
+shader_parameter/sway_amplitude = 6.0
+shader_parameter/sway_speed = 1.5
+shader_parameter/sway_frequency = 2.0
+shader_parameter/brush_radius = 300.0
+shader_parameter/brush_strength = 30.0
 
 [node name="Underwater" type="Node2D" unique_id=741864157]
 
@@ -15964,3 +16010,6 @@ rotation = 0.6297517
 
 [node name="Node2D3" parent="." unique_id=1509382905 instance=ExtResource("54_2yfox")]
 position = Vector2(4978, -9543)
+
+[node name="Checkpoint" parent="." unique_id=1672329985 instance=ExtResource("55_rv22o")]
+position = Vector2(5911.621, -10308.861)

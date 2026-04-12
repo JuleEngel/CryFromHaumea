@@ -170,6 +170,7 @@ func _step_sos_message() -> void:
 
 func _step_flooding() -> void:
 	# Increase shaking intensity
+	_sos_label.visible = false
 	_attack_player.play()
 
 	# Flash and switch background

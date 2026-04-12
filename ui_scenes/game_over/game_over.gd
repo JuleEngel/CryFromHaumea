@@ -8,6 +8,10 @@ extends CanvasLayer
 func _ready() -> void:
 	restart_button.pressed.connect(_on_restart)
 	menu_button.pressed.connect(_on_menu)
+	if CheckpointManager.has_checkpoint:
+		restart_button.text = "Ab Checkpoint"
+	else:
+		restart_button.text = "Neustart"
 	get_tree().paused = true
 	# Fade in
 	panel.modulate.a = 0.0
@@ -18,9 +22,11 @@ func _ready() -> void:
 func _on_restart() -> void:
 	music.stop()
 	get_tree().paused = false
+	# CheckpointManager persists across reload; submarine reads it on _ready
 	get_tree().reload_current_scene()
 
 func _on_menu() -> void:
 	music.stop()
 	get_tree().paused = false
+	CheckpointManager.clear()
 	get_tree().change_scene_to_file("res://ui_scenes/main_menu/main_menu.tscn")

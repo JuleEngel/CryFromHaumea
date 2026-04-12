@@ -80,7 +80,7 @@ func _step_headache_voiceline() -> void:
 		_voice_player.play()
 		await _voice_player.finished
 	else:
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(0.0).timeout
 
 
 func _step_sos_message() -> void:

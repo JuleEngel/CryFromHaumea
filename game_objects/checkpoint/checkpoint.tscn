@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://clh6u6i86ogaq"]
+
+[ext_resource type="Script" uid="uid://uu3rb1balkda" path="res://game_objects/checkpoint/checkpoint.gd" id="1_ckpt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ckpt"]
+radius = 150.0
+
+[node name="Checkpoint" type="Area2D" unique_id=1334454946 node_paths=PackedStringArray("target")]
+collision_layer = 0
+script = ExtResource("1_ckpt")
+target = NodePath("Marker2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1818788106]
+shape = SubResource("CircleShape2D_ckpt")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=611217661]
+position = Vector2(220, -1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
