@@ -1,27 +1,25 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene format=3 uid="uid://dvh3i70uarhyb"]
 
-[ext_resource type="Script" path="res://game_objects/trigger_orb/trigger_orb.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://dhp8hx3ara11q" path="res://game_objects/trigger_orb/trigger_orb.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://djftd7mdgmb5y" path="res://game_objects/submarine/bubble.png" id="2_bubble"]
-[ext_resource type="AudioStream" path="res://audio/sound_effects/pickup_coin.wav" id="3_pickup"]
+[ext_resource type="AudioStream" uid="uid://6dfeual5pgmb" path="res://audio/sound_effects/pickup_coin.wav" id="3_pickup"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_detect"]
 radius = 60.0
 
-[node name="TriggerOrb" type="Area2D"]
+[node name="TriggerOrb" type="Area2D" unique_id=1625650002]
 collision_layer = 0
-collision_mask = 1
 script = ExtResource("1_script")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1296511147]
 shape = SubResource("CircleShape2D_detect")
 
-[node name="GlowLight" type="PointLight2D" parent="."]
+[node name="GlowLight" type="PointLight2D" parent="." unique_id=1766397161]
 color = Color(1, 0.9, 0.3, 1)
-energy = 3.0
 texture = ExtResource("2_bubble")
 texture_scale = 10.0
 
-[node name="SparkleParticles" type="CPUParticles2D" parent="."]
+[node name="SparkleParticles" type="CPUParticles2D" parent="." unique_id=62001467]
 amount = 24
 texture = ExtResource("2_bubble")
 lifetime = 1.5
@@ -38,7 +36,7 @@ scale_amount_min = 0.3
 scale_amount_max = 1.2
 color = Color(1, 0.95, 0.4, 0.8)
 
-[node name="CoreGlow" type="CPUParticles2D" parent="."]
+[node name="CoreGlow" type="CPUParticles2D" parent="." unique_id=2012744809]
 amount = 6
 texture = ExtResource("2_bubble")
 lifetime = 0.8
@@ -53,5 +51,5 @@ scale_amount_min = 1.5
 scale_amount_max = 2.5
 color = Color(1, 1, 0.7, 0.6)
 
-[node name="PickupSound" type="AudioStreamPlayer2D" parent="."]
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="." unique_id=2069051673]
 stream = ExtResource("3_pickup")
