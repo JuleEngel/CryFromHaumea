@@ -1,105 +1,53 @@
-# SmartShape2D
+# Cry from Haumea ([Play online here!](https://brutenis.net/haumea))
 
-![Sample Image](./addons/rmsmartshape/documentation/imgs/sample.png)
-![Sample Gif](./addons/rmsmartshape/documentation/imgs/sample.gif)
+You decide to rush to help a missing pilot, upon receiving an SOS message requesting help on the dwarf planet Haumea in the Kuiper Belt. Can you find him?
 
-## About
+![](./media/intro.png)
+![](./media/alien1.png)
+![](./media/jellyfish.png)
+![](./media/whale.png)
+![](./media/cockpit.png)
 
-![Godot 4.3](https://img.shields.io/badge/Godot-v4.3-%23478cbf?logo=godot-engine&logoColor=white)
-[![⚙️ CI](https://github.com/SirRamEsq/SmartShape2D/actions/workflows/ci.yml/badge.svg)](https://github.com/SirRamEsq/SmartShape2D/actions/workflows/ci.yml)
+A side-scroller where you control a submarine with a torpedo attack, fighting four different aliens with varying attack patterns. The game has multiple intro and outro cutscenes and has a conclusive ending. The story focuses on finding the missing pilot and figuring out what happened to him. Can you save him?
 
-**This is the GODOT 4 version of this plugin.
-If you're looking for the GODOT 3 version, please go [here](https://github.com/SirRamEsq/SmartShape2D/tree/Godot3-latest)**
-
-This plugin allows you to create nicely textured 2D polys.
-Simply place a few points then create / assign the shape material and you should have a good looking polygon.
-
-The textures used are similar to what you would use if making terrain using TileMaps/TileSets
+This game was created as part of the [Oster-Game Jam MV 2026](https://mv-gamejam.de/) in 48 hours.
 
 
-**If you find any issues, by all means let us know.
-Read the section below on Contributing and post an issue if one doesn't already exist**
+## Credits
 
-**If you enjoy this tool and want to support its development, [I'd appreciate a coffee ](https://www.buymeacoffee.com/SirRamESQ) :)**
-<a href="https://www.buymeacoffee.com/SirRamESQ">
-  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" align="left" height="48">
-</a>
+The game was created by Jule Engel and Brutenis Gliwa, with some help for the music by Justin Kreikemeyer.
 
----
+* Addons:
+  * [SmartShape2D](https://github.com/SirRamEsq/SmartShape2D) for the terrain
 
-## Support
+* Font: [Orbitron](https://fonts.google.com/specimen/Orbitron)
 
-- Newest version is developed and supported for Godot 4.x
-- For Godot 3.x version, please go [here](https://github.com/SirRamEsq/SmartShape2D/tree/Godot3-latest). This version is no longer maintained.
+* Music:
+  * "Welcome to Haumea" by Justin Kreikemeyer, CC-BY-NC-SA 4.0
+  * [nickpanekaiassets-epic-synthwave-combat-music-253078.mp3](https://cdn.pixabay.com/download/audio/2024/10/20/audio_e30018b9a8.mp3?filename=nickpanekaiassets-epic-synthwave-combat-music-253078.mp3)
+  * [fidelfortune-cyberpunk-synthwave-351505.mp3](https://cdn.pixabay.com/download/audio/2025/05/29/audio_7292c86bf3.mp3?filename=fidelfortune-cyberpunk-synthwave-351505.mp3)
 
-## Documentation
-
-> [!WARNING]
-> **Some documentation is largely outdated.**
->
-> Refer to the in-engine documentation as far as possible.
->
-> If you can't see SS2D nodes in the F1 help search or documentation does not appear when hovering over properties, re-save the respective script.
-> See [#72406](https://github.com/godotengine/godot/issues/72406) and [#86577](https://github.com/godotengine/godot/issues/86577).
-> This should be fixed in Godot 4.5.
-
-- [How To Install](./addons/rmsmartshape/documentation/Install.md)
-- [Quick Start](./addons/rmsmartshape/documentation/Quickstart.md)
-- [Using SmartShape2D with Godot 4](./addons/rmsmartshape/documentation/Godot4.md)
-- [Shapes](./addons/rmsmartshape/documentation/Shapes.md)
-- [Toolbar](./addons/rmsmartshape/documentation/Toolbar.md)
-- [Resources](./addons/rmsmartshape/documentation/Resources.md)
-- [Normals](./addons/rmsmartshape/documentation/Normals.md)
-- [Controls and Hotkeys](./addons/rmsmartshape/documentation/Controls.md)
-- [FAQ](./addons/rmsmartshape/documentation/FAQ.md)
-- [Version History](./addons/rmsmartshape/documentation/VersionHistory.md)
-
-## Video Tutorials
-
-> [!WARNING]
-> These tutorials are for Godot 3, and some things are different now.
-> Please, check [using SmartShape2D with Godot 4](./addons/rmsmartshape/documentation/Godot4.md).
-
-SmartShape2D + Aseprite tutorial can be found here (Thanks Picster!):
-
-[![VideoTutorial](https://img.youtube.com/vi/r-pd2yuNPvA/0.jpg)](http://www.youtube.com/watch?v=r-pd2yuNPvA)
-
-SmartShape2D tutorial can be found here (Thanks LucyLavend!):
-
-[![VideoTutorial](https://img.youtube.com/vi/45PldDNCQhw/0.jpg)](https://www.youtube.com/watch?v=45PldDNCQhw)
-
-## Contributing
-
-### Issues
-
-Broken screen png: <a href=https://www.pngarts.com/explore/213144 target="_blank">Broken Screen PNG Background Image</a>
-
-If you have any suggestions or find any bugs, feel free to add an issue.
-
-Please include the following three bits of information in each issue posted:
-- Bug / Suggestion
-- Godot Version
-- SmartShape2D Version
-
-Some Guidelines for Issues:
-- Attaching a sample project where the issue exists is the fastest way for us to see what's going on
-- Try to be as descriptive as possible
-- Pictures and screenshots will also be very helpful
-
-Issues can be added [here](https://github.com/SirRamEsq/SmartShape2D/issues)
-
-### Development
-
-We have a set of tests we run against the code (courtesy of [GUT](https://github.com/bitwes/Gut)).
-
-If making a merge request, please ensure that the tests pass. If the tests have been updated appropriately to pass, please note this in the merge request.
-
-### Discord
-
-We have a Discord server for the plugin. <https://discord.gg/mHWDPBD3vu>
-
-Here, you can:
-- Ask for help
-- Showcase your project
-- Speak with the developers directly
+* Sound effects:
+  * [liecio-old-internet-modem-dialing-189735.mp3](https://cdn.pixabay.com/download/audio/2024/02/05/audio_6d0192df01.mp3?filename=liecio-old-internet-modem-dialing-189735.mp3)
+  * [freesound_community-rocket-landing-38715.mp3](https://cdn.pixabay.com/download/audio/2022/03/10/audio_69e1b85292.mp3?filename=freesound_community-rocket-landing-38715.mp3)
+  * [dragon-studio-glass-cracking-511310.mp3](https://cdn.pixabay.com/download/audio/2026/03/30/audio_f5fc23a5ad.mp3?filename=dragon-studio-glass-cracking-511310.mp3)
+  * [dragon-studio-shattering-ice-454251.mp3](https://cdn.pixabay.com/download/audio/2025/12/19/audio_dad43c820a.mp3?filename=dragon-studio-shattering-ice-454251.mp3)
+  * [49053354-rocket-launch-306441.mp3](https://cdn.pixabay.com/download/audio/2025/02/26/audio_febae8992b.mp3?filename=49053354-rocket-launch-306441.mp3)
+  * [freesound_community-demon-growl-for-halloween-spooky-creepy-scary-monster-ghoul-ghost-sounds-100123.mp3](https://cdn.pixabay.com/download/audio/2022/03/24/audio_2e4e86cfbe.mp3?filename=freesound_community-demon-growl-for-halloween-spooky-creepy-scary-monster-ghoul-ghost-sounds-100123.mp3)
+  * [freesound_community-monster-sound-2-86239.mp3](https://cdn.pixabay.com/download/audio/2022/03/15/audio_83af84c4d2.mp3?filename=freesound_community-monster-sound-2-86239.mp3)
+  * [bannythecoolio-impactful-damage-425132.mp3](https://cdn.pixabay.com/download/audio/2025/10/24/audio_b864cc9e3b.mp3?filename=bannythecoolio-impactful-damage-425132.mp3)
+  * [fnx_sound-futuristic-alien-oscillation-287324.mp3](https://cdn.pixabay.com/download/audio/2025/01/13/audio_b0a8097730.mp3?filename=fnx_sound-futuristic-alien-oscillation-287324.mp3)
+  * [fnx_sound-alien-alert-noise-287332.mp3](https://cdn.pixabay.com/download/audio/2025/01/13/audio_9fd3e784b4.mp3?filename=fnx_sound-alien-alert-noise-287332.mp3)
+  * [fnx_sound-alien-underworld-sound-287342.mp3](https://cdn.pixabay.com/download/audio/2025/01/13/audio_7879067bc8.mp3?filename=fnx_sound-alien-underworld-sound-287342.mp3)
+  * [dragon-studio-alien-sounds-463202.mp3](https://cdn.pixabay.com/download/audio/2026/01/08/audio_802dcca6bd.mp3?filename=dragon-studio-alien-sounds-463202.mp3)
+  * [dragon-studio-cinematic-dive-underwater-467471.mp3](https://cdn.pixabay.com/download/audio/2026/01/16/audio_4cff38a0a9.mp3?filename=dragon-studio-cinematic-dive-underwater-467471.mp3)
+  * [dragon-studio-engine-rumble-482867.mp3](https://cdn.pixabay.com/download/audio/2026/02/10/audio_16e4982b4c.mp3?filename=dragon-studio-engine-rumble-482867.mp3)
+  * [dragon-studio-deep-sea-underwater-ambience-482888.mp3](https://cdn.pixabay.com/download/audio/2026/02/10/audio_b1345942ff.mp3?filename=dragon-studio-deep-sea-underwater-ambience-482888.mp3)
+  * [freesound_community-duoi-mat-bien-43603.mp3](https://cdn.pixabay.com/download/audio/2022/03/10/audio_2a1394356f.mp3?filename=freesound_community-duoi-mat-bien-43603.mp3)
+  * [dragon-studio-water-splash-effect-443133.mp3](https://cdn.pixabay.com/download/audio/2025/11/26/audio_0267789f35.mp3?filename=dragon-studio-water-splash-effect-443133.mp3)
+  * [freesound_community-deep-sea-ambience-6933.mp3](https://cdn.pixabay.com/download/audio/2021/08/09/audio_24d84f97b9.mp3?filename=freesound_community-deep-sea-ambience-6933.mp3)
+  * [freesound_crunchpixstudio-attack-release-384909.mp3](https://cdn.pixabay.com/download/audio/2025/08/05/audio_81673909f2.mp3?filename=freesound_crunchpixstudio-attack-release-384909.mp3)
+  * [dragon-studio-large-underwater-explosion-423651.mp3](https://cdn.pixabay.com/download/audio/2025/10/21/audio_917d7ec41c.mp3?filename=dragon-studio-large-underwater-explosion-423651.mp3)
+  * [freesound_community-swim-44183.mp3](https://cdn.pixabay.com/download/audio/2022/03/10/audio_ca9951e27e.mp3?filename=freesound_community-swim-44183.mp3)
+  * Coin pickup, generated via [sfxr.me](https://sfxr.me)
 

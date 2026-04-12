@@ -29,10 +29,8 @@ var _music_player: AudioStreamPlayer
 func _ready() -> void:
 	_music_player = AudioStreamPlayer.new()
 	_music_player.stream = EXPLORATION_MUSIC
-	_music_player.volume_db = -40.0
 	add_child(_music_player)
 	_music_player.play()
-	create_tween().tween_property(_music_player, "volume_db", 0.0, 1.5)
 
 func _process(delta: float) -> void:
 	if currently_displayed == null:

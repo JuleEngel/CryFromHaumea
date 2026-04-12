@@ -10,18 +10,58 @@ const THANKS: String = "Danke fürs Spielen!"
 
 var music_credit_entries: Array[LicensedCreditEntry] = [
 	LicensedCreditEntry.new(
-		"Track_Title", 
-		["Justin Kreikemeyer"], 
-		"License"
-	)
+		"Welcome to Haumea",
+		["Justin Kreikemeyer"],
+		"CC-BY-NC-SA 4.0"
+	),
+	LicensedCreditEntry.new(
+		"Epic Synthwave Combat Music",
+		["NickPanekAiAssets"],
+		"Pixabay License"
+	),
+	LicensedCreditEntry.new(
+		"Cyberpunk Synthwave",
+		["FidelFortune"],
+		"Pixabay License"
+	),
 ]
 
-var shader_credit_entries: Array[LicensedCreditEntry] = [
+var sound_effect_credit_entries: Array[LicensedCreditEntry] = [
+	LicensedCreditEntry.new("Old Internet Modem Dialing", ["Liecio"], "Pixabay License"),
+	LicensedCreditEntry.new("Rocket Landing", ["Freesound Community"], "Pixabay License"),
+	LicensedCreditEntry.new("Glass Cracking", ["Dragon Studio"], "Pixabay License"),
+	LicensedCreditEntry.new("Shattering Ice", ["Dragon Studio"], "Pixabay License"),
+	LicensedCreditEntry.new("Rocket Launch", ["49053354"], "Pixabay License"),
+	LicensedCreditEntry.new("Demon Growl", ["Freesound Community"], "Pixabay License"),
+	LicensedCreditEntry.new("Monster Sound 2", ["Freesound Community"], "Pixabay License"),
+	LicensedCreditEntry.new("Impactful Damage", ["BannyTheCoolio"], "Pixabay License"),
+	LicensedCreditEntry.new("Futuristic Alien Oscillation", ["FNX Sound"], "Pixabay License"),
+	LicensedCreditEntry.new("Alien Alert Noise", ["FNX Sound"], "Pixabay License"),
+	LicensedCreditEntry.new("Alien Underworld Sound", ["FNX Sound"], "Pixabay License"),
+	LicensedCreditEntry.new("Alien Sounds", ["Dragon Studio"], "Pixabay License"),
+	LicensedCreditEntry.new("Cinematic Dive Underwater", ["Dragon Studio"], "Pixabay License"),
+	LicensedCreditEntry.new("Engine Rumble", ["Dragon Studio"], "Pixabay License"),
+	LicensedCreditEntry.new("Deep Sea Underwater Ambience", ["Dragon Studio"], "Pixabay License"),
+	LicensedCreditEntry.new("Duoi Mat Bien", ["Freesound Community"], "Pixabay License"),
+	LicensedCreditEntry.new("Water Splash Effect", ["Dragon Studio"], "Pixabay License"),
+	LicensedCreditEntry.new("Deep Sea Ambience", ["Freesound Community"], "Pixabay License"),
+	LicensedCreditEntry.new("Attack Release", ["CrunchPixStudio"], "Pixabay License"),
+	LicensedCreditEntry.new("Large Underwater Explosion", ["Dragon Studio"], "Pixabay License"),
+	LicensedCreditEntry.new("Swim", ["Freesound Community"], "Pixabay License"),
+	LicensedCreditEntry.new("Coin Pickup", ["sfxr.me"], ""),
+]
 
+var addon_credit_entries: Array[LicensedCreditEntry] = [
+	LicensedCreditEntry.new("SmartShape2D", ["SirRamEsq"], "MIT"),
+]
+
+var font_credit_entries: Array[LicensedCreditEntry] = [
+	LicensedCreditEntry.new("Orbitron", ["Matt McInerney"], "SIL Open Font License"),
 ]
 
 
 var sound_design_credit_entries: Array[AuthorCreditEntry] = [
+	AuthorCreditEntry.new("Justin Kreikemeyer"),
 	AuthorCreditEntry.new("Jule Engel"),
 	AuthorCreditEntry.new("Brutenis Gliwa"),
 ]
@@ -57,6 +97,9 @@ func create_credits():
 	self.add_child(_create_artists_section())
 	self.add_child(_create_sound_design_section())
 	self.add_child(_create_music_section())
+	self.add_child(_create_sound_effects_section())
+	self.add_child(_create_addons_section())
+	self.add_child(_create_fonts_section())
 	self.add_child(_create_end_section())
 
 
@@ -78,6 +121,18 @@ func _create_sound_design_section():
 
 func _create_music_section():
 	return _create_licensed_section("Musik", music_credit_entries)
+
+
+func _create_sound_effects_section():
+	return _create_licensed_section("Soundeffekte", sound_effect_credit_entries)
+
+
+func _create_addons_section():
+	return _create_licensed_section("Addons", addon_credit_entries)
+
+
+func _create_fonts_section():
+	return _create_licensed_section("Schriftarten", font_credit_entries)
 
 
 func _create_end_section():
@@ -116,8 +171,9 @@ func _create_licensed_section(section_title: String, licensed_credit_entries: Ar
 			var author_label = _create_author_label(author)
 			section_container.add_child(author_label)
 
-		var license_label = _create_license_label(entry.license)
-		section_container.add_child(license_label)
+		if entry.license != "":
+			var license_label = _create_license_label(entry.license)
+			section_container.add_child(license_label)
 	return section_container
 	
 	
