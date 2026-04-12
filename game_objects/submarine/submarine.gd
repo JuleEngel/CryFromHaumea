@@ -25,6 +25,7 @@ const GAME_OVER_SCENE := preload("res://ui_scenes/game_over/game_over.tscn")
 @onready var explosion_particles: GPUParticles2D = $ExplosionParticles
 @onready var explosion_sound: AudioStreamPlayer2D = $ExplosionSound
 @onready var camera: Camera2D = $Camera2D
+@onready var propeller: AnimatedSprite2D = $Sprite2D/Propeller
 
 const DIVE_VOL_MIN := -40.0
 const DIVE_VOL_MAX := -2.0
@@ -37,6 +38,7 @@ var _headlight_base_y: float
 var _stunned := false
 var _stun_timer: float = 0.0
 var _stun_overlay: ColorRect
+var _propeller_speed: float = 0.0
 
 func _ready() -> void:
 	super()
@@ -124,7 +126,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		headlight.global_rotation = rotation
 
-	# Bubble particles: emit from behind the submarine when moving
+	# Bubble particles: emit from behind the submarine, scale with speed
 	var is_moving := velocity.length() > 20.0
 	bubble_particles.emitting = is_moving
 	if sprite.flip_h:
@@ -134,9 +136,34 @@ func _physics_process(delta: float) -> void:
 		bubble_particles.position.x = -abs(bubble_particles.position.x)
 		bubble_particles.direction.x = -1.0
 
-	# Dive sound volume scales with speed
+	# Propeller animation with ease in/out
+	if is_moving:
+		_propeller_speed = lerp(_propeller_speed, 1.0, 4.0 * delta)
+	else:
+		_propeller_speed = lerp(_propeller_speed, 0.0, 2.0 * delta)
+
+	if _propeller_speed < 0.05:
+		_propeller_speed = 0.0
+		if propeller.animation != &"idle":
+			propeller.animation = &"idle"
+		propeller.stop()
+	else:
+		if propeller.animation != &"spin":
+			propeller.animation = &"spin"
+			propeller.play()
+		propeller.speed_scale = _propeller_speed
+
+	propeller.flip_h = sprite.flip_h
+	if sprite.flip_h:
+		propeller.position.x = abs(propeller.position.x)
+	else:
+		propeller.position.x = -abs(propeller.position.x)
+
+	# Dive sound volume and bubble intensity scale with speed
 	var speed_ratio := clampf(velocity.length() / max_speed, 0.0, 1.0)
 	dive_sound.volume_db = lerpf(DIVE_VOL_MIN, DIVE_VOL_MAX, speed_ratio)
+	bubble_particles.initial_velocity_min = lerpf(20.0, 60.0, speed_ratio)
+	bubble_particles.initial_velocity_max = lerpf(40.0, 100.0, speed_ratio)
 
 	# Crossfade music based on combat state
 	var any_aggro := false
@@ -208,6 +235,8 @@ func _die() -> void:
 	set_physics_process(false)
 	set_process(false)
 	bubble_particles.emitting = false
+	propeller.animation = &"idle"
+	propeller.stop()
 	headlight.visible = false
 	var water_rect := get_tree().current_scene.get_node_or_null("WaterEffect/ColorRect")
 	if water_rect and water_rect.material is ShaderMaterial:

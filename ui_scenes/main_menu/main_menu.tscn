@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://co1vd8dbimgqj"]
 
-[ext_resource type="Texture2D" uid="uid://cwpb33bfon3an" path="res://levels/cutscenes/cockpit/wallpaper.jpg" id="2_3yx56"]
+[ext_resource type="Texture2D" path="res://levels/cutscenes/cockpit/wallpaper.png" id="2_3yx56"]
 [ext_resource type="Script" uid="uid://cshsdm4qnco75" path="res://ui_scenes/main_menu/main_menu.gd" id="2_va1mr"]
 [ext_resource type="Theme" uid="uid://dqwuby34ylgsq" path="res://ui_scenes/main_menu/menu_theme2.tres" id="2_ycjyd"]
 
@@ -26,16 +26,6 @@ grow_vertical = 2
 texture = ExtResource("2_3yx56")
 expand_mode = 1
 stretch_mode = 6
-
-[node name="ColorRect2" type="ColorRect" parent="." unique_id=1959048330]
-z_index = 2
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -820.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.0784314, 0.0588235, 0.105882, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="." unique_id=1132772539]
 z_index = 2
@@ -64,6 +54,8 @@ theme_override_constants/margin_top = 50
 [node name="Label" type="Label" parent="VBoxContainer2/MarginContainer" unique_id=992158359]
 z_index = 3
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.05, 0.03, 0.15, 1)
+theme_override_constants/outline_size = 24
 theme_override_font_sizes/font_size = 120
 text = "Cry from Haumea"
 

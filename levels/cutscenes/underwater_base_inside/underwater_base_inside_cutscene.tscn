@@ -3,9 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://cc6sddx6yp5nk" path="res://levels/cutscenes/underwater_base_inside/underwater_base_inside.png" id="1_bg"]
 [ext_resource type="Script" uid="uid://du1jbwrfexps6" path="res://levels/cutscenes/underwater_base_inside/underwater_base_inside_cutscene.gd" id="2_script"]
 [ext_resource type="Theme" uid="uid://dqwuby34ylgsq" path="res://ui_scenes/main_menu/menu_theme2.tres" id="3_kri1b"]
+[ext_resource type="PackedScene" path="res://levels/cutscenes/final_scene/final_scene_cutscene.tscn" id="4_next"]
 
 [node name="UnderwaterBaseInsideCutscene" type="Node2D" unique_id=1967742451]
 script = ExtResource("2_script")
+next_scene = ExtResource("4_next")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=743403060]
 position = Vector2(960, 540)

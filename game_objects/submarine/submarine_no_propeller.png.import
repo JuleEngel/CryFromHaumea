@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwpb33bfon3an"
-path="res://.godot/imported/wallpaper.jpg-406eba633534792a1f185a85d6d01c12.ctex"
+uid="uid://dadkjye6msk4g"
+path="res://.godot/imported/submarine_no_propeller.png-7e24ed2d726e4b575e5ca86b08a9189d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/cutscenes/cockpit/wallpaper.jpg"
-dest_files=["res://.godot/imported/wallpaper.jpg-406eba633534792a1f185a85d6d01c12.ctex"]
+source_file="res://game_objects/submarine/submarine_no_propeller.png"
+dest_files=["res://.godot/imported/submarine_no_propeller.png-7e24ed2d726e4b575e5ca86b08a9189d.ctex"]
 
 [params]
 

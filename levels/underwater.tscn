@@ -505,57 +505,30 @@ fill_textures = Array[Texture2D]([ExtResource("14_g8t11")])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ucymq"]
 shader = ExtResource("20_iuaof")
-shader_parameter/sway_amplitude = 6.0
-shader_parameter/sway_speed = 1.5
-shader_parameter/sway_frequency = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_klma6"]
 shader = ExtResource("20_iuaof")
-shader_parameter/sway_amplitude = 6.0
-shader_parameter/sway_speed = 1.5
-shader_parameter/sway_frequency = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oubm0"]
 shader = ExtResource("20_iuaof")
-shader_parameter/sway_amplitude = 6.0
-shader_parameter/sway_speed = 1.5
-shader_parameter/sway_frequency = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b5w0j"]
 shader = ExtResource("20_iuaof")
-shader_parameter/sway_amplitude = 6.0
-shader_parameter/sway_speed = 1.5
-shader_parameter/sway_frequency = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_niomh"]
 shader = ExtResource("20_iuaof")
-shader_parameter/sway_amplitude = 6.0
-shader_parameter/sway_speed = 1.5
-shader_parameter/sway_frequency = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_55bpa"]
 shader = ExtResource("20_iuaof")
-shader_parameter/sway_amplitude = 6.0
-shader_parameter/sway_speed = 1.5
-shader_parameter/sway_frequency = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sway"]
 shader = ExtResource("20_iuaof")
-shader_parameter/sway_amplitude = 6.0
-shader_parameter/sway_speed = 1.5
-shader_parameter/sway_frequency = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rtn2m"]
 shader = ExtResource("20_iuaof")
-shader_parameter/sway_amplitude = 6.0
-shader_parameter/sway_speed = 1.5
-shader_parameter/sway_frequency = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ghujt"]
 shader = ExtResource("20_iuaof")
-shader_parameter/sway_amplitude = 6.0
-shader_parameter/sway_speed = 1.5
-shader_parameter/sway_frequency = 2.0
 
 [node name="Underwater" type="Node2D" unique_id=741864157]
 position = Vector2(3, 0)
@@ -597,7 +570,7 @@ angular_velocity_max = 45.0
 scale_amount_max = 2.5
 color = Color(0.8, 0.9, 1, 0.35)
 
-[node name="FloatingParticles" parent="." instance=ExtResource("39_float")]
+[node name="FloatingParticles" parent="." unique_id=514780927 instance=ExtResource("39_float")]
 
 [node name="Submarine" parent="." unique_id=482854008 instance=ExtResource("1_sub")]
 position = Vector2(-496, -2681)

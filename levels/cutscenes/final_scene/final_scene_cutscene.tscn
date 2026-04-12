@@ -1,0 +1,244 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://levels/cutscenes/final_scene/final_scene_cutscene.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bwqflv6uho1cn" path="res://levels/cutscenes/cockpit/universe_pure.png" id="2_universe"]
+[ext_resource type="Texture2D" uid="uid://de2mkxlfoo6ii" path="res://levels/cutscenes/cockpit/planet_pure.png" id="3_planet"]
+[ext_resource type="Texture2D" uid="uid://dlcmni1on1aej" path="res://levels/cutscenes/cockpit/cockpit_pixelart.png" id="4_cockpit"]
+[ext_resource type="Texture2D" uid="uid://wnpctaqud02s" path="res://levels/cutscenes/spaceship_in_cave.jpeg" id="5_cave"]
+[ext_resource type="Texture2D" uid="uid://pfbxyiik5i3t" path="res://levels/cutscenes/underwater_base/underwater_base.png" id="6_uw_base"]
+[ext_resource type="Texture2D" uid="uid://cc6sddx6yp5nk" path="res://levels/cutscenes/underwater_base_inside/underwater_base_inside.png" id="7_uw_inside"]
+[ext_resource type="Theme" uid="uid://dqwuby34ylgsq" path="res://ui_scenes/main_menu/menu_theme2.tres" id="8_theme"]
+[ext_resource type="FontFile" uid="uid://53bvl4qu6g5q" path="res://ui_scenes/fonts/Orbitron-VariableFont_wght.ttf" id="9_orbitron"]
+[ext_resource type="Script" uid="uid://bho57h03dg7xu" path="res://levels/cutscenes/cockpit/sos_label.gd" id="10_sos"]
+[ext_resource type="AudioStream" uid="uid://dd1gt6gg2ywd7" path="res://audio/sound_effects/alien_underworld.mp3" id="11_glitch_sfx"]
+[ext_resource type="AudioStream" uid="uid://cv5w0712ofthb" path="res://audio/sound_effects/engine_launch.mp3" id="12_engine"]
+[ext_resource type="AudioStream" uid="uid://bsgpigaprmndc" path="res://audio/sound_effects/modem.mp3" id="13_modem"]
+[ext_resource type="PackedScene" uid="uid://co1vd8dbimgqj" path="res://ui_scenes/main_menu/main_menu.tscn" id="14_main_menu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_subtitle"]
+bg_color = Color(0, 0, 0, 0.75)
+content_margin_left = 20.0
+content_margin_top = 15.0
+content_margin_right = 20.0
+content_margin_bottom = 15.0
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glitch"]
+bg_color = Color(0.1, 0, 0.05, 0.8)
+content_margin_left = 30.0
+content_margin_top = 20.0
+content_margin_right = 30.0
+content_margin_bottom = 20.0
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="FinalSceneCutscene" type="Node2D"]
+script = ExtResource("1_script")
+next_scene = ExtResource("14_main_menu")
+glitch_audio = ExtResource("11_glitch_sfx")
+engine_audio = ExtResource("12_engine")
+modem_audio = ExtResource("13_modem")
+
+[node name="Backgrounds" type="Node2D" parent="."]
+
+[node name="AlienBg" type="Sprite2D" parent="Backgrounds"]
+visible = false
+z_index = 5
+position = Vector2(960, 540)
+scale = Vector2(3, 3)
+
+[node name="CockpitBg" type="Sprite2D" parent="Backgrounds"]
+visible = false
+position = Vector2(960, 540)
+scale = Vector2(5, 5)
+texture = ExtResource("4_cockpit")
+
+[node name="CaveBg" type="Sprite2D" parent="Backgrounds"]
+visible = false
+position = Vector2(960, 540)
+scale = Vector2(3, 3)
+texture = ExtResource("5_cave")
+
+[node name="UnderwaterBg" type="Sprite2D" parent="Backgrounds"]
+visible = false
+position = Vector2(960, 540)
+scale = Vector2(3, 3)
+texture = ExtResource("6_uw_base")
+
+[node name="RescueBg" type="Sprite2D" parent="Backgrounds"]
+visible = false
+position = Vector2(960, 540)
+scale = Vector2(3, 3)
+texture = ExtResource("7_uw_inside")
+
+[node name="Outro" type="Node2D" parent="."]
+
+[node name="UniversePure" type="Sprite2D" parent="Outro"]
+visible = false
+position = Vector2(101, 709)
+scale = Vector2(4.58, 4.58)
+texture = ExtResource("2_universe")
+
+[node name="PlanetPure" type="Sprite2D" parent="Outro"]
+visible = false
+z_index = 1
+position = Vector2(-903, 698)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_planet")
+
+[node name="CockpitPixelart" type="Sprite2D" parent="Outro"]
+visible = false
+z_index = 2
+position = Vector2(960, 540)
+scale = Vector2(5, 5)
+texture = ExtResource("4_cockpit")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="ScreenTarget" type="Marker2D" parent="."]
+position = Vector2(960, 750)
+
+[node name="SOSLabel" type="Label" parent="ScreenTarget"]
+visible = false
+z_index = 3
+offset_left = -300.0
+offset_top = -60.0
+offset_right = 300.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(0.5, 1, 0.5, 1)
+theme_override_fonts/font = ExtResource("9_orbitron")
+theme_override_font_sizes/font_size = 24
+text = "S.O.S. - BITTE UM HILFE.
+HAUMEA SEKTOR 27E.
+PASST AUF, HIER SIND F"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+visible_characters = 0
+visible_ratio = 0.0
+script = ExtResource("10_sos")
+
+[node name="ContinueLabel" type="Label" parent="ScreenTarget"]
+visible = false
+z_index = 3
+offset_left = -150.0
+offset_top = 70.0
+offset_right = 150.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_fonts/font = ExtResource("9_orbitron")
+theme_override_font_sizes/font_size = 14
+text = "Beliebige Taste druecken zum Fortfahren..."
+horizontal_alignment = 1
+
+[node name="GlitchPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="EnginePlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="GlitchOverlay" type="ColorRect" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 1)
+
+[node name="GlitchTextLabel" type="Label" parent="UI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -60.0
+offset_right = 400.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8, 0.1, 0.1, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_glitch")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SubtitleLabel" type="Label" parent="UI"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -450.0
+offset_top = -200.0
+offset_right = 450.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("8_theme")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_subtitle")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="SubtitleContinueLabel" type="Label" parent="UI"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -30.0
+offset_right = 150.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 14
+text = "Beliebige Taste druecken zum Fortfahren..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="EndeLabel" type="Label" parent="UI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -50.0
+offset_right = 300.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_orbitron")
+theme_override_font_sizes/font_size = 64
+text = "ENDE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkipLabel" type="Label" parent="UI"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -280.0
+offset_top = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "Erneut druecken zum Ueberspringen"

@@ -19,7 +19,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Cry from Haumea"
-run/main_scene="uid://cufte051u5rd"
+run/main_scene="uid://co1vd8dbimgqj"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://cr03ljhlyfxgc"
 

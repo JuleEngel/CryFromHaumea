@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dxx4cju371esd"]
 
-[ext_resource type="Texture2D" uid="uid://dkjge1p427ddy" path="res://game_objects/submarine/submarine.png" id="1_a6sr2"]
+[ext_resource type="Texture2D" uid="uid://dadkjye6msk4g" path="res://game_objects/submarine/submarine_no_propeller.png" id="2_a45bs"]
 [ext_resource type="Script" uid="uid://4h7krnmbiiul" path="res://game_objects/submarine/submarine.gd" id="2_script"]
 [ext_resource type="Texture2D" uid="uid://djftd7mdgmb5y" path="res://game_objects/submarine/bubble.png" id="3_bubble"]
 [ext_resource type="AudioStream" uid="uid://boxwlwejovwbl" path="res://audio/sound_effects/deep_sea_ambiance.mp3" id="4_ambiance"]
@@ -11,6 +11,35 @@
 [ext_resource type="Texture2D" uid="uid://bswh0nv4c72ak" path="res://visual_effects/broken_screen.png" id="9_broken"]
 [ext_resource type="AudioStream" uid="uid://c0bus7nbhjk2p" path="res://audio/sound_effects/ice_hit.mp3" id="10_ice_hit"]
 [ext_resource type="AudioStream" uid="uid://nnk00c3t6g2q" path="res://audio/sound_effects/underwater_explosion.mp3" id="11_explosion"]
+[ext_resource type="Texture2D" uid="uid://cpdyexh8dplft" path="res://game_objects/submarine/propeller/propeller_idle.png" id="12_prop_idle"]
+[ext_resource type="Texture2D" uid="uid://di0w5fye6yx1m" path="res://game_objects/submarine/propeller/propeller1.png" id="13_prop1"]
+[ext_resource type="Texture2D" uid="uid://cclqpp554w5br" path="res://game_objects/submarine/propeller/propeller2.png" id="14_prop2"]
+[ext_resource type="Texture2D" uid="uid://bvm176hbts8ef" path="res://game_objects/submarine/propeller/propeller3.png" id="15_prop3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_propeller"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_prop_idle")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_prop1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_prop2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_prop3")
+}],
+"loop": true,
+"name": &"spin",
+"speed": 12.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4qjti"]
 radius = 21.0
@@ -47,7 +76,14 @@ script = ExtResource("2_script")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2021962477]
 position = Vector2(-8, -8)
 scale = Vector2(1.4153847, 1.4153847)
-texture = ExtResource("1_a6sr2")
+texture = ExtResource("2_a45bs")
+
+[node name="Propeller" type="AnimatedSprite2D" parent="Sprite2D" unique_id=1632755150]
+z_index = -1
+position = Vector2(-57.228256, 8.47826)
+scale = Vector2(0.9891304, 0.9891304)
+sprite_frames = SubResource("SpriteFrames_propeller")
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=274600755]
 position = Vector2(-2, 10)
@@ -58,13 +94,14 @@ shape = SubResource("CapsuleShape2D_4qjti")
 position = Vector2(0, -20)
 
 [node name="BubbleParticles" type="CPUParticles2D" parent="." unique_id=1197846382]
-position = Vector2(40, 5)
+position = Vector2(-88, 3)
 emitting = false
-amount = 16
+amount = 60
 texture = ExtResource("3_bubble")
 lifetime = 2.5
-emission_shape = 3
-emission_rect_extents = Vector2(8, 12)
+emission_shape = 6
+emission_ring_inner_radius = 20.0
+emission_ring_radius = 1.0
 direction = Vector2(0, -1)
 spread = 20.0
 gravity = Vector2(0, -120)
@@ -72,8 +109,8 @@ initial_velocity_min = 40.0
 initial_velocity_max = 80.0
 angular_velocity_min = -90.0
 angular_velocity_max = 90.0
-scale_amount_min = 1.5
-scale_amount_max = 3.5
+scale_amount_min = 0.8
+scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_scale")
 color = Color(0.85, 0.92, 1, 0.7)
 
@@ -114,7 +151,7 @@ grow_vertical = 2
 texture = ExtResource("9_broken")
 stretch_mode = 6
 
-[node name="IceHitSound" type="AudioStreamPlayer2D" parent="."]
+[node name="IceHitSound" type="AudioStreamPlayer2D" parent="." unique_id=2094526327]
 stream = ExtResource("10_ice_hit")
 volume_db = -12.0
 
@@ -125,7 +162,7 @@ color = Color(0.9, 0.95, 1, 1)
 energy = 1.5
 texture_scale = 2.0
 
-[node name="ExplosionParticles" type="GPUParticles2D" parent="."]
+[node name="ExplosionParticles" type="GPUParticles2D" parent="." unique_id=1469905607]
 emitting = false
 amount = 500
 lifetime = 2.0
@@ -133,7 +170,7 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_explode")
 
-[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="."]
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="." unique_id=1639136248]
 stream = ExtResource("11_explosion")
 volume_db = 8.0
 max_distance = 3000.0
