@@ -28,8 +28,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	_time += delta
-	glow_light.energy = 3.0 + 1.5 * sin(_time * 2.5)
-	glow_light.texture_scale = 10.0 + 2.0 * sin(_time * 2.5)
+	glow_light.energy = 4.5 + 2.5 * sin(_time * 2.5)
+	glow_light.texture_scale = 14.0 + 4.0 * sin(_time * 2.5)
 
 func _on_body_entered(body: Node2D) -> void:
 	if one_shot and _triggered:

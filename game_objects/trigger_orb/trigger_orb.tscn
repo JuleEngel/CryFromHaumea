@@ -17,39 +17,39 @@ shape = SubResource("CircleShape2D_detect")
 [node name="GlowLight" type="PointLight2D" parent="." unique_id=1766397161]
 color = Color(1, 0.9, 0.3, 1)
 texture = ExtResource("2_bubble")
-texture_scale = 10.0
+texture_scale = 14.0
 
 [node name="SparkleParticles" type="CPUParticles2D" parent="." unique_id=62001467]
-amount = 24
+amount = 48
 texture = ExtResource("2_bubble")
-lifetime = 1.5
+lifetime = 2.0
 emission_shape = 1
-emission_sphere_radius = 20.0
+emission_sphere_radius = 30.0
 direction = Vector2(0, -1)
 spread = 180.0
 gravity = Vector2(0, -30)
 initial_velocity_min = 15.0
-initial_velocity_max = 40.0
+initial_velocity_max = 50.0
 angular_velocity_min = -60.0
 angular_velocity_max = 60.0
-scale_amount_min = 0.3
-scale_amount_max = 1.2
-color = Color(1, 0.95, 0.4, 0.8)
+scale_amount_min = 0.6
+scale_amount_max = 2.0
+color = Color(1, 0.95, 0.4, 0.9)
 
 [node name="CoreGlow" type="CPUParticles2D" parent="." unique_id=2012744809]
-amount = 6
+amount = 12
 texture = ExtResource("2_bubble")
-lifetime = 0.8
+lifetime = 1.0
 emission_shape = 1
-emission_sphere_radius = 5.0
+emission_sphere_radius = 8.0
 direction = Vector2(0, 0)
 spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 2.0
-initial_velocity_max = 8.0
-scale_amount_min = 1.5
-scale_amount_max = 2.5
-color = Color(1, 1, 0.7, 0.6)
+initial_velocity_max = 10.0
+scale_amount_min = 2.5
+scale_amount_max = 4.0
+color = Color(1, 1, 0.7, 0.7)
 
 [node name="PickupSound" type="AudioStreamPlayer2D" parent="." unique_id=2069051673]
 stream = ExtResource("3_pickup")
