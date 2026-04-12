@@ -3,7 +3,7 @@ extends Enemy
 enum State { IDLE, PURSUING, LASER_SHOOTING, STUN_CHARGING, STUN_RELEASING }
 
 @export var idle_speed: float = 25.0
-@export var pursue_speed: float = 90.0
+@export var pursue_speed: float = 200.0
 # Laser
 @export var laser_cooldown: float = 1.5
 @export var laser_damage: float = 15.0

@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://dvh3i70uarhyb" path="res://game_objects/trigger_orb/trigger_orb.tscn" id="24_g2luv"]
 [ext_resource type="Texture2D" uid="uid://yy5k7kplogrq" path="res://game_objects/clues/damaged_submarine_part.png" id="25_jyx7s"]
 [ext_resource type="PackedScene" uid="uid://dydv0nl24fm7p" path="res://game_objects/premature_exit_trigger/premature_exit_trigger.tscn" id="25_um8t4"]
+[ext_resource type="PackedScene" uid="uid://c4uw8bk2mtn6r" path="res://levels/cutscenes/underwater_base/underwater_base_cutscene.tscn" id="26_ub_cs"]
 
 [sub_resource type="Environment" id="Environment_underwater"]
 background_mode = 3
@@ -1092,6 +1093,9 @@ position = Vector2(-1411, -6470)
 [node name="UnderwaterStation" parent="." unique_id=1246739373 instance=ExtResource("4_im0iu")]
 position = Vector2(4612, -1328)
 scale = Vector2(3.6400096, 3.6400096)
+
+[node name="SceneChangeTrigger" parent="UnderwaterStation" index="1"]
+nextScene = ExtResource("26_ub_cs")
 
 [node name="WaterEffect" type="CanvasLayer" parent="." unique_id=1768455716]
 layer = 100
