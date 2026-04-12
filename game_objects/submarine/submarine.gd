@@ -156,7 +156,7 @@ func _physics_process(delta: float) -> void:
 		ice_hit_sound.play()
 
 
-static func _generate_cone_texture(size: int, tex_size: int) -> ImageTexture:
+static func _generate_cone_texture(_size: int, tex_size: int) -> ImageTexture:
 	# PointLight2D renders the texture centered on position.
 	# We build a texture where the bright point is at the center,
 	# and the cone opens to the right half only.

@@ -3,7 +3,6 @@ extends Area2D
 enum Action {
 	SPEECH_TEXT,
 	INFO_SCREEN,
-	INFO_SCREEN_IMAGE,
 }
 
 const DialogTextScene := preload("res://ui_scenes/dialog_text/dialog_text.tscn")
@@ -42,8 +41,6 @@ func _execute_action(body: Node2D) -> void:
 		Action.SPEECH_TEXT:
 			_show_speech_text()
 		Action.INFO_SCREEN:
-			_show_info_screen(body)
-		Action.INFO_SCREEN_IMAGE:
 			_show_info_screen(body, image)
 
 func _show_speech_text() -> void:

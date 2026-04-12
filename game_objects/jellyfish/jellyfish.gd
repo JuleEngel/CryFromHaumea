@@ -228,7 +228,7 @@ func _stop_pulse() -> void:
 		_pulse_tween.kill()
 		_pulse_tween = null
 
-func _process_stun_charging(delta: float) -> void:
+func _process_stun_charging(_delta: float) -> void:
 	if dead:
 		return
 

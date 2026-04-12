@@ -299,7 +299,7 @@ func _start_laser_fire() -> void:
 	_laser_tween.tween_property(laser_light, "energy", 5.0, 0.1)
 	_laser_tween.tween_property(laser_light, "energy", 3.0, laser_fire_duration - 0.1)
 
-func _process_laser_firing(delta: float) -> void:
+func _process_laser_firing(_delta: float) -> void:
 	if dead:
 		return
 

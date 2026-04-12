@@ -136,8 +136,8 @@ func _explode() -> void:
 	tween.tween_property(sprite, "modulate:a", 0.0, 0.3)
 	tween.tween_callback(func(): sprite.visible = false)
 	# Free after both particles and sound finish
-	var remaining := 2
-	var on_done := func(): remaining -= 1; if remaining == 0: queue_free()
+	var remaining := [2]
+	var on_done := func(): remaining[0] -= 1; if remaining[0] == 0: queue_free()
 	explosion_particles.finished.connect(on_done)
 	explosion_sound.finished.connect(on_done)
 

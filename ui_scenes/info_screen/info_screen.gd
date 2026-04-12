@@ -32,14 +32,14 @@ func _on_body_entered(body: Node2D) -> void:
 	screen.set_anchors_preset(Control.PRESET_CENTER)
 	screen.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	screen.grow_vertical = Control.GROW_DIRECTION_BOTH
-	screen.custom_minimum_size = Vector2(900, 550)
+	screen.custom_minimum_size = Vector2(1100, 680)
 
 	var margin := MarginContainer.new()
 	margin.set_anchors_preset(Control.PRESET_FULL_RECT)
-	margin.add_theme_constant_override("margin_left", 130)
-	margin.add_theme_constant_override("margin_right", 130)
-	margin.add_theme_constant_override("margin_top", 100)
-	margin.add_theme_constant_override("margin_bottom", 120)
+	margin.add_theme_constant_override("margin_left", 180)
+	margin.add_theme_constant_override("margin_right", 180)
+	margin.add_theme_constant_override("margin_top", 150)
+	margin.add_theme_constant_override("margin_bottom", 170)
 
 	var vbox := VBoxContainer.new()
 	vbox.theme = MENU_THEME
@@ -62,10 +62,14 @@ func _on_body_entered(body: Node2D) -> void:
 	if info_image:
 		var img := TextureRect.new()
 		img.texture = info_image
-		img.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+		img.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		img.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		img.custom_minimum_size = Vector2(0, 200)
 		img.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		vbox.add_child(img)
+		label.fit_content = true
+		label.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+		screen.custom_minimum_size = Vector2(1100, 850)
 
 	vbox.add_child(label)
 	vbox.add_child(button)
