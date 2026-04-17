@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://cb4nyo0hqbaku"]
 
-[ext_resource type="Script" path="res://ui_scenes/dialog_text/dialog_text.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://sbjixvmpagfd" path="res://ui_scenes/dialog_text/dialog_text.gd" id="1_script"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0, 0, 0, 0.75)
@@ -9,11 +9,11 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="DialogText" type="CanvasLayer"]
+[node name="DialogText" type="CanvasLayer" unique_id=2076171333]
 layer = 101
 script = ExtResource("1_script")
 
-[node name="Panel" type="PanelContainer" parent="."]
+[node name="Panel" type="PanelContainer" parent="." unique_id=697804756]
 unique_name_in_owner = true
 anchors_preset = 12
 anchor_top = 1.0
@@ -27,7 +27,7 @@ grow_vertical = 0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1812067520]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 24
@@ -35,10 +35,9 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 16
 
-[node name="DialogLabel" type="Label" parent="Panel/MarginContainer"]
+[node name="DialogLabel" type="Label" parent="Panel/MarginContainer" unique_id=1740725259]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
-text = ""
 horizontal_alignment = 1
 autowrap_mode = 2

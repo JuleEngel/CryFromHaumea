@@ -18,6 +18,8 @@ const WIDTH_HOVER := 4.0
 @export_multiline var heater_text: String = "Ein tragbarer Heizstrahler. Er läuft schon eine Weile. Bei einem Eisplaneten wäre dieser Heizstrahl auch meine erste Wahl!"
 @export_multiline var monitors_text: String = "Stationsmonitore zeigen Wetter- und Seismikdaten. Irgendetwas stimmt nicht..."
 @export_multiline var tablet_text: String = "Ein Tablet mit Expeditionsnotizen. Der Pilot ist wohl überstürzt aufgebrochen."
+@export_multiline var base_station_text: String = "Es ist niemand hier. Ich sollte mich ein wenig umsehen."
+@export_multiline var mission_start_text: String = "Hier werde ich nichts mehr finden. Nach Logbuch wollte der Pilot die Spalte im Eis genauer erkunden. Die Stelle, von der die seltsamen Signale kamen.\n\n Wenn ich den Piloten finden möchte, muss ich mich wohl auch in die Tiefe begeben. Zum Glück kann mein kleines Raumschiff auch unter Wasser fahren..."
 
 var _objects: Array[Dictionary] = []
 var _time := 0.0
@@ -26,6 +28,7 @@ var _skip_pressed := false
 var _active_dialog: Node = null
 var _fade_overlay: ColorRect
 var _music_player: AudioStreamPlayer
+var _all_hints_shown := false
 
 @onready var _skip_label: Label = $UI/SkipLabel
 @onready var _hint_label: Label = $UI/HintLabel
@@ -33,6 +36,8 @@ var _music_player: AudioStreamPlayer
 
 
 func _ready() -> void:
+	_show_dialog(base_station_text)
+	
 	var object_data := [
 		{node = $Book, text = book_text},
 		{node = $Chocolate, text = chocolate_text},
@@ -108,13 +113,20 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _handle_click(global_pos: Vector2) -> void:
-	for i in range(_objects.size() - 1, -1, -1):
-		var obj = _objects[i]
-		if obj.selected:
-			continue
-		if _is_mouse_over_object(obj, global_pos):
-			_select_object(obj)
-			return
+	if _active_dialog != null:
+		_active_dialog.queue_free()
+		_active_dialog = null
+	elif _all_hints_shown:
+		_fade_in_label(_start_button)
+		_start_button.pressed.connect(_go_to_next_scene)
+	else:
+		for i in range(_objects.size() - 1, -1, -1):
+			var obj = _objects[i]
+			if obj.selected:
+				continue
+			if _is_mouse_over_object(obj, global_pos):
+				_select_object(obj)
+				return
 
 
 func _is_mouse_over_object(obj: Dictionary, global_pos: Vector2) -> bool:
@@ -152,8 +164,9 @@ func _check_all_selected() -> void:
 		if not obj.selected:
 			return
 	_hint_label.visible = false
-	_fade_in_label(_start_button)
-	_start_button.pressed.connect(_go_to_next_scene)
+	_show_dialog(mission_start_text)
+	await get_tree().create_timer(0.01).timeout
+	_all_hints_shown = true
 
 
 # -- Fade helpers -----------------------------------------------------------
