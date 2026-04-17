@@ -10,24 +10,30 @@ const CUTSCENE_ENV := preload("res://levels/cutscenes/cutscene_environment.tres"
 
 @export_group("Dialogs")
 ## Each line: "A: ..." for Alien (red) or "E: ..." for Eryk (white). One line = one keypress.
-@export_multiline var dialog_1: String = "A: Verbindung... hergestellt.\nA: Gedaechtnis... wird ausgelesen."
-@export_multiline var dialog_2: String = "A: Erinnerung gefunden.\nA: Ankunft. Neugier. Naivitaet.\nE: Was... was passiert mit mir? Wo bin ich?"
-@export_multiline var dialog_3: String = "A: Erinnerung gefunden.\nA: Entdeckung. Angst. Flucht.\nE: Diese Kreaturen... ich erinnere mich..."
-@export_multiline var dialog_4: String = "A: Erinnerung gefunden.\nA: Verzweiflung. Hilferuf. Hoffnung.\nE: Der Hilferuf... das war ICH!"
-@export_multiline var dialog_5: String = "A: Uebernahme... abgeschlossen.\nA: Neuer Wirt.\nA: Neuer Zyklus.\nE: Nein... NEIN!"
+@export_multiline var dialog_1: String = ""
+@export_multiline var dialog_2: String = ""
+@export_multiline var dialog_3: String = ""
+@export_multiline var dialog_4: String = ""
+@export_multiline var dialog_5: String = ""
 @export_multiline var dialog_6: String = ""
 @export_multiline var dialog_7: String = ""
 @export_multiline var dialog_8: String = ""
 @export_multiline var dialog_9: String = ""
 
 @export_group("Memory Texts")
-@export_multiline var cockpit_text: String = "Ein ganz normaler Tag im Weltraum. Ein Hilferuf kam rein. Natuerlich bin ich hingeflogen - das haette jeder getan."
-@export_multiline var cave_text: String = "Die Schlucht... Ich erinnere mich an die seltsamen Kreaturen. An das Gefuehl, beobachtet zu werden."
-@export_multiline var underwater_text: String = "Die Station bot Schutz. Fuer einen Moment dachte ich, hier waere ich sicher."
-@export_multiline var rescue_text: String = "Der Hilferuf... den ich geschrieben habe. Derselbe, den ich empfangen habe. Ein Kreislauf."
+@export_multiline var cockpit_text: String = ""
+@export_multiline var cave_text: String = ""
+@export_multiline var underwater_text: String = ""
+@export_multiline var underwater_base_inside_text: String = ""
+@export_multiline var alien_catch_text: String = ""
+@export_multiline var underwater_escape_text = ""
+@export_multiline var alien_intro_text = ""
+@export_multiline var cockpit_escape_text = ""
+@export_multiline var alien_catch_again_text = ""
+@export_multiline var alien_outro_text = ""
 
 @export_group("Outro")
-@export_multiline var outro_text: String = "Ein neuer Tag im Weltraum. Ein neuer Tag im Kuiper-Guertel.\n\nAber irgendetwas fuehlt sich anders an. Vertraut. Als haette ich das alles schon einmal erlebt..."
+@export_multiline var outro_text: String = ""
 @export var modem_audio: AudioStream
 
 var _skip_pressed := false
@@ -39,11 +45,14 @@ var _music_player: AudioStreamPlayer
 
 signal _pressed_continue
 
+@onready var _alien_intro_bg: Sprite2D = $Backgrounds/AlienIntroBg
 @onready var _cockpit_bg: Sprite2D = $Backgrounds/CockpitBg
 @onready var _cockpit_universe_bg: Sprite2D = $Backgrounds/CockpitUniverseBg
 @onready var _cave_bg: Sprite2D = $Backgrounds/CaveBg
 @onready var _underwater_bg: Sprite2D = $Backgrounds/UnderwaterBg
-@onready var _rescue_bg: Sprite2D = $Backgrounds/RescueBg
+@onready var _underwater_base_inside_bg: Sprite2D = $Backgrounds/UWBaseInside
+@onready var _alien_catch_bg: Sprite2D = $Backgrounds/AlienCatchBg
+@onready var _underwater_escape_bg: Sprite2D = $Backgrounds/UnderwaterEscapeBg
 
 @onready var _universe: Sprite2D = $Outro/UniversePure
 @onready var _planet: Sprite2D = $Outro/PlanetPure
@@ -65,7 +74,7 @@ var _all_backgrounds: Array[Sprite2D] = []
 
 
 func _ready() -> void:
-	_all_backgrounds = [_cockpit_bg, _cockpit_universe_bg, _cave_bg, _underwater_bg, _rescue_bg]
+	_all_backgrounds = [_cockpit_bg, _cockpit_universe_bg, _cave_bg, _underwater_bg, _underwater_base_inside_bg, _alien_catch_bg, _underwater_escape_bg, _alien_intro_bg]
 	_create_dialog_ui()
 	_hide_all()
 	_create_fade_overlay()
@@ -120,6 +129,10 @@ func _hide_all() -> void:
 
 func _run_cutscene() -> void:
 	# Alien intro
+	await _transition_to_memory(_alien_intro_bg)
+	await _show_memory(alien_intro_text)
+	
+	# Alien Conversation 1
 	await _transition_to_alien()
 	await _do_alien_dialog(dialog_1)
 
@@ -131,7 +144,7 @@ func _run_cutscene() -> void:
 	await _transition_to_alien()
 	await _do_alien_dialog(dialog_2)
 
-	# Memory 2: Cave
+	# Memory 2: Cave Wallpaper
 	await _transition_to_memory(_cave_bg)
 	await _show_memory(cave_text)
 
@@ -139,32 +152,56 @@ func _run_cutscene() -> void:
 	await _transition_to_alien()
 	await _do_alien_dialog(dialog_3)
 
-	# Memory 3: Underwater
+	# Memory 3: Underwater Base
 	await _transition_to_memory(_underwater_bg)
 	await _show_memory(underwater_text)
+
+	# Memory 4: Underwater Base Inside
+	await _transition_to_memory(_underwater_base_inside_bg)
+	await _show_memory(underwater_base_inside_text)
 
 	# Alien reaction to memory 3
 	await _transition_to_alien()
 	await _do_alien_dialog(dialog_4)
+	
+	# Memory 5: Alien catch
+	await _transition_to_memory(_alien_catch_bg)
+	await _show_memory(alien_catch_text)
 
-	# Memory 4: Rescue
-	await _transition_to_memory(_rescue_bg)
-	await _show_memory(rescue_text)
-
-	# Alien reaction to memory 4
+	# Alien reaction to memory 5
 	await _transition_to_alien()
 	await _do_alien_dialog(dialog_5)
+	
+	# Memory 6: Escape
+	await _transition_to_memory(_underwater_escape_bg)
+	await _show_memory(underwater_escape_text)
 
-	# Alien continues
+	# Alien reaction to memory 6
+	await _transition_to_alien()
 	await _do_alien_dialog(dialog_6)
 
-	# Alien continues
+	# Memory 7: Cockpit after escape
+	await _transition_to_memory(_cockpit_bg, true)
+	await _show_memory(cockpit_escape_text)
+
+	# Alien react to memory 7
+	await _transition_to_alien()
 	await _do_alien_dialog(dialog_7)
 
-	# Alien continues
+	# Memory 8: Alien catch (again)
+	await _transition_to_memory(_alien_catch_bg)
+	await _show_memory(alien_catch_again_text)
+
+	# Alien react to memory 8
+	await _transition_to_alien()
 	await _do_alien_dialog(dialog_8)
 	
+	# Alien outro
+	await _transition_to_memory(_alien_intro_bg)
+	await _show_memory(alien_outro_text)
+	
 	# Final alien scene
+	await _transition_to_alien()
 	await _do_alien_dialog(dialog_9)
 
 	# Longer transition to outro

@@ -4,13 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://bwqflv6uho1cn" path="res://levels/cutscenes/cockpit/universe_pure.png" id="2_universe"]
 [ext_resource type="Texture2D" uid="uid://de2mkxlfoo6ii" path="res://levels/cutscenes/cockpit/planet_pure.png" id="3_planet"]
 [ext_resource type="Texture2D" uid="uid://dlcmni1on1aej" path="res://levels/cutscenes/cockpit/cockpit_pixelart.png" id="4_cockpit"]
-[ext_resource type="Texture2D" uid="uid://wnpctaqud02s" path="res://levels/cutscenes/spaceship_in_cave.jpeg" id="5_cave"]
 [ext_resource type="Texture2D" uid="uid://pfbxyiik5i3t" path="res://levels/cutscenes/underwater_base/underwater_base.png" id="6_uw_base"]
-[ext_resource type="Texture2D" uid="uid://cc6sddx6yp5nk" path="res://levels/cutscenes/underwater_base_inside/underwater_base_inside.png" id="7_uw_inside"]
+[ext_resource type="Texture2D" uid="uid://bfphl2gfb8ile" path="res://levels/background/final_scenes/u-boot-underwater.png" id="7_pi1hf"]
+[ext_resource type="Texture2D" uid="uid://csltlem5o8mad" path="res://levels/background/final_scenes/cave_escape.png" id="8_t2ruc"]
 [ext_resource type="Theme" uid="uid://dqwuby34ylgsq" path="res://ui_scenes/main_menu/menu_theme2.tres" id="8_theme"]
 [ext_resource type="FontFile" uid="uid://53bvl4qu6g5q" path="res://ui_scenes/fonts/Orbitron-VariableFont_wght.ttf" id="9_orbitron"]
+[ext_resource type="Texture2D" uid="uid://3goquekm5v1j" path="res://levels/background/final_scenes/underwater_station_alien_catched (1).png" id="10_pi1hf"]
 [ext_resource type="Script" uid="uid://bho57h03dg7xu" path="res://levels/cutscenes/cockpit/sos_label.gd" id="10_sos"]
+[ext_resource type="Texture2D" uid="uid://yt2p10c3luoo" path="res://levels/background/final_scenes/underwater_base_inside.png" id="10_t2ruc"]
 [ext_resource type="AudioStream" uid="uid://dd1gt6gg2ywd7" path="res://audio/sound_effects/alien_underworld.mp3" id="11_glitch_sfx"]
+[ext_resource type="Texture2D" uid="uid://btc004lhi1ol" path="res://levels/background/final_scenes/alien_boss_wallpaper.png" id="12_m56bc"]
 [ext_resource type="AudioStream" uid="uid://bsgpigaprmndc" path="res://audio/sound_effects/modem.mp3" id="13_modem"]
 [ext_resource type="PackedScene" uid="uid://co1vd8dbimgqj" path="res://ui_scenes/main_menu/main_menu.tscn" id="14_main_menu"]
 
@@ -42,38 +45,38 @@ next_scene = ExtResource("14_main_menu")
 glitch_audio = ExtResource("11_glitch_sfx")
 dialog_1 = "A: Mensch. Warum bist du wieder hier?
 A: Warum kehrst du zurück?
-E: Wieder?
- Ich… war noch nie hier.
- Ich folge nur einem Notruf.
+E: Wieder hier?
+E: Ich… war noch nie hier.
+E: Ich folge nur einem Notruf.
 A: Falsch. Du kennst diesen Ort.
 A: Du warst bereits in unseren Tiefen.
 E: Nein.
- Das ergibt keinen Sinn.
- Ich hätte mich erinnert.
+E: Das ergibt keinen Sinn.
+E: Ich hätte mich erinnert.
 A: Erinnerungen sind unzuverlässig.
 A: Deine wurden verändert.
 A: Von uns.
 E: Was?
- Warum sollte ich hier gewesen sein?
- Das ist unmöglich."
+E: Warum sollte ich hier gewesen sein?
+E: Das ist unmöglich."
 dialog_2 = "A: Du hast ein Signal empfangen, das nicht für dich bestimmt war.
 A: Du bist ihm gefolgt.
 A: Neugierig darauf zu erfahren, woher das Signal stammt.
 E: Das… weiß ich nicht mehr.
- Was für ein Signal?
+E: Was für ein Signal?
 A: Du bist eingedrungen. Du hast unsere äußeren Höhlen betreten.
 A: Du bist immer tiefer gegangen. Du bist uns zu nah gekommen."
 dialog_3 = "E: Die Höhlen…
- Die Kreaturen…
- Das alles…
+E: Die Kreaturen…
+E: Das alles…
 A: Unsere niederen Formen griffen dich an.
 A: Sie sollten dich vertreiben. Du bist geblieben.
 E: Ich… erinnere mich nicht.
- Aber es fühlt sich… bekannt an.
+E: Aber es fühlt sich… bekannt an.
 A: Du hast gekämpft. Du hast sie verletzt. Du hättest fast unser Reich betreten.
 E: Die toten Wesen…
- Die Wrackteile…
- Das war… ich?
+E: Die Wrackteile…
+E: Das war… ich?
 A: Ja. Du hast deine Spuren gesehen. Und sie nicht erkannt.
 E: Das kann nicht sein.
 A: Du hast hier sogar eine Station errichtet. Um darin Schutz zu suchen.
@@ -82,59 +85,60 @@ dialog_4 = "E: Die Station… Ich war dort… Ich…
 A: Wir haben dich gestoppt, bevor du noch mehr erfahren konntest.
 A: Wir sind in deinen Geist eingedrungen. So wie jetzt.
 E: Ihr… wart das…
- Dieses Gefühl…
+E: Dieses Gefühl…
 A: Wir suchten die Ursache. Warum du uns gefunden hast.
 A: Warum du uns entdeckt hast.
 E: Das Signal…
- Es kam aus der Tiefe…
+E: Es kam aus der Tiefe…
 A: Ein Fehler. Ein einmaliges Ereignis.
 A: Wir haben es korrigiert.
 E: Und ich…war zur falschen Zeit dort…?
 A: Du wusstest zu viel. Wir wollten dich entfernen.
 A: Endgültig."
 dialog_5 = "E: Dann… warum lebe ich noch?
-A: Du hast gesprochen. Du hast gedroht. Andere würden dich suchen.
-E: Mein Schiff… Das Mutterschiff…
+A: Du hast gesprochen. Du hast gedroht. Andere würden dich suchen. 
+A: Wenn du verschwindest. Und dein Schiff alleine bleibt.
+E: Mein Schiff… Das große Raumschiff…
 A: Ein Risiko. Wir vermeiden Risiken.
 A: Also wählten wir eine Alternative.
 E: …
-A: Wir nahmen dir deine Erinnerung. Die letzten Zyklen.
-A: Alles.
+A: Wir nahmen dir deine Erinnerung. Über ein Enzym, das erst nach einer Stunde wirkt. 
+A: Alle Erinnerungen verschwanden. Aber erst, nachdem du wieder zurück auf deinem Schiff warst.
 E: Das…Das ist der Grund…
-Warum ich nichts weiß…
+E: Warum ich nichts weiß…
 A: Wir ließen dich gehen. In der Annahme, dass du verschwindest. Und uns vergisst.
 E: Ich bin geflohen…
- Ich habe es geschafft…"
+E: Ich habe es geschafft…"
 dialog_6 = "A: Du bist zurückgekehrt. Durch deine eigene Handlung.
 A: Durch dein eigenes Signal.
 E: Nein…Also ja..
- Aber ich wollte ja nur dem Notruf folgen.
+E: Aber ich wollte ja nur dem Notruf folgen.
 A: Du hast um Hilfe gerufen. Hier. In dieser Station.
 E: Der Notruf…
- Den ich empfangen habe…
+E: Den ich empfangen habe…
 A: War deiner. Von dir gesendet. An dich selbst.
 E: Ich… habe mich selbst… hierher gebracht…
 A: Ein geschlossener Kreis. Ein Fehler deiner Spezies.
 A: Leider nicht durch uns vorhersehbar.
 E: Das kann nicht…
- Ich hätte es bemerkt…
+E: Ich hätte es bemerkt…
 A: Du hast es bemerkt. Mehrmals.
 A: Und es ignoriert."
 dialog_7 = "E: Aber das Raumschiff, mit dem ich in den Höhlen war… Warum hat es keine Schäden mehr?
 A: Wissen wir nicht. Ist nicht wichtig.
-E: Ich weiß es. Das Mutterschiff… Die automatische Reparatur.
- Das Raumschiff wurde repariert. Deshalb ist es mir nicht aufgefallen…
+E: Ich glaube, ich kann es erklären. Das Mutterschiff… Die automatische Reparatur.
+E: Das Raumschiff wurde repariert. Deshalb ist es mir nicht aufgefallen…
 A: Du bist jetzt wieder hier. Und ein weiterer Ruf nach Hilfe wurde gesendet.
 A: Durch dich.
 E: Ich wollte nur helfen… Ich…
 A: Du gefährdest uns erneut. Das ist inakzeptabel.
 A: Dies endet hier.
 E: Wartet—
- Ich kann—
+E: Ich kann—
 A: Nein. Kein weiterer Versuch.
 A: Keine weitere Korrektur."
 dialog_8 = "E: Gebt mir eine Chance!
- Ich verrate niemandem von euch.
+E: Ich verrate niemandem von euch.
 A: Menschen kann nicht vertraut werden. Wir haben uns nicht ohne Grund nie bemerkbar gemacht.
 A: Keiner darf von uns wissen.
 E: …
@@ -152,9 +156,20 @@ cockpit_text = "Ich kann mich erinnern. Ein ganz normaler Tag im Weltraum. Ich w
 
 Und dann kam da die Meldung vom Computer. Ein unbekanntes Signal, ausgehend vom Planeten Heumea. "
 cave_text = "Die Schlucht... Der Eingang zu einer Höhle in der Eiswand. Ich erinnere mich an die seltsamen Kreaturen und all die Pflanzen. An das Gefühl, beobachtet zu werden."
-underwater_text = "Die Station bot Schutz. Die ganzen Wesen konnten nicht in sie eindringen. Für einen Moment dachte ich, hier wäre ich sicher.
+underwater_text = "Die Station bot Schutz. Die ganzen Wesen konnten nicht in sie eindringen. Für einen Moment dachte ich, hier wäre ich sicher."
+underwater_base_inside_text = "Doch dann tauchten diese neuen Wesen auf. Diese intelligenten Wesen. 
 
-Doch dann tauchten diese neuen Wesen auf. Diese intelligenten Wesen. Und diese wussten, wie man eine Luke öffnen kann..."
+Ich versuchte noch einen Hilferuf abzusenden, doch ich konnte ihn nicht mehr fertig schreiben. Denn die Wesen wussten, wie man eine Luke öffnen kann..."
+alien_catch_text = "Die Wesen drangen in die Basis ein und hielten mich mit ihren Tentakeln fest. Sie bauten eine Art Band zwischen sich und mir auf. Und dann konnte ich plötzlich ihre Gedanken hören."
+underwater_escape_text = "Die Erinnerungen an die Flucht aus dem Höhlensystem sind nur sehr schwammig. Ich weiß noch, dass ich Kopfschmerzen bekam.
+
+Was nur hatten diese Aliens mit mir gemacht?"
+alien_intro_text = "Du spürst, wie die Gedanken eines anderen Wesens mit den deinen verschmelzen. Seine Gedanken werden deine. Und deine seine."
+cockpit_escape_text = "Die Flucht ist mir gelungen, ich bin wieder in meinem Raumschiff. Schnell weg von diesem Planeten und seinen Bewohnern!
+
+Meine Kopfschmerzen... sie werden immer schlimmer..."
+alien_catch_again_text = "Die Aliens halten dich fest im Griff. Du hast keine Möglichkeit, um ihnen zu entkommen."
+alien_outro_text = "Du spürst, wie die Verbindung zu den Gedanken der Aliens schwächer wird."
 outro_text = "Verlassen schwebt das Raumschiff langsam auf Haumea zu. Gesteuert durch einen Befehl, den es von einer Station erhalten hat, von der auch zwei Rettungsnachrichten eingetroffen sind. 
 
 Eine neue und eine alte Nachricht leuchten auf dem Bildschirm. Ein Ruf nach Hilfe. Und eine letzte Warnung."
@@ -178,7 +193,13 @@ texture = ExtResource("4_cockpit")
 visible = false
 position = Vector2(960, 540)
 scale = Vector2(3, 3)
-texture = ExtResource("5_cave")
+texture = ExtResource("7_pi1hf")
+
+[node name="UnderwaterEscapeBg" type="Sprite2D" parent="Backgrounds" unique_id=359950787]
+visible = false
+position = Vector2(960, 540)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("8_t2ruc")
 
 [node name="UnderwaterBg" type="Sprite2D" parent="Backgrounds" unique_id=127606762]
 visible = false
@@ -186,11 +207,23 @@ position = Vector2(960, 540)
 scale = Vector2(3, 3)
 texture = ExtResource("6_uw_base")
 
-[node name="RescueBg" type="Sprite2D" parent="Backgrounds" unique_id=1371036767]
+[node name="UWBaseInside" type="Sprite2D" parent="Backgrounds" unique_id=1371036767]
 visible = false
 position = Vector2(960, 540)
 scale = Vector2(3, 3)
-texture = ExtResource("7_uw_inside")
+texture = ExtResource("10_t2ruc")
+
+[node name="AlienCatchBg" type="Sprite2D" parent="Backgrounds" unique_id=983405243]
+visible = false
+position = Vector2(960, 540)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("10_pi1hf")
+
+[node name="AlienIntroBg" type="Sprite2D" parent="Backgrounds" unique_id=650698380]
+visible = false
+position = Vector2(960, 540)
+scale = Vector2(4, 4)
+texture = ExtResource("12_m56bc")
 
 [node name="Outro" type="Node2D" parent="." unique_id=1702364118]
 
@@ -254,6 +287,7 @@ text = "Beliebige Taste druecken zum Fortfahren..."
 horizontal_alignment = 1
 
 [node name="GlitchPlayer" type="AudioStreamPlayer" parent="." unique_id=748239019]
+volume_db = -14.17
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1615403598]
 layer = 10
