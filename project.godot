@@ -26,6 +26,7 @@ config/icon="uid://cr03ljhlyfxgc"
 [autoload]
 
 CheckpointManager="*res://game_objects/checkpoint_manager.gd"
+DebugSceneSelector="*res://tools/debug_scene_selector.gd"
 
 [display]
 
