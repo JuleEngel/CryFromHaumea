@@ -20,7 +20,8 @@ The game was created by Jule Engel and Brutenis Gliwa, with some help for the mu
 * Addons:
   * [SmartShape2D](https://github.com/SirRamEsq/SmartShape2D) for the terrain
 
-* Font: [Orbitron](https://fonts.google.com/specimen/Orbitron)
+* Fonts: 
+  * [Orbitron](https://fonts.google.com/specimen/Orbitron)
 
 * Music:
   * "Welcome to Haumea" by Justin Kreikemeyer, CC-BY-NC-SA 4.0

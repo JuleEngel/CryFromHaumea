@@ -133,7 +133,6 @@ func _scatter_plants() -> void:
 
 		container.add_child(plant)
 		plant.owner = get_tree().edited_scene_root
-		_set_owner_recursive(plant, get_tree().edited_scene_root)
 
 	print("PlantScatter: Placed %d/%d plants across %d shapes" % [placed_positions.size(), count, shapes.size()])
 
@@ -149,9 +148,3 @@ func _find_closed_shapes(node: Node, result: Array[SS2D_Shape]) -> void:
 		result.append(node)
 	for child in node.get_children():
 		_find_closed_shapes(child, result)
-
-
-func _set_owner_recursive(node: Node, owner: Node) -> void:
-	for child in node.get_children():
-		child.owner = owner
-		_set_owner_recursive(child, owner)

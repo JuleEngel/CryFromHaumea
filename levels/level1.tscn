@@ -21,29 +21,19 @@
 [ext_resource type="PackedScene" uid="uid://o5kkadaw2lfk" path="res://game_objects/whale/whale.tscn" id="18_l7nqg"]
 [ext_resource type="PackedScene" uid="uid://3cny73qogw0e" path="res://game_objects/iceblock/iceblock.tscn" id="18_tx362"]
 [ext_resource type="PackedScene" uid="uid://bqxry4nalviv6" path="res://game_objects/plants/plant_9.tscn" id="18_www5i"]
-[ext_resource type="Shader" uid="uid://c54ck2qf5br7r" path="res://game_objects/plants/water_sway.gdshader" id="19_1tw8r"]
 [ext_resource type="PackedScene" uid="uid://00jhry2ru7jg" path="res://levels/utils/scene_change_trigger.tscn" id="19_w7ck5"]
 [ext_resource type="PackedScene" uid="uid://cgs886llrq08l" path="res://levels/level2.tscn" id="20_2nn5w"]
-[ext_resource type="Texture2D" uid="uid://bf3kb66y1qnra" path="res://game_objects/plants/plant_9.png" id="20_c6dxu"]
 [ext_resource type="PackedScene" uid="uid://dxqeomcm08bwl" path="res://game_objects/plants/plant_5.tscn" id="21_v0nts"]
-[ext_resource type="Texture2D" uid="uid://dsokfei5226wi" path="res://game_objects/plants/plant_5.png" id="22_7vben"]
 [ext_resource type="PackedScene" uid="uid://dvh3i70uarhyb" path="res://game_objects/trigger_orb/trigger_orb.tscn" id="22_ou4v7"]
 [ext_resource type="Texture2D" uid="uid://dhycbunxvmke2" path="res://game_objects/plants/plant_6.png" id="23_53hnx"]
 [ext_resource type="PackedScene" path="res://visual_effects/floating_particles.tscn" id="23_float"]
 [ext_resource type="PackedScene" uid="uid://ff32mpkgslnx" path="res://game_objects/plants/plant_2.tscn" id="23_iwss6"]
 [ext_resource type="PackedScene" uid="uid://dydv0nl24fm7p" path="res://game_objects/premature_exit_trigger/premature_exit_trigger.tscn" id="24_mxqdg"]
-[ext_resource type="Texture2D" uid="uid://dplobjytk1fpk" path="res://game_objects/plants/plant_2.png" id="24_ow214"]
-[ext_resource type="Texture2D" uid="uid://rghfpad47d18" path="res://game_objects/light/light.png" id="25_ox30j"]
 [ext_resource type="PackedScene" uid="uid://b28md65dtep4l" path="res://game_objects/plants/plant_8.tscn" id="26_sgfng"]
-[ext_resource type="Texture2D" uid="uid://b6mixdvwovw47" path="res://game_objects/plants/plant_8.png" id="27_p6dnf"]
 [ext_resource type="PackedScene" uid="uid://bac7mi85h6bjx" path="res://game_objects/plants/plant_4.tscn" id="28_unj4i"]
-[ext_resource type="Texture2D" uid="uid://c0mfbk7jyvgt7" path="res://game_objects/plants/plant_4.png" id="29_sadvb"]
 [ext_resource type="PackedScene" uid="uid://b24n4djhf23ft" path="res://game_objects/plants/plant_3.tscn" id="30_tk73g"]
-[ext_resource type="Texture2D" uid="uid://cvc6ihxi6cig3" path="res://game_objects/plants/plant_3.png" id="31_q7fj0"]
 [ext_resource type="PackedScene" uid="uid://b2ogtd3373hpp" path="res://game_objects/plants/plant_1.tscn" id="32_yx6rh"]
-[ext_resource type="Texture2D" uid="uid://d3npms8ao8cl" path="res://game_objects/plants/plant_1.png" id="33_kklod"]
 [ext_resource type="PackedScene" uid="uid://bhu2kv4nansmu" path="res://game_objects/plants/plant_7.tscn" id="34_bi44y"]
-[ext_resource type="Texture2D" uid="uid://dbuwf1ptdoif8" path="res://game_objects/plants/plant_7.png" id="35_60joo"]
 [ext_resource type="PackedScene" uid="uid://cms85u3sjxd73" path="res://game_objects/plants/plant_6.tscn" id="36_k62iv"]
 [ext_resource type="PackedScene" uid="uid://ddimg58dpm2vu" path="res://game_objects/ice_spikes/ice_spike1.tscn" id="46_www5i"]
 
@@ -960,60 +950,6 @@ script = ExtResource("9_tv7bq")
 _edge_meta_materials = Array[ExtResource("8_mxqdg")]([SubResource("Resource_i88f1")])
 fill_textures = Array[Texture2D]([ExtResource("13_0nj7r")])
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_55bpa"]
-shader = ExtResource("19_1tw8r")
-shader_parameter/sway_amplitude = 6.0
-shader_parameter/sway_speed = 1.5
-shader_parameter/sway_frequency = 2.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sway"]
-shader = ExtResource("19_1tw8r")
-shader_parameter/sway_amplitude = 6.0
-shader_parameter/sway_speed = 1.5
-shader_parameter/sway_frequency = 2.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_oubm0"]
-shader = ExtResource("19_1tw8r")
-shader_parameter/sway_amplitude = 6.0
-shader_parameter/sway_speed = 1.5
-shader_parameter/sway_frequency = 2.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_m4w37"]
-shader = ExtResource("19_1tw8r")
-shader_parameter/sway_amplitude = 6.0
-shader_parameter/sway_speed = 1.5
-shader_parameter/sway_frequency = 2.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fia2g"]
-shader = ExtResource("19_1tw8r")
-shader_parameter/sway_amplitude = 6.0
-shader_parameter/sway_speed = 1.5
-shader_parameter/sway_frequency = 2.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ps4y6"]
-shader = ExtResource("19_1tw8r")
-shader_parameter/sway_amplitude = 6.0
-shader_parameter/sway_speed = 1.5
-shader_parameter/sway_frequency = 2.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ip6jy"]
-shader = ExtResource("19_1tw8r")
-shader_parameter/sway_amplitude = 6.0
-shader_parameter/sway_speed = 1.5
-shader_parameter/sway_frequency = 2.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_g2rt8"]
-shader = ExtResource("19_1tw8r")
-shader_parameter/sway_amplitude = 6.0
-shader_parameter/sway_speed = 1.5
-shader_parameter/sway_frequency = 2.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_oqhqt"]
-shader = ExtResource("19_1tw8r")
-shader_parameter/sway_amplitude = 6.0
-shader_parameter/sway_speed = 1.5
-shader_parameter/sway_frequency = 2.0
-
 [node name="Underwater" type="Node2D" unique_id=741864157]
 position = Vector2(-8, 3)
 
@@ -1097,1342 +1033,502 @@ metadata/_edit_lock_ = true
 polygon = PackedVector2Array(-1463.2393, -7832.109, -1471.568, -7716.029, -1581.115, -5867.003, -1485.8451, -5705.9106, -1264.1556, -5693.7856, -935.9764, -5762.6016, -100.37964, -5770.421, 584.54645, -5708.227, 982.23145, -5667.686, 977.8091, -5516.3247, 830.9888, -5468.1816, 618.4163, -5468.1816, -859.8666, -5449.082, -1078.6635, -5302.8926, -1143.565, -5117.5664, -1083.7354, -4876.41, -973.2633, -4629.5156, -461.0774, -4576.2163, -258.26968, -4583.727, -71.74945, -4531.5015, 497.78174, -4502.2954, 1750.9264, -4711.1533, 2078.3481, -4492.872, 1943.5073, -4259.1475, 1283.5442, -4095.7217, 938.5919, -4194.789, 510.70367, -4195.3154, 294.07074, -3882.5444, 148.62186, -3889.4705, 72.9693, -3937.7263, -618.14514, -4034.6711, -1114.4059, -4280.5464, -1535.9424, -4096.592, -1624.6611, -3912.5032, -1417.9052, -3570.8057, -1300.3794, -3465.5862, -1183.8729, -3205.109, -1207.0713, -2843.2986, -1326.2921, -2604.2446, -1302.4523, -2428.1367, -1239.6991, -2321.6743, -1084.9431, -2300.2888, -910.3915, -1916.4338, -778.70734, -1830.4097, -327.14127, -1728.4363, -240.2779, -1639.2963, -297.95377, -1541.7501, -417.80774, -1466.6917, -479.2766, -1344.9443, -462.35944, -1201.6085, -383.47852, -1071.5702, -250.61053, -1032.9054, 302.78943, -1136.2069, 641.92914, -1069.849, 969.10706, -1276.6425, 1221.6115, -1177.2881, 1578.6909, -1297.8547, 2069.2544, -1807.7671, 2393.274, -1855.1934, 2540.485, -1852.5114, 2576.253, -1728.5138, 2468.829, -1662.9172, 2352.9263, -1571.9204, 2512.09, -1180.7612, 2873.2236, -1036.009, 3316.9927, -1201.7899, 4078.123, -1312.4669, 4521.01, -1377.7074, 4609.4023, -1354.9686, 4671.9365, -1141.3085, 4803.561, -1101.1519, 5581.094, -1025.1155, 5568.0864, -1210.9412, 5331.1094, -1213.242, 4837.454, -1278.6989, 4774.6626, -1477.4271, 4549.558, -1550.8297, 3412.1719, -1376.3033, 3291.2917, -1426.5721, 3296.434, -1553.9254, 3457.2014, -1750.4188, 3377.7493, -2015.8301, 3255.0405, -2200.0828, 2867.5408, -2269.1563, 2665.0952, -2067.0322, 2143.8132, -2118.336, 1723.6589, -1864.483, 1355.1879, -1432.3701, 970.037, -1411.3931, 978.1625, -1898.8969, 1059.0061, -2119.3794, 1046.9878, -2284.0828, 951.08936, -2519.5376, 523.4526, -2587.1934, 255.85397, -2501.6, 13.135513, -2440.8137, -87.87886, -2332.5608, -71.7737, -2038.664, -77.603226, -1907.4971, -171.33633, -1873.3, -295.79202, -1930.092, -671.4354, -2037.1318, -851.4901, -2187.1777, -883.86414, -2323.1484, -754.87415, -2381.1938, -495.79996, -2322.1072, -358.75607, -2409.663, -356.63245, -2733.4902, -559.0829, -3004.2148, -871.0956, -3059.4463, -873.8738, -3259.8875, -931.5535, -3354.6392, -1026.8997, -3456.9077, -1024.2678, -3593.7087, -1132.9971, -3717.9707, -1230.1218, -3776.6316, -1266.1088, -3898.9878, -1125.281, -3951.9524, -696.2122, -3753.5466, -225.87924, -3680.0571, 121.90329, -3593.1099, 502.61285, -3698.8643, 730.96027, -3957.656, 1248.8586, -3858.5713, 1449.4197, -3838.0012, 1553.111, -3925.3174, 2042.634, -3910.482, 2255.9768, -4070.6973, 2385.6306, -4309.352, 2406.3618, -4523.51, 2312.9192, -4771.853, 2139.261, -4917.726, 1819.748, -5044.7134, 717.57025, -4860.1733, -635.22534, -4895.5615, -745.5952, -4980.198, -768.8249, -5096.345, -564.60144, -5172.477, 0.27020264, -5142.787, 657.4092, -5087.3286, 1049.7992, -5241.1563, 1327.6249, -5419.8696, 1314.5234, -5656.64, 1269.7407, -5827.6616, 912.82983, -5950.894, -412.44894, -6066.577, -709.20984, -6152.468, -860.86694, -6170.83, -1064.4937, -6134.48, -1230.5627, -6172.879, -1194.4983, -7824.0933, 3049.4429, -7704.835, 3829.7898, -3860.9016, 5679.246, -2657.365, 5827.553, -17.98024, -2852.3835, 57.757874, -2840.294, -7837.3496)
 metadata/_edit_lock_ = true
 
-[node name="ScatteredPlants" type="Node2D" parent="StaticBody2D" unique_id=858621757]
+[node name="ScatteredPlants" type="Node2D" parent="StaticBody2D" unique_id=1023048922]
 
-[node name="Plant_1" parent="StaticBody2D/ScatteredPlants" unique_id=1327445577 instance=ExtResource("18_www5i")]
-position = Vector2(-2805.4006, -7767.6626)
-rotation = -1.5692827
-scale = Vector2(0.5651307, 0.5651307)
-
-[node name="Plant10" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_1" unique_id=1557472760]
-z_index = -1
-material = SubResource("ShaderMaterial_55bpa")
-position = Vector2(0, -64)
-texture = ExtResource("20_c6dxu")
-
-[node name="Plant_2" parent="StaticBody2D/ScatteredPlants" unique_id=1115851430 instance=ExtResource("21_v0nts")]
-position = Vector2(1533.2129, -1695.085)
-rotation = 2.2768726
-scale = Vector2(0.60246295, 0.60246295)
-
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_2" unique_id=19851047]
-z_index = -1
-material = SubResource("ShaderMaterial_sway")
-position = Vector2(1, -74)
-texture = ExtResource("22_7vben")
-
-[node name="Plant_3" parent="StaticBody2D/ScatteredPlants" unique_id=303524657 instance=ExtResource("18_www5i")]
-position = Vector2(-756.833, 4.471504)
-rotation = 3.1328645
-scale = Vector2(0.71455234, 0.71455234)
-
-[node name="Plant10" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_3" unique_id=637853844]
-z_index = -1
-material = SubResource("ShaderMaterial_55bpa")
-position = Vector2(0, -64)
-texture = ExtResource("20_c6dxu")
-
-[node name="Plant_4" parent="StaticBody2D/ScatteredPlants" unique_id=322939573 instance=ExtResource("23_iwss6")]
-position = Vector2(1995.8843, -4419.973)
-rotation = 2.094061
-scale = Vector2(0.7537439, 0.7537439)
-
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_4" unique_id=2105559584]
-z_index = -1
-material = SubResource("ShaderMaterial_oubm0")
-position = Vector2(-5, -70)
-texture = ExtResource("24_ow214")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_4/Plant2" unique_id=479022564]
-position = Vector2(0, -17)
-scale = Vector2(0.6149545, 0.6149545)
-color = Color(5.1018596e-06, 0.9439472, 0.44352138, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_5" parent="StaticBody2D/ScatteredPlants" unique_id=1180329688 instance=ExtResource("26_sgfng")]
-position = Vector2(-1013.8794, 6.7144012)
-rotation = 3.1328645
-scale = Vector2(0.60358906, 0.60358906)
-
-[node name="Plant9" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_5" unique_id=1320620668]
-z_index = -1
-material = SubResource("ShaderMaterial_m4w37")
-position = Vector2(1, -69)
-texture = ExtResource("27_p6dnf")
-
-[node name="Plant_6" parent="StaticBody2D/ScatteredPlants" unique_id=56989156 instance=ExtResource("28_unj4i")]
-position = Vector2(1340.775, -5694.5557)
-rotation = -1.8269073
-scale = Vector2(0.5228862, 0.5228862)
-
-[node name="Plant5" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_6" unique_id=1043968021]
-z_index = -1
-material = SubResource("ShaderMaterial_fia2g")
-position = Vector2(-38.98111, -142.21823)
-texture = ExtResource("29_sadvb")
-
-[node name="Plant_7" parent="StaticBody2D/ScatteredPlants" unique_id=813217899 instance=ExtResource("28_unj4i")]
-position = Vector2(5785.7583, -137.9248)
-rotation = 1.5146656
-scale = Vector2(0.6555392, 0.6555392)
-
-[node name="Plant5" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_7" unique_id=347096311]
-z_index = -1
-material = SubResource("ShaderMaterial_fia2g")
-position = Vector2(-4, -71)
-texture = ExtResource("29_sadvb")
-
-[node name="Plant_8" parent="StaticBody2D/ScatteredPlants" unique_id=1167676749 instance=ExtResource("28_unj4i")]
-position = Vector2(994.52405, -1229.0295)
-rotation = 0.37486884
-scale = Vector2(0.62261087, 0.62261087)
-
-[node name="Plant5" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_8" unique_id=1976203932]
-z_index = -1
-material = SubResource("ShaderMaterial_fia2g")
-position = Vector2(-4, -71)
-texture = ExtResource("29_sadvb")
-
-[node name="Plant_9" parent="StaticBody2D/ScatteredPlants" unique_id=1194943850 instance=ExtResource("30_tk73g")]
-position = Vector2(2375.8892, -1422.6232)
-rotation = 1.1843531
-scale = Vector2(0.79936606, 0.79936606)
-
-[node name="Plant4" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_9" unique_id=1814657334]
-z_index = -1
-material = SubResource("ShaderMaterial_ps4y6")
-position = Vector2(-3, -69)
-texture = ExtResource("31_q7fj0")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_9/Plant4" unique_id=1587509805]
-position = Vector2(4, -38)
-scale = Vector2(1.3044677, 1.2525319)
-color = Color(0.61425424, 0.81008285, 1, 1)
-energy = 0.43
-range_layer_min = -5
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_10" parent="StaticBody2D/ScatteredPlants" unique_id=1743771520 instance=ExtResource("28_unj4i")]
-position = Vector2(3531.6245, -5153.7188)
+[node name="Plant_1" parent="StaticBody2D/ScatteredPlants" unique_id=1115851430 instance=ExtResource("34_bi44y")]
+position = Vector2(3569.7463, -4965.933)
 rotation = 1.3705328
-scale = Vector2(0.5706196, 0.5706196)
+scale = Vector2(0.76383585, 0.76383585)
 
-[node name="Plant5" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_10" unique_id=488437041]
-z_index = -1
-material = SubResource("ShaderMaterial_fia2g")
-position = Vector2(-4, -71)
-texture = ExtResource("29_sadvb")
-
-[node name="Plant_11" parent="StaticBody2D/ScatteredPlants" unique_id=1363098647 instance=ExtResource("18_www5i")]
-position = Vector2(2879.8455, -27.260895)
-rotation = 3.1328766
-scale = Vector2(0.7585047, 0.7585047)
-
-[node name="Plant10" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_11" unique_id=773905697]
-z_index = -1
-material = SubResource("ShaderMaterial_55bpa")
-position = Vector2(0, -64)
-texture = ExtResource("20_c6dxu")
-
-[node name="Plant_12" parent="StaticBody2D/ScatteredPlants" unique_id=1526874278 instance=ExtResource("26_sgfng")]
-position = Vector2(-1959.9875, -7798.999)
-rotation = 0.0038085754
-scale = Vector2(0.6394996, 0.6394996)
-
-[node name="Plant_13" parent="StaticBody2D/ScatteredPlants" unique_id=1039614656 instance=ExtResource("32_yx6rh")]
-position = Vector2(-2035.6885, 15.630356)
-rotation = 3.1328645
-scale = Vector2(0.6725557, 0.6725557)
-
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_13" unique_id=1958644290]
-z_index = -1
-material = SubResource("ShaderMaterial_ip6jy")
-position = Vector2(-5, -70)
-texture = ExtResource("33_kklod")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_13/Plant2" unique_id=1062003969]
-position = Vector2(-11, -72)
-scale = Vector2(0.6149545, 0.6149545)
-color = Color(0.61425424, 0.81008285, 1, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="PointLight2D2" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_13/Plant2" unique_id=1011364653]
-position = Vector2(49, -65)
-scale = Vector2(0.37065777, 0.37065777)
-color = Color(1, 0.62, 0.79099995, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_14" parent="StaticBody2D/ScatteredPlants" unique_id=316175507 instance=ExtResource("18_www5i")]
-position = Vector2(-448.03857, -6113.3145)
-rotation = -2.8598707
-scale = Vector2(0.66345024, 0.66345024)
-
-[node name="Plant_15" parent="StaticBody2D/ScatteredPlants" unique_id=1278641342 instance=ExtResource("21_v0nts")]
-position = Vector2(-2812.4636, -3155.1536)
-rotation = -1.5692582
-scale = Vector2(0.63815355, 0.63815355)
-
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_15" unique_id=818649590]
-z_index = -1
-material = SubResource("ShaderMaterial_sway")
-position = Vector2(1, -74)
-texture = ExtResource("22_7vben")
-
-[node name="Plant_16" parent="StaticBody2D/ScatteredPlants" unique_id=1693957761 instance=ExtResource("34_bi44y")]
-position = Vector2(4352.048, -3479.283)
-rotation = 0.5768839
-scale = Vector2(0.75779194, 0.75779194)
-
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_16" unique_id=1854634504]
-z_index = -1
-material = SubResource("ShaderMaterial_g2rt8")
-position = Vector2(1, -74)
-texture = ExtResource("35_60joo")
-
-[node name="Plant_17" parent="StaticBody2D/ScatteredPlants" unique_id=653540170 instance=ExtResource("36_k62iv")]
-position = Vector2(2069.5457, -3886.9214)
-rotation = -0.64411145
-scale = Vector2(0.7394365, 0.7394365)
-
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_17" unique_id=1503077629]
-z_index = -1
-material = SubResource("ShaderMaterial_oqhqt")
-position = Vector2(1, -74)
-texture = ExtResource("23_53hnx")
-
-[node name="Plant_18" parent="StaticBody2D/ScatteredPlants" unique_id=1730696941 instance=ExtResource("36_k62iv")]
-position = Vector2(-610.2733, -2312.3162)
-rotation = 0.22423516
-scale = Vector2(0.66052383, 0.66052383)
-
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_18" unique_id=1381272916]
-z_index = -1
-material = SubResource("ShaderMaterial_oqhqt")
-position = Vector2(867.90875, 1686.1245)
-texture = ExtResource("23_53hnx")
-
-[node name="Plant_19" parent="StaticBody2D/ScatteredPlants" unique_id=1395655185 instance=ExtResource("32_yx6rh")]
-position = Vector2(2366.046, -2131.6335)
-rotation = -3.043486
-scale = Vector2(0.76250166, 0.76250166)
-
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_19" unique_id=1627393479]
-z_index = -1
-material = SubResource("ShaderMaterial_ip6jy")
-position = Vector2(-922.7484, 157.19269)
-texture = ExtResource("33_kklod")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_19/Plant2" unique_id=442967086]
-position = Vector2(-11, -72)
-scale = Vector2(0.6149545, 0.6149545)
-color = Color(0.61425424, 0.81008285, 1, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="PointLight2D2" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_19/Plant2" unique_id=2071916235]
-position = Vector2(49, -65)
-scale = Vector2(0.37065777, 0.37065777)
-color = Color(1, 0.62, 0.79099995, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_20" parent="StaticBody2D/ScatteredPlants" unique_id=549934603 instance=ExtResource("21_v0nts")]
-position = Vector2(367.64258, -6033.616)
-rotation = -3.0545242
-scale = Vector2(0.74030334, 0.74030334)
-
-[node name="Plant_21" parent="StaticBody2D/ScatteredPlants" unique_id=131556254 instance=ExtResource("26_sgfng")]
-position = Vector2(-401.0047, -5128.83)
-rotation = 0.05251377
-scale = Vector2(0.6807431, 0.6807431)
-
-[node name="Plant_22" parent="StaticBody2D/ScatteredPlants" unique_id=1407957130 instance=ExtResource("36_k62iv")]
-position = Vector2(5679.922, -2021.4705)
-rotation = 1.514664
-scale = Vector2(0.5585338, 0.5585338)
-
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_22" unique_id=117038871]
-z_index = -1
-material = SubResource("ShaderMaterial_oqhqt")
-position = Vector2(1, -74)
-texture = ExtResource("23_53hnx")
-
-[node name="Plant_23" parent="StaticBody2D/ScatteredPlants" unique_id=443400875 instance=ExtResource("23_iwss6")]
-position = Vector2(-566.859, -5731.054)
-rotation = -0.00935077
-scale = Vector2(0.6168426, 0.6168426)
-
-[node name="Plant_24" parent="StaticBody2D/ScatteredPlants" unique_id=467433146 instance=ExtResource("32_yx6rh")]
-position = Vector2(-2813.5203, -2465.1084)
-rotation = -1.5692582
-scale = Vector2(0.56396484, 0.56396484)
-
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_24" unique_id=1540446538]
-z_index = -1
-material = SubResource("ShaderMaterial_ip6jy")
-position = Vector2(-5, -70)
-texture = ExtResource("33_kklod")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_24/Plant2" unique_id=404119842]
-position = Vector2(-11, -72)
-scale = Vector2(0.6149545, 0.6149545)
-color = Color(0.61425424, 0.81008285, 1, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="PointLight2D2" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_24/Plant2" unique_id=703168013]
-position = Vector2(49, -65)
-scale = Vector2(0.37065777, 0.37065777)
-color = Color(1, 0.62, 0.79099995, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_25" parent="StaticBody2D/ScatteredPlants" unique_id=436192202 instance=ExtResource("30_tk73g")]
-position = Vector2(-2812.9858, -2814.1328)
-rotation = -1.5692582
-scale = Vector2(0.54237175, 0.54237175)
-
-[node name="Plant4" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_25" unique_id=1602125230]
-z_index = -1
-material = SubResource("ShaderMaterial_ps4y6")
-position = Vector2(-3, -69)
-texture = ExtResource("31_q7fj0")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_25/Plant4" unique_id=1521977561]
-position = Vector2(4, -38)
-scale = Vector2(1.3044677, 1.2525319)
-color = Color(0.61425424, 0.81008285, 1, 1)
-energy = 0.43
-range_layer_min = -5
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_26" parent="StaticBody2D/ScatteredPlants" unique_id=1541534891 instance=ExtResource("36_k62iv")]
-position = Vector2(970.6334, -4222.002)
-rotation = -2.8619196
-scale = Vector2(0.7766139, 0.7766139)
-
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_26" unique_id=1470173103]
-z_index = -1
-material = SubResource("ShaderMaterial_oqhqt")
-position = Vector2(1, -74)
-texture = ExtResource("23_53hnx")
-
-[node name="Plant_27" parent="StaticBody2D/ScatteredPlants" unique_id=1248704729 instance=ExtResource("26_sgfng")]
-position = Vector2(727.89404, -7735.0586)
-rotation = 0.028091963
-scale = Vector2(0.6547725, 0.6547725)
-
-[node name="Plant9" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_27" unique_id=1233237938]
-z_index = -1
-material = SubResource("ShaderMaterial_m4w37")
-position = Vector2(1, -69)
-texture = ExtResource("27_p6dnf")
-
-[node name="Plant_28" parent="StaticBody2D/ScatteredPlants" unique_id=633828881 instance=ExtResource("21_v0nts")]
-position = Vector2(1575.3025, -4204.0264)
-rotation = 2.898852
-scale = Vector2(0.68099415, 0.68099415)
-
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_28" unique_id=5531914]
-z_index = -1
-material = SubResource("ShaderMaterial_sway")
-position = Vector2(1, -74)
-texture = ExtResource("22_7vben")
-
-[node name="Plant_29" parent="StaticBody2D/ScatteredPlants" unique_id=707653025 instance=ExtResource("36_k62iv")]
-position = Vector2(5668.897, -2217.681)
-rotation = 1.514664
-scale = Vector2(0.68470937, 0.68470937)
-
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_29" unique_id=913193359]
-z_index = -1
-material = SubResource("ShaderMaterial_oqhqt")
-position = Vector2(1, -74)
-texture = ExtResource("23_53hnx")
-
-[node name="Plant_30" parent="StaticBody2D/ScatteredPlants" unique_id=1243385177 instance=ExtResource("23_iwss6")]
-position = Vector2(-2809.281, -5233.5566)
-rotation = -1.5692827
-scale = Vector2(0.72217566, 0.72217566)
-
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_30" unique_id=1651224045]
-z_index = -1
-material = SubResource("ShaderMaterial_oubm0")
-position = Vector2(-5, -70)
-texture = ExtResource("24_ow214")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_30/Plant2" unique_id=63370887]
-position = Vector2(0, -17)
-scale = Vector2(0.6149545, 0.6149545)
-color = Color(5.1018596e-06, 0.9439472, 0.44352138, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_31" parent="StaticBody2D/ScatteredPlants" unique_id=1554013366 instance=ExtResource("26_sgfng")]
-position = Vector2(1945.2217, -1628.3594)
-rotation = -0.80474293
-scale = Vector2(0.64963615, 0.64963615)
-
-[node name="Plant9" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_31" unique_id=1605222308]
-z_index = -1
-material = SubResource("ShaderMaterial_m4w37")
-position = Vector2(1, -69)
-texture = ExtResource("27_p6dnf")
-
-[node name="Plant_32" parent="StaticBody2D/ScatteredPlants" unique_id=1592225134 instance=ExtResource("23_iwss6")]
-position = Vector2(-2809.8293, -4875.442)
-rotation = -1.5692827
-scale = Vector2(0.7225625, 0.7225625)
-
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_32" unique_id=209678219]
-z_index = -1
-material = SubResource("ShaderMaterial_oubm0")
-position = Vector2(-5, -70)
-texture = ExtResource("24_ow214")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_32/Plant2" unique_id=753175098]
-position = Vector2(0, -17)
-scale = Vector2(0.6149545, 0.6149545)
-color = Color(5.1018596e-06, 0.9439472, 0.44352138, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_33" parent="StaticBody2D/ScatteredPlants" unique_id=237409321 instance=ExtResource("26_sgfng")]
-position = Vector2(-1028.0603, -2090.646)
-rotation = 1.1440173
-scale = Vector2(0.73054665, 0.73054665)
-
-[node name="Plant9" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_33" unique_id=1462681887]
-z_index = -1
-material = SubResource("ShaderMaterial_m4w37")
-position = Vector2(1, -69)
-texture = ExtResource("27_p6dnf")
-
-[node name="Plant_34" parent="StaticBody2D/ScatteredPlants" unique_id=1757460026 instance=ExtResource("28_unj4i")]
-position = Vector2(3965.4678, -3730.8503)
-rotation = 0.5768839
-scale = Vector2(0.5191983, 0.5191983)
-
-[node name="Plant5" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_34" unique_id=1278369346]
-z_index = -1
-material = SubResource("ShaderMaterial_fia2g")
-position = Vector2(-4, -71)
-texture = ExtResource("29_sadvb")
-
-[node name="Plant_35" parent="StaticBody2D/ScatteredPlants" unique_id=518810978 instance=ExtResource("21_v0nts")]
-position = Vector2(-909.63007, -5727.8467)
-rotation = -0.009356873
-scale = Vector2(0.77920914, 0.77920914)
-
-[node name="Plant_36" parent="StaticBody2D/ScatteredPlants" unique_id=241574242 instance=ExtResource("32_yx6rh")]
-position = Vector2(685.12744, -4230.101)
-rotation = -3.1403658
-scale = Vector2(0.7270229, 0.7270229)
-
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_36" unique_id=1228005132]
-z_index = -1
-material = SubResource("ShaderMaterial_ip6jy")
-position = Vector2(-5, -70)
-texture = ExtResource("33_kklod")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_36/Plant2" unique_id=379038814]
-position = Vector2(-11, -72)
-scale = Vector2(0.6149545, 0.6149545)
-color = Color(0.61425424, 0.81008285, 1, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="PointLight2D2" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_36/Plant2" unique_id=1789967923]
-position = Vector2(49, -65)
-scale = Vector2(0.37065777, 0.37065777)
-color = Color(1, 0.62, 0.79099995, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_37" parent="StaticBody2D/ScatteredPlants" unique_id=1758278264 instance=ExtResource("34_bi44y")]
-position = Vector2(3391.1082, -5845.8916)
-rotation = 1.3705328
-scale = Vector2(0.634537, 0.634537)
-
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_37" unique_id=53422430]
-z_index = -1
-material = SubResource("ShaderMaterial_g2rt8")
-position = Vector2(1, -74)
-texture = ExtResource("35_60joo")
-
-[node name="Plant_38" parent="StaticBody2D/ScatteredPlants" unique_id=942261130 instance=ExtResource("34_bi44y")]
-position = Vector2(1782.9336, -1459.6702)
-rotation = -0.80473447
-scale = Vector2(0.7133363, 0.7133363)
-
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_38" unique_id=1136281079]
-z_index = -1
-material = SubResource("ShaderMaterial_g2rt8")
-position = Vector2(1, -74)
-texture = ExtResource("35_60joo")
-
-[node name="Plant_39" parent="StaticBody2D/ScatteredPlants" unique_id=384382479 instance=ExtResource("34_bi44y")]
-position = Vector2(1492.9696, -4183.6387)
-rotation = 2.898852
-scale = Vector2(0.77566975, 0.77566975)
-
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_39" unique_id=75434800]
-z_index = -1
-material = SubResource("ShaderMaterial_g2rt8")
-position = Vector2(1, -74)
-texture = ExtResource("35_60joo")
-
-[node name="Plant_40" parent="StaticBody2D/ScatteredPlants" unique_id=167353410 instance=ExtResource("18_www5i")]
-position = Vector2(3180.529, -6883.1895)
-rotation = 1.3705328
-scale = Vector2(0.72353107, 0.72353107)
-
-[node name="Plant10" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_40" unique_id=649322056]
-z_index = -1
-material = SubResource("ShaderMaterial_55bpa")
-position = Vector2(0, -64)
-texture = ExtResource("20_c6dxu")
-
-[node name="Plant_41" parent="StaticBody2D/ScatteredPlants" unique_id=850599377 instance=ExtResource("28_unj4i")]
-position = Vector2(-991.4616, -3479.3423)
-rotation = -1.551557
-scale = Vector2(0.78013587, 0.78013587)
-
-[node name="Plant5" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_41" unique_id=192756319]
-z_index = -1
-material = SubResource("ShaderMaterial_fia2g")
-position = Vector2(-4, -71)
-texture = ExtResource("29_sadvb")
-
-[node name="Plant_42" parent="StaticBody2D/ScatteredPlants" unique_id=1645844624 instance=ExtResource("36_k62iv")]
-position = Vector2(-588.237, -3701.2507)
-rotation = 0.154996
-scale = Vector2(0.6037754, 0.6037754)
-
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_42" unique_id=1962710056]
-z_index = -1
-material = SubResource("ShaderMaterial_oqhqt")
-position = Vector2(1, -74)
-texture = ExtResource("23_53hnx")
-
-[node name="Plant_43" parent="StaticBody2D/ScatteredPlants" unique_id=305873342 instance=ExtResource("26_sgfng")]
-position = Vector2(-665.095, -6176.136)
-rotation = -2.8598707
-scale = Vector2(0.536201, 0.536201)
-
-[node name="Plant_44" parent="StaticBody2D/ScatteredPlants" unique_id=1672021962 instance=ExtResource("34_bi44y")]
-position = Vector2(-1556.5262, -6873.8276)
-rotation = 1.6299615
-scale = Vector2(0.5910049, 0.5910049)
-
-[node name="Plant_45" parent="StaticBody2D/ScatteredPlants" unique_id=1235493364 instance=ExtResource("30_tk73g")]
-position = Vector2(2044.4321, -2099.1833)
-rotation = 2.5980916
-scale = Vector2(0.71921676, 0.71921676)
-
-[node name="Plant4" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_45" unique_id=825283401]
-z_index = -1
-material = SubResource("ShaderMaterial_ps4y6")
-position = Vector2(-3, -69)
-texture = ExtResource("31_q7fj0")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_45/Plant4" unique_id=1536126388]
-position = Vector2(4, -38)
-scale = Vector2(1.3044677, 1.2525319)
-color = Color(0.61425424, 0.81008285, 1, 1)
-energy = 0.43
-range_layer_min = -5
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_46" parent="StaticBody2D/ScatteredPlants" unique_id=1639848927 instance=ExtResource("30_tk73g")]
-position = Vector2(5138.1904, -1274.1287)
-rotation = -3.0097656
-scale = Vector2(0.70190686, 0.70190686)
-
-[node name="Plant4" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_46" unique_id=52024040]
-z_index = -1
-material = SubResource("ShaderMaterial_ps4y6")
-position = Vector2(-3, -69)
-texture = ExtResource("31_q7fj0")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_46/Plant4" unique_id=1167892771]
-position = Vector2(4, -38)
-scale = Vector2(1.3044677, 1.2525319)
-color = Color(0.61425424, 0.81008285, 1, 1)
-energy = 0.43
-range_layer_min = -5
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_47" parent="StaticBody2D/ScatteredPlants" unique_id=1938081258 instance=ExtResource("34_bi44y")]
-position = Vector2(1591.272, -16.01725)
-rotation = 3.1328645
-scale = Vector2(0.6124807, 0.6124807)
-
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_47" unique_id=1710481498]
-z_index = -1
-material = SubResource("ShaderMaterial_g2rt8")
-position = Vector2(1, -74)
-texture = ExtResource("35_60joo")
-
-[node name="Plant_48" parent="StaticBody2D/ScatteredPlants" unique_id=1009153032 instance=ExtResource("23_iwss6")]
-position = Vector2(-2812.0955, -3395.494)
-rotation = -1.5692582
-scale = Vector2(0.55113, 0.55113)
-
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_48" unique_id=484648260]
-z_index = -1
-material = SubResource("ShaderMaterial_oubm0")
-position = Vector2(-5, -70)
-texture = ExtResource("24_ow214")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_48/Plant2" unique_id=921105001]
-position = Vector2(0, -17)
-scale = Vector2(0.6149545, 0.6149545)
-color = Color(5.1018596e-06, 0.9439472, 0.44352138, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_49" parent="StaticBody2D/ScatteredPlants" unique_id=283327955 instance=ExtResource("32_yx6rh")]
-position = Vector2(1351.4923, -7717.5347)
-rotation = 0.028091963
-scale = Vector2(0.53325045, 0.53325045)
-
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_49" unique_id=1821952674]
-z_index = -1
-material = SubResource("ShaderMaterial_ip6jy")
-position = Vector2(-5, -70)
-texture = ExtResource("33_kklod")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_49/Plant2" unique_id=1924601314]
-position = Vector2(-11, -72)
-scale = Vector2(0.6149545, 0.6149545)
-color = Color(0.61425424, 0.81008285, 1, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="PointLight2D2" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_49/Plant2" unique_id=674571612]
-position = Vector2(49, -65)
-scale = Vector2(0.37065777, 0.37065777)
-color = Color(1, 0.62, 0.79099995, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_50" parent="StaticBody2D/ScatteredPlants" unique_id=590716087 instance=ExtResource("18_www5i")]
-position = Vector2(1014.3578, -2456.9858)
-rotation = -1.9575636
-scale = Vector2(0.7283323, 0.7283323)
-
-[node name="Plant10" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_50" unique_id=72967630]
-z_index = -1
-material = SubResource("ShaderMaterial_55bpa")
-position = Vector2(0, -64)
-texture = ExtResource("20_c6dxu")
-
-[node name="Plant_51" parent="StaticBody2D/ScatteredPlants" unique_id=863700691 instance=ExtResource("28_unj4i")]
-position = Vector2(2789.57, -1031.8328)
-rotation = 0.3812136
-scale = Vector2(0.50937796, 0.50937796)
-
-[node name="Plant5" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_51" unique_id=2118953827]
-z_index = -1
-material = SubResource("ShaderMaterial_fia2g")
-position = Vector2(-27.883984, -156.2627)
-scale = Vector2(1, 1.0414151)
-texture = ExtResource("29_sadvb")
-
-[node name="Plant_52" parent="StaticBody2D/ScatteredPlants" unique_id=429182754 instance=ExtResource("23_iwss6")]
-position = Vector2(3076.2104, -7397.0547)
-rotation = 1.3705328
-scale = Vector2(0.7018335, 0.7018335)
-
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_52" unique_id=880308916]
-z_index = -1
-material = SubResource("ShaderMaterial_oubm0")
-position = Vector2(-5, -70)
-texture = ExtResource("24_ow214")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_52/Plant2" unique_id=1189870511]
-position = Vector2(0, -17)
-scale = Vector2(0.6149545, 0.6149545)
-color = Color(5.1018596e-06, 0.9439472, 0.44352138, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_53" parent="StaticBody2D/ScatteredPlants" unique_id=986297786 instance=ExtResource("23_iwss6")]
-position = Vector2(5596.798, -988.4128)
-rotation = 0.09746892
-scale = Vector2(0.5182343, 0.5182343)
-
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_53" unique_id=1988262684]
-z_index = -1
-material = SubResource("ShaderMaterial_oubm0")
-position = Vector2(-5, -70)
-texture = ExtResource("24_ow214")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_53/Plant2" unique_id=1477813370]
-position = Vector2(0, -17)
-scale = Vector2(0.6149545, 0.6149545)
-color = Color(5.1018596e-06, 0.9439472, 0.44352138, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_54" parent="StaticBody2D/ScatteredPlants" unique_id=2059424463 instance=ExtResource("34_bi44y")]
-position = Vector2(-240.53976, -5120.396)
-rotation = 0.052512247
-scale = Vector2(0.55850583, 0.55850583)
-
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_54" unique_id=1533906687]
-z_index = -1
-material = SubResource("ShaderMaterial_g2rt8")
-position = Vector2(1, -74)
-texture = ExtResource("35_60joo")
-
-[node name="Plant_55" parent="StaticBody2D/ScatteredPlants" unique_id=1955551673 instance=ExtResource("32_yx6rh")]
-position = Vector2(4469.415, -3402.906)
-rotation = 0.5768839
-scale = Vector2(0.6617819, 0.6617819)
-
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_55" unique_id=2106364405]
-z_index = -1
-material = SubResource("ShaderMaterial_ip6jy")
-position = Vector2(-5, -70)
-texture = ExtResource("33_kklod")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_55/Plant2" unique_id=2120514806]
-position = Vector2(-11, -72)
-scale = Vector2(0.6149545, 0.6149545)
-color = Color(0.61425424, 0.81008285, 1, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="PointLight2D2" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_55/Plant2" unique_id=1479631060]
-position = Vector2(49, -65)
-scale = Vector2(0.37065777, 0.37065777)
-color = Color(1, 0.62, 0.79099995, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_56" parent="StaticBody2D/ScatteredPlants" unique_id=766475624 instance=ExtResource("32_yx6rh")]
-position = Vector2(1565.5006, -3889.9258)
-rotation = 0.030302633
-scale = Vector2(0.71223533, 0.71223533)
-
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_56" unique_id=1249249553]
-z_index = -1
-material = SubResource("ShaderMaterial_ip6jy")
-position = Vector2(-5, -70)
-texture = ExtResource("33_kklod")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_56/Plant2" unique_id=114315586]
-position = Vector2(-11, -72)
-scale = Vector2(0.6149545, 0.6149545)
-color = Color(0.61425424, 0.81008285, 1, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="PointLight2D2" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_56/Plant2" unique_id=370943574]
-position = Vector2(49, -65)
-scale = Vector2(0.37065777, 0.37065777)
-color = Color(1, 0.62, 0.79099995, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_57" parent="StaticBody2D/ScatteredPlants" unique_id=244627362 instance=ExtResource("21_v0nts")]
-position = Vector2(4554.7017, -3347.4058)
-rotation = 0.5768839
-scale = Vector2(0.5364373, 0.5364373)
-
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_57" unique_id=1721047342]
-z_index = -1
-material = SubResource("ShaderMaterial_sway")
-position = Vector2(1, -74)
-texture = ExtResource("22_7vben")
-
-[node name="Plant_58" parent="StaticBody2D/ScatteredPlants" unique_id=447593611 instance=ExtResource("34_bi44y")]
-position = Vector2(-872.9106, -6204.2334)
-rotation = 2.9649343
-scale = Vector2(0.7554045, 0.7554045)
-
-[node name="Plant_59" parent="StaticBody2D/ScatteredPlants" unique_id=917989883 instance=ExtResource("26_sgfng")]
-position = Vector2(1670.5168, -3886.7432)
-rotation = 0.030302633
-scale = Vector2(0.7425058, 0.7425058)
-
-[node name="Plant9" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_59" unique_id=1198463924]
-z_index = -1
-material = SubResource("ShaderMaterial_m4w37")
-position = Vector2(1, -69)
-texture = ExtResource("27_p6dnf")
-
-[node name="Plant_60" parent="StaticBody2D/ScatteredPlants" unique_id=161221730 instance=ExtResource("26_sgfng")]
-position = Vector2(5389.562, -1008.6788)
-rotation = 0.09746892
-scale = Vector2(0.6038206, 0.6038206)
-
-[node name="Plant9" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_60" unique_id=1978683538]
-z_index = -1
-material = SubResource("ShaderMaterial_m4w37")
-position = Vector2(1, -69)
-texture = ExtResource("27_p6dnf")
-
-[node name="Plant_61" parent="StaticBody2D/ScatteredPlants" unique_id=244951236 instance=ExtResource("30_tk73g")]
-position = Vector2(698.23004, -4500.2207)
-rotation = -0.16515067
-scale = Vector2(0.6169795, 0.6169795)
-
-[node name="Plant4" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_61" unique_id=1832666530]
-z_index = -1
-material = SubResource("ShaderMaterial_ps4y6")
-position = Vector2(-3, -69)
-texture = ExtResource("31_q7fj0")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_61/Plant4" unique_id=213511624]
-position = Vector2(4, -38)
-scale = Vector2(1.3044677, 1.2525319)
-color = Color(0.61425424, 0.81008285, 1, 1)
-energy = 0.43
-range_layer_min = -5
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_62" parent="StaticBody2D/ScatteredPlants" unique_id=615249485 instance=ExtResource("23_iwss6")]
-position = Vector2(3129.053, -7136.7563)
-rotation = 1.3705328
-scale = Vector2(0.7080998, 0.7080998)
-
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_62" unique_id=477305079]
-z_index = -1
-material = SubResource("ShaderMaterial_oubm0")
-position = Vector2(-5, -70)
-texture = ExtResource("24_ow214")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_62/Plant2" unique_id=1260817011]
-position = Vector2(0, -17)
-scale = Vector2(0.6149545, 0.6149545)
-color = Color(5.1018596e-06, 0.9439472, 0.44352138, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_63" parent="StaticBody2D/ScatteredPlants" unique_id=2000339596 instance=ExtResource("21_v0nts")]
-position = Vector2(-2815.7903, -982.5968)
-rotation = -1.5692643
-scale = Vector2(0.6593776, 0.6593776)
-
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_63" unique_id=403148131]
-z_index = -1
-material = SubResource("ShaderMaterial_sway")
-position = Vector2(1, -74)
-texture = ExtResource("22_7vben")
-
-[node name="Plant_64" parent="StaticBody2D/ScatteredPlants" unique_id=412566610 instance=ExtResource("28_unj4i")]
-position = Vector2(1937.0769, -4544.9883)
-rotation = 0.58802295
-scale = Vector2(0.7900398, 0.7900398)
-
-[node name="Plant5" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_64" unique_id=1969837815]
-z_index = -1
-material = SubResource("ShaderMaterial_fia2g")
-position = Vector2(-4, -71)
-texture = ExtResource("29_sadvb")
-
-[node name="Plant_65" parent="StaticBody2D/ScatteredPlants" unique_id=1250783549 instance=ExtResource("28_unj4i")]
-position = Vector2(1203.7577, -4155.051)
-rotation = -2.8619332
-scale = Vector2(0.54809815, 0.54809815)
-
-[node name="Plant5" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_65" unique_id=1769426224]
-z_index = -1
-material = SubResource("ShaderMaterial_fia2g")
-position = Vector2(-4, -71)
-texture = ExtResource("29_sadvb")
-
-[node name="Plant_66" parent="StaticBody2D/ScatteredPlants" unique_id=509060893 instance=ExtResource("30_tk73g")]
-position = Vector2(-139.73944, -7759.44)
-rotation = 0.028093489
-scale = Vector2(0.6355821, 0.6355821)
-
-[node name="Plant4" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_66" unique_id=1504508496]
-z_index = -1
-material = SubResource("ShaderMaterial_ps4y6")
-position = Vector2(-3, -69)
-texture = ExtResource("31_q7fj0")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_66/Plant4" unique_id=1907788470]
-position = Vector2(4, -38)
-scale = Vector2(1.3044677, 1.2525319)
-color = Color(0.61425424, 0.81008285, 1, 1)
-energy = 0.43
-range_layer_min = -5
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_67" parent="StaticBody2D/ScatteredPlants" unique_id=1249523986 instance=ExtResource("28_unj4i")]
-position = Vector2(1733.7422, -1911.4675)
-rotation = 2.598102
-scale = Vector2(0.7874491, 0.7874491)
-
-[node name="Plant5" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_67" unique_id=1893822952]
-z_index = -1
-material = SubResource("ShaderMaterial_fia2g")
-position = Vector2(-4, -71)
-texture = ExtResource("29_sadvb")
-
-[node name="Plant_68" parent="StaticBody2D/ScatteredPlants" unique_id=1332291937 instance=ExtResource("28_unj4i")]
-position = Vector2(1678.6814, -5056.5815)
-rotation = 2.9756975
-scale = Vector2(0.7850153, 0.7850153)
-
-[node name="Plant5" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_68" unique_id=306627093]
-z_index = -1
-material = SubResource("ShaderMaterial_fia2g")
-position = Vector2(-4, -71)
-texture = ExtResource("29_sadvb")
-
-[node name="Plant_69" parent="StaticBody2D/ScatteredPlants" unique_id=1465598341 instance=ExtResource("34_bi44y")]
-position = Vector2(5358.369, -2824.4175)
-rotation = 0.5768839
-scale = Vector2(0.7430145, 0.7430145)
-
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_69" unique_id=1246792293]
-z_index = -1
-material = SubResource("ShaderMaterial_g2rt8")
-position = Vector2(1, -74)
-texture = ExtResource("35_60joo")
-
-[node name="Plant_70" parent="StaticBody2D/ScatteredPlants" unique_id=286128223 instance=ExtResource("32_yx6rh")]
-position = Vector2(3444.705, -1914.208)
-rotation = -1.8616568
-scale = Vector2(0.6533423, 0.6533423)
-
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_70" unique_id=1960930928]
-z_index = -1
-material = SubResource("ShaderMaterial_ip6jy")
-position = Vector2(-16.929562, -126.021736)
-texture = ExtResource("33_kklod")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_70/Plant2" unique_id=1958363374]
-position = Vector2(-11, -72)
-scale = Vector2(0.6149545, 0.6149545)
-color = Color(0.61425424, 0.81008285, 1, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="PointLight2D2" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_70/Plant2" unique_id=1384454048]
-position = Vector2(49, -65)
-scale = Vector2(0.37065777, 0.37065777)
-color = Color(1, 0.62, 0.79099995, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_71" parent="StaticBody2D/ScatteredPlants" unique_id=1248775023 instance=ExtResource("28_unj4i")]
-position = Vector2(797.5841, -2579.2588)
-rotation = -2.984688
-scale = Vector2(0.61706847, 0.61706847)
-
-[node name="Plant5" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_71" unique_id=524261660]
-z_index = -1
-material = SubResource("ShaderMaterial_fia2g")
-position = Vector2(-4, -71)
-texture = ExtResource("29_sadvb")
-
-[node name="Plant_72" parent="StaticBody2D/ScatteredPlants" unique_id=1844830872 instance=ExtResource("36_k62iv")]
-position = Vector2(-2816.5898, -460.49713)
-rotation = -1.5692643
-scale = Vector2(0.7782937, 0.7782937)
-
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_72" unique_id=1276102145]
-z_index = -1
-material = SubResource("ShaderMaterial_oqhqt")
-position = Vector2(1, -74)
-texture = ExtResource("23_53hnx")
-
-[node name="Plant_73" parent="StaticBody2D/ScatteredPlants" unique_id=1916568937 instance=ExtResource("21_v0nts")]
-position = Vector2(-553.146, -6143.7354)
-rotation = -2.8598707
-scale = Vector2(0.5226928, 0.5226928)
-
-[node name="Plant_74" parent="StaticBody2D/ScatteredPlants" unique_id=203585815 instance=ExtResource("34_bi44y")]
-position = Vector2(-1322.2495, -2392.7974)
-rotation = 1.0381773
-scale = Vector2(0.59115154, 0.59115154)
-
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_74" unique_id=1467667469]
-z_index = -1
-material = SubResource("ShaderMaterial_g2rt8")
-position = Vector2(1, -74)
-texture = ExtResource("35_60joo")
-
-[node name="Plant_75" parent="StaticBody2D/ScatteredPlants" unique_id=1151835333 instance=ExtResource("28_unj4i")]
-position = Vector2(-2814.3743, -1907.3201)
-rotation = -1.5692705
-scale = Vector2(0.7031312, 0.7031312)
-
-[node name="Plant5" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_75" unique_id=2046624173]
-z_index = -1
-material = SubResource("ShaderMaterial_fia2g")
-position = Vector2(-4, -71)
-texture = ExtResource("29_sadvb")
-
-[node name="Plant_76" parent="StaticBody2D/ScatteredPlants" unique_id=372410738 instance=ExtResource("30_tk73g")]
-position = Vector2(2274.1995, -2140.6729)
-rotation = -3.043486
-scale = Vector2(0.7111079, 0.7111079)
-
-[node name="Plant4" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_76" unique_id=1354997126]
-z_index = -1
-material = SubResource("ShaderMaterial_ps4y6")
-position = Vector2(-3, -69)
-texture = ExtResource("31_q7fj0")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_76/Plant4" unique_id=376903786]
-position = Vector2(4, -38)
-scale = Vector2(1.3044677, 1.2525319)
-color = Color(0.61425424, 0.81008285, 1, 1)
-energy = 0.43
-range_layer_min = -5
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_77" parent="StaticBody2D/ScatteredPlants" unique_id=615997186 instance=ExtResource("32_yx6rh")]
-position = Vector2(-265.1844, -4920.8936)
-rotation = -3.1154392
-scale = Vector2(0.56681764, 0.56681764)
-
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_77" unique_id=1329202933]
-z_index = -1
-material = SubResource("ShaderMaterial_ip6jy")
-position = Vector2(-5, -70)
-texture = ExtResource("33_kklod")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_77/Plant2" unique_id=1418419509]
-position = Vector2(-11, -72)
-scale = Vector2(0.6149545, 0.6149545)
-color = Color(0.61425424, 0.81008285, 1, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="PointLight2D2" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_77/Plant2" unique_id=1516656797]
-position = Vector2(49, -65)
-scale = Vector2(0.37065777, 0.37065777)
-color = Color(1, 0.62, 0.79099995, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_78" parent="StaticBody2D/ScatteredPlants" unique_id=815481693 instance=ExtResource("30_tk73g")]
-position = Vector2(441.85504, -1073.3329)
-rotation = 0.19322398
-scale = Vector2(0.6069338, 0.6069338)
-
-[node name="Plant4" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_78" unique_id=1730052287]
-z_index = -1
-material = SubResource("ShaderMaterial_ps4y6")
-position = Vector2(-3, -69)
-texture = ExtResource("31_q7fj0")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_78/Plant4" unique_id=2012867872]
-position = Vector2(4, -38)
-scale = Vector2(1.3044677, 1.2525319)
-color = Color(0.61425424, 0.81008285, 1, 1)
-energy = 0.43
-range_layer_min = -5
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_79" parent="StaticBody2D/ScatteredPlants" unique_id=1758697464 instance=ExtResource("23_iwss6")]
-position = Vector2(-486.9781, -5133.3486)
-rotation = 0.052510727
-scale = Vector2(0.754992, 0.754992)
-
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_79" unique_id=304868913]
-z_index = -1
-material = SubResource("ShaderMaterial_oubm0")
-position = Vector2(-5, -70)
-texture = ExtResource("24_ow214")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_79/Plant2" unique_id=1010261795]
-position = Vector2(0, -17)
-scale = Vector2(0.6149545, 0.6149545)
-color = Color(5.1018596e-06, 0.9439472, 0.44352138, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_80" parent="StaticBody2D/ScatteredPlants" unique_id=1582730156 instance=ExtResource("32_yx6rh")]
-position = Vector2(1803.3868, -7704.8364)
-rotation = 0.028091963
-scale = Vector2(0.63606834, 0.63606834)
-
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_80" unique_id=2058546279]
-z_index = -1
-material = SubResource("ShaderMaterial_ip6jy")
-position = Vector2(-5, -70)
-texture = ExtResource("33_kklod")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_80/Plant2" unique_id=610140863]
-position = Vector2(-11, -72)
-scale = Vector2(0.6149545, 0.6149545)
-color = Color(0.61425424, 0.81008285, 1, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="PointLight2D2" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_80/Plant2" unique_id=442576867]
-position = Vector2(49, -65)
-scale = Vector2(0.37065777, 0.37065777)
-color = Color(1, 0.62, 0.79099995, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_81" parent="StaticBody2D/ScatteredPlants" unique_id=63657149 instance=ExtResource("28_unj4i")]
-position = Vector2(1041.053, -1968.7474)
-rotation = -1.2193565
-scale = Vector2(0.51884377, 0.51884377)
-
-[node name="Plant5" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_81" unique_id=1808979464]
-z_index = -1
-material = SubResource("ShaderMaterial_fia2g")
-position = Vector2(-4, -71)
-texture = ExtResource("29_sadvb")
-
-[node name="Plant_82" parent="StaticBody2D/ScatteredPlants" unique_id=901400167 instance=ExtResource("32_yx6rh")]
-position = Vector2(305.12158, -5698.456)
-rotation = 0.09055379
-scale = Vector2(0.66671145, 0.66671145)
-
-[node name="Plant_83" parent="StaticBody2D/ScatteredPlants" unique_id=611588087 instance=ExtResource("23_iwss6")]
-position = Vector2(-1170.3365, -7327.4844)
-rotation = -1.5489686
-scale = Vector2(0.6338384, 0.6338384)
-
-[node name="Plant_84" parent="StaticBody2D/ScatteredPlants" unique_id=1271946287 instance=ExtResource("23_iwss6")]
-position = Vector2(2042.2268, -4993.9546)
-rotation = -2.7632987
-scale = Vector2(0.57193625, 0.57193625)
-
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_84" unique_id=1501940506]
-z_index = -1
-material = SubResource("ShaderMaterial_oubm0")
-position = Vector2(-5, -70)
-texture = ExtResource("24_ow214")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_84/Plant2" unique_id=1281214472]
-position = Vector2(0, -17)
-scale = Vector2(0.6149545, 0.6149545)
-color = Color(5.1018596e-06, 0.9439472, 0.44352138, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_85" parent="StaticBody2D/ScatteredPlants" unique_id=1580793211 instance=ExtResource("23_iwss6")]
-position = Vector2(3055.124, -28.790314)
-rotation = 3.1328766
-scale = Vector2(0.6681282, 0.6681282)
-
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_85" unique_id=478247615]
-z_index = -1
-material = SubResource("ShaderMaterial_oubm0")
-position = Vector2(-5, -70)
-texture = ExtResource("24_ow214")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_85/Plant2" unique_id=1289834027]
-position = Vector2(0, -17)
-scale = Vector2(0.6149545, 0.6149545)
-color = Color(5.1018596e-06, 0.9439472, 0.44352138, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_86" parent="StaticBody2D/ScatteredPlants" unique_id=870188145 instance=ExtResource("18_www5i")]
-position = Vector2(3722.2844, -1459.2982)
+[node name="Plant_2" parent="StaticBody2D/ScatteredPlants" unique_id=1114668064 instance=ExtResource("30_tk73g")]
+position = Vector2(4441.9277, -1569.724)
 rotation = 2.9893444
-scale = Vector2(0.7780685, 0.7780685)
+scale = Vector2(0.5933722, 0.5933722)
 
-[node name="Plant10" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_86" unique_id=1896745545]
-z_index = -1
-material = SubResource("ShaderMaterial_55bpa")
-position = Vector2(0, -64)
-texture = ExtResource("20_c6dxu")
-
-[node name="Plant_87" parent="StaticBody2D/ScatteredPlants" unique_id=1748876219 instance=ExtResource("34_bi44y")]
-position = Vector2(-1585.3739, -7797.573)
-rotation = 0.0038085754
-scale = Vector2(0.68831944, 0.68831944)
-
-[node name="Plant_88" parent="StaticBody2D/ScatteredPlants" unique_id=1856918128 instance=ExtResource("26_sgfng")]
-position = Vector2(-482.21518, -2959.8672)
-rotation = -2.2128937
-scale = Vector2(0.79335266, 0.79335266)
-
-[node name="Plant9" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_88" unique_id=1330351042]
-z_index = -1
-material = SubResource("ShaderMaterial_m4w37")
-position = Vector2(1, -69)
-texture = ExtResource("27_p6dnf")
-
-[node name="Plant_89" parent="StaticBody2D/ScatteredPlants" unique_id=348279943 instance=ExtResource("28_unj4i")]
-position = Vector2(-2810.2334, -4611.569)
+[node name="Plant_3" parent="StaticBody2D/ScatteredPlants" unique_id=1180329688 instance=ExtResource("26_sgfng")]
+position = Vector2(-2806.729, -6900.1377)
 rotation = -1.5692827
-scale = Vector2(0.5600895, 0.5600895)
+scale = Vector2(0.5634343, 0.5634343)
 
-[node name="Plant5" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_89" unique_id=2068695559]
-z_index = -1
-material = SubResource("ShaderMaterial_fia2g")
-position = Vector2(-4, -71)
-texture = ExtResource("29_sadvb")
+[node name="Plant_4" parent="StaticBody2D/ScatteredPlants" unique_id=941940270 instance=ExtResource("36_k62iv")]
+position = Vector2(-2812.2058, -3323.5435)
+rotation = -1.5692582
+scale = Vector2(0.699399, 0.699399)
 
-[node name="Plant_90" parent="StaticBody2D/ScatteredPlants" unique_id=1073187054 instance=ExtResource("21_v0nts")]
-position = Vector2(5059.6553, -1040.9409)
-rotation = 0.097467735
-scale = Vector2(0.6466202, 0.6466202)
+[node name="Plant_5" parent="StaticBody2D/ScatteredPlants" unique_id=1297416745 instance=ExtResource("28_unj4i")]
+position = Vector2(-455.1667, -1470.3539)
+rotation = 2.0383432
+scale = Vector2(0.62934995, 0.62934995)
 
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_90" unique_id=1263815743]
-z_index = -1
-material = SubResource("ShaderMaterial_sway")
-position = Vector2(1, -74)
-texture = ExtResource("22_7vben")
+[node name="Plant_6" parent="StaticBody2D/ScatteredPlants" unique_id=2567067 instance=ExtResource("36_k62iv")]
+position = Vector2(4594.019, -1282.9277)
+rotation = 1.2860627
+scale = Vector2(0.6672879, 0.6672879)
 
-[node name="Plant_91" parent="StaticBody2D/ScatteredPlants" unique_id=733016010 instance=ExtResource("34_bi44y")]
-position = Vector2(-428.79346, 1.6091461)
+[node name="Plant_7" parent="StaticBody2D/ScatteredPlants" unique_id=386853037 instance=ExtResource("34_bi44y")]
+position = Vector2(1050.8628, -2367.3567)
+rotation = -1.9575636
+scale = Vector2(0.58918893, 0.58918893)
+
+[node name="Plant_8" parent="StaticBody2D/ScatteredPlants" unique_id=1795874276 instance=ExtResource("36_k62iv")]
+position = Vector2(-2811.1697, -4000.0994)
+rotation = -1.5692582
+scale = Vector2(0.7411583, 0.7411583)
+
+[node name="Plant_9" parent="StaticBody2D/ScatteredPlants" unique_id=1327445577 instance=ExtResource("18_www5i")]
+position = Vector2(-2807.7305, -6246.111)
+rotation = -1.5692827
+scale = Vector2(0.67422, 0.67422)
+
+[node name="Plant_10" parent="StaticBody2D/ScatteredPlants" unique_id=322939573 instance=ExtResource("32_yx6rh")]
+position = Vector2(5695.764, -1739.5264)
+rotation = 1.514664
+scale = Vector2(0.79221165, 0.79221165)
+
+[node name="Plant_11" parent="StaticBody2D/ScatteredPlants" unique_id=1176530767 instance=ExtResource("23_iwss6")]
+position = Vector2(4040.5737, -37.389008)
+rotation = 3.1328523
+scale = Vector2(0.50834364, 0.50834364)
+
+[node name="Plant_12" parent="StaticBody2D/ScatteredPlants" unique_id=1061717653 instance=ExtResource("28_unj4i")]
+position = Vector2(4584.0435, -1576.3984)
+rotation = -2.826389
+scale = Vector2(0.69211423, 0.69211423)
+
+[node name="Plant_13" parent="StaticBody2D/ScatteredPlants" unique_id=2136029820 instance=ExtResource("36_k62iv")]
+position = Vector2(-1850.7483, -7798.583)
+rotation = 0.0038085754
+scale = Vector2(0.7483233, 0.7483233)
+
+[node name="Plant_14" parent="StaticBody2D/ScatteredPlants" unique_id=321067012 instance=ExtResource("30_tk73g")]
+position = Vector2(3647.7468, -33.961334)
+rotation = 3.1328766
+scale = Vector2(0.6967285, 0.6967285)
+
+[node name="Plant_15" parent="StaticBody2D/ScatteredPlants" unique_id=2044560819 instance=ExtResource("32_yx6rh")]
+position = Vector2(-2814.5334, -1803.3405)
+rotation = -1.5692705
+scale = Vector2(0.7412587, 0.7412587)
+
+[node name="Plant_16" parent="StaticBody2D/ScatteredPlants" unique_id=849428750 instance=ExtResource("18_www5i")]
+position = Vector2(-1362.4102, 9.755554)
+rotation = 3.1328645
+scale = Vector2(0.73224425, 0.73224425)
+
+[node name="Plant_17" parent="StaticBody2D/ScatteredPlants" unique_id=1533006519 instance=ExtResource("18_www5i")]
+position = Vector2(-2210.8037, 17.158348)
+rotation = 3.1328523
+scale = Vector2(0.58315194, 0.58315194)
+
+[node name="Plant_18" parent="StaticBody2D/ScatteredPlants" unique_id=81018167 instance=ExtResource("26_sgfng")]
+position = Vector2(-1505.7803, -7728.261)
+rotation = 1.6424395
+scale = Vector2(0.67912704, 0.67912704)
+
+[node name="Plant_19" parent="StaticBody2D/ScatteredPlants" unique_id=1632607143 instance=ExtResource("28_unj4i")]
+position = Vector2(-0.6943512, -3983.402)
+rotation = -3.0022295
+scale = Vector2(0.503559, 0.503559)
+
+[node name="Plant_20" parent="StaticBody2D/ScatteredPlants" unique_id=626111164 instance=ExtResource("32_yx6rh")]
+position = Vector2(-462.42224, -1134.2275)
+rotation = 1.0255367
+scale = Vector2(0.5901212, 0.5901212)
+
+[node name="Plant_21" parent="StaticBody2D/ScatteredPlants" unique_id=1718055529 instance=ExtResource("30_tk73g")]
+position = Vector2(5683.4414, -1958.8359)
+rotation = 1.514664
+scale = Vector2(0.647047, 0.647047)
+
+[node name="Plant_22" parent="StaticBody2D/ScatteredPlants" unique_id=20363354 instance=ExtResource("34_bi44y")]
+position = Vector2(-657.48724, -4093.2239)
+rotation = -2.6815863
+scale = Vector2(0.7204965, 0.7204965)
+
+[node name="Plant_23" parent="StaticBody2D/ScatteredPlants" unique_id=1174825548 instance=ExtResource("21_v0nts")]
+position = Vector2(4799.709, -1506.0736)
+rotation = -2.826389
+scale = Vector2(0.63849634, 0.63849634)
+
+[node name="Plant_24" parent="StaticBody2D/ScatteredPlants" unique_id=1906861936 instance=ExtResource("26_sgfng")]
+position = Vector2(-1361.8828, -2606.2493)
+rotation = 1.4362363
+scale = Vector2(0.50840265, 0.50840265)
+
+[node name="Plant_25" parent="StaticBody2D/ScatteredPlants" unique_id=152738962 instance=ExtResource("36_k62iv")]
+position = Vector2(-1651.2738, -3888.877)
+rotation = 1.0266378
+scale = Vector2(0.7313301, 0.7313301)
+
+[node name="Plant_26" parent="StaticBody2D/ScatteredPlants" unique_id=1999918066 instance=ExtResource("18_www5i")]
+position = Vector2(3823.2844, -1240.0424)
+rotation = -0.14439853
+scale = Vector2(0.63337255, 0.63337255)
+
+[node name="Plant_27" parent="StaticBody2D/ScatteredPlants" unique_id=741921725 instance=ExtResource("18_www5i")]
+position = Vector2(-2816.3218, -635.47534)
+rotation = -1.5692643
+scale = Vector2(0.65756524, 0.65756524)
+
+[node name="Plant_28" parent="StaticBody2D/ScatteredPlants" unique_id=449145586 instance=ExtResource("18_www5i")]
+position = Vector2(1551.0381, -5035.21)
+rotation = 2.9756975
+scale = Vector2(0.69535714, 0.69535714)
+
+[node name="Plant_29" parent="StaticBody2D/ScatteredPlants" unique_id=88201314 instance=ExtResource("32_yx6rh")]
+position = Vector2(-309.60245, -4026.7336)
+rotation = -3.0022295
+scale = Vector2(0.5224881, 0.5224881)
+
+[node name="Plant_30" parent="StaticBody2D/ScatteredPlants" unique_id=1273976153 instance=ExtResource("26_sgfng")]
+position = Vector2(1170.3374, -12.344318)
+rotation = 3.1328645
+scale = Vector2(0.7224047, 0.7224047)
+
+[node name="Plant_31" parent="StaticBody2D/ScatteredPlants" unique_id=1910267147 instance=ExtResource("23_iwss6")]
+position = Vector2(2153.2317, -20.920715)
+rotation = 3.1328766
+scale = Vector2(0.7734103, 0.7734103)
+
+[node name="Plant_32" parent="StaticBody2D/ScatteredPlants" unique_id=387506137 instance=ExtResource("23_iwss6")]
+position = Vector2(1056.1661, -7725.8335)
+rotation = 0.028091963
+scale = Vector2(0.69325423, 0.69325423)
+
+[node name="Plant_33" parent="StaticBody2D/ScatteredPlants" unique_id=1733316000 instance=ExtResource("21_v0nts")]
+position = Vector2(-116.420166, -7758.7847)
+rotation = 0.028093489
+scale = Vector2(0.5274771, 0.5274771)
+
+[node name="Plant_34" parent="StaticBody2D/ScatteredPlants" unique_id=1270847899 instance=ExtResource("26_sgfng")]
+position = Vector2(-2815.5256, -1155.4348)
+rotation = -1.5692705
+scale = Vector2(0.69772696, 0.69772696)
+
+[node name="Plant_35" parent="StaticBody2D/ScatteredPlants" unique_id=1869485112 instance=ExtResource("21_v0nts")]
+position = Vector2(-415.61987, -2870.8132)
+rotation = -2.2128954
+scale = Vector2(0.73685896, 0.73685896)
+
+[node name="Plant_36" parent="StaticBody2D/ScatteredPlants" unique_id=1779451379 instance=ExtResource("30_tk73g")]
+position = Vector2(-902.9243, 5.7462463)
+rotation = 3.1328645
+scale = Vector2(0.5473445, 0.5473445)
+
+[node name="Plant_37" parent="StaticBody2D/ScatteredPlants" unique_id=1922498575 instance=ExtResource("32_yx6rh")]
+position = Vector2(64.80182, -6060.0513)
+rotation = -3.054521
+scale = Vector2(0.7594125, 0.7594125)
+
+[node name="Plant_38" parent="StaticBody2D/ScatteredPlants" unique_id=679764700 instance=ExtResource("23_iwss6")]
+position = Vector2(2100.0376, -1776.8999)
+rotation = -0.14533594
+scale = Vector2(0.7597521, 0.7597521)
+
+[node name="Plant_39" parent="StaticBody2D/ScatteredPlants" unique_id=656377944 instance=ExtResource("30_tk73g")]
+position = Vector2(826.98267, -4229.9263)
+rotation = -3.1403596
+scale = Vector2(0.56710297, 0.56710297)
+
+[node name="Plant_40" parent="StaticBody2D/ScatteredPlants" unique_id=1280011112 instance=ExtResource("21_v0nts")]
+position = Vector2(2698.7986, -25.681145)
+rotation = 3.1328766
+scale = Vector2(0.6761983, 0.6761983)
+
+[node name="Plant_41" parent="StaticBody2D/ScatteredPlants" unique_id=1565580509 instance=ExtResource("23_iwss6")]
+position = Vector2(-245.76471, -5120.6704)
+rotation = 0.052512247
+scale = Vector2(0.7978179, 0.7978179)
+
+[node name="Plant_42" parent="StaticBody2D/ScatteredPlants" unique_id=1807863695 instance=ExtResource("36_k62iv")]
+position = Vector2(-2812.6086, -3060.3867)
+rotation = -1.5692582
+scale = Vector2(0.61440176, 0.61440176)
+
+[node name="Plant_43" parent="StaticBody2D/ScatteredPlants" unique_id=126963298 instance=ExtResource("23_iwss6")]
+position = Vector2(3540.4219, -5110.383)
+rotation = 1.3705328
+scale = Vector2(0.60135096, 0.60135096)
+
+[node name="Plant_44" parent="StaticBody2D/ScatteredPlants" unique_id=391352271 instance=ExtResource("34_bi44y")]
+position = Vector2(-293.1012, -1008.8184)
+rotation = 0.28317866
+scale = Vector2(0.76253635, 0.76253635)
+
+[node name="Plant_45" parent="StaticBody2D/ScatteredPlants" unique_id=807217439 instance=ExtResource("21_v0nts")]
+position = Vector2(511.29688, -4230.3145)
+rotation = -3.1403658
+scale = Vector2(0.57033026, 0.57033026)
+
+[node name="Plant_46" parent="StaticBody2D/ScatteredPlants" unique_id=1734474776 instance=ExtResource("23_iwss6")]
+position = Vector2(2004.8914, -4435.5854)
+rotation = 2.094061
+scale = Vector2(0.5852999, 0.5852999)
+
+[node name="Plant_47" parent="StaticBody2D/ScatteredPlants" unique_id=1630437565 instance=ExtResource("18_www5i")]
+position = Vector2(108.88693, -1064.4072)
+rotation = -0.18454407
+scale = Vector2(0.5946532, 0.5946532)
+
+[node name="Plant_48" parent="StaticBody2D/ScatteredPlants" unique_id=1866396979 instance=ExtResource("32_yx6rh")]
+position = Vector2(374.7672, -5076.057)
+rotation = 0.08419554
+scale = Vector2(0.78066623, 0.78066623)
+
+[node name="Plant_49" parent="StaticBody2D/ScatteredPlants" unique_id=155441102 instance=ExtResource("18_www5i")]
+position = Vector2(3129.1868, -7136.098)
+rotation = 1.3705328
+scale = Vector2(0.58578765, 0.58578765)
+
+[node name="Plant_50" parent="StaticBody2D/ScatteredPlants" unique_id=152150827 instance=ExtResource("30_tk73g")]
+position = Vector2(-323.49503, -2449.357)
+rotation = -1.5642289
+scale = Vector2(0.58471984, 0.58471984)
+
+[node name="Plant_51" parent="StaticBody2D/ScatteredPlants" unique_id=517599793 instance=ExtResource("21_v0nts")]
+position = Vector2(-2814.96, -1524.9142)
+rotation = -1.5692705
+scale = Vector2(0.5585315, 0.5585315)
+
+[node name="Plant_52" parent="StaticBody2D/ScatteredPlants" unique_id=569145178 instance=ExtResource("30_tk73g")]
+position = Vector2(-1168.1079, -7429.525)
+rotation = -1.5489683
+scale = Vector2(0.622236, 0.622236)
+
+[node name="Plant_53" parent="StaticBody2D/ScatteredPlants" unique_id=862496375 instance=ExtResource("21_v0nts")]
+position = Vector2(3963.8218, -1260.4781)
+rotation = -0.14439853
+scale = Vector2(0.5918684, 0.5918684)
+
+[node name="Plant_54" parent="StaticBody2D/ScatteredPlants" unique_id=1022909390 instance=ExtResource("26_sgfng")]
+position = Vector2(-611.5652, -4929.9546)
+rotation = -3.1154423
+scale = Vector2(0.63730466, 0.63730466)
+
+[node name="Plant_55" parent="StaticBody2D/ScatteredPlants" unique_id=1491573700 instance=ExtResource("26_sgfng")]
+position = Vector2(-96.9881, -3996.9097)
+rotation = -3.0022295
+scale = Vector2(0.7522404, 0.7522404)
+
+[node name="Plant_56" parent="StaticBody2D/ScatteredPlants" unique_id=1523124810 instance=ExtResource("28_unj4i")]
+position = Vector2(5612.0337, -1084.3436)
+rotation = -1.6406896
+scale = Vector2(0.67666346, 0.67666346)
+
+[node name="Plant_57" parent="StaticBody2D/ScatteredPlants" unique_id=1262499852 instance=ExtResource("36_k62iv")]
+position = Vector2(1037.2098, -4556.7173)
+rotation = -0.1651567
+scale = Vector2(0.7825779, 0.7825779)
+
+[node name="Plant_58" parent="StaticBody2D/ScatteredPlants" unique_id=1272814533 instance=ExtResource("26_sgfng")]
+position = Vector2(-1511.8552, -7627.8223)
+rotation = 1.6299615
+scale = Vector2(0.72576433, 0.72576433)
+
+[node name="Plant_59" parent="StaticBody2D/ScatteredPlants" unique_id=2009264420 instance=ExtResource("36_k62iv")]
+position = Vector2(-1303.0283, -2729.3147)
+rotation = 2.0334122
+scale = Vector2(0.68468475, 0.68468475)
+
+[node name="Plant_60" parent="StaticBody2D/ScatteredPlants" unique_id=43709036 instance=ExtResource("18_www5i")]
+position = Vector2(3503.3877, -5292.8096)
+rotation = 1.3705328
+scale = Vector2(0.64034575, 0.64034575)
+
+[node name="Plant_62" parent="StaticBody2D/ScatteredPlants" unique_id=626871500 instance=ExtResource("34_bi44y")]
+position = Vector2(5765.4565, -499.23193)
+rotation = 1.514667
+scale = Vector2(0.7203291, 0.7203291)
+
+[node name="Plant_63" parent="StaticBody2D/ScatteredPlants" unique_id=1257237436 instance=ExtResource("30_tk73g")]
+position = Vector2(5224.946, -1262.6251)
+rotation = -3.0097656
+scale = Vector2(0.50672495, 0.50672495)
+
+[node name="Plant_64" parent="StaticBody2D/ScatteredPlants" unique_id=1884546974 instance=ExtResource("32_yx6rh")]
+position = Vector2(4951.8984, -3088.9292)
+rotation = 0.5768839
+scale = Vector2(0.5284345, 0.5284345)
+
+[node name="Plant_65" parent="StaticBody2D/ScatteredPlants" unique_id=1969960655 instance=ExtResource("32_yx6rh")]
+position = Vector2(-705.2155, -3065.627)
+rotation = -2.9663875
+scale = Vector2(0.6713861, 0.6713861)
+
+[node name="Plant_66" parent="StaticBody2D/ScatteredPlants" unique_id=249030458 instance=ExtResource("30_tk73g")]
+position = Vector2(-2806.3594, -7141.48)
+rotation = -1.5692827
+scale = Vector2(0.70155597, 0.70155597)
+
+[node name="Plant_67" parent="StaticBody2D/ScatteredPlants" unique_id=359604823 instance=ExtResource("26_sgfng")]
+position = Vector2(3729.0393, -4181.2666)
+rotation = 1.3705328
+scale = Vector2(0.75533336, 0.75533336)
+
+[node name="Plant_68" parent="StaticBody2D/ScatteredPlants" unique_id=1016800916 instance=ExtResource("34_bi44y")]
+position = Vector2(4934.893, -1301.0851)
+rotation = -3.0097656
+scale = Vector2(0.73608214, 0.73608214)
+
+[node name="Plant_69" parent="StaticBody2D/ScatteredPlants" unique_id=1312990442 instance=ExtResource("28_unj4i")]
+position = Vector2(1012.6018, -1864.9681)
+rotation = -1.554133
+scale = Vector2(0.689633, 0.689633)
+
+[node name="Plant_70" parent="StaticBody2D/ScatteredPlants" unique_id=1671777824 instance=ExtResource("21_v0nts")]
+position = Vector2(3711.8008, -1457.6896)
+rotation = 2.9893444
+scale = Vector2(0.5404151, 0.5404151)
+
+[node name="Plant_71" parent="StaticBody2D/ScatteredPlants" unique_id=518646552 instance=ExtResource("26_sgfng")]
+position = Vector2(-993.44904, -2014.5327)
+rotation = 1.1440173
+scale = Vector2(0.6765946, 0.6765946)
+
+[node name="Plant_72" parent="StaticBody2D/ScatteredPlants" unique_id=877887049 instance=ExtResource("28_unj4i")]
+position = Vector2(-2813.7148, -2337.9656)
+rotation = -1.5692582
+scale = Vector2(0.7674299, 0.7674299)
+
+[node name="Plant_73" parent="StaticBody2D/ScatteredPlants" unique_id=2116206197 instance=ExtResource("30_tk73g")]
+position = Vector2(936.917, -5159.31)
+rotation = -0.37361294
+scale = Vector2(0.64300746, 0.64300746)
+
+[node name="Plant_74" parent="StaticBody2D/ScatteredPlants" unique_id=1365727639 instance=ExtResource("18_www5i")]
+position = Vector2(-1570.8412, -5780.874)
+rotation = 1.0367327
+scale = Vector2(0.53637564, 0.53637564)
+
+[node name="Plant_75" parent="StaticBody2D/ScatteredPlants" unique_id=1083524076 instance=ExtResource("34_bi44y")]
+position = Vector2(1250.9314, -5871.1836)
+rotation = -2.8091416
+scale = Vector2(0.7381244, 0.7381244)
+
+[node name="Plant_76" parent="StaticBody2D/ScatteredPlants" unique_id=1927639977 instance=ExtResource("34_bi44y")]
+position = Vector2(4291.318, -39.576916)
+rotation = 3.1328523
+scale = Vector2(0.7716191, 0.7716191)
+
+[node name="Plant_77" parent="StaticBody2D/ScatteredPlants" unique_id=1394481122 instance=ExtResource("21_v0nts")]
+position = Vector2(-377.86755, -5732.8228)
+rotation = -0.009356873
+scale = Vector2(0.6460064, 0.6460064)
+
+[node name="Plant_78" parent="StaticBody2D/ScatteredPlants" unique_id=383470206 instance=ExtResource("23_iwss6")]
+position = Vector2(-110.20618, -6075.3276)
+rotation = -3.0545218
+scale = Vector2(0.63125336, 0.63125336)
+
+[node name="Plant_79" parent="StaticBody2D/ScatteredPlants" unique_id=1324047398 instance=ExtResource("30_tk73g")]
+position = Vector2(1752.8042, -17.426723)
+rotation = 3.1328645
+scale = Vector2(0.6810189, 0.6810189)
+
+[node name="Plant_80" parent="StaticBody2D/ScatteredPlants" unique_id=265187403 instance=ExtResource("23_iwss6")]
+position = Vector2(657.0547, -3820.997)
+rotation = -0.84781563
+scale = Vector2(0.5554117, 0.5554117)
+
+[node name="Plant_81" parent="StaticBody2D/ScatteredPlants" unique_id=631916141 instance=ExtResource("36_k62iv")]
+position = Vector2(3283.0554, -1151.7493)
+rotation = -0.3575191
+scale = Vector2(0.78329074, 0.78329074)
+
+[node name="Plant_82" parent="StaticBody2D/ScatteredPlants" unique_id=1850186964 instance=ExtResource("30_tk73g")]
+position = Vector2(2792.4453, -7677.043)
+rotation = 0.028104166
+scale = Vector2(0.611104, 0.611104)
+
+[node name="Plant_83" parent="StaticBody2D/ScatteredPlants" unique_id=615303265 instance=ExtResource("21_v0nts")]
+position = Vector2(1845.7935, -3881.4312)
+rotation = 0.030302633
+scale = Vector2(0.68826765, 0.68826765)
+
+[node name="Plant_84" parent="StaticBody2D/ScatteredPlants" unique_id=2011785573 instance=ExtResource("18_www5i")]
+position = Vector2(113.34375, -3.1213531)
 rotation = 3.1328676
-scale = Vector2(0.53034705, 0.53034705)
+scale = Vector2(0.636403, 0.636403)
 
-[node name="Plant6" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_91" unique_id=1056528102]
-z_index = -1
-material = SubResource("ShaderMaterial_g2rt8")
-position = Vector2(1, -74)
-texture = ExtResource("35_60joo")
+[node name="Plant_85" parent="StaticBody2D/ScatteredPlants" unique_id=2123015891 instance=ExtResource("26_sgfng")]
+position = Vector2(-362.55103, -4923.4404)
+rotation = -3.1154392
+scale = Vector2(0.74590176, 0.74590176)
 
-[node name="Plant_92" parent="StaticBody2D/ScatteredPlants" unique_id=405393763 instance=ExtResource("28_unj4i")]
-position = Vector2(-1236.6967, -4265.367)
-rotation = 2.7301245
-scale = Vector2(0.5519461, 0.5519461)
+[node name="Plant_86" parent="StaticBody2D/ScatteredPlants" unique_id=1913459763 instance=ExtResource("21_v0nts")]
+position = Vector2(3418.8174, -2000.686)
+rotation = -1.8616568
+scale = Vector2(0.688954, 0.688954)
 
-[node name="Plant5" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_92" unique_id=1504936669]
-z_index = -1
-material = SubResource("ShaderMaterial_fia2g")
-position = Vector2(-4, -71)
-texture = ExtResource("29_sadvb")
+[node name="Plant_87" parent="StaticBody2D/ScatteredPlants" unique_id=937461182 instance=ExtResource("28_unj4i")]
+position = Vector2(-2810.5408, -4410.9067)
+rotation = -1.5692827
+scale = Vector2(0.581838, 0.581838)
 
-[node name="Plant_93" parent="StaticBody2D/ScatteredPlants" unique_id=79472256 instance=ExtResource("23_iwss6")]
-position = Vector2(251, -2501)
-rotation = 2.8961995
-scale = Vector2(0.62413996, 0.62413996)
+[node name="Plant_88" parent="StaticBody2D/ScatteredPlants" unique_id=1210043821 instance=ExtResource("34_bi44y")]
+position = Vector2(641.8297, -6009.6826)
+rotation = -3.0545242
+scale = Vector2(0.52485335, 0.52485335)
 
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_93" unique_id=1990237744]
-z_index = -1
-material = SubResource("ShaderMaterial_oubm0")
-position = Vector2(-5, -70)
-texture = ExtResource("24_ow214")
+[node name="Plant_89" parent="StaticBody2D/ScatteredPlants" unique_id=997344127 instance=ExtResource("21_v0nts")]
+position = Vector2(-2806.0708, -7329.995)
+rotation = -1.5692827
+scale = Vector2(0.6459437, 0.6459437)
 
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_93/Plant2" unique_id=511437738]
-position = Vector2(-1.0343577, -17)
-scale = Vector2(0.625298, 0.6149545)
-color = Color(5.1018596e-06, 0.9439472, 0.44352138, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
+[node name="Plant_90" parent="StaticBody2D/ScatteredPlants" unique_id=1692239303 instance=ExtResource("28_unj4i")]
+position = Vector2(2425.2014, -4354.8784)
+rotation = -1.4743077
+scale = Vector2(0.7560261, 0.7560261)
 
-[node name="Plant_94" parent="StaticBody2D/ScatteredPlants" unique_id=474186690 instance=ExtResource("18_www5i")]
-position = Vector2(686.6316, -5662.6387)
-rotation = 0.10159269
-scale = Vector2(0.55858666, 0.55858666)
+[node name="Plant_91" parent="StaticBody2D/ScatteredPlants" unique_id=1143378324 instance=ExtResource("32_yx6rh")]
+position = Vector2(196.01724, -4482.724)
+rotation = 0.051237326
+scale = Vector2(0.74044585, 0.74044585)
 
-[node name="Plant10" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_94" unique_id=1332527256]
-z_index = -1
-material = SubResource("ShaderMaterial_55bpa")
-position = Vector2(-2.3059812, -117.382965)
-texture = ExtResource("20_c6dxu")
+[node name="Plant_92" parent="StaticBody2D/ScatteredPlants" unique_id=1566906093 instance=ExtResource("18_www5i")]
+position = Vector2(3809.3406, -3832.4507)
+rotation = 0.57690436
+scale = Vector2(0.705385, 0.705385)
 
-[node name="Plant_95" parent="StaticBody2D/ScatteredPlants" unique_id=2084471139 instance=ExtResource("28_unj4i")]
-position = Vector2(3394.0337, -2054.5205)
-rotation = -2.1583114
-scale = Vector2(0.55043274, 0.55043274)
+[node name="Plant_93" parent="StaticBody2D/ScatteredPlants" unique_id=1179177492 instance=ExtResource("26_sgfng")]
+position = Vector2(778.94336, -1115.0441)
+rotation = -0.5636509
+scale = Vector2(0.6963738, 0.6963738)
 
-[node name="Plant5" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_95" unique_id=549373937]
-z_index = -1
-material = SubResource("ShaderMaterial_fia2g")
-position = Vector2(40.502445, -128.07587)
-texture = ExtResource("29_sadvb")
+[node name="Plant_94" parent="StaticBody2D/ScatteredPlants" unique_id=305506276 instance=ExtResource("21_v0nts")]
+position = Vector2(-1572.4686, -4101.419)
+rotation = 2.019873
+scale = Vector2(0.5280541, 0.5280541)
 
-[node name="Plant_96" parent="StaticBody2D/ScatteredPlants" unique_id=2106977897 instance=ExtResource("30_tk73g")]
-position = Vector2(339.19904, -5499.577)
-rotation = 3.128671
-scale = Vector2(0.52833277, 0.52833277)
+[node name="Plant_95" parent="StaticBody2D/ScatteredPlants" unique_id=225784939 instance=ExtResource("32_yx6rh")]
+position = Vector2(-371.5426, -1988.0704)
+rotation = -2.8639998
+scale = Vector2(0.56062293, 0.56062293)
 
-[node name="Plant4" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_96" unique_id=1085983862]
-z_index = -1
-material = SubResource("ShaderMaterial_ps4y6")
-position = Vector2(-3, -69)
-texture = ExtResource("31_q7fj0")
+[node name="Plant_96" parent="StaticBody2D/ScatteredPlants" unique_id=577050433 instance=ExtResource("32_yx6rh")]
+position = Vector2(-1341.8833, -2458.511)
+rotation = 1.4362363
+scale = Vector2(0.6121001, 0.6121001)
 
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_96/Plant4" unique_id=1016487459]
-position = Vector2(4, -38)
-scale = Vector2(1.3044677, 1.2525319)
-color = Color(0.61425424, 0.81008285, 1, 1)
-energy = 0.43
-range_layer_min = -5
-texture = ExtResource("25_ox30j")
+[node name="Plant_97" parent="StaticBody2D/ScatteredPlants" unique_id=2099039829 instance=ExtResource("26_sgfng")]
+position = Vector2(-835.5491, -2271.3345)
+rotation = -1.8045347
+scale = Vector2(0.66694236, 0.66694236)
 
-[node name="Plant_97" parent="StaticBody2D/ScatteredPlants" unique_id=1448628505 instance=ExtResource("18_www5i")]
-position = Vector2(-1569.1014, -4108.4063)
-rotation = 2.0199168
-scale = Vector2(0.64629453, 0.64629453)
+[node name="Plant_98" parent="StaticBody2D/ScatteredPlants" unique_id=103220135 instance=ExtResource("32_yx6rh")]
+position = Vector2(-457.06485, -5131.7764)
+rotation = 0.052510727
+scale = Vector2(0.5945495, 0.5945495)
 
-[node name="Plant10" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_97" unique_id=709152886]
-z_index = -1
-material = SubResource("ShaderMaterial_55bpa")
-position = Vector2(0, -64)
-texture = ExtResource("20_c6dxu")
+[node name="Plant_99" parent="StaticBody2D/ScatteredPlants" unique_id=751486862 instance=ExtResource("23_iwss6")]
+position = Vector2(728.03796, -5503.1816)
+rotation = 3.1415927
+scale = Vector2(0.7902613, 0.7902613)
 
-[node name="Plant_98" parent="StaticBody2D/ScatteredPlants" unique_id=644371565 instance=ExtResource("30_tk73g")]
-position = Vector2(3734.8855, -4152.4688)
-rotation = 1.3704848
-scale = Vector2(0.64284176, 0.64284176)
-
-[node name="Plant4" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_98" unique_id=404960427]
-z_index = -1
-material = SubResource("ShaderMaterial_ps4y6")
-position = Vector2(-3, -69)
-texture = ExtResource("31_q7fj0")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_98/Plant4" unique_id=191734804]
-position = Vector2(4, -38)
-scale = Vector2(1.3044677, 1.2525319)
-color = Color(0.61425424, 0.81008285, 1, 1)
-energy = 0.43
-range_layer_min = -5
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_99" parent="StaticBody2D/ScatteredPlants" unique_id=1468365878 instance=ExtResource("30_tk73g")]
-position = Vector2(1167.3625, -3838.5286)
-rotation = 0.18904036
-scale = Vector2(0.6783633, 0.6783633)
-
-[node name="Plant4" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_99" unique_id=887285068]
-z_index = -1
-material = SubResource("ShaderMaterial_ps4y6")
-position = Vector2(-3, -69)
-texture = ExtResource("31_q7fj0")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_99/Plant4" unique_id=633000309]
-position = Vector2(4, -38)
-scale = Vector2(1.3044677, 1.2525319)
-color = Color(0.61425424, 0.81008285, 1, 1)
-energy = 0.43
-range_layer_min = -5
-texture = ExtResource("25_ox30j")
-
-[node name="Plant_100" parent="StaticBody2D/ScatteredPlants" unique_id=273523675 instance=ExtResource("23_iwss6")]
-position = Vector2(-711.01733, -4119.7456)
-rotation = -2.6815808
-scale = Vector2(0.6272288, 0.6272288)
-
-[node name="Plant2" type="Sprite2D" parent="StaticBody2D/ScatteredPlants/Plant_100" unique_id=215543744]
-z_index = -1
-material = SubResource("ShaderMaterial_oubm0")
-position = Vector2(-5, -70)
-texture = ExtResource("24_ow214")
-
-[node name="PointLight2D" type="PointLight2D" parent="StaticBody2D/ScatteredPlants/Plant_100/Plant2" unique_id=1456853491]
-position = Vector2(0, -17)
-scale = Vector2(0.6149545, 0.6149545)
-color = Color(5.1018596e-06, 0.9439472, 0.44352138, 1)
-energy = 0.43
-texture = ExtResource("25_ox30j")
+[node name="Plant_100" parent="StaticBody2D/ScatteredPlants" unique_id=264565649 instance=ExtResource("28_unj4i")]
+position = Vector2(4870.672, -3141.7876)
+rotation = 0.5768839
+scale = Vector2(0.7460753, 0.7460753)
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=211602702]
 layer = -2
@@ -2526,7 +1622,7 @@ Fast so, als wolle dieser hier nicht entdeckt werden."
 set_invisible = true
 
 [node name="PrematureExitTrigger" parent="." unique_id=888935396 instance=ExtResource("24_mxqdg")]
-position = Vector2(-1349.0001, -7497.0005)
+position = Vector2(-1367, -7363)
 rotation = 3.1373549
 scale = Vector2(2.600005, 2.600005)
 
