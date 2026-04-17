@@ -8,6 +8,7 @@ extends Node2D
 @export var damage: float = 20.0
 @export var eject_speed: float = 400.0
 @export var eject_duration: float = 0.35
+@export var shockwave_strength: float = 1.0
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var engine_particles: GPUParticles2D = $EngineParticles
@@ -127,6 +128,7 @@ func _explode() -> void:
 	_alive = false
 	_play_varied(explosion_sound, _explosion_base_vol)
 	_shake_player_camera()
+	_trigger_shockwave()
 	engine_particles.emitting = false
 	bubble_particles.emitting = false
 	explosion_particles.emitting = true
@@ -156,6 +158,11 @@ func _shake_player_camera() -> void:
 		strength *= 0.6
 	tween.tween_property(cam, "offset", Vector2.ZERO, 0.04)
 
+
+func _trigger_shockwave() -> void:
+	var effects := get_tree().get_nodes_in_group("water_effect")
+	if effects.size() > 0:
+		effects[0].trigger_shockwave(global_position, shockwave_strength)
 
 static func _play_varied(player: AudioStreamPlayer2D, base_vol: float = 0.0) -> void:
 	player.pitch_scale = randf_range(0.85, 1.15)

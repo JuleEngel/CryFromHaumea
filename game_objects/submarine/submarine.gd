@@ -12,7 +12,7 @@ const ROCKET_SCENE := preload("res://game_objects/rocket/rocket.tscn")
 const GAME_OVER_SCENE := preload("res://ui_scenes/game_over/game_over.tscn")
 
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var rocket_spawn: Marker2D = $RocketSpawn
+@onready var rocket_spawn: Marker2D = $Sprite2D/RocketSpawn
 @onready var bubble_particles: CPUParticles2D = $BubbleParticles
 @onready var headlight: PointLight2D = $Headlight
 @onready var ambiance_sound: AudioStreamPlayer = $AmbianceSound
@@ -26,6 +26,7 @@ const GAME_OVER_SCENE := preload("res://ui_scenes/game_over/game_over.tscn")
 @onready var explosion_sound: AudioStreamPlayer2D = $ExplosionSound
 @onready var camera: Camera2D = $Camera2D
 @onready var propeller: AnimatedSprite2D = $Sprite2D/Propeller
+@onready var torpedo_hatch: Sprite2D = $Sprite2D/TorpedoHatch
 
 const DIVE_VOL_MIN := -40.0
 const DIVE_VOL_MAX := -2.0
@@ -44,8 +45,8 @@ func _ready() -> void:
 	super()
 	if CheckpointManager.has_checkpoint:
 		global_position = CheckpointManager.checkpoint_position
-		sprite.flip_h = CheckpointManager.facing_left
 		if CheckpointManager.facing_left:
+			sprite.scale.x = -abs(sprite.scale.x)
 			headlight.position.x = -abs(headlight.position.x)
 		else:
 			headlight.position.x = abs(headlight.position.x)
@@ -114,29 +115,29 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.move_toward(Vector2.ZERO, deceleration * delta)
 
 	if velocity.x > 10.0:
-		sprite.flip_h = false
+		sprite.scale.x = abs(sprite.scale.x)
 		headlight.position.x = abs(headlight.position.x)
 	elif velocity.x < -10.0:
-		sprite.flip_h = true
+		sprite.scale.x = -abs(sprite.scale.x)
 		headlight.position.x = -abs(headlight.position.x)
 
 	var target_tilt := 0.0
 	if velocity.length() > 10.0:
 		var direction := velocity.normalized()
 		target_tilt = direction.y * deg_to_rad(visual_tilt_degrees)
-		if sprite.flip_h:
+		if sprite.scale.x < 0:
 			target_tilt = -target_tilt
 	rotation = lerp_angle(rotation, target_tilt, tilt_speed * delta)
 
-	if sprite.flip_h:
-		headlight.global_rotation = rotation + PI
+	if sprite.scale.x < 0:
+		headlight.global_rotation = PI - rotation
 	else:
 		headlight.global_rotation = rotation
 
 	# Bubble particles: emit from behind the submarine, scale with speed
 	var is_moving := velocity.length() > 20.0
 	bubble_particles.emitting = is_moving
-	if sprite.flip_h:
+	if sprite.scale.x < 0:
 		bubble_particles.position.x = abs(bubble_particles.position.x)
 		bubble_particles.direction.x = 1.0
 	else:
@@ -159,12 +160,6 @@ func _physics_process(delta: float) -> void:
 			propeller.animation = &"spin"
 			propeller.play()
 		propeller.speed_scale = _propeller_speed
-
-	propeller.flip_h = sprite.flip_h
-	if sprite.flip_h:
-		propeller.position.x = abs(propeller.position.x)
-	else:
-		propeller.position.x = -abs(propeller.position.x)
 
 	# Dive sound volume and bubble intensity scale with speed
 	var speed_ratio := clampf(velocity.length() / max_speed, 0.0, 1.0)
@@ -286,6 +281,12 @@ func _shake_camera(strength: float, iterations: int) -> void:
 	tween.tween_property(camera, "offset", Vector2.ZERO, 0.05)
 
 func _spawn_rocket() -> void:
+	# Open torpedo hatch
+	var open_tween := create_tween()
+	open_tween.tween_property(torpedo_hatch, "rotation", PI / 2.0, 0.2) \
+		.set_trans(Tween.TRANS_SPRING).set_ease(Tween.EASE_OUT).set_delay(0.2)
+	await open_tween.finished
+
 	var rocket := ROCKET_SCENE.instantiate()
 	rocket.global_position = rocket_spawn.global_position
 	rocket.rotation = -PI / 2.0
@@ -295,3 +296,8 @@ func _spawn_rocket() -> void:
 	var tween := create_tween()
 	tween.tween_property(sprite, "position:y", sprite.position.y + 12.0, 0.1).set_ease(Tween.EASE_OUT)
 	tween.tween_property(sprite, "position:y", sprite.position.y, 0.25).set_ease(Tween.EASE_IN_OUT)
+
+	# Close torpedo hatch
+	var close_tween := create_tween()
+	close_tween.tween_property(torpedo_hatch, "rotation", 0.0, 0.3).set_delay(0.2) \
+		.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)

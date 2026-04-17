@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://dxx4cju371esd"]
 
-[ext_resource type="Texture2D" uid="uid://dadkjye6msk4g" path="res://game_objects/submarine/submarine_no_propeller.png" id="2_a45bs"]
+[ext_resource type="Texture2D" uid="uid://dkjge1p427ddy" path="res://game_objects/submarine/submarine.png" id="2_2pai7"]
 [ext_resource type="Script" uid="uid://4h7krnmbiiul" path="res://game_objects/submarine/submarine.gd" id="2_script"]
 [ext_resource type="Texture2D" uid="uid://djftd7mdgmb5y" path="res://game_objects/submarine/bubble.png" id="3_bubble"]
 [ext_resource type="AudioStream" uid="uid://boxwlwejovwbl" path="res://audio/sound_effects/deep_sea_ambiance.mp3" id="4_ambiance"]
 [ext_resource type="AudioStream" uid="uid://o7mf7hb6s3m3" path="res://audio/sound_effects/dive_sound.mp3" id="5_dive"]
 [ext_resource type="AudioStream" uid="uid://cu4kcyulcwfr" path="res://audio/music/synthwave_adventure.mp3" id="6_adventure"]
 [ext_resource type="AudioStream" uid="uid://uicopn5ikyb" path="res://audio/music/synthwave_combat.mp3" id="7_combat"]
+[ext_resource type="Texture2D" uid="uid://0jna51i7xel" path="res://game_objects/submarine/torpedo_hatch.png" id="7_duwt1"]
 [ext_resource type="AudioStream" uid="uid://ouuwvu45bhly" path="res://audio/sound_effects/damage.mp3" id="8_damage"]
 [ext_resource type="Texture2D" uid="uid://bswh0nv4c72ak" path="res://visual_effects/broken_screen.png" id="9_broken"]
 [ext_resource type="AudioStream" uid="uid://c0bus7nbhjk2p" path="res://audio/sound_effects/ice_hit.mp3" id="10_ice_hit"]
@@ -15,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://di0w5fye6yx1m" path="res://game_objects/submarine/propeller/propeller1.png" id="13_prop1"]
 [ext_resource type="Texture2D" uid="uid://cclqpp554w5br" path="res://game_objects/submarine/propeller/propeller2.png" id="14_prop2"]
 [ext_resource type="Texture2D" uid="uid://bvm176hbts8ef" path="res://game_objects/submarine/propeller/propeller3.png" id="15_prop3"]
+[ext_resource type="Texture2D" uid="uid://rghfpad47d18" path="res://game_objects/light/light.png" id="17_duwt1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_propeller"]
 animations = [{
@@ -41,14 +43,6 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4qjti"]
-radius = 21.0
-height = 166.0
-
-[sub_resource type="Curve" id="Curve_scale"]
-_data = [Vector2(0, 0.4), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
 [sub_resource type="Gradient" id="Gradient_explode"]
 offsets = PackedFloat32Array(0, 0.2, 0.5, 1)
 colors = PackedColorArray(1, 1, 0.9, 1, 1, 0.5, 0.1, 1, 0.7, 0.15, 0, 1, 0.05, 0.05, 0.05, 1)
@@ -69,6 +63,14 @@ scale_min = 2.0
 scale_max = 10.0
 color_ramp = SubResource("GradientTexture1D_explode")
 
+[sub_resource type="Curve" id="Curve_scale"]
+_data = [Vector2(0, 0.4), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4qjti"]
+radius = 21.0
+height = 166.0
+
 [node name="Submarine" type="CharacterBody2D" unique_id=1479136533 groups=["player"]]
 collision_mask = 6
 script = ExtResource("2_script")
@@ -76,7 +78,7 @@ script = ExtResource("2_script")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2021962477]
 position = Vector2(-8, -8)
 scale = Vector2(1.4153847, 1.4153847)
-texture = ExtResource("2_a45bs")
+texture = ExtResource("2_2pai7")
 
 [node name="Propeller" type="AnimatedSprite2D" parent="Sprite2D" unique_id=1632755150]
 z_index = -1
@@ -85,34 +87,15 @@ scale = Vector2(0.9891304, 0.9891304)
 sprite_frames = SubResource("SpriteFrames_propeller")
 animation = &"idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=274600755]
-position = Vector2(-2, 10)
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_4qjti")
+[node name="TorpedoHatch" type="Sprite2D" parent="Sprite2D" unique_id=1772458459]
+position = Vector2(4.945652, -9.184782)
+rotation = -0.00015556812
+texture = ExtResource("7_duwt1")
+offset = Vector2(-9.945653, -1.815218)
 
-[node name="RocketSpawn" type="Marker2D" parent="." unique_id=2142160484]
-position = Vector2(0, -20)
-
-[node name="BubbleParticles" type="CPUParticles2D" parent="." unique_id=1197846382]
-position = Vector2(-88, 3)
-emitting = false
-amount = 60
-texture = ExtResource("3_bubble")
-lifetime = 2.5
-emission_shape = 6
-emission_ring_inner_radius = 20.0
-emission_ring_radius = 1.0
-direction = Vector2(0, -1)
-spread = 20.0
-gravity = Vector2(0, -120)
-initial_velocity_min = 40.0
-initial_velocity_max = 80.0
-angular_velocity_min = -90.0
-angular_velocity_max = 90.0
-scale_amount_min = 0.8
-scale_amount_max = 2.0
-scale_amount_curve = SubResource("Curve_scale")
-color = Color(0.85, 0.92, 1, 0.7)
+[node name="RocketSpawn" type="Marker2D" parent="Sprite2D" unique_id=2142160484]
+position = Vector2(-4.9456515, -8.47826)
+scale = Vector2(0.7065217, 0.7065217)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1492380121]
 
@@ -146,6 +129,10 @@ self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -797.0
+offset_top = -628.0
+offset_right = 803.0
+offset_bottom = 622.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("9_broken")
@@ -174,3 +161,36 @@ process_material = SubResource("ParticleProcessMaterial_explode")
 stream = ExtResource("11_explosion")
 volume_db = 8.0
 max_distance = 3000.0
+
+[node name="BubbleParticles" type="CPUParticles2D" parent="." unique_id=1197846382]
+position = Vector2(-88, 2.999999)
+scale = Vector2(0.99999994, 0.99999994)
+emitting = false
+amount = 60
+texture = ExtResource("3_bubble")
+lifetime = 2.5
+emission_shape = 6
+emission_ring_inner_radius = 20.0
+emission_ring_radius = 1.0
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(0, -120)
+initial_velocity_min = 40.0
+initial_velocity_max = 80.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+scale_amount_min = 0.8
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_scale")
+color = Color(0.85, 0.92, 1, 0.7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=274600755]
+position = Vector2(-2.0000005, 9.999998)
+rotation = 1.5707964
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CapsuleShape2D_4qjti")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=378564043]
+position = Vector2(23, -44)
+scale = Vector2(0.2129128, 0.2129128)
+texture = ExtResource("17_duwt1")

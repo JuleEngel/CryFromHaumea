@@ -18,6 +18,13 @@ uniform float light_range = 0.4;
 uniform float light_intensity : hint_range(0.0, 1.0) = 0.15;
 uniform vec4 light_color : source_color = vec4(0.9, 0.95, 1.0, 1.0);
 
+// Shockwave ripple (texture-based, propagates through water around terrain)
+uniform sampler2D shockwave_texture : filter_linear, repeat_disable;
+uniform vec2 shockwave_rect_origin = vec2(-2.0);
+uniform vec2 shockwave_rect_size = vec2(1.0);
+uniform float shockwave_strength : hint_range(0.0, 0.1) = 0.0015;
+uniform float shockwave_brightness : hint_range(0.0, 0.5) = 0.04;
+
 float hash(vec2 p) {
 	vec3 p3 = fract(vec3(p.xyx) * 0.1031);
 	p3 += dot(p3, p3.yzx + 33.33);
@@ -54,7 +61,24 @@ void fragment() {
 	distorted_uv.x += sin(world_uv.y * distortion_scale + time * distortion_speed) * distortion_strength;
 	distorted_uv.y += cos(world_uv.x * distortion_scale * 1.3 + time * distortion_speed * 0.8) * distortion_strength;
 
+	// Shockwave ripple distortion (propagates through water around terrain)
+	vec2 shock_uv = (SCREEN_UV - shockwave_rect_origin) / shockwave_rect_size;
+	if (shock_uv.x > 0.0 && shock_uv.x < 1.0 && shock_uv.y > 0.0 && shock_uv.y < 1.0) {
+		float st = 1.0 / float(textureSize(shockwave_texture, 0).x);
+		float wr = texture(shockwave_texture, shock_uv + vec2(st, 0.0)).r;
+		float wl = texture(shockwave_texture, shock_uv - vec2(st, 0.0)).r;
+		float wu = texture(shockwave_texture, shock_uv + vec2(0.0, st)).r;
+		float wd = texture(shockwave_texture, shock_uv - vec2(0.0, st)).r;
+		distorted_uv += vec2(wr - wl, wu - wd) * shockwave_strength;
+	}
+
 	vec4 screen_color = textureLod(screen_texture, distorted_uv, 0.0);
+
+	// Shockwave visible ring (bright edge at wavefront)
+	if (shock_uv.x > 0.0 && shock_uv.x < 1.0 && shock_uv.y > 0.0 && shock_uv.y < 1.0) {
+		float wave = texture(shockwave_texture, shock_uv).r;
+		screen_color.rgb += vec3(0.6, 0.8, 1.0) * wave * shockwave_brightness;
+	}
 
 	// Caustic light patterns
 	float c = caustics(world_uv, time * caustic_speed);

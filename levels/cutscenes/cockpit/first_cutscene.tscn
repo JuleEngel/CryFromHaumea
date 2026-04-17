@@ -98,6 +98,7 @@ autowrap_mode = 2
 visible_characters = 0
 visible_ratio = 0.0
 script = ExtResource("6_sos")
+chars_per_second = 25.0
 
 [node name="ContinueLabel" type="Label" parent="ScreenTarget" unique_id=216424439]
 visible = false
