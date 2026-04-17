@@ -27,7 +27,7 @@ const GAME_OVER_SCENE := preload("res://ui_scenes/game_over/game_over.tscn")
 @onready var camera: Camera2D = $Camera2D
 @onready var propeller: AnimatedSprite2D = $Sprite2D/Propeller
 @onready var torpedo_hatch: Sprite2D = $Sprite2D/TorpedoHatch
-@onready var searchlight: PointLight2D = $Sprite2D/Searchlight
+@onready var searchlight: PointLight2D = $Searchlight
 
 const DIVE_VOL_MIN := -40.0
 const DIVE_VOL_MAX := -2.0
@@ -37,10 +37,13 @@ const MUSIC_FADE_SPEED := 3.0
 var _fire_timer: float = 0.0
 var _in_combat := false
 var _headlight_base_y: float
+var _searchlight_base_y: float
+var _searchlight_offset_x: float
 var _stunned := false
 var _stun_timer: float = 0.0
 var _stun_overlay: ColorRect
 var _propeller_speed: float = 0.0
+var _recoil_offset: float = 0.0
 
 func _ready() -> void:
 	super()
@@ -49,14 +52,15 @@ func _ready() -> void:
 		if CheckpointManager.facing_left:
 			sprite.scale.x = -abs(sprite.scale.x)
 			headlight.position.x = -abs(headlight.position.x)
-			searchlight.position.x = -abs(searchlight.position.x)
 		else:
 			headlight.position.x = abs(headlight.position.x)
-			searchlight.position.x = abs(searchlight.position.x)
 	headlight.texture = _generate_cone_texture(512, 512)
-	searchlight.texture = _generate_cone_texture(512, 512)
+	searchlight.texture = _generate_cone_texture(256, 256, 35.0, 0.15)
 	searchlight.texture_scale = 1.2
-	searchlight.energy = 1.5
+	searchlight.energy = 0.4
+	_searchlight_offset_x = searchlight.position.x - sprite.position.x
+	if CheckpointManager.has_checkpoint and CheckpointManager.facing_left:
+		searchlight.position.x = sprite.position.x - _searchlight_offset_x
 	ambiance_sound.stream.loop = true
 	dive_sound.stream.loop = true
 	music_adventure.volume_db = MUSIC_VOL
@@ -64,10 +68,12 @@ func _ready() -> void:
 	music_adventure.play()
 	music_combat.play()
 	_headlight_base_y = headlight.position.y
+	_searchlight_base_y = searchlight.position.y
 
 func _process(delta: float) -> void:
 	super(delta)
-	headlight.position.y = _headlight_base_y + sin(_bob_time * bob_speed * TAU) * bob_amplitude
+	var bob_offset := sin(_bob_time * bob_speed * TAU) * bob_amplitude
+	headlight.position.y = _headlight_base_y + bob_offset
 
 	# Slow healing
 	if hp < max_hp:
@@ -82,7 +88,8 @@ func _process(delta: float) -> void:
 	# Broken screen overlay
 	broken_screen.self_modulate.a = (1.0 - hp_ratio) * 0.7
 
-	# Searchlight pseudo-3D rotation
+	# Searchlight: bob with sprite + pseudo-3D rotation
+	searchlight.position.y = _searchlight_base_y + bob_offset
 	searchlight.scale.x = cos(_bob_time * 3.0)
 
 func apply_stun(duration: float) -> void:
@@ -126,11 +133,11 @@ func _physics_process(delta: float) -> void:
 	if velocity.x > 10.0:
 		sprite.scale.x = abs(sprite.scale.x)
 		headlight.position.x = abs(headlight.position.x)
-		searchlight.position.x = abs(searchlight.position.x)
+		searchlight.position.x = sprite.position.x + _searchlight_offset_x
 	elif velocity.x < -10.0:
 		sprite.scale.x = -abs(sprite.scale.x)
 		headlight.position.x = -abs(headlight.position.x)
-		searchlight.position.x = -abs(searchlight.position.x)
+		searchlight.position.x = sprite.position.x - _searchlight_offset_x
 
 	var target_tilt := 0.0
 	if velocity.length() > 10.0:
@@ -200,19 +207,18 @@ func _physics_process(delta: float) -> void:
 		ice_hit_sound.play()
 
 
-static func _generate_cone_texture(_size: int, tex_size: int) -> ImageTexture:
+static func _generate_cone_texture(_size: int, tex_size: int, cone_deg: float = 25.0, alpha_mult: float = 1.0) -> ImageTexture:
 	# PointLight2D renders the texture centered on position.
 	# We build a texture where the bright point is at the center,
 	# and the cone opens to the right half only.
 	var img := Image.create(tex_size, tex_size, false, Image.FORMAT_RGBA8)
 	var center := Vector2(tex_size / 2.0, tex_size / 2.0)
 	var half_size := tex_size / 2.0
-	var cone_half_angle := deg_to_rad(25.0)
+	var cone_half_angle := deg_to_rad(cone_deg)
 
 	for x in tex_size:
 		for y in tex_size:
 			var px := Vector2(x, y) - center
-			# Only light the right half (cone opens rightward)
 			if px.x <= 0.0:
 				img.set_pixel(x, y, Color(1, 1, 1, 0))
 				continue
@@ -224,15 +230,15 @@ static func _generate_cone_texture(_size: int, tex_size: int) -> ImageTexture:
 				img.set_pixel(x, y, Color(1, 1, 1, 0))
 				continue
 
-			# Distance falloff (quadratic)
+			# Distance falloff (cubic for softer when alpha_mult < 1)
 			var dist_factor := 1.0 - clampf(dist / half_size, 0.0, 1.0)
 			dist_factor *= dist_factor
 
-			# Angular falloff (soft edges)
-			var angle_factor := 1.0 - (angle / cone_half_angle)
-			angle_factor *= angle_factor
+			# Angular falloff — smoothstep for blurrier edges
+			var angle_t := clampf(angle / cone_half_angle, 0.0, 1.0)
+			var angle_factor := 1.0 - angle_t * angle_t * (3.0 - 2.0 * angle_t)
 
-			var alpha := dist_factor * angle_factor
+			var alpha := dist_factor * angle_factor * alpha_mult
 			img.set_pixel(x, y, Color(1, 1, 1, alpha))
 
 	return ImageTexture.create_from_image(img)
@@ -309,9 +315,15 @@ func _spawn_rocket() -> void:
 	get_tree().current_scene.add_child(rocket)
 
 	# Visual recoil dip
+	var recoil := 12.0
 	var tween := create_tween()
-	tween.tween_property(sprite, "position:y", sprite.position.y + 12.0, 0.1).set_ease(Tween.EASE_OUT)
-	tween.tween_property(sprite, "position:y", sprite.position.y, 0.25).set_ease(Tween.EASE_IN_OUT)
+	tween.set_parallel(true)
+	tween.tween_property(sprite, "position:y", sprite.position.y + recoil, 0.1).set_ease(Tween.EASE_OUT)
+	tween.tween_property(searchlight, "position:y", searchlight.position.y + recoil, 0.1).set_ease(Tween.EASE_OUT)
+	tween.tween_property(headlight, "position:y", headlight.position.y + recoil, 0.1).set_ease(Tween.EASE_OUT)
+	tween.chain().tween_property(sprite, "position:y", sprite.position.y, 0.25).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(searchlight, "position:y", searchlight.position.y, 0.25).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(headlight, "position:y", headlight.position.y, 0.25).set_ease(Tween.EASE_IN_OUT)
 
 	# Close torpedo hatch
 	var close_tween := create_tween()

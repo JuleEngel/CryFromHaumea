@@ -37,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://b2ogtd3373hpp" path="res://game_objects/plants/plant_1.tscn" id="33_7bem3"]
 [ext_resource type="PackedScene" uid="uid://b28md65dtep4l" path="res://game_objects/plants/plant_8.tscn" id="35_urd7n"]
 [ext_resource type="PackedScene" uid="uid://bac7mi85h6bjx" path="res://game_objects/plants/plant_4.tscn" id="37_xmr5l"]
+[ext_resource type="PackedScene" path="res://game_objects/consistent_enemies.tscn" id="38_knyjd"]
 
 [sub_resource type="Environment" id="Environment_underwater"]
 background_mode = 3
@@ -73,6 +74,20 @@ shader_parameter/light_cone_angle = 0.44
 shader_parameter/light_range = 0.4
 shader_parameter/light_intensity = 0.15
 shader_parameter/light_color = Color(0.9, 0.95, 1, 1)
+shader_parameter/search_position_screen = Vector2(0.5, 0.5)
+shader_parameter/search_direction = Vector2(1, 0)
+shader_parameter/search_cone_angle = 0.44
+shader_parameter/search_range = 0.12
+shader_parameter/search_intensity = 0.0
+shader_parameter/search_color = Color(0.9, 0.95, 1, 1)
+shader_parameter/shockwave_rect_origin = Vector2(-2, -2)
+shader_parameter/shockwave_rect_size = Vector2(1, 1)
+shader_parameter/shockwave_strength = 0.0015
+shader_parameter/shockwave_brightness = 0.04
+shader_parameter/wake_rect_origin = Vector2(-2, -2)
+shader_parameter/wake_rect_size = Vector2(1, 1)
+shader_parameter/wake_strength = 0.0006
+shader_parameter/wake_brightness = 0.015
 
 [sub_resource type="Resource" id="Resource_ls4ot"]
 script = ExtResource("11_kxe21")
@@ -1211,1002 +1226,1002 @@ metadata/_edit_lock_ = true
 
 [node name="ScatteredPlants" type="Node2D" parent="StaticBody2D" unique_id=1861096885]
 
-[node name="Plant_1" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1327445577 instance=ExtResource("29_2tvw2")]
+[node name="Plant_1" parent="StaticBody2D/ScatteredPlants" unique_id=1327445577 instance=ExtResource("29_2tvw2")]
 position = Vector2(-604.8789, 3.1455994)
 rotation = 3.1328645
 scale = Vector2(0.77199954, 0.77199954)
 
-[node name="Plant_2" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=322939573 instance=ExtResource("33_7bem3")]
+[node name="Plant_2" parent="StaticBody2D/ScatteredPlants" unique_id=322939573 instance=ExtResource("33_7bem3")]
 position = Vector2(849.05566, -5617.91)
 rotation = 0.20422821
 scale = Vector2(0.9659641, 0.9659641)
 
-[node name="Plant_3" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1297416745 instance=ExtResource("37_xmr5l")]
+[node name="Plant_3" parent="StaticBody2D/ScatteredPlants" unique_id=1297416745 instance=ExtResource("37_xmr5l")]
 position = Vector2(3193.0437, -695.6972)
 rotation = -0.06924493
 scale = Vector2(0.7450608, 0.7450608)
 
-[node name="Plant_4" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=999981637 instance=ExtResource("25_cr6e1")]
+[node name="Plant_4" parent="StaticBody2D/ScatteredPlants" unique_id=999981637 instance=ExtResource("25_cr6e1")]
 position = Vector2(2882.5308, -674.1596)
 rotation = -0.06924493
 scale = Vector2(0.8052636, 0.8052636)
 
-[node name="Plant_5" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1180329688 instance=ExtResource("35_urd7n")]
+[node name="Plant_5" parent="StaticBody2D/ScatteredPlants" unique_id=1180329688 instance=ExtResource("35_urd7n")]
 position = Vector2(5747.559, -5471.311)
 rotation = 1.5653276
 scale = Vector2(0.9700321, 0.9700321)
 
-[node name="Plant_6" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=374904699 instance=ExtResource("29_2tvw2")]
+[node name="Plant_6" parent="StaticBody2D/ScatteredPlants" unique_id=374904699 instance=ExtResource("29_2tvw2")]
 position = Vector2(-2831.7224, -6224.3906)
 rotation = -1.5730913
 scale = Vector2(0.73155713, 0.73155713)
 
-[node name="Plant_7" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1637845335 instance=ExtResource("29_2tvw2")]
+[node name="Plant_7" parent="StaticBody2D/ScatteredPlants" unique_id=1637845335 instance=ExtResource("29_2tvw2")]
 position = Vector2(-1670.7162, -7202.2246)
 rotation = 1.5656693
 scale = Vector2(0.768044, 0.768044)
 
-[node name="Plant_8" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=361688119 instance=ExtResource("29_2tvw2")]
+[node name="Plant_8" parent="StaticBody2D/ScatteredPlants" unique_id=361688119 instance=ExtResource("29_2tvw2")]
 position = Vector2(-2830.3242, -5617.544)
 rotation = -1.5730913
 scale = Vector2(0.881544, 0.881544)
 
-[node name="Plant_9" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1028488787 instance=ExtResource("25_cr6e1")]
+[node name="Plant_9" parent="StaticBody2D/ScatteredPlants" unique_id=1028488787 instance=ExtResource("25_cr6e1")]
 position = Vector2(1915.5454, -2458.322)
 rotation = -0.624027
 scale = Vector2(0.80779326, 0.80779326)
 
-[node name="Plant_10" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1114668064 instance=ExtResource("19_w4sur")]
+[node name="Plant_10" parent="StaticBody2D/ScatteredPlants" unique_id=1114668064 instance=ExtResource("19_w4sur")]
 position = Vector2(3628.98, -2828.1343)
 rotation = 0.23110464
 scale = Vector2(0.89981645, 0.89981645)
 
-[node name="Plant_11" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1115851430 instance=ExtResource("27_j0cbm")]
+[node name="Plant_11" parent="StaticBody2D/ScatteredPlants" unique_id=1115851430 instance=ExtResource("27_j0cbm")]
 position = Vector2(-1668.5802, -6787.283)
 rotation = 1.5656693
 scale = Vector2(0.8369109, 0.8369109)
 
-[node name="Plant_12" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=457695652 instance=ExtResource("23_tsgvr")]
+[node name="Plant_12" parent="StaticBody2D/ScatteredPlants" unique_id=457695652 instance=ExtResource("23_tsgvr")]
 position = Vector2(5748.249, -5344.7666)
 rotation = 1.5653276
 scale = Vector2(0.96996516, 0.96996516)
 
-[node name="Plant_13" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1002727513 instance=ExtResource("25_cr6e1")]
+[node name="Plant_13" parent="StaticBody2D/ScatteredPlants" unique_id=1002727513 instance=ExtResource("25_cr6e1")]
 position = Vector2(3625.4907, -3422.9326)
 rotation = -3.007623
 scale = Vector2(0.71698964, 0.71698964)
 
-[node name="Plant_14" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1957290140 instance=ExtResource("31_uveam")]
+[node name="Plant_14" parent="StaticBody2D/ScatteredPlants" unique_id=1957290140 instance=ExtResource("31_uveam")]
 position = Vector2(223.85132, -3218.0256)
 rotation = -0.00036010743
 scale = Vector2(0.7317741, 0.7317741)
 
-[node name="Plant_15" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1901314028 instance=ExtResource("37_xmr5l")]
+[node name="Plant_15" parent="StaticBody2D/ScatteredPlants" unique_id=1901314028 instance=ExtResource("37_xmr5l")]
 position = Vector2(5768.19, -2129.6343)
 rotation = 1.5600296
 scale = Vector2(0.7650328, 0.7650328)
 
-[node name="Plant_16" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1899064323 instance=ExtResource("31_uveam")]
+[node name="Plant_16" parent="StaticBody2D/ScatteredPlants" unique_id=1899064323 instance=ExtResource("31_uveam")]
 position = Vector2(492.3161, -5681.4575)
 rotation = 0.09055379
 scale = Vector2(0.915973, 0.915973)
 
-[node name="Plant_17" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=567110465 instance=ExtResource("35_urd7n")]
+[node name="Plant_17" parent="StaticBody2D/ScatteredPlants" unique_id=567110465 instance=ExtResource("35_urd7n")]
 position = Vector2(881.14026, -8862.991)
 rotation = 0.0036498862
 scale = Vector2(0.84288424, 0.84288424)
 
-[node name="Plant_18" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=547640934 instance=ExtResource("33_7bem3")]
+[node name="Plant_18" parent="StaticBody2D/ScatteredPlants" unique_id=547640934 instance=ExtResource("33_7bem3")]
 position = Vector2(-2831.0698, -5941.08)
 rotation = -1.5730913
 scale = Vector2(0.73137707, 0.73137707)
 
-[node name="Plant_19" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1492857294 instance=ExtResource("31_uveam")]
+[node name="Plant_19" parent="StaticBody2D/ScatteredPlants" unique_id=1492857294 instance=ExtResource("31_uveam")]
 position = Vector2(533.21045, -6.784973)
 rotation = 3.1328645
 scale = Vector2(0.8255754, 0.8255754)
 
-[node name="Plant_20" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1502998271 instance=ExtResource("19_w4sur")]
+[node name="Plant_20" parent="StaticBody2D/ScatteredPlants" unique_id=1502998271 instance=ExtResource("19_w4sur")]
 position = Vector2(4073.9634, -799.6108)
 rotation = -0.66324866
 scale = Vector2(0.97734505, 0.97734505)
 
-[node name="Plant_21" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=416034062 instance=ExtResource("27_j0cbm")]
+[node name="Plant_21" parent="StaticBody2D/ScatteredPlants" unique_id=416034062 instance=ExtResource("27_j0cbm")]
 position = Vector2(-161.03749, -6140.2036)
 rotation = 3.129546
 scale = Vector2(0.74741083, 0.74741083)
 
-[node name="Plant_22" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=2019189480 instance=ExtResource("35_urd7n")]
+[node name="Plant_22" parent="StaticBody2D/ScatteredPlants" unique_id=2019189480 instance=ExtResource("35_urd7n")]
 position = Vector2(-774.0702, -2452.3098)
 rotation = 0.1891183
 scale = Vector2(0.8687231, 0.8687231)
 
-[node name="Plant_23" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1880484306 instance=ExtResource("25_cr6e1")]
+[node name="Plant_23" parent="StaticBody2D/ScatteredPlants" unique_id=1880484306 instance=ExtResource("25_cr6e1")]
 position = Vector2(4571.8403, -42.02466)
 rotation = 3.1328523
 scale = Vector2(0.722374, 0.722374)
 
-[node name="Plant_24" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1006723697 instance=ExtResource("33_7bem3")]
+[node name="Plant_24" parent="StaticBody2D/ScatteredPlants" unique_id=1006723697 instance=ExtResource("33_7bem3")]
 position = Vector2(300.50146, -8865.112)
 rotation = 0.003652938
 scale = Vector2(0.79406357, 0.79406357)
 
-[node name="Plant_25" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=295106433 instance=ExtResource("37_xmr5l")]
+[node name="Plant_25" parent="StaticBody2D/ScatteredPlants" unique_id=295106433 instance=ExtResource("37_xmr5l")]
 position = Vector2(60.972656, -8865.987)
 rotation = 0.003652938
 scale = Vector2(0.80959934, 0.80959934)
 
-[node name="Plant_26" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1575384141 instance=ExtResource("27_j0cbm")]
+[node name="Plant_26" parent="StaticBody2D/ScatteredPlants" unique_id=1575384141 instance=ExtResource("27_j0cbm")]
 position = Vector2(-2821.2505, -1679.4368)
 rotation = -1.5731034
 scale = Vector2(0.72922564, 0.72922564)
 
-[node name="Plant_27" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1382189780 instance=ExtResource("29_2tvw2")]
+[node name="Plant_27" parent="StaticBody2D/ScatteredPlants" unique_id=1382189780 instance=ExtResource("29_2tvw2")]
 position = Vector2(-2826.237, -3843.6003)
 rotation = -1.5730913
 scale = Vector2(0.8098477, 0.8098477)
 
-[node name="Plant_28" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=823890467 instance=ExtResource("25_cr6e1")]
+[node name="Plant_28" parent="StaticBody2D/ScatteredPlants" unique_id=823890467 instance=ExtResource("25_cr6e1")]
 position = Vector2(-2824.0027, -2873.9275)
 rotation = -1.5730913
 scale = Vector2(0.81615126, 0.81615126)
 
-[node name="Plant_29" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1943315527 instance=ExtResource("19_w4sur")]
+[node name="Plant_29" parent="StaticBody2D/ScatteredPlants" unique_id=1943315527 instance=ExtResource("19_w4sur")]
 position = Vector2(-934.2892, -5441.45)
 rotation = 2.552571
 scale = Vector2(0.7345379, 0.7345379)
 
-[node name="Plant_30" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1048077815 instance=ExtResource("27_j0cbm")]
+[node name="Plant_30" parent="StaticBody2D/ScatteredPlants" unique_id=1048077815 instance=ExtResource("27_j0cbm")]
 position = Vector2(-2819.8354, -1065.1921)
 rotation = -1.5730913
 scale = Vector2(0.8054522, 0.8054522)
 
-[node name="Plant_31" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=956280458 instance=ExtResource("33_7bem3")]
+[node name="Plant_31" parent="StaticBody2D/ScatteredPlants" unique_id=956280458 instance=ExtResource("33_7bem3")]
 position = Vector2(1832.717, -783.6588)
 rotation = 0.26320985
 scale = Vector2(0.7009911, 0.7009911)
 
-[node name="Plant_32" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1437064294 instance=ExtResource("19_w4sur")]
+[node name="Plant_32" parent="StaticBody2D/ScatteredPlants" unique_id=1437064294 instance=ExtResource("19_w4sur")]
 position = Vector2(-1678.2091, -8657.848)
 rotation = 1.5656205
 scale = Vector2(0.7857254, 0.7857254)
 
-[node name="Plant_33" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=2124375172 instance=ExtResource("25_cr6e1")]
+[node name="Plant_33" parent="StaticBody2D/ScatteredPlants" unique_id=2124375172 instance=ExtResource("25_cr6e1")]
 position = Vector2(266.38885, -6106.054)
 rotation = -3.0134706
 scale = Vector2(0.8979422, 0.8979422)
 
-[node name="Plant_34" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1441883767 instance=ExtResource("27_j0cbm")]
+[node name="Plant_34" parent="StaticBody2D/ScatteredPlants" unique_id=1441883767 instance=ExtResource("27_j0cbm")]
 position = Vector2(-2837.841, -8879.92)
 rotation = -1.57314
 scale = Vector2(0.8176748, 0.8176748)
 
-[node name="Plant_35" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1897339054 instance=ExtResource("33_7bem3")]
+[node name="Plant_35" parent="StaticBody2D/ScatteredPlants" unique_id=1897339054 instance=ExtResource("33_7bem3")]
 position = Vector2(-2176.8538, -8909.405)
 rotation = -0.00017089843
 scale = Vector2(0.8609592, 0.8609592)
 
-[node name="Plant_36" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1245849019 instance=ExtResource("37_xmr5l")]
+[node name="Plant_36" parent="StaticBody2D/ScatteredPlants" unique_id=1245849019 instance=ExtResource("37_xmr5l")]
 position = Vector2(-660.4387, -5053.866)
 rotation = -0.08700958
 scale = Vector2(0.77975124, 0.77975124)
 
-[node name="Plant_37" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=919444322 instance=ExtResource("27_j0cbm")]
+[node name="Plant_37" parent="StaticBody2D/ScatteredPlants" unique_id=919444322 instance=ExtResource("27_j0cbm")]
 position = Vector2(-2096.7021, -3924.07)
 rotation = 1.7211905
 scale = Vector2(0.76516855, 0.76516855)
 
-[node name="Plant_38" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1722149650 instance=ExtResource("19_w4sur")]
+[node name="Plant_38" parent="StaticBody2D/ScatteredPlants" unique_id=1722149650 instance=ExtResource("19_w4sur")]
 position = Vector2(4476.9805, -3060.6511)
 rotation = -1.9881555
 scale = Vector2(0.9559, 0.9559)
 
-[node name="Plant_39" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=956528021 instance=ExtResource("19_w4sur")]
+[node name="Plant_39" parent="StaticBody2D/ScatteredPlants" unique_id=956528021 instance=ExtResource("19_w4sur")]
 position = Vector2(4955.3174, -1566.6117)
 rotation = -1.8985302
 scale = Vector2(0.92345256, 0.92345256)
 
-[node name="Plant_40" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=536585799 instance=ExtResource("27_j0cbm")]
+[node name="Plant_40" parent="StaticBody2D/ScatteredPlants" unique_id=536585799 instance=ExtResource("27_j0cbm")]
 position = Vector2(905.80115, -2905.7153)
 rotation = 2.8295045
 scale = Vector2(0.81705177, 0.81705177)
 
-[node name="Plant_41" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=45079953 instance=ExtResource("19_w4sur")]
+[node name="Plant_41" parent="StaticBody2D/ScatteredPlants" unique_id=45079953 instance=ExtResource("19_w4sur")]
 position = Vector2(-1215.5693, -3424.7854)
 rotation = 3.0535874
 scale = Vector2(0.95863223, 0.95863223)
 
-[node name="Plant_42" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1879818080 instance=ExtResource("35_urd7n")]
+[node name="Plant_42" parent="StaticBody2D/ScatteredPlants" unique_id=1879818080 instance=ExtResource("35_urd7n")]
 position = Vector2(2231.6091, -3375.956)
 rotation = 3.0784643
 scale = Vector2(0.9279841, 0.9279841)
 
-[node name="Plant_43" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=993460844 instance=ExtResource("35_urd7n")]
+[node name="Plant_43" parent="StaticBody2D/ScatteredPlants" unique_id=993460844 instance=ExtResource("35_urd7n")]
 position = Vector2(-122.680176, -1.0618973)
 rotation = 3.1328676
 scale = Vector2(0.7842777, 0.7842777)
 
-[node name="Plant_44" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=772765825 instance=ExtResource("23_tsgvr")]
+[node name="Plant_44" parent="StaticBody2D/ScatteredPlants" unique_id=772765825 instance=ExtResource("23_tsgvr")]
 position = Vector2(244.81091, -2146.39)
 rotation = 0.3223817
 scale = Vector2(0.7185579, 0.7185579)
 
-[node name="Plant_45" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1661299492 instance=ExtResource("35_urd7n")]
+[node name="Plant_45" parent="StaticBody2D/ScatteredPlants" unique_id=1661299492 instance=ExtResource("35_urd7n")]
 position = Vector2(-653.6073, -2429.2522)
 rotation = 0.1891183
 scale = Vector2(0.78291696, 0.78291696)
 
-[node name="Plant_46" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=639405120 instance=ExtResource("23_tsgvr")]
+[node name="Plant_46" parent="StaticBody2D/ScatteredPlants" unique_id=639405120 instance=ExtResource("23_tsgvr")]
 position = Vector2(-1234.6068, -8330.089)
 rotation = -1.5989249
 scale = Vector2(0.8828867, 0.8828867)
 
-[node name="Plant_47" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=449190062 instance=ExtResource("33_7bem3")]
+[node name="Plant_47" parent="StaticBody2D/ScatteredPlants" unique_id=449190062 instance=ExtResource("33_7bem3")]
 position = Vector2(-2821.7617, -1901.2303)
 rotation = -1.5731034
 scale = Vector2(0.8416095, 0.8416095)
 
-[node name="Plant_48" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=365927322 instance=ExtResource("29_2tvw2")]
+[node name="Plant_48" parent="StaticBody2D/ScatteredPlants" unique_id=365927322 instance=ExtResource("29_2tvw2")]
 position = Vector2(578.6178, -6065.831)
 rotation = -3.0134706
 scale = Vector2(0.94594026, 0.94594026)
 
-[node name="Plant_49" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1358351087 instance=ExtResource("25_cr6e1")]
+[node name="Plant_49" parent="StaticBody2D/ScatteredPlants" unique_id=1358351087 instance=ExtResource("25_cr6e1")]
 position = Vector2(1148.7871, -2994.4963)
 rotation = 2.7683287
 scale = Vector2(0.7615027, 0.7615027)
 
-[node name="Plant_50" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1244473788 instance=ExtResource("29_2tvw2")]
+[node name="Plant_50" parent="StaticBody2D/ScatteredPlants" unique_id=1244473788 instance=ExtResource("29_2tvw2")]
 position = Vector2(2906.6396, -1329.6399)
 rotation = -1.3460817
 scale = Vector2(0.7750747, 0.7750747)
 
-[node name="Plant_51" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1053020090 instance=ExtResource("37_xmr5l")]
+[node name="Plant_51" parent="StaticBody2D/ScatteredPlants" unique_id=1053020090 instance=ExtResource("37_xmr5l")]
 position = Vector2(-257.66052, -4550.4507)
 rotation = 2.7628546
 scale = Vector2(0.7421025, 0.7421025)
 
-[node name="Plant_52" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1263676173 instance=ExtResource("33_7bem3")]
+[node name="Plant_52" parent="StaticBody2D/ScatteredPlants" unique_id=1263676173 instance=ExtResource("33_7bem3")]
 position = Vector2(2909.5422, -27.52002)
 rotation = 3.1328766
 scale = Vector2(0.777378, 0.777378)
 
-[node name="Plant_53" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=897626626 instance=ExtResource("35_urd7n")]
+[node name="Plant_53" parent="StaticBody2D/ScatteredPlants" unique_id=897626626 instance=ExtResource("35_urd7n")]
 position = Vector2(-2817.9153, -231.80309)
 rotation = -1.5731004
 scale = Vector2(0.78264445, 0.78264445)
 
-[node name="Plant_54" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=561584991 instance=ExtResource("27_j0cbm")]
+[node name="Plant_54" parent="StaticBody2D/ScatteredPlants" unique_id=561584991 instance=ExtResource("27_j0cbm")]
 position = Vector2(-2826.0005, -3740.9846)
 rotation = -1.5730913
 scale = Vector2(0.89263487, 0.89263487)
 
-[node name="Plant_55" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=32439833 instance=ExtResource("29_2tvw2")]
+[node name="Plant_55" parent="StaticBody2D/ScatteredPlants" unique_id=32439833 instance=ExtResource("29_2tvw2")]
 position = Vector2(-1196.6516, -4350.007)
 rotation = 2.2510736
 scale = Vector2(0.8490818, 0.8490818)
 
-[node name="Plant_56" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=64040965 instance=ExtResource("19_w4sur")]
+[node name="Plant_56" parent="StaticBody2D/ScatteredPlants" unique_id=64040965 instance=ExtResource("19_w4sur")]
 position = Vector2(-1024.772, -6211.0137)
 rotation = -2.2419229
 scale = Vector2(0.7177944, 0.7177944)
 
-[node name="Plant_57" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=448115823 instance=ExtResource("27_j0cbm")]
+[node name="Plant_57" parent="StaticBody2D/ScatteredPlants" unique_id=448115823 instance=ExtResource("27_j0cbm")]
 position = Vector2(4746.3813, -43.547646)
 rotation = 3.1328523
 scale = Vector2(0.8881322, 0.8881322)
 
-[node name="Plant_58" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1606330046 instance=ExtResource("31_uveam")]
+[node name="Plant_58" parent="StaticBody2D/ScatteredPlants" unique_id=1606330046 instance=ExtResource("31_uveam")]
 position = Vector2(371.39343, -5692.438)
 rotation = 0.09055379
 scale = Vector2(0.7729134, 0.7729134)
 
-[node name="Plant_59" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=381440410 instance=ExtResource("37_xmr5l")]
+[node name="Plant_59" parent="StaticBody2D/ScatteredPlants" unique_id=381440410 instance=ExtResource("37_xmr5l")]
 position = Vector2(4133.3716, -3354.4785)
 rotation = -3.0075989
 scale = Vector2(0.8928844, 0.8928844)
 
-[node name="Plant_60" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=259001251 instance=ExtResource("25_cr6e1")]
+[node name="Plant_60" parent="StaticBody2D/ScatteredPlants" unique_id=259001251 instance=ExtResource("25_cr6e1")]
 position = Vector2(-1111.8763, -3624.2551)
 rotation = 0.6435011
 scale = Vector2(0.90771335, 0.90771335)
 
-[node name="Plant_61" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=260837231 instance=ExtResource("19_w4sur")]
+[node name="Plant_61" parent="StaticBody2D/ScatteredPlants" unique_id=260837231 instance=ExtResource("19_w4sur")]
 position = Vector2(-480.65662, -4779.5957)
 rotation = -2.3276346
 scale = Vector2(0.83979607, 0.83979607)
 
-[node name="Plant_62" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1827976188 instance=ExtResource("25_cr6e1")]
+[node name="Plant_62" parent="StaticBody2D/ScatteredPlants" unique_id=1827976188 instance=ExtResource("25_cr6e1")]
 position = Vector2(1361.8983, -1133.7384)
 rotation = 0.7814449
 scale = Vector2(0.72684646, 0.72684646)
 
-[node name="Plant_63" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1466941224 instance=ExtResource("31_uveam")]
+[node name="Plant_63" parent="StaticBody2D/ScatteredPlants" unique_id=1466941224 instance=ExtResource("31_uveam")]
 position = Vector2(5740.6846, -6732.9766)
 rotation = 1.5653276
 scale = Vector2(0.8930839, 0.8930839)
 
-[node name="Plant_64" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1553882687 instance=ExtResource("27_j0cbm")]
+[node name="Plant_64" parent="StaticBody2D/ScatteredPlants" unique_id=1553882687 instance=ExtResource("27_j0cbm")]
 position = Vector2(3478.6443, -3427.8823)
 rotation = 3.1283598
 scale = Vector2(0.83011746, 0.83011746)
 
-[node name="Plant_65" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=785127207 instance=ExtResource("29_2tvw2")]
+[node name="Plant_65" parent="StaticBody2D/ScatteredPlants" unique_id=785127207 instance=ExtResource("29_2tvw2")]
 position = Vector2(5731.6035, -8399.582)
 rotation = 1.5653276
 scale = Vector2(0.7377508, 0.7377508)
 
-[node name="Plant_66" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1643392026 instance=ExtResource("23_tsgvr")]
+[node name="Plant_66" parent="StaticBody2D/ScatteredPlants" unique_id=1643392026 instance=ExtResource("23_tsgvr")]
 position = Vector2(-249.28111, -5435.4575)
 rotation = -2.9797528
 scale = Vector2(0.81113523, 0.81113523)
 
-[node name="Plant_67" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=2108362352 instance=ExtResource("25_cr6e1")]
+[node name="Plant_67" parent="StaticBody2D/ScatteredPlants" unique_id=2108362352 instance=ExtResource("25_cr6e1")]
 position = Vector2(-2834.0974, -7255.1875)
 rotation = -1.5730913
 scale = Vector2(0.8573841, 0.8573841)
 
-[node name="Plant_68" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=965396910 instance=ExtResource("33_7bem3")]
+[node name="Plant_68" parent="StaticBody2D/ScatteredPlants" unique_id=965396910 instance=ExtResource("33_7bem3")]
 position = Vector2(-1672.0781, -7466.8135)
 rotation = 1.5656693
 scale = Vector2(0.768658, 0.768658)
 
-[node name="Plant_69" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1742655585 instance=ExtResource("31_uveam")]
+[node name="Plant_69" parent="StaticBody2D/ScatteredPlants" unique_id=1742655585 instance=ExtResource("31_uveam")]
 position = Vector2(1347.541, -5875.299)
 rotation = -2.7717404
 scale = Vector2(0.8715505, 0.8715505)
 
-[node name="Plant_70" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=513223943 instance=ExtResource("35_urd7n")]
+[node name="Plant_70" parent="StaticBody2D/ScatteredPlants" unique_id=513223943 instance=ExtResource("35_urd7n")]
 position = Vector2(5758.5513, -3454.0059)
 rotation = 1.5653521
 scale = Vector2(0.8255069, 0.8255069)
 
-[node name="Plant_71" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=723165187 instance=ExtResource("33_7bem3")]
+[node name="Plant_71" parent="StaticBody2D/ScatteredPlants" unique_id=723165187 instance=ExtResource("33_7bem3")]
 position = Vector2(2134.8896, -2394.294)
 rotation = 1.5042185
 scale = Vector2(0.8473169, 0.8473169)
 
-[node name="Plant_72" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1779292283 instance=ExtResource("29_2tvw2")]
+[node name="Plant_72" parent="StaticBody2D/ScatteredPlants" unique_id=1779292283 instance=ExtResource("29_2tvw2")]
 position = Vector2(5787.6577, -321.27808)
 rotation = 1.5600296
 scale = Vector2(0.7904255, 0.7904255)
 
-[node name="Plant_73" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=776401730 instance=ExtResource("29_2tvw2")]
+[node name="Plant_73" parent="StaticBody2D/ScatteredPlants" unique_id=776401730 instance=ExtResource("29_2tvw2")]
 position = Vector2(-2287.4043, 17.826736)
 rotation = 3.1328766
 scale = Vector2(0.7837879, 0.7837879)
 
-[node name="Plant_74" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1112629144 instance=ExtResource("29_2tvw2")]
+[node name="Plant_74" parent="StaticBody2D/ScatteredPlants" unique_id=1112629144 instance=ExtResource("29_2tvw2")]
 position = Vector2(5737.5474, -7308.697)
 rotation = 1.5653276
 scale = Vector2(0.9298602, 0.9298602)
 
-[node name="Plant_75" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1470624942 instance=ExtResource("31_uveam")]
+[node name="Plant_75" parent="StaticBody2D/ScatteredPlants" unique_id=1470624942 instance=ExtResource("31_uveam")]
 position = Vector2(1027.9683, -2947.1802)
 rotation = 2.7683287
 scale = Vector2(0.97491944, 0.97491944)
 
-[node name="Plant_76" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=2016173367 instance=ExtResource("27_j0cbm")]
+[node name="Plant_76" parent="StaticBody2D/ScatteredPlants" unique_id=2016173367 instance=ExtResource("27_j0cbm")]
 position = Vector2(39.47368, -3896.9233)
 rotation = -2.9361932
 scale = Vector2(0.7446571, 0.7446571)
 
-[node name="Plant_77" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=638936901 instance=ExtResource("29_2tvw2")]
+[node name="Plant_77" parent="StaticBody2D/ScatteredPlants" unique_id=638936901 instance=ExtResource("29_2tvw2")]
 position = Vector2(48.30127, -2.5538177)
 rotation = 3.1328676
 scale = Vector2(0.8034735, 0.8034735)
 
-[node name="Plant_78" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=960360959 instance=ExtResource("31_uveam")]
+[node name="Plant_78" parent="StaticBody2D/ScatteredPlants" unique_id=960360959 instance=ExtResource("31_uveam")]
 position = Vector2(-1244.0449, -8665.552)
 rotation = -1.5989249
 scale = Vector2(0.7107384, 0.7107384)
 
-[node name="Plant_79" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1021931274 instance=ExtResource("25_cr6e1")]
+[node name="Plant_79" parent="StaticBody2D/ScatteredPlants" unique_id=1021931274 instance=ExtResource("25_cr6e1")]
 position = Vector2(1932.1853, -18.991943)
 rotation = 3.1328766
 scale = Vector2(0.78978854, 0.78978854)
 
-[node name="Plant_80" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1826083033 instance=ExtResource("29_2tvw2")]
+[node name="Plant_80" parent="StaticBody2D/ScatteredPlants" unique_id=1826083033 instance=ExtResource("29_2tvw2")]
 position = Vector2(-1374.0563, -3500.6294)
 rotation = -2.38059
 scale = Vector2(0.9088987, 0.9088987)
 
-[node name="Plant_81" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1288292886 instance=ExtResource("27_j0cbm")]
+[node name="Plant_81" parent="StaticBody2D/ScatteredPlants" unique_id=1288292886 instance=ExtResource("27_j0cbm")]
 position = Vector2(977.03174, -1524.5005)
 rotation = 0.8205449
 scale = Vector2(0.9870976, 0.9870976)
 
-[node name="Plant_82" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=606567115 instance=ExtResource("25_cr6e1")]
+[node name="Plant_82" parent="StaticBody2D/ScatteredPlants" unique_id=606567115 instance=ExtResource("25_cr6e1")]
 position = Vector2(1795.158, -2371.6428)
 rotation = -0.624027
 scale = Vector2(0.78245896, 0.78245896)
 
-[node name="Plant_83" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1549860843 instance=ExtResource("23_tsgvr")]
+[node name="Plant_83" parent="StaticBody2D/ScatteredPlants" unique_id=1549860843 instance=ExtResource("23_tsgvr")]
 position = Vector2(1516.367, -980.4863)
 rotation = 0.78144914
 scale = Vector2(0.9788722, 0.9788722)
 
-[node name="Plant_84" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=637499521 instance=ExtResource("33_7bem3")]
+[node name="Plant_84" parent="StaticBody2D/ScatteredPlants" unique_id=637499521 instance=ExtResource("33_7bem3")]
 position = Vector2(5736.553, -7491.162)
 rotation = 1.5653276
 scale = Vector2(0.85141313, 0.85141313)
 
-[node name="Plant_85" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1024704575 instance=ExtResource("23_tsgvr")]
+[node name="Plant_85" parent="StaticBody2D/ScatteredPlants" unique_id=1024704575 instance=ExtResource("23_tsgvr")]
 position = Vector2(1324.3823, -3063.2644)
 rotation = 2.7683287
 scale = Vector2(0.8062486, 0.8062486)
 
-[node name="Plant_86" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=327349892 instance=ExtResource("29_2tvw2")]
+[node name="Plant_86" parent="StaticBody2D/ScatteredPlants" unique_id=327349892 instance=ExtResource("29_2tvw2")]
 position = Vector2(-636.7615, -8868.536)
 rotation = 0.0036498862
 scale = Vector2(0.8000805, 0.8000805)
 
-[node name="Plant_87" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=767749887 instance=ExtResource("25_cr6e1")]
+[node name="Plant_87" parent="StaticBody2D/ScatteredPlants" unique_id=767749887 instance=ExtResource("25_cr6e1")]
 position = Vector2(-2008.2067, -3026.6272)
 rotation = 0.83171505
 scale = Vector2(0.7971558, 0.7971558)
 
-[node name="Plant_88" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1076225577 instance=ExtResource("29_2tvw2")]
+[node name="Plant_88" parent="StaticBody2D/ScatteredPlants" unique_id=1076225577 instance=ExtResource("29_2tvw2")]
 position = Vector2(5757.4917, -3648.5127)
 rotation = 1.5653521
 scale = Vector2(0.9894173, 0.9894173)
 
-[node name="Plant_89" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=515884961 instance=ExtResource("37_xmr5l")]
+[node name="Plant_89" parent="StaticBody2D/ScatteredPlants" unique_id=515884961 instance=ExtResource("37_xmr5l")]
 position = Vector2(3225.5203, -30.277138)
 rotation = 3.1328766
 scale = Vector2(0.75218815, 0.75218815)
 
-[node name="Plant_90" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1094684963 instance=ExtResource("23_tsgvr")]
+[node name="Plant_90" parent="StaticBody2D/ScatteredPlants" unique_id=1094684963 instance=ExtResource("23_tsgvr")]
 position = Vector2(5755.761, -3966.1138)
 rotation = 1.5653521
 scale = Vector2(0.8613424, 0.8613424)
 
-[node name="Plant_91" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1952163315 instance=ExtResource("19_w4sur")]
+[node name="Plant_91" parent="StaticBody2D/ScatteredPlants" unique_id=1952163315 instance=ExtResource("19_w4sur")]
 position = Vector2(338.3006, -5031.7627)
 rotation = -0.061605573
 scale = Vector2(0.89023286, 0.89023286)
 
-[node name="Plant_92" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1756439642 instance=ExtResource("25_cr6e1")]
+[node name="Plant_92" parent="StaticBody2D/ScatteredPlants" unique_id=1756439642 instance=ExtResource("25_cr6e1")]
 position = Vector2(-2112.3052, -3140.8464)
 rotation = 0.83171505
 scale = Vector2(0.9155775, 0.9155775)
 
-[node name="Plant_93" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1691070230 instance=ExtResource("19_w4sur")]
+[node name="Plant_93" parent="StaticBody2D/ScatteredPlants" unique_id=1691070230 instance=ExtResource("19_w4sur")]
 position = Vector2(-1599.6017, -6009.0977)
 rotation = 1.4535849
 scale = Vector2(0.8760244, 0.8760244)
 
-[node name="Plant_94" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1874395198 instance=ExtResource("31_uveam")]
+[node name="Plant_94" parent="StaticBody2D/ScatteredPlants" unique_id=1874395198 instance=ExtResource("31_uveam")]
 position = Vector2(3939.7324, -36.5091)
 rotation = 3.1328523
 scale = Vector2(0.9184073, 0.9184073)
 
-[node name="Plant_95" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=169327769 instance=ExtResource("29_2tvw2")]
+[node name="Plant_95" parent="StaticBody2D/ScatteredPlants" unique_id=169327769 instance=ExtResource("29_2tvw2")]
 position = Vector2(5760.485, -3099.2134)
 rotation = 1.5653521
 scale = Vector2(0.70750344, 0.70750344)
 
-[node name="Plant_96" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1470978204 instance=ExtResource("19_w4sur")]
+[node name="Plant_96" parent="StaticBody2D/ScatteredPlants" unique_id=1470978204 instance=ExtResource("19_w4sur")]
 position = Vector2(357.0337, -2108.9036)
 rotation = 0.3223817
 scale = Vector2(0.8390487, 0.8390487)
 
-[node name="Plant_97" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1154153841 instance=ExtResource("19_w4sur")]
+[node name="Plant_97" parent="StaticBody2D/ScatteredPlants" unique_id=1154153841 instance=ExtResource("19_w4sur")]
 position = Vector2(-1706.6495, -4227.53)
 rotation = 2.9718244
 scale = Vector2(0.96961665, 0.96961665)
 
-[node name="Plant_98" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1053061555 instance=ExtResource("19_w4sur")]
+[node name="Plant_98" parent="StaticBody2D/ScatteredPlants" unique_id=1053061555 instance=ExtResource("19_w4sur")]
 position = Vector2(-1677.1256, -8447.36)
 rotation = 1.5656205
 scale = Vector2(0.96909744, 0.96909744)
 
-[node name="Plant_99" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=2144856179 instance=ExtResource("37_xmr5l")]
+[node name="Plant_99" parent="StaticBody2D/ScatteredPlants" unique_id=2144856179 instance=ExtResource("37_xmr5l")]
 position = Vector2(169.5224, -3988.4204)
 rotation = 2.265535
 scale = Vector2(0.889455, 0.889455)
 
-[node name="Plant_100" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1584792494 instance=ExtResource("23_tsgvr")]
+[node name="Plant_100" parent="StaticBody2D/ScatteredPlants" unique_id=1584792494 instance=ExtResource("23_tsgvr")]
 position = Vector2(4451.6704, -40.976097)
 rotation = 3.1328523
 scale = Vector2(0.9111273, 0.9111273)
 
-[node name="Plant_101" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1630520230 instance=ExtResource("33_7bem3")]
+[node name="Plant_101" parent="StaticBody2D/ScatteredPlants" unique_id=1630520230 instance=ExtResource("33_7bem3")]
 position = Vector2(1236.6747, -1257.9757)
 rotation = 0.7814449
 scale = Vector2(0.7434552, 0.7434552)
 
-[node name="Plant_102" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=12372973 instance=ExtResource("31_uveam")]
+[node name="Plant_102" parent="StaticBody2D/ScatteredPlants" unique_id=12372973 instance=ExtResource("31_uveam")]
 position = Vector2(-899.81726, -8869.497)
 rotation = 0.0036498862
 scale = Vector2(0.8958125, 0.8958125)
 
-[node name="Plant_103" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1472124110 instance=ExtResource("37_xmr5l")]
+[node name="Plant_103" parent="StaticBody2D/ScatteredPlants" unique_id=1472124110 instance=ExtResource("37_xmr5l")]
 position = Vector2(902.8086, -3351.3787)
 rotation = -0.7708016
 scale = Vector2(0.90251434, 0.90251434)
 
-[node name="Plant_104" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=856796802 instance=ExtResource("29_2tvw2")]
+[node name="Plant_104" parent="StaticBody2D/ScatteredPlants" unique_id=856796802 instance=ExtResource("29_2tvw2")]
 position = Vector2(423.34277, -5.826309)
 rotation = 3.1328645
 scale = Vector2(0.9849334, 0.9849334)
 
-[node name="Plant_105" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=578863970 instance=ExtResource("37_xmr5l")]
+[node name="Plant_105" parent="StaticBody2D/ScatteredPlants" unique_id=578863970 instance=ExtResource("37_xmr5l")]
 position = Vector2(-140.2016, -4104.9717)
 rotation = -0.6232018
 scale = Vector2(0.9884144, 0.9884144)
 
-[node name="Plant_106" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=599732847 instance=ExtResource("33_7bem3")]
+[node name="Plant_106" parent="StaticBody2D/ScatteredPlants" unique_id=599732847 instance=ExtResource("33_7bem3")]
 position = Vector2(1947.5317, -8859.097)
 rotation = 0.003662093
 scale = Vector2(0.70849323, 0.70849323)
 
-[node name="Plant_107" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=329607175 instance=ExtResource("29_2tvw2")]
+[node name="Plant_107" parent="StaticBody2D/ScatteredPlants" unique_id=329607175 instance=ExtResource("29_2tvw2")]
 position = Vector2(-1949.4893, 14.878212)
 rotation = 3.1328645
 scale = Vector2(0.76682836, 0.76682836)
 
-[node name="Plant_108" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=405262211 instance=ExtResource("27_j0cbm")]
+[node name="Plant_108" parent="StaticBody2D/ScatteredPlants" unique_id=405262211 instance=ExtResource("27_j0cbm")]
 position = Vector2(-1247.9359, -8803.8545)
 rotation = -1.5989249
 scale = Vector2(0.7788997, 0.7788997)
 
-[node name="Plant_109" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=316613970 instance=ExtResource("33_7bem3")]
+[node name="Plant_109" parent="StaticBody2D/ScatteredPlants" unique_id=316613970 instance=ExtResource("33_7bem3")]
 position = Vector2(-1240.5239, -8540.406)
 rotation = -1.5989249
 scale = Vector2(0.88090366, 0.88090366)
 
-[node name="Plant_110" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=697664681 instance=ExtResource("19_w4sur")]
+[node name="Plant_110" parent="StaticBody2D/ScatteredPlants" unique_id=697664681 instance=ExtResource("19_w4sur")]
 position = Vector2(727.0548, -2878.6616)
 rotation = -2.962506
 scale = Vector2(0.9023691, 0.9023691)
 
-[node name="Plant_111" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=282821443 instance=ExtResource("29_2tvw2")]
+[node name="Plant_111" parent="StaticBody2D/ScatteredPlants" unique_id=282821443 instance=ExtResource("29_2tvw2")]
 position = Vector2(5750.9365, -4851.508)
 rotation = 1.5653276
 scale = Vector2(0.89884984, 0.89884984)
 
-[node name="Plant_112" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1060721253 instance=ExtResource("33_7bem3")]
+[node name="Plant_112" parent="StaticBody2D/ScatteredPlants" unique_id=1060721253 instance=ExtResource("33_7bem3")]
 position = Vector2(-1132.4451, -5255.213)
 rotation = 1.9076486
 scale = Vector2(0.8994631, 0.8994631)
 
-[node name="Plant_113" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=297981581 instance=ExtResource("19_w4sur")]
+[node name="Plant_113" parent="StaticBody2D/ScatteredPlants" unique_id=297981581 instance=ExtResource("19_w4sur")]
 position = Vector2(692.6023, -5479.481)
 rotation = 2.7945092
 scale = Vector2(0.8773202, 0.8773202)
 
-[node name="Plant_114" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=536455823 instance=ExtResource("29_2tvw2")]
+[node name="Plant_114" parent="StaticBody2D/ScatteredPlants" unique_id=536455823 instance=ExtResource("29_2tvw2")]
 position = Vector2(-2150.3545, -3570.0063)
 rotation = 1.7211941
 scale = Vector2(0.7351722, 0.7351722)
 
-[node name="Plant_115" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1885276418 instance=ExtResource("33_7bem3")]
+[node name="Plant_115" parent="StaticBody2D/ScatteredPlants" unique_id=1885276418 instance=ExtResource("33_7bem3")]
 position = Vector2(2528.5828, -3394.7288)
 rotation = 3.0784643
 scale = Vector2(0.8403423, 0.8403423)
 
-[node name="Plant_116" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=994301421 instance=ExtResource("33_7bem3")]
+[node name="Plant_116" parent="StaticBody2D/ScatteredPlants" unique_id=994301421 instance=ExtResource("33_7bem3")]
 position = Vector2(5771.154, -1854.3329)
 rotation = 1.5600296
 scale = Vector2(0.9845354, 0.9845354)
 
-[node name="Plant_117" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=956002425 instance=ExtResource("31_uveam")]
+[node name="Plant_117" parent="StaticBody2D/ScatteredPlants" unique_id=956002425 instance=ExtResource("31_uveam")]
 position = Vector2(-1338.028, -3649.194)
 rotation = -0.3129067
 scale = Vector2(0.81181586, 0.81181586)
 
-[node name="Plant_118" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1910372713 instance=ExtResource("19_w4sur")]
+[node name="Plant_118" parent="StaticBody2D/ScatteredPlants" unique_id=1910372713 instance=ExtResource("19_w4sur")]
 position = Vector2(-2832.301, -6475.476)
 rotation = -1.5730913
 scale = Vector2(0.8934767, 0.8934767)
 
-[node name="Plant_119" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1025888234 instance=ExtResource("35_urd7n")]
+[node name="Plant_119" parent="StaticBody2D/ScatteredPlants" unique_id=1025888234 instance=ExtResource("35_urd7n")]
 position = Vector2(-2837.5955, -8773.324)
 rotation = -1.57314
 scale = Vector2(0.99496853, 0.99496853)
 
-[node name="Plant_120" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=964101725 instance=ExtResource("27_j0cbm")]
+[node name="Plant_120" parent="StaticBody2D/ScatteredPlants" unique_id=964101725 instance=ExtResource("27_j0cbm")]
 position = Vector2(-1674.8027, -7996.093)
 rotation = 1.5656693
 scale = Vector2(0.9453342, 0.9453342)
 
-[node name="Plant_121" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1717565009 instance=ExtResource("25_cr6e1")]
+[node name="Plant_121" parent="StaticBody2D/ScatteredPlants" unique_id=1717565009 instance=ExtResource("25_cr6e1")]
 position = Vector2(-46.93811, -5730.4243)
 rotation = 0.09055683
 scale = Vector2(0.7045753, 0.7045753)
 
-[node name="Plant_122" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=110311283 instance=ExtResource("37_xmr5l")]
+[node name="Plant_122" parent="StaticBody2D/ScatteredPlants" unique_id=110311283 instance=ExtResource("37_xmr5l")]
 position = Vector2(-1412.7139, -2612.5825)
 rotation = 0.49741384
 scale = Vector2(0.73705757, 0.73705757)
 
-[node name="Plant_123" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=574822142 instance=ExtResource("23_tsgvr")]
+[node name="Plant_123" parent="StaticBody2D/ScatteredPlants" unique_id=574822142 instance=ExtResource("23_tsgvr")]
 position = Vector2(-23.656555, -2236.0017)
 rotation = 0.32174668
 scale = Vector2(0.83398795, 0.83398795)
 
-[node name="Plant_124" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=2014352881 instance=ExtResource("31_uveam")]
+[node name="Plant_124" parent="StaticBody2D/ScatteredPlants" unique_id=2014352881 instance=ExtResource("31_uveam")]
 position = Vector2(2939.9634, -3420.7336)
 rotation = 3.0784643
 scale = Vector2(0.9334905, 0.9334905)
 
-[node name="Plant_125" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=151952323 instance=ExtResource("19_w4sur")]
+[node name="Plant_125" parent="StaticBody2D/ScatteredPlants" unique_id=151952323 instance=ExtResource("19_w4sur")]
 position = Vector2(1017.98364, -3701.8862)
 rotation = -1.3677198
 scale = Vector2(0.93802035, 0.93802035)
 
-[node name="Plant_126" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1806507971 instance=ExtResource("37_xmr5l")]
+[node name="Plant_126" parent="StaticBody2D/ScatteredPlants" unique_id=1806507971 instance=ExtResource("37_xmr5l")]
 position = Vector2(4997.485, -1327.4169)
 rotation = -1.0982939
 scale = Vector2(0.9565892, 0.9565892)
 
-[node name="Plant_127" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=353707989 instance=ExtResource("29_2tvw2")]
+[node name="Plant_127" parent="StaticBody2D/ScatteredPlants" unique_id=353707989 instance=ExtResource("29_2tvw2")]
 position = Vector2(4955.9624, -45.376373)
 rotation = 3.1328523
 scale = Vector2(0.90412754, 0.90412754)
 
-[node name="Plant_128" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1956679147 instance=ExtResource("35_urd7n")]
+[node name="Plant_128" parent="StaticBody2D/ScatteredPlants" unique_id=1956679147 instance=ExtResource("35_urd7n")]
 position = Vector2(5739.3345, -6980.722)
 rotation = 1.5653276
 scale = Vector2(0.94180244, 0.94180244)
 
-[node name="Plant_129" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1458522196 instance=ExtResource("19_w4sur")]
+[node name="Plant_129" parent="StaticBody2D/ScatteredPlants" unique_id=1458522196 instance=ExtResource("19_w4sur")]
 position = Vector2(958.28796, -4073.8335)
 rotation = -1.7682685
 scale = Vector2(0.9885488, 0.9885488)
 
-[node name="Plant_130" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1278435521 instance=ExtResource("37_xmr5l")]
+[node name="Plant_130" parent="StaticBody2D/ScatteredPlants" unique_id=1278435521 instance=ExtResource("37_xmr5l")]
 position = Vector2(125.03296, -4191.497)
 rotation = 0.1370646
 scale = Vector2(0.7248178, 0.7248178)
 
-[node name="Plant_131" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1704509140 instance=ExtResource("25_cr6e1")]
+[node name="Plant_131" parent="StaticBody2D/ScatteredPlants" unique_id=1704509140 instance=ExtResource("25_cr6e1")]
 position = Vector2(4092.96, -37.84611)
 rotation = 3.1328523
 scale = Vector2(0.879078, 0.879078)
 
-[node name="Plant_132" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=852627747 instance=ExtResource("33_7bem3")]
+[node name="Plant_132" parent="StaticBody2D/ScatteredPlants" unique_id=852627747 instance=ExtResource("33_7bem3")]
 position = Vector2(450.3379, -4730.0986)
 rotation = 3.0828378
 scale = Vector2(0.77659094, 0.77659094)
 
-[node name="Plant_133" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=2004355161 instance=ExtResource("29_2tvw2")]
+[node name="Plant_133" parent="StaticBody2D/ScatteredPlants" unique_id=2004355161 instance=ExtResource("29_2tvw2")]
 position = Vector2(1526.7317, -3142.5103)
 rotation = 2.7683287
 scale = Vector2(0.7571544, 0.7571544)
 
-[node name="Plant_134" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=668493169 instance=ExtResource("37_xmr5l")]
+[node name="Plant_134" parent="StaticBody2D/ScatteredPlants" unique_id=668493169 instance=ExtResource("37_xmr5l")]
 position = Vector2(5742.561, -6388.6143)
 rotation = 1.5653276
 scale = Vector2(0.7547962, 0.7547962)
 
-[node name="Plant_135" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=458497036 instance=ExtResource("31_uveam")]
+[node name="Plant_135" parent="StaticBody2D/ScatteredPlants" unique_id=458497036 instance=ExtResource("31_uveam")]
 position = Vector2(4344.633, -3210.9565)
 rotation = -2.3874462
 scale = Vector2(0.93103, 0.93103)
 
-[node name="Plant_136" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1297712421 instance=ExtResource("31_uveam")]
+[node name="Plant_136" parent="StaticBody2D/ScatteredPlants" unique_id=1297712421 instance=ExtResource("31_uveam")]
 position = Vector2(4803.896, -8848.663)
 rotation = 0.003662093
 scale = Vector2(0.8686089, 0.8686089)
 
-[node name="Plant_137" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=128660512 instance=ExtResource("31_uveam")]
+[node name="Plant_137" parent="StaticBody2D/ScatteredPlants" unique_id=128660512 instance=ExtResource("31_uveam")]
 position = Vector2(-494.17297, -2392.8381)
 rotation = 0.32174668
 scale = Vector2(0.7069404, 0.7069404)
 
-[node name="Plant_138" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=398615004 instance=ExtResource("23_tsgvr")]
+[node name="Plant_138" parent="StaticBody2D/ScatteredPlants" unique_id=398615004 instance=ExtResource("23_tsgvr")]
 position = Vector2(2144.2087, -2254.5042)
 rotation = 1.5042185
 scale = Vector2(0.8221348, 0.8221348)
 
-[node name="Plant_139" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1505006665 instance=ExtResource("37_xmr5l")]
+[node name="Plant_139" parent="StaticBody2D/ScatteredPlants" unique_id=1505006665 instance=ExtResource("37_xmr5l")]
 position = Vector2(5741.923, -6505.701)
 rotation = 1.5653276
 scale = Vector2(0.9804221, 0.9804221)
 
-[node name="Plant_140" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1993645393 instance=ExtResource("37_xmr5l")]
+[node name="Plant_140" parent="StaticBody2D/ScatteredPlants" unique_id=1993645393 instance=ExtResource("37_xmr5l")]
 position = Vector2(1777.8351, -8859.716)
 rotation = 0.0036498862
 scale = Vector2(0.90211195, 0.90211195)
 
-[node name="Plant_141" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1906858689 instance=ExtResource("33_7bem3")]
+[node name="Plant_141" parent="StaticBody2D/ScatteredPlants" unique_id=1906858689 instance=ExtResource("33_7bem3")]
 position = Vector2(-1130.619, -5753.6357)
 rotation = 0.1302904
 scale = Vector2(0.81763715, 0.81763715)
 
-[node name="Plant_142" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=2077408412 instance=ExtResource("35_urd7n")]
+[node name="Plant_142" parent="StaticBody2D/ScatteredPlants" unique_id=2077408412 instance=ExtResource("35_urd7n")]
 position = Vector2(-716.6548, 4.120926)
 rotation = 3.1328645
 scale = Vector2(0.8894631, 0.8894631)
 
-[node name="Plant_143" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=2141561295 instance=ExtResource("35_urd7n")]
+[node name="Plant_143" parent="StaticBody2D/ScatteredPlants" unique_id=2141561295 instance=ExtResource("35_urd7n")]
 position = Vector2(2045.5522, -2180.8694)
 rotation = 2.5592372
 scale = Vector2(0.7293313, 0.7293313)
 
-[node name="Plant_144" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1273371015 instance=ExtResource("31_uveam")]
+[node name="Plant_144" parent="StaticBody2D/ScatteredPlants" unique_id=1273371015 instance=ExtResource("31_uveam")]
 position = Vector2(2109.123, -3344.382)
 rotation = 2.8117664
 scale = Vector2(0.7769689, 0.7769689)
 
-[node name="Plant_145" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=866520742 instance=ExtResource("25_cr6e1")]
+[node name="Plant_145" parent="StaticBody2D/ScatteredPlants" unique_id=866520742 instance=ExtResource("25_cr6e1")]
 position = Vector2(3511.6262, -2786.833)
 rotation = -0.63083
 scale = Vector2(0.78195626, 0.78195626)
 
-[node name="Plant_146" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=590643281 instance=ExtResource("29_2tvw2")]
+[node name="Plant_146" parent="StaticBody2D/ScatteredPlants" unique_id=590643281 instance=ExtResource("29_2tvw2")]
 position = Vector2(5754.1074, -4269.551)
 rotation = 1.5653276
 scale = Vector2(0.7893363, 0.7893363)
 
-[node name="Plant_147" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=71230053 instance=ExtResource("29_2tvw2")]
+[node name="Plant_147" parent="StaticBody2D/ScatteredPlants" unique_id=71230053 instance=ExtResource("29_2tvw2")]
 position = Vector2(2704.9243, -8856.33)
 rotation = 0.003662093
 scale = Vector2(0.7994528, 0.7994528)
 
-[node name="Plant_148" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=170942862 instance=ExtResource("19_w4sur")]
+[node name="Plant_148" parent="StaticBody2D/ScatteredPlants" unique_id=170942862 instance=ExtResource("19_w4sur")]
 position = Vector2(-2831.4136, -6090.307)
 rotation = -1.5730913
 scale = Vector2(0.757571, 0.757571)
 
-[node name="Plant_149" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=2119127589 instance=ExtResource("23_tsgvr")]
+[node name="Plant_149" parent="StaticBody2D/ScatteredPlants" unique_id=2119127589 instance=ExtResource("23_tsgvr")]
 position = Vector2(-807.271, -6161.7266)
 rotation = -3.0300775
 scale = Vector2(0.99224705, 0.99224705)
 
-[node name="Plant_150" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=178358967 instance=ExtResource("33_7bem3")]
+[node name="Plant_150" parent="StaticBody2D/ScatteredPlants" unique_id=178358967 instance=ExtResource("33_7bem3")]
 position = Vector2(-1781.0505, -8909.473)
 rotation = -0.00017089843
 scale = Vector2(0.9754909, 0.9754909)
 
-[node name="Plant_151" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=755319671 instance=ExtResource("33_7bem3")]
+[node name="Plant_151" parent="StaticBody2D/ScatteredPlants" unique_id=755319671 instance=ExtResource("33_7bem3")]
 position = Vector2(3347.9956, -1360.6078)
 rotation = 1.4909639
 scale = Vector2(0.8371092, 0.8371092)
 
-[node name="Plant_152" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=321610738 instance=ExtResource("27_j0cbm")]
+[node name="Plant_152" parent="StaticBody2D/ScatteredPlants" unique_id=321610738 instance=ExtResource("27_j0cbm")]
 position = Vector2(-2823.265, -2553.6758)
 rotation = -1.5730913
 scale = Vector2(0.84550303, 0.84550303)
 
-[node name="Plant_153" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1712848799 instance=ExtResource("19_w4sur")]
+[node name="Plant_153" parent="StaticBody2D/ScatteredPlants" unique_id=1712848799 instance=ExtResource("19_w4sur")]
 position = Vector2(-57.36853, -8866.42)
 rotation = 0.003652938
 scale = Vector2(0.8705568, 0.8705568)
 
-[node name="Plant_154" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=95364830 instance=ExtResource("29_2tvw2")]
+[node name="Plant_154" parent="StaticBody2D/ScatteredPlants" unique_id=95364830 instance=ExtResource("29_2tvw2")]
 position = Vector2(-1683.6582, 12.558662)
 rotation = 3.1328645
 scale = Vector2(0.87026215, 0.87026215)
 
-[node name="Plant_155" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=598585544 instance=ExtResource("23_tsgvr")]
+[node name="Plant_155" parent="StaticBody2D/ScatteredPlants" unique_id=598585544 instance=ExtResource("23_tsgvr")]
 position = Vector2(-192.13379, -5734.561)
 rotation = -0.009356873
 scale = Vector2(0.83519256, 0.83519256)
 
-[node name="Plant_156" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=961323385 instance=ExtResource("37_xmr5l")]
+[node name="Plant_156" parent="StaticBody2D/ScatteredPlants" unique_id=961323385 instance=ExtResource("37_xmr5l")]
 position = Vector2(2354.187, -22.67418)
 rotation = 3.1328766
 scale = Vector2(0.896687, 0.896687)
 
-[node name="Plant_157" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=831143069 instance=ExtResource("29_2tvw2")]
+[node name="Plant_157" parent="StaticBody2D/ScatteredPlants" unique_id=831143069 instance=ExtResource("29_2tvw2")]
 position = Vector2(-468.03467, 1.9515533)
 rotation = 3.1328676
 scale = Vector2(0.81969845, 0.81969845)
 
-[node name="Plant_158" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1672364298 instance=ExtResource("31_uveam")]
+[node name="Plant_158" parent="StaticBody2D/ScatteredPlants" unique_id=1672364298 instance=ExtResource("31_uveam")]
 position = Vector2(-336.4878, -5048.6553)
 rotation = 0.11939475
 scale = Vector2(0.87972033, 0.87972033)
 
-[node name="Plant_159" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1124467093 instance=ExtResource("23_tsgvr")]
+[node name="Plant_159" parent="StaticBody2D/ScatteredPlants" unique_id=1124467093 instance=ExtResource("23_tsgvr")]
 position = Vector2(5248.5815, -47.929665)
 rotation = 3.1328523
 scale = Vector2(0.7719213, 0.7719213)
 
-[node name="Plant_160" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=493913801 instance=ExtResource("19_w4sur")]
+[node name="Plant_160" parent="StaticBody2D/ScatteredPlants" unique_id=493913801 instance=ExtResource("19_w4sur")]
 position = Vector2(315.61884, -2953.1423)
 rotation = -2.962506
 scale = Vector2(0.83151865, 0.83151865)
 
-[node name="Plant_161" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1776570295 instance=ExtResource("29_2tvw2")]
+[node name="Plant_161" parent="StaticBody2D/ScatteredPlants" unique_id=1776570295 instance=ExtResource("29_2tvw2")]
 position = Vector2(-551.4727, -5731.198)
 rotation = -0.009356873
 scale = Vector2(0.9086709, 0.9086709)
 
-[node name="Plant_162" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=54532622 instance=ExtResource("29_2tvw2")]
+[node name="Plant_162" parent="StaticBody2D/ScatteredPlants" unique_id=54532622 instance=ExtResource("29_2tvw2")]
 position = Vector2(-1211.6343, -7513.56)
 rotation = -1.5989252
 scale = Vector2(0.9760025, 0.9760025)
 
-[node name="Plant_163" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=995889505 instance=ExtResource("19_w4sur")]
+[node name="Plant_163" parent="StaticBody2D/ScatteredPlants" unique_id=995889505 instance=ExtResource("19_w4sur")]
 position = Vector2(100.94562, -5408.1924)
 rotation = 2.9955783
 scale = Vector2(0.98441195, 0.98441195)
 
-[node name="Plant_164" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1498472836 instance=ExtResource("25_cr6e1")]
+[node name="Plant_164" parent="StaticBody2D/ScatteredPlants" unique_id=1498472836 instance=ExtResource("25_cr6e1")]
 position = Vector2(-899.3543, -5727.943)
 rotation = -0.009356873
 scale = Vector2(0.8256158, 0.8256158)
 
-[node name="Plant_165" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=575506448 instance=ExtResource("37_xmr5l")]
+[node name="Plant_165" parent="StaticBody2D/ScatteredPlants" unique_id=575506448 instance=ExtResource("37_xmr5l")]
 position = Vector2(4689.362, -1072.0188)
 rotation = -0.0929067
 scale = Vector2(0.9397912, 0.9397912)
 
-[node name="Plant_166" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1426605030 instance=ExtResource("19_w4sur")]
+[node name="Plant_166" parent="StaticBody2D/ScatteredPlants" unique_id=1426605030 instance=ExtResource("19_w4sur")]
 position = Vector2(2961.0688, -1531.2515)
 rotation = -1.2120256
 scale = Vector2(0.88517463, 0.88517463)
 
-[node name="Plant_167" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1417692615 instance=ExtResource("29_2tvw2")]
+[node name="Plant_167" parent="StaticBody2D/ScatteredPlants" unique_id=1417692615 instance=ExtResource("29_2tvw2")]
 position = Vector2(1192.9409, -5195.834)
 rotation = -0.8777679
 scale = Vector2(0.8353618, 0.8353618)
 
-[node name="Plant_168" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=989493027 instance=ExtResource("31_uveam")]
+[node name="Plant_168" parent="StaticBody2D/ScatteredPlants" unique_id=989493027 instance=ExtResource("31_uveam")]
 position = Vector2(3312.1963, -1463.8273)
 rotation = 1.0370948
 scale = Vector2(0.96552175, 0.96552175)
 
-[node name="Plant_169" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=426291196 instance=ExtResource("37_xmr5l")]
+[node name="Plant_169" parent="StaticBody2D/ScatteredPlants" unique_id=426291196 instance=ExtResource("37_xmr5l")]
 position = Vector2(3909.7788, -754.0244)
 rotation = -0.101639405
 scale = Vector2(0.9930234, 0.9930234)
 
-[node name="Plant_170" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1918670091 instance=ExtResource("33_7bem3")]
+[node name="Plant_170" parent="StaticBody2D/ScatteredPlants" unique_id=1918670091 instance=ExtResource("33_7bem3")]
 position = Vector2(-1628.8893, -6257.7837)
 rotation = 1.4535849
 scale = Vector2(0.9074287, 0.9074287)
 
-[node name="Plant_171" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1620081083 instance=ExtResource("31_uveam")]
+[node name="Plant_171" parent="StaticBody2D/ScatteredPlants" unique_id=1620081083 instance=ExtResource("31_uveam")]
 position = Vector2(5749.177, -5174.462)
 rotation = 1.5653276
 scale = Vector2(0.7410778, 0.7410778)
 
-[node name="Plant_172" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=606618419 instance=ExtResource("35_urd7n")]
+[node name="Plant_172" parent="StaticBody2D/ScatteredPlants" unique_id=606618419 instance=ExtResource("35_urd7n")]
 position = Vector2(437.8238, -5438.0786)
 rotation = 3.081827
 scale = Vector2(0.9973409, 0.9973409)
 
-[node name="Plant_173" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=924332177 instance=ExtResource("19_w4sur")]
+[node name="Plant_173" parent="StaticBody2D/ScatteredPlants" unique_id=924332177 instance=ExtResource("19_w4sur")]
 position = Vector2(-2835.3857, -7814.3335)
 rotation = -1.5730913
 scale = Vector2(0.9957358, 0.9957358)
 
-[node name="Plant_174" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1210761909 instance=ExtResource("25_cr6e1")]
+[node name="Plant_174" parent="StaticBody2D/ScatteredPlants" unique_id=1210761909 instance=ExtResource("25_cr6e1")]
 position = Vector2(257.96777, -4.383301)
 rotation = 3.1328676
 scale = Vector2(0.92220837, 0.92220837)
 
-[node name="Plant_175" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=509120711 instance=ExtResource("31_uveam")]
+[node name="Plant_175" parent="StaticBody2D/ScatteredPlants" unique_id=509120711 instance=ExtResource("31_uveam")]
 position = Vector2(5730.456, -8610.158)
 rotation = 1.5653276
 scale = Vector2(0.7359678, 0.7359678)
 
-[node name="Plant_176" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=691028456 instance=ExtResource("29_2tvw2")]
+[node name="Plant_176" parent="StaticBody2D/ScatteredPlants" unique_id=691028456 instance=ExtResource("29_2tvw2")]
 position = Vector2(-2825.0093, -3310.724)
 rotation = -1.5730913
 scale = Vector2(0.7266453, 0.7266453)
 
-[node name="Plant_177" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=746534997 instance=ExtResource("29_2tvw2")]
+[node name="Plant_177" parent="StaticBody2D/ScatteredPlants" unique_id=746534997 instance=ExtResource("29_2tvw2")]
 position = Vector2(-1110.1375, -4849.7217)
 rotation = 1.1500485
 scale = Vector2(0.98915833, 0.98915833)
 
-[node name="Plant_178" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1657965992 instance=ExtResource("19_w4sur")]
+[node name="Plant_178" parent="StaticBody2D/ScatteredPlants" unique_id=1657965992 instance=ExtResource("19_w4sur")]
 position = Vector2(1408.4888, -14.422348)
 rotation = 3.1328645
 scale = Vector2(0.711087, 0.711087)
 
-[node name="Plant_179" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1089556604 instance=ExtResource("23_tsgvr")]
+[node name="Plant_179" parent="StaticBody2D/ScatteredPlants" unique_id=1089556604 instance=ExtResource("23_tsgvr")]
 position = Vector2(1718.6759, -3210.7156)
 rotation = 2.811755
 scale = Vector2(0.9720554, 0.9720554)
 
-[node name="Plant_180" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=2084179079 instance=ExtResource("23_tsgvr")]
+[node name="Plant_180" parent="StaticBody2D/ScatteredPlants" unique_id=2084179079 instance=ExtResource("23_tsgvr")]
 position = Vector2(5738.583, -7118.622)
 rotation = 1.5653276
 scale = Vector2(0.86688524, 0.86688524)
 
-[node name="Plant_181" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1780039861 instance=ExtResource("27_j0cbm")]
+[node name="Plant_181" parent="StaticBody2D/ScatteredPlants" unique_id=1780039861 instance=ExtResource("27_j0cbm")]
 position = Vector2(-1129.5259, 7.7234955)
 rotation = 3.1328645
 scale = Vector2(0.8756862, 0.8756862)
 
-[node name="Plant_182" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=995530058 instance=ExtResource("37_xmr5l")]
+[node name="Plant_182" parent="StaticBody2D/ScatteredPlants" unique_id=995530058 instance=ExtResource("37_xmr5l")]
 position = Vector2(957.7335, -5092.4253)
 rotation = -0.13690439
 scale = Vector2(0.80342567, 0.80342567)
 
-[node name="Plant_183" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=779887251 instance=ExtResource("31_uveam")]
+[node name="Plant_183" parent="StaticBody2D/ScatteredPlants" unique_id=779887251 instance=ExtResource("31_uveam")]
 position = Vector2(4649.1885, -2390.1143)
 rotation = -1.6445216
 scale = Vector2(0.70015824, 0.70015824)
 
-[node name="Plant_184" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=175282203 instance=ExtResource("25_cr6e1")]
+[node name="Plant_184" parent="StaticBody2D/ScatteredPlants" unique_id=175282203 instance=ExtResource("25_cr6e1")]
 position = Vector2(-1027.5906, -5740.136)
 rotation = 0.13027829
 scale = Vector2(0.9989183, 0.9989183)
 
-[node name="Plant_185" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1140146046 instance=ExtResource("23_tsgvr")]
+[node name="Plant_185" parent="StaticBody2D/ScatteredPlants" unique_id=1140146046 instance=ExtResource("23_tsgvr")]
 position = Vector2(-2821.499, -1787.2932)
 rotation = -1.5731034
 scale = Vector2(0.81868166, 0.81868166)
 
-[node name="Plant_186" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1153216865 instance=ExtResource("29_2tvw2")]
+[node name="Plant_186" parent="StaticBody2D/ScatteredPlants" unique_id=1153216865 instance=ExtResource("29_2tvw2")]
 position = Vector2(-2830.5957, -5735.3916)
 rotation = -1.5730913
 scale = Vector2(0.9782559, 0.9782559)
 
-[node name="Plant_187" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1429067748 instance=ExtResource("19_w4sur")]
+[node name="Plant_187" parent="StaticBody2D/ScatteredPlants" unique_id=1429067748 instance=ExtResource("19_w4sur")]
 position = Vector2(-2836.3765, -8244.232)
 rotation = -1.5730424
 scale = Vector2(0.7822052, 0.7822052)
 
-[node name="Plant_188" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1368479176 instance=ExtResource("19_w4sur")]
+[node name="Plant_188" parent="StaticBody2D/ScatteredPlants" unique_id=1368479176 instance=ExtResource("19_w4sur")]
 position = Vector2(5753.1416, -4446.814)
 rotation = 1.5653276
 scale = Vector2(0.91204584, 0.91204584)
 
-[node name="Plant_189" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1170566147 instance=ExtResource("27_j0cbm")]
+[node name="Plant_189" parent="StaticBody2D/ScatteredPlants" unique_id=1170566147 instance=ExtResource("27_j0cbm")]
 position = Vector2(-400.4737, -4694.698)
 rotation = -2.3276327
 scale = Vector2(0.75227994, 0.75227994)
 
-[node name="Plant_190" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1321154742 instance=ExtResource("37_xmr5l")]
+[node name="Plant_190" parent="StaticBody2D/ScatteredPlants" unique_id=1321154742 instance=ExtResource("37_xmr5l")]
 position = Vector2(1415.4965, -5663.4927)
 rotation = -1.3756152
 scale = Vector2(0.7449215, 0.7449215)
 
-[node name="Plant_191" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=975875170 instance=ExtResource("31_uveam")]
+[node name="Plant_191" parent="StaticBody2D/ScatteredPlants" unique_id=975875170 instance=ExtResource("31_uveam")]
 position = Vector2(3513.9102, -2557.8916)
 rotation = -2.5105186
 scale = Vector2(0.9385547, 0.9385547)
 
-[node name="Plant_192" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=509236046 instance=ExtResource("23_tsgvr")]
+[node name="Plant_192" parent="StaticBody2D/ScatteredPlants" unique_id=509236046 instance=ExtResource("23_tsgvr")]
 position = Vector2(-1755.7001, -2798.8066)
 rotation = 0.49742454
 scale = Vector2(0.8513501, 0.8513501)
 
-[node name="Plant_193" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=32728365 instance=ExtResource("35_urd7n")]
+[node name="Plant_193" parent="StaticBody2D/ScatteredPlants" unique_id=32728365 instance=ExtResource("35_urd7n")]
 position = Vector2(-2829.4036, -5217.961)
 rotation = -1.5730913
 scale = Vector2(0.7256786, 0.7256786)
 
-[node name="Plant_194" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1666141671 instance=ExtResource("23_tsgvr")]
+[node name="Plant_194" parent="StaticBody2D/ScatteredPlants" unique_id=1666141671 instance=ExtResource("23_tsgvr")]
 position = Vector2(-1105.4492, -6385.8174)
 rotation = -1.8043586
 scale = Vector2(0.8043312, 0.8043312)
 
-[node name="Plant_195" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1926092492 instance=ExtResource("19_w4sur")]
+[node name="Plant_195" parent="StaticBody2D/ScatteredPlants" unique_id=1926092492 instance=ExtResource("19_w4sur")]
 position = Vector2(-2835.8357, -8009.6313)
 rotation = -1.5730913
 scale = Vector2(0.83907646, 0.83907646)
 
-[node name="Plant_196" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=2122138921 instance=ExtResource("25_cr6e1")]
+[node name="Plant_196" parent="StaticBody2D/ScatteredPlants" unique_id=2122138921 instance=ExtResource("25_cr6e1")]
 position = Vector2(-1164.6707, -5057.285)
 rotation = 1.3276355
 scale = Vector2(0.88035375, 0.88035375)
 
-[node name="Plant_197" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=1044311750 instance=ExtResource("19_w4sur")]
+[node name="Plant_197" parent="StaticBody2D/ScatteredPlants" unique_id=1044311750 instance=ExtResource("19_w4sur")]
 position = Vector2(4193.284, -892.8405)
 rotation = -0.66324866
 scale = Vector2(0.70121723, 0.70121723)
 
-[node name="Plant_198" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=154684131 instance=ExtResource("25_cr6e1")]
+[node name="Plant_198" parent="StaticBody2D/ScatteredPlants" unique_id=154684131 instance=ExtResource("25_cr6e1")]
 position = Vector2(-1214.9043, -7629.788)
 rotation = -1.5989252
 scale = Vector2(0.9758531, 0.9758531)
 
-[node name="Plant_199" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=2078987305 instance=ExtResource("33_7bem3")]
+[node name="Plant_199" parent="StaticBody2D/ScatteredPlants" unique_id=2078987305 instance=ExtResource("33_7bem3")]
 position = Vector2(-2817.4326, -22.321465)
 rotation = -1.5731004
 scale = Vector2(0.8858356, 0.8858356)
 
-[node name="Plant_200" type="Node2D" parent="StaticBody2D/ScatteredPlants" unique_id=402588628 instance=ExtResource("23_tsgvr")]
+[node name="Plant_200" parent="StaticBody2D/ScatteredPlants" unique_id=402588628 instance=ExtResource("23_tsgvr")]
 position = Vector2(1589.2806, -8860.405)
 rotation = 0.0036498862
 scale = Vector2(0.8504962, 0.8504962)
@@ -2367,5 +2382,15 @@ image = ExtResource("25_jyx7s")
 position = Vector2(-1454, -8007.9995)
 rotation = 3.1459444
 scale = Vector2(2.1469414, 2.1469414)
+
+[node name="ConsistentEnemies" parent="." unique_id=501313478 instance=ExtResource("38_knyjd")]
+position = Vector2(2725, -1976)
+rotation = 0.09568043
+scale = Vector2(2.1798413, 1.5727234)
+
+[node name="ConsistentEnemies2" parent="." unique_id=1696656501 instance=ExtResource("38_knyjd")]
+position = Vector2(-916.00006, -3666.0002)
+rotation = 0.22703505
+scale = Vector2(1.5465102, 1.1138073)
 
 [connection signal="body_entered" from="TriggerIceBlockWall" to="TriggerIceBlockWall" method="_on_body_entered"]

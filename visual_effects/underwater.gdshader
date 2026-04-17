@@ -21,7 +21,7 @@ uniform vec4 light_color : source_color = vec4(0.9, 0.95, 1.0, 1.0);
 uniform vec2 search_position_screen = vec2(0.5);
 uniform vec2 search_direction = vec2(1.0, 0.0);
 uniform float search_cone_angle = 0.44;
-uniform float search_range = 0.2;
+uniform float search_range = 0.12;
 uniform float search_intensity : hint_range(0.0, 1.0) = 0.0;
 uniform vec4 search_color : source_color = vec4(0.9, 0.95, 1.0, 1.0);
 
@@ -31,6 +31,13 @@ uniform vec2 shockwave_rect_origin = vec2(-2.0);
 uniform vec2 shockwave_rect_size = vec2(1.0);
 uniform float shockwave_strength : hint_range(0.0, 0.1) = 0.0015;
 uniform float shockwave_brightness : hint_range(0.0, 0.5) = 0.04;
+
+// Wake ripples (cone behind submarine, propagates through water)
+uniform sampler2D wake_texture : filter_linear, repeat_disable;
+uniform vec2 wake_rect_origin = vec2(-2.0);
+uniform vec2 wake_rect_size = vec2(1.0);
+uniform float wake_strength : hint_range(0.0, 0.05) = 0.002;
+uniform float wake_brightness : hint_range(0.0, 0.3) = 0.08;
 
 float hash(vec2 p) {
 	vec3 p3 = fract(vec3(p.xyx) * 0.1031);
@@ -79,12 +86,29 @@ void fragment() {
 		distorted_uv += vec2(wr - wl, wu - wd) * shockwave_strength;
 	}
 
+	// Wake ripple distortion (cone behind submarine)
+	vec2 wake_uv = (SCREEN_UV - wake_rect_origin) / wake_rect_size;
+	if (wake_uv.x > 0.0 && wake_uv.x < 1.0 && wake_uv.y > 0.0 && wake_uv.y < 1.0) {
+		float wt = 1.0 / float(textureSize(wake_texture, 0).x);
+		float wkr = texture(wake_texture, wake_uv + vec2(wt, 0.0)).r;
+		float wkl = texture(wake_texture, wake_uv - vec2(wt, 0.0)).r;
+		float wku = texture(wake_texture, wake_uv + vec2(0.0, wt)).r;
+		float wkd = texture(wake_texture, wake_uv - vec2(0.0, wt)).r;
+		distorted_uv += vec2(wkr - wkl, wku - wkd) * wake_strength;
+	}
+
 	vec4 screen_color = textureLod(screen_texture, distorted_uv, 0.0);
 
 	// Shockwave visible ring (bright edge at wavefront)
 	if (shock_uv.x > 0.0 && shock_uv.x < 1.0 && shock_uv.y > 0.0 && shock_uv.y < 1.0) {
 		float wave = texture(shockwave_texture, shock_uv).r;
 		screen_color.rgb += vec3(0.6, 0.8, 1.0) * wave * shockwave_brightness;
+	}
+
+	// Wake visible ripple
+	if (wake_uv.x > 0.0 && wake_uv.x < 1.0 && wake_uv.y > 0.0 && wake_uv.y < 1.0) {
+		float wake_val = texture(wake_texture, wake_uv).r;
+		screen_color.rgb += vec3(0.4, 0.6, 0.85) * wake_val * wake_brightness;
 	}
 
 	// Caustic light patterns

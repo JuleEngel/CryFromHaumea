@@ -96,13 +96,6 @@ offset = Vector2(-9.945653, -1.815218)
 position = Vector2(-4.9456515, -8.47826)
 scale = Vector2(0.7065217, 0.7065217)
 
-[node name="Searchlight" type="PointLight2D" parent="Sprite2D" unique_id=189160308]
-position = Vector2(19.782608, -30.380434)
-scale = Vector2(0.70652163, 0.70652163)
-color = Color(0.9, 0.95, 1, 1)
-energy = 1.5
-texture_scale = 2.0
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1492380121]
 
 [node name="AmbianceSound" type="AudioStreamPlayer" parent="." unique_id=1339061281]
@@ -150,6 +143,14 @@ volume_db = -12.0
 
 [node name="Headlight" type="PointLight2D" parent="." unique_id=793244188]
 position = Vector2(56.999992, 21.999998)
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.9, 0.95, 1, 1)
+energy = 1.5
+texture_scale = 2.0
+
+[node name="Searchlight" type="PointLight2D" parent="." unique_id=189160308]
+visible = false
+position = Vector2(20, -51)
 scale = Vector2(0.9999999, 0.9999999)
 color = Color(0.9, 0.95, 1, 1)
 energy = 1.5
