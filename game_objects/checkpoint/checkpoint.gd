@@ -21,7 +21,7 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	if body.is_in_group("player"):
 		_activated = true
-		var flip_h: bool = body.get_node("Sprite2D").flip_h
+		var flip_h: bool = body.get_node("Sprite2D").scale.x < 0
 		var target_dir := Vector2.ZERO
 		if target:
 			target_dir = (target.global_position - global_position).normalized()

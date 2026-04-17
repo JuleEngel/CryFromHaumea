@@ -5,45 +5,52 @@ const WORLD_EXTENT := 1500.0
 const RING_WIDTH := 1.5
 const TERRAIN_MASK := 4
 const SQRT2 := 1.41421356
+const MAX_SHOCKWAVES := 4
+const SHOCK_DURATION := 2.2
 
-var _shock_active := false
-var _shock_progress := 0.0
-var _shock_duration := 2.2
-var _shock_center := Vector2.ZERO
-var _shock_strength := 1.0
-var _shock_distances := PackedFloat32Array()
-var _shock_terrain := PackedByteArray() # 0=unknown, 1=water, 2=terrain
-var _shock_max_dist := 0.0
+var _shockwaves: Array[Dictionary] = []
 var _shock_texture: ImageTexture
+var _was_active := false
 
-# Min-heap for Dijkstra: each entry is [distance, packed_index]
+# Reusable heap for Dijkstra
 var _heap: Array[Vector2] = []
 
 func _ready() -> void:
 	add_to_group("water_effect")
-	_shock_distances.resize(GRID_SIZE * GRID_SIZE)
-	_shock_terrain.resize(GRID_SIZE * GRID_SIZE)
 	var blank := Image.create(GRID_SIZE, GRID_SIZE, false, Image.FORMAT_R8)
 	_shock_texture = ImageTexture.create_from_image(blank)
 	(material as ShaderMaterial).set_shader_parameter("shockwave_texture", _shock_texture)
 
 func trigger_shockwave(world_pos: Vector2, strength: float = 1.0) -> void:
-	_shock_center = world_pos
-	_shock_strength = strength
-	_shock_progress = 0.001
-	_shock_active = true
-	_build_distance_field()
+	if _shockwaves.size() >= MAX_SHOCKWAVES:
+		_shockwaves.pop_front()
 
-func _build_distance_field() -> void:
-	var total := GRID_SIZE * GRID_SIZE
-	_shock_distances.fill(INF)
-	_shock_terrain.fill(0)
-	_shock_max_dist = 0.0
+	var result := _build_distance_field(world_pos)
+	if result.is_empty():
+		return
+
+	_shockwaves.append({
+		"center": world_pos,
+		"progress": 0.001,
+		"strength": strength,
+		"distances": result.distances,
+		"max_dist": result.max_dist,
+	})
+
+func _build_distance_field(center: Vector2) -> Dictionary:
+	var distances := PackedFloat32Array()
+	distances.resize(GRID_SIZE * GRID_SIZE)
+	distances.fill(INF)
+
+	var terrain := PackedByteArray()
+	terrain.resize(GRID_SIZE * GRID_SIZE)
+	terrain.fill(0)
+
 	_heap.clear()
 
 	var space := get_viewport().world_2d.direct_space_state
 	var cell_size := WORLD_EXTENT * 2.0 / float(GRID_SIZE)
-	var origin := _shock_center - Vector2.ONE * WORLD_EXTENT
+	var origin := center - Vector2.ONE * WORLD_EXTENT
 
 	var query := PhysicsPointQueryParameters2D.new()
 	query.collision_mask = TERRAIN_MASK
@@ -66,32 +73,31 @@ func _build_distance_field() -> void:
 					continue
 				query.position = origin + Vector2(px, py) * cell_size + Vector2.ONE * cell_size * 0.5
 				if space.intersect_point(query, 1).size() == 0:
-					_shock_terrain[py * GRID_SIZE + px] = 1
+					terrain[py * GRID_SIZE + px] = 1
 					start = Vector2i(px, py)
 					break
 				else:
-					_shock_terrain[py * GRID_SIZE + px] = 2
+					terrain[py * GRID_SIZE + px] = 2
 			if start.x >= 0:
 				break
 		if start.x >= 0:
 			break
 
 	if start.x < 0:
-		_shock_active = false
-		return
+		return {}
 
 	var start_idx := start.y * GRID_SIZE + start.x
-	_shock_distances[start_idx] = 0.0
+	distances[start_idx] = 0.0
 	_heap_push(0.0, start_idx)
+	var max_dist := 0.0
 
-	# Dijkstra with binary heap for true Euclidean-weighted shortest paths
 	while _heap.size() > 0:
 		var top := _heap_pop()
 		var d: float = top.x
 		var ci: int = int(top.y)
 
-		if d > _shock_distances[ci]:
-			continue # Stale entry
+		if d > distances[ci]:
+			continue
 
 		var cell_x := ci % GRID_SIZE
 		var cell_y := ci / GRID_SIZE
@@ -106,20 +112,21 @@ func _build_distance_field() -> void:
 					continue
 				var nidx := ny * GRID_SIZE + nx
 
-				# Lazy terrain detection
-				if _shock_terrain[nidx] == 0:
+				if terrain[nidx] == 0:
 					query.position = origin + Vector2(nx, ny) * cell_size + Vector2.ONE * cell_size * 0.5
-					_shock_terrain[nidx] = 1 if space.intersect_point(query, 1).size() == 0 else 2
-				if _shock_terrain[nidx] == 2:
+					terrain[nidx] = 1 if space.intersect_point(query, 1).size() == 0 else 2
+				if terrain[nidx] == 2:
 					continue
 
 				var step := SQRT2 if (dx != 0 and dy != 0) else 1.0
 				var nd := d + step
-				if nd < _shock_distances[nidx]:
-					_shock_distances[nidx] = nd
-					if nd > _shock_max_dist:
-						_shock_max_dist = nd
+				if nd < distances[nidx]:
+					distances[nidx] = nd
+					if nd > max_dist:
+						max_dist = nd
 					_heap_push(nd, nidx)
+
+	return { "distances": distances, "max_dist": max_dist }
 
 func _heap_push(dist: float, idx: int) -> void:
 	_heap.append(Vector2(dist, idx))
@@ -158,15 +165,21 @@ func _heap_pop() -> Vector2:
 	return top
 
 func _process(delta: float) -> void:
-	if _shock_active:
-		_shock_progress += delta / _shock_duration
-		if _shock_progress >= 1.0:
-			_shock_progress = 1.0
-			_shock_active = false
-			(material as ShaderMaterial).set_shader_parameter(
-				"shockwave_rect_origin", Vector2(-2.0, -2.0))
-		else:
-			_update_shock_texture()
+	# Advance and cull shockwaves
+	var i := _shockwaves.size() - 1
+	while i >= 0:
+		_shockwaves[i].progress += delta / SHOCK_DURATION
+		if _shockwaves[i].progress >= 1.0:
+			_shockwaves.remove_at(i)
+		i -= 1
+
+	if _shockwaves.size() > 0:
+		_update_shock_texture()
+		_was_active = true
+	elif _was_active:
+		_was_active = false
+		(material as ShaderMaterial).set_shader_parameter(
+			"shockwave_rect_origin", Vector2(-2.0, -2.0))
 
 	var camera := get_viewport().get_camera_2d()
 	if not camera or not material is ShaderMaterial:
@@ -192,40 +205,75 @@ func _process(delta: float) -> void:
 			var screen_uv := screen_pos / vp_size
 			mat.set_shader_parameter("light_position_screen", screen_uv)
 
-			# Direction depends on which way the sub faces + tilt
 			var sprite := sub.get_node("Sprite2D") as Sprite2D
-			var base_dir := Vector2(-1.0, 0.0) if sprite.flip_h else Vector2(1.0, 0.0)
+			var base_dir := Vector2(-1.0, 0.0) if sprite.scale.x < 0 else Vector2(1.0, 0.0)
 			mat.set_shader_parameter("light_direction", base_dir.rotated(sub.rotation))
 
-func _update_shock_texture() -> void:
-	if _shock_max_dist <= 0.0:
-		return
+		var slight := sub.get_node_or_null("Searchlight") as PointLight2D
+		if slight and slight.visible:
+			var canvas_transform := get_viewport().get_canvas_transform()
+			var s_screen_pos := canvas_transform * slight.global_position
+			var s_screen_uv := s_screen_pos / vp_size
+			mat.set_shader_parameter("search_position_screen", s_screen_uv)
 
-	var ring_dist := _shock_progress * _shock_max_dist
-	var fade_t := clampf((_shock_progress - 0.3) / 0.7, 0.0, 1.0)
-	var fade := (1.0 - fade_t * fade_t * (3.0 - 2.0 * fade_t)) * _shock_strength
+			var s_dir := Vector2(1.0, 0.0) if slight.scale.x >= 0 else Vector2(-1.0, 0.0)
+			mat.set_shader_parameter("search_direction", s_dir.rotated(sub.rotation))
+			mat.set_shader_parameter("search_intensity", absf(slight.scale.x) * 0.12)
+		else:
+			mat.set_shader_parameter("search_intensity", 0.0)
+
+func _update_shock_texture() -> void:
+	# Compute union world rect of all active shockwaves
+	var min_corner := Vector2(INF, INF)
+	var max_corner := Vector2(-INF, -INF)
+	for sw in _shockwaves:
+		var c: Vector2 = sw.center
+		min_corner = min_corner.min(c - Vector2.ONE * WORLD_EXTENT)
+		max_corner = max_corner.max(c + Vector2.ONE * WORLD_EXTENT)
+
+	var composite_size := max_corner - min_corner
+	var inv_extent := float(GRID_SIZE) / (WORLD_EXTENT * 2.0)
 
 	var data := PackedByteArray()
 	data.resize(GRID_SIZE * GRID_SIZE)
 
-	for i in _shock_distances.size():
-		var d := _shock_distances[i]
-		if d == INF:
-			data[i] = 0
-			continue
-		var ring_diff := absf(d - ring_dist)
-		var t := clampf(ring_diff / RING_WIDTH, 0.0, 1.0)
-		var ring := 1.0 - t * t * (3.0 - 2.0 * t)
-		data[i] = clampi(int(ring * fade * 255.0), 0, 255)
+	for y in GRID_SIZE:
+		for x in GRID_SIZE:
+			var world_pos := min_corner + Vector2(x + 0.5, y + 0.5) / float(GRID_SIZE) * composite_size
+			var total := 0.0
+
+			for sw in _shockwaves:
+				var local := (world_pos - (sw.center as Vector2) + Vector2.ONE * WORLD_EXTENT) * inv_extent
+				var lx := int(local.x)
+				var ly := int(local.y)
+				if lx < 0 or lx >= GRID_SIZE or ly < 0 or ly >= GRID_SIZE:
+					continue
+				var d: float = (sw.distances as PackedFloat32Array)[ly * GRID_SIZE + lx]
+				if d == INF:
+					continue
+
+				var max_dist: float = sw.max_dist
+				if max_dist <= 0.0:
+					continue
+				var ring_dist := (sw.progress as float) * max_dist
+				var ring_diff := absf(d - ring_dist)
+				var t := clampf(ring_diff / RING_WIDTH, 0.0, 1.0)
+				var ring := 1.0 - t * t * (3.0 - 2.0 * t)
+
+				var fade_t := clampf(((sw.progress as float) - 0.3) / 0.7, 0.0, 1.0)
+				var fade := (1.0 - fade_t * fade_t * (3.0 - 2.0 * fade_t)) * (sw.strength as float)
+				total += ring * fade
+
+			data[y * GRID_SIZE + x] = clampi(int(total * 255.0), 0, 255)
 
 	var image := Image.create_from_data(GRID_SIZE, GRID_SIZE, false, Image.FORMAT_R8, data)
 	_shock_texture.set_image(image)
 
-	# Update screen-space rect for shader
+	# Map union rect to screen UV
 	var mat := material as ShaderMaterial
 	var vp_size := get_viewport_rect().size
 	var canvas_transform := get_viewport().get_canvas_transform()
-	var screen_origin := (canvas_transform * (_shock_center - Vector2.ONE * WORLD_EXTENT)) / vp_size
-	var screen_end := (canvas_transform * (_shock_center + Vector2.ONE * WORLD_EXTENT)) / vp_size
+	var screen_origin := (canvas_transform * min_corner) / vp_size
+	var screen_end := (canvas_transform * max_corner) / vp_size
 	mat.set_shader_parameter("shockwave_rect_origin", screen_origin)
 	mat.set_shader_parameter("shockwave_rect_size", screen_end - screen_origin)

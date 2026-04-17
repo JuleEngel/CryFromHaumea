@@ -27,6 +27,7 @@ const GAME_OVER_SCENE := preload("res://ui_scenes/game_over/game_over.tscn")
 @onready var camera: Camera2D = $Camera2D
 @onready var propeller: AnimatedSprite2D = $Sprite2D/Propeller
 @onready var torpedo_hatch: Sprite2D = $Sprite2D/TorpedoHatch
+@onready var searchlight: PointLight2D = $Sprite2D/Searchlight
 
 const DIVE_VOL_MIN := -40.0
 const DIVE_VOL_MAX := -2.0
@@ -48,9 +49,14 @@ func _ready() -> void:
 		if CheckpointManager.facing_left:
 			sprite.scale.x = -abs(sprite.scale.x)
 			headlight.position.x = -abs(headlight.position.x)
+			searchlight.position.x = -abs(searchlight.position.x)
 		else:
 			headlight.position.x = abs(headlight.position.x)
+			searchlight.position.x = abs(searchlight.position.x)
 	headlight.texture = _generate_cone_texture(512, 512)
+	searchlight.texture = _generate_cone_texture(512, 512)
+	searchlight.texture_scale = 1.2
+	searchlight.energy = 1.5
 	ambiance_sound.stream.loop = true
 	dive_sound.stream.loop = true
 	music_adventure.volume_db = MUSIC_VOL
@@ -75,6 +81,9 @@ func _process(delta: float) -> void:
 
 	# Broken screen overlay
 	broken_screen.self_modulate.a = (1.0 - hp_ratio) * 0.7
+
+	# Searchlight pseudo-3D rotation
+	searchlight.scale.x = cos(_bob_time * 3.0)
 
 func apply_stun(duration: float) -> void:
 	_stunned = true
@@ -117,9 +126,11 @@ func _physics_process(delta: float) -> void:
 	if velocity.x > 10.0:
 		sprite.scale.x = abs(sprite.scale.x)
 		headlight.position.x = abs(headlight.position.x)
+		searchlight.position.x = abs(searchlight.position.x)
 	elif velocity.x < -10.0:
 		sprite.scale.x = -abs(sprite.scale.x)
 		headlight.position.x = -abs(headlight.position.x)
+		searchlight.position.x = -abs(searchlight.position.x)
 
 	var target_tilt := 0.0
 	if velocity.length() > 10.0:
@@ -254,6 +265,11 @@ func _die() -> void:
 	# Explosion particles and sound
 	explosion_particles.emitting = true
 	explosion_sound.play()
+
+	# Large shockwave
+	var effects := get_tree().get_nodes_in_group("water_effect")
+	if effects.size() > 0:
+		effects[0].trigger_shockwave(global_position, 3.0)
 
 	# Screen shake
 	_shake_camera(12.0, 6)

@@ -18,6 +18,13 @@ uniform float light_range = 0.4;
 uniform float light_intensity : hint_range(0.0, 1.0) = 0.15;
 uniform vec4 light_color : source_color = vec4(0.9, 0.95, 1.0, 1.0);
 
+uniform vec2 search_position_screen = vec2(0.5);
+uniform vec2 search_direction = vec2(1.0, 0.0);
+uniform float search_cone_angle = 0.44;
+uniform float search_range = 0.2;
+uniform float search_intensity : hint_range(0.0, 1.0) = 0.0;
+uniform vec4 search_color : source_color = vec4(0.9, 0.95, 1.0, 1.0);
+
 // Shockwave ripple (texture-based, propagates through water around terrain)
 uniform sampler2D shockwave_texture : filter_linear, repeat_disable;
 uniform vec2 shockwave_rect_origin = vec2(-2.0);
@@ -97,6 +104,17 @@ void fragment() {
 	float dist_fade = 1.0 - smoothstep(0.0, light_range, dist);
 	float light = in_cone * angle_fade * dist_fade * dist_fade * light_intensity;
 	screen_color.rgb += light_color.rgb * light;
+
+	// Searchlight cone
+	vec2 search_to_pixel = SCREEN_UV - search_position_screen;
+	float search_dist = length(search_to_pixel);
+	vec2 search_dir_to_pixel = normalize(search_to_pixel);
+	float search_angle = acos(clamp(dot(search_dir_to_pixel, normalize(search_direction)), -1.0, 1.0));
+	float search_in_cone = step(search_angle, search_cone_angle);
+	float search_angle_fade = 1.0 - smoothstep(search_cone_angle * 0.5, search_cone_angle, search_angle);
+	float search_dist_fade = 1.0 - smoothstep(0.0, search_range, search_dist);
+	float search_light = search_in_cone * search_angle_fade * search_dist_fade * search_dist_fade * search_intensity;
+	screen_color.rgb += search_color.rgb * search_light;
 
 	// Vignette
 	vec2 center = SCREEN_UV - 0.5;

@@ -16,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://di0w5fye6yx1m" path="res://game_objects/submarine/propeller/propeller1.png" id="13_prop1"]
 [ext_resource type="Texture2D" uid="uid://cclqpp554w5br" path="res://game_objects/submarine/propeller/propeller2.png" id="14_prop2"]
 [ext_resource type="Texture2D" uid="uid://bvm176hbts8ef" path="res://game_objects/submarine/propeller/propeller3.png" id="15_prop3"]
-[ext_resource type="Texture2D" uid="uid://rghfpad47d18" path="res://game_objects/light/light.png" id="17_duwt1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_propeller"]
 animations = [{
@@ -96,6 +95,13 @@ offset = Vector2(-9.945653, -1.815218)
 [node name="RocketSpawn" type="Marker2D" parent="Sprite2D" unique_id=2142160484]
 position = Vector2(-4.9456515, -8.47826)
 scale = Vector2(0.7065217, 0.7065217)
+
+[node name="Searchlight" type="PointLight2D" parent="Sprite2D" unique_id=189160308]
+position = Vector2(19.782608, -30.380434)
+scale = Vector2(0.70652163, 0.70652163)
+color = Color(0.9, 0.95, 1, 1)
+energy = 1.5
+texture_scale = 2.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1492380121]
 
@@ -189,8 +195,3 @@ position = Vector2(-2.0000005, 9.999998)
 rotation = 1.5707964
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("CapsuleShape2D_4qjti")
-
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=378564043]
-position = Vector2(23, -44)
-scale = Vector2(0.2129128, 0.2129128)
-texture = ExtResource("17_duwt1")
