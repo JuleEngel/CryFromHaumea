@@ -130,9 +130,9 @@ func _physics_process(delta: float) -> void:
 	rotation = lerp_angle(rotation, target_tilt, tilt_speed * delta)
 
 	if sprite.scale.x < 0:
-		headlight.global_rotation = PI - rotation
+		headlight.rotation = PI
 	else:
-		headlight.global_rotation = rotation
+		headlight.rotation = 0.0
 
 	# Bubble particles: emit from behind the submarine, scale with speed
 	var is_moving := velocity.length() > 20.0
