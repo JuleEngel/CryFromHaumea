@@ -44,9 +44,12 @@ var _stun_timer: float = 0.0
 var _stun_overlay: ColorRect
 var _propeller_speed: float = 0.0
 var _recoil_offset: float = 0.0
+var cheat_mode := false
+var _base_max_speed: float
 
 func _ready() -> void:
 	super()
+	_base_max_speed = max_speed
 	if CheckpointManager.has_checkpoint:
 		global_position = CheckpointManager.checkpoint_position
 		if CheckpointManager.facing_left:
@@ -73,7 +76,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	super(delta)
 	var bob_offset := sin(_bob_time * bob_speed * TAU) * bob_amplitude
-	headlight.position.y = _headlight_base_y + bob_offset
+	headlight.position.y = _headlight_base_y + bob_offset + _recoil_offset
 
 	# Slow healing
 	if hp < max_hp:
@@ -89,7 +92,7 @@ func _process(delta: float) -> void:
 	broken_screen.self_modulate.a = (1.0 - hp_ratio) * 0.7
 
 	# Searchlight: bob with sprite + pseudo-3D rotation
-	searchlight.position.y = _searchlight_base_y + bob_offset
+	searchlight.position.y = _searchlight_base_y + bob_offset + _recoil_offset
 	searchlight.scale.x = cos(_bob_time * 3.0)
 
 func apply_stun(duration: float) -> void:
@@ -99,7 +102,8 @@ func apply_stun(duration: float) -> void:
 	# Yellow ship tint
 	var tween := create_tween()
 	tween.tween_property(sprite, "modulate", Color(1.0, 1.0, 0.3), 0.1)
-	tween.tween_property(sprite, "modulate", Color.WHITE, duration)
+	var stun_end_color := Color(1.0, 0.2, 0.2) if cheat_mode else Color.WHITE
+	tween.tween_property(sprite, "modulate", stun_end_color, duration)
 	# Yellow screen tint
 	if not _stun_overlay:
 		_stun_overlay = ColorRect.new()
@@ -111,6 +115,15 @@ func apply_stun(duration: float) -> void:
 	screen_tween.tween_property(_stun_overlay, "color:a", 0.0, duration)
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("cheat_toggle"):
+		cheat_mode = not cheat_mode
+		if cheat_mode:
+			max_speed = _base_max_speed * 2.0
+			sprite.modulate = Color(1.0, 0.2, 0.2)
+		else:
+			max_speed = _base_max_speed
+			sprite.modulate = Color.WHITE
+
 	if _stunned:
 		_stun_timer -= delta
 		if _stun_timer <= 0.0:
@@ -244,6 +257,8 @@ static func _generate_cone_texture(_size: int, tex_size: int, cone_deg: float = 
 	return ImageTexture.create_from_image(img)
 
 func take_damage(amount: float) -> void:
+	if cheat_mode:
+		return
 	super(amount)
 	var ratio := clampf(amount / max_hp, 0.0, 1.0)
 	damage_sound.volume_db = lerpf(-20.0, -4.0, ratio)
@@ -312,6 +327,10 @@ func _spawn_rocket() -> void:
 	var rocket := ROCKET_SCENE.instantiate()
 	rocket.global_position = rocket_spawn.global_position
 	rocket.rotation = -PI / 2.0
+	if cheat_mode:
+		rocket.speed *= 2.0
+		rocket.eject_speed *= 2.0
+		rocket.damage = 1000.0
 	get_tree().current_scene.add_child(rocket)
 
 	# Visual recoil dip
@@ -319,11 +338,9 @@ func _spawn_rocket() -> void:
 	var tween := create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(sprite, "position:y", sprite.position.y + recoil, 0.1).set_ease(Tween.EASE_OUT)
-	tween.tween_property(searchlight, "position:y", searchlight.position.y + recoil, 0.1).set_ease(Tween.EASE_OUT)
-	tween.tween_property(headlight, "position:y", headlight.position.y + recoil, 0.1).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "_recoil_offset", recoil, 0.1).set_ease(Tween.EASE_OUT)
 	tween.chain().tween_property(sprite, "position:y", sprite.position.y, 0.25).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(searchlight, "position:y", searchlight.position.y, 0.25).set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(headlight, "position:y", headlight.position.y, 0.25).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, "_recoil_offset", 0.0, 0.25).set_ease(Tween.EASE_IN_OUT)
 
 	# Close torpedo hatch
 	var close_tween := create_tween()

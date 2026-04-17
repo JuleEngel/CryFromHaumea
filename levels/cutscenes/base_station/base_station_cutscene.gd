@@ -1,6 +1,6 @@
 extends Node2D
 
-const DialogTextScene := preload("res://ui_scenes/dialog_text/dialog_text.tscn")
+const DIALOG_TEXT_SCENE := preload("res://ui_scenes/dialog_text/dialog_text.tscn")
 const OutlineShader := preload("res://levels/cutscenes/base_station/outline.gdshader")
 const CUTSCENE_MUSIC := preload("res://audio/music/exploration_track.ogg")
 const CUTSCENE_ENV := preload("res://levels/cutscenes/cutscene_environment.tres")
@@ -28,7 +28,6 @@ var _skip_pressed := false
 var _active_dialog: Node = null
 var _fade_overlay: ColorRect
 var _music_player: AudioStreamPlayer
-var _all_hints_shown := false
 
 @onready var _skip_label: Label = $UI/SkipLabel
 @onready var _hint_label: Label = $UI/HintLabel
@@ -116,9 +115,6 @@ func _handle_click(global_pos: Vector2) -> void:
 	if _active_dialog != null:
 		_active_dialog.queue_free()
 		_active_dialog = null
-	elif _all_hints_shown:
-		_fade_in_label(_start_button)
-		_start_button.pressed.connect(_go_to_next_scene)
 	else:
 		for i in range(_objects.size() - 1, -1, -1):
 			var obj = _objects[i]
@@ -142,31 +138,38 @@ func _is_mouse_over_object(obj: Dictionary, global_pos: Vector2) -> bool:
 	var pixel := image.get_pixel(int(pixel_pos.x), int(pixel_pos.y))
 	return pixel.a > 0.1
 
+func _show_last_dialog():
+	_show_dialog(mission_start_text).tree_exited.connect(_show_mission_start_button)
+	
+func _show_mission_start_button():
+	_fade_in_label(_start_button)
+	_start_button.pressed.connect(_go_to_next_scene)
 
 func _select_object(obj: Dictionary) -> void:
 	obj.selected = true
-	_show_dialog(obj.text)
-	_check_all_selected()
+	var dialog = _show_dialog(obj.text)
+	if _check_all_selected():
+		dialog.tree_exited.connect(_show_last_dialog)
 
 
-func _show_dialog(text: String) -> void:
+func _show_dialog(text: String) -> DialogTextScene:
 	if is_instance_valid(_active_dialog):
 		_active_dialog.dismiss()
-	var dialog := DialogTextScene.instantiate()
+	var dialog := DIALOG_TEXT_SCENE.instantiate()
 	get_tree().current_scene.add_child(dialog)
 	dialog.show_text(text)
 	_active_dialog = dialog
 	dialog.tree_exited.connect(func(): _active_dialog = null)
+	return dialog
 
 
-func _check_all_selected() -> void:
+func _check_all_selected() -> bool:
 	for obj in _objects:
 		if not obj.selected:
-			return
+			return false
 	_hint_label.visible = false
-	_show_dialog(mission_start_text)
-	await get_tree().create_timer(0.01).timeout
-	_all_hints_shown = true
+	return true
+	
 
 
 # -- Fade helpers -----------------------------------------------------------

@@ -147,7 +147,7 @@ shape = SubResource("CapsuleShape2D_537th")
 [node name="ExplosionParticles" type="GPUParticles2D" parent="." unique_id=1936580524]
 emitting = false
 amount = 400
-lifetime = 0.9400000000000001
+lifetime = 0.94
 one_shot = true
 explosiveness = 0.95
 randomness = 0.28

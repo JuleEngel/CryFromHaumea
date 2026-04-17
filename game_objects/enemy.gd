@@ -43,6 +43,8 @@ func _merge_group(other: Enemy) -> void:
 	var target: Array = _group if _group.size() >= other._group.size() else other._group
 	var source: Array = other._group if target == _group else _group
 	for e in source:
+		if not is_instance_valid(e):
+			continue
 		target.append(e)
 		e._group = target
 

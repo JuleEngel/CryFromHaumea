@@ -1,3 +1,5 @@
+class_name DialogTextScene
+
 extends CanvasLayer
 
 const SECONDS_PER_WORD := 0.4
