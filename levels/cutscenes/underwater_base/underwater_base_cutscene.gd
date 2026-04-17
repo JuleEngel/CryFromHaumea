@@ -12,7 +12,6 @@ var _music_player: AudioStreamPlayer
 
 @onready var _submarine: Sprite2D = $Submarine
 @onready var _landing_target: Marker2D = $LandingTarget
-@onready var _camera: Camera2D = $Camera2D
 @onready var _skip_label: Label = $UI/SkipLabel
 @onready var _dive_player: AudioStreamPlayer = $DiveSoundPlayer
 

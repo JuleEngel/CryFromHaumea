@@ -8,7 +8,7 @@ const EXPLOSION_SOUND = preload("res://audio/sound_effects/underwater_explosion.
 func _ready():
 	iceblock_wall.collision_layer = 0
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	if _triggered:
 		return
 	_triggered = true
