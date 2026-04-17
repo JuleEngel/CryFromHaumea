@@ -54,12 +54,35 @@ func _physics_process(delta: float) -> void:
 
 	_time += delta
 
+	var space_state := get_world_2d().direct_space_state
+
 	if not _powered:
 		# Eject phase: drift upward, decelerating
 		_eject_timer -= delta
 		var eject_progress := 1.0 - (_eject_timer / eject_duration)
 		var eject_spd := eject_speed * (1.0 - eject_progress)
-		global_position += Vector2.from_angle(rotation) * eject_spd * delta
+		var movement := Vector2.from_angle(rotation) * eject_spd * delta
+
+		# Check if already inside a wall (e.g. spawned inside geometry)
+		var point_query := PhysicsPointQueryParameters2D.new()
+		point_query.position = global_position
+		point_query.collision_mask = 4
+		point_query.collide_with_bodies = true
+		if space_state.intersect_point(point_query).size() > 0:
+			_explode()
+			return
+
+		# Check for wall collision during movement
+		var query := PhysicsRayQueryParameters2D.create(global_position, global_position + movement, 4)
+		var result := space_state.intersect_ray(query)
+		if result:
+			global_position = result.position
+			if result.collider is Entity:
+				result.collider.take_damage(damage)
+			_explode()
+			return
+
+		global_position += movement
 
 		if _eject_timer <= 0.0:
 			_power_up()
@@ -72,7 +95,6 @@ func _physics_process(delta: float) -> void:
 	rotation = lerp_angle(rotation, desired_angle + wobble, turn_speed * delta)
 
 	var movement := Vector2.from_angle(rotation) * speed * delta
-	var space_state := get_world_2d().direct_space_state
 	var query := PhysicsRayQueryParameters2D.create(global_position, global_position + movement, 4)
 	var result := space_state.intersect_ray(query)
 	if result:
