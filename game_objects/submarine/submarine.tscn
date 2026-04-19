@@ -148,14 +148,6 @@ color = Color(0.9, 0.95, 1, 1)
 energy = 1.5
 texture_scale = 2.0
 
-[node name="Searchlight" type="PointLight2D" parent="." unique_id=189160308]
-visible = false
-position = Vector2(20, -51)
-scale = Vector2(0.9999999, 0.9999999)
-color = Color(0.9, 0.95, 1, 1)
-energy = 1.5
-texture_scale = 2.0
-
 [node name="ExplosionParticles" type="GPUParticles2D" parent="." unique_id=1469905607]
 emitting = false
 amount = 500

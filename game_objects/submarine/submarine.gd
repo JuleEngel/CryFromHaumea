@@ -27,7 +27,6 @@ const GAME_OVER_SCENE := preload("res://ui_scenes/game_over/game_over.tscn")
 @onready var camera: Camera2D = $Camera2D
 @onready var propeller: AnimatedSprite2D = $Sprite2D/Propeller
 @onready var torpedo_hatch: Sprite2D = $Sprite2D/TorpedoHatch
-@onready var searchlight: PointLight2D = $Searchlight
 
 const DIVE_VOL_MIN := -40.0
 const DIVE_VOL_MAX := -2.0
@@ -37,8 +36,6 @@ const MUSIC_FADE_SPEED := 3.0
 var _fire_timer: float = 0.0
 var _in_combat := false
 var _headlight_base_y: float
-var _searchlight_base_y: float
-var _searchlight_offset_x: float
 var _stunned := false
 var _stun_timer: float = 0.0
 var _stun_overlay: ColorRect
@@ -58,12 +55,6 @@ func _ready() -> void:
 		else:
 			headlight.position.x = abs(headlight.position.x)
 	headlight.texture = _generate_cone_texture(512, 512)
-	searchlight.texture = _generate_cone_texture(256, 256, 35.0, 0.15)
-	searchlight.texture_scale = 1.2
-	searchlight.energy = 0.4
-	_searchlight_offset_x = searchlight.position.x - sprite.position.x
-	if CheckpointManager.has_checkpoint and CheckpointManager.facing_left:
-		searchlight.position.x = sprite.position.x - _searchlight_offset_x
 	ambiance_sound.stream.loop = true
 	dive_sound.stream.loop = true
 	music_adventure.volume_db = MUSIC_VOL
@@ -71,7 +62,6 @@ func _ready() -> void:
 	music_adventure.play()
 	music_combat.play()
 	_headlight_base_y = headlight.position.y
-	_searchlight_base_y = searchlight.position.y
 
 func _process(delta: float) -> void:
 	super(delta)
@@ -91,9 +81,6 @@ func _process(delta: float) -> void:
 	# Broken screen overlay
 	broken_screen.self_modulate.a = (1.0 - hp_ratio) * 0.7
 
-	# Searchlight: bob with sprite + pseudo-3D rotation
-	searchlight.position.y = _searchlight_base_y + bob_offset + _recoil_offset
-	searchlight.scale.x = cos(_bob_time * 3.0)
 
 func apply_stun(duration: float) -> void:
 	_stunned = true
@@ -146,11 +133,9 @@ func _physics_process(delta: float) -> void:
 	if velocity.x > 10.0:
 		sprite.scale.x = abs(sprite.scale.x)
 		headlight.position.x = abs(headlight.position.x)
-		searchlight.position.x = sprite.position.x + _searchlight_offset_x
 	elif velocity.x < -10.0:
 		sprite.scale.x = -abs(sprite.scale.x)
 		headlight.position.x = -abs(headlight.position.x)
-		searchlight.position.x = sprite.position.x - _searchlight_offset_x
 
 	var target_tilt := 0.0
 	if velocity.length() > 10.0:

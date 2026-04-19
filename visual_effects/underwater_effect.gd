@@ -7,27 +7,10 @@ const TERRAIN_MASK := 4
 const SQRT2 := 1.41421356
 const MAX_SHOCKWAVES := 4
 const SHOCK_DURATION := 2.2
-const WAKE_GRID := 24
-const WAKE_EXTENT := 500.0
-const WAKE_CONE_HALF_ANGLE := 1.0
-const WAKE_RIPPLE_FREQ := 4.0
-const WAKE_RIPPLE_SPEED := 5.0
-const WAKE_FADE_DIST := 16.0
-const WAKE_REBUILD_DIST := 80.0
-const WAKE_REBUILD_INTERVAL := 0.25
 
 var _shockwaves: Array[Dictionary] = []
 var _shock_texture: ImageTexture
 var _was_active := false
-var _wake_texture: ImageTexture
-var _wake_distances := PackedFloat32Array()
-var _wake_center := Vector2.ZERO
-var _wake_direction := Vector2.RIGHT
-var _wake_intensity := 0.0
-var _wake_time := 0.0
-var _wake_rebuild_timer := 0.0
-var _wake_last_build_pos := Vector2(INF, INF)
-var _wake_active := false
 
 # Reusable heap for Dijkstra
 var _heap: Array[Vector2] = []
@@ -37,9 +20,6 @@ func _ready() -> void:
 	var blank := Image.create(GRID_SIZE, GRID_SIZE, false, Image.FORMAT_R8)
 	_shock_texture = ImageTexture.create_from_image(blank)
 	(material as ShaderMaterial).set_shader_parameter("shockwave_texture", _shock_texture)
-	var wake_blank := Image.create(WAKE_GRID, WAKE_GRID, false, Image.FORMAT_R8)
-	_wake_texture = ImageTexture.create_from_image(wake_blank)
-	(material as ShaderMaterial).set_shader_parameter("wake_texture", _wake_texture)
 
 func trigger_shockwave(world_pos: Vector2, strength: float = 1.0) -> void:
 	if _shockwaves.size() >= MAX_SHOCKWAVES:
@@ -229,47 +209,6 @@ func _process(delta: float) -> void:
 			var base_dir := Vector2(-1.0, 0.0) if sprite.scale.x < 0 else Vector2(1.0, 0.0)
 			mat.set_shader_parameter("light_direction", base_dir.rotated(sub.rotation))
 
-		var slight := sub.get_node_or_null("Searchlight") as PointLight2D
-		if slight and slight.visible:
-			var canvas_transform := get_viewport().get_canvas_transform()
-			var s_screen_pos := canvas_transform * slight.global_position
-			var s_screen_uv := s_screen_pos / vp_size
-			mat.set_shader_parameter("search_position_screen", s_screen_uv)
-
-			var s_world_dir := slight.global_transform.x.normalized()
-			var s_factor := absf(slight.scale.x)
-			mat.set_shader_parameter("search_direction", s_world_dir)
-			mat.set_shader_parameter("search_range", s_factor * 0.07)
-			mat.set_shader_parameter("search_intensity", s_factor * 0.4)
-		else:
-			mat.set_shader_parameter("search_intensity", 0.0)
-
-		# Wake ripple cone behind submarine
-		_wake_time += delta
-		var sub_vel: Vector2 = sub.velocity
-		var speed := sub_vel.length()
-		var target_intensity := clampf(speed / 600.0, 0.0, 1.0)
-		_wake_intensity = lerpf(_wake_intensity, target_intensity, 3.0 * delta)
-
-		if speed > 20.0:
-			_wake_direction = sub_vel.normalized()
-
-		_wake_rebuild_timer -= delta
-		var moved: float = sub.global_position.distance_to(_wake_last_build_pos)
-		if _wake_intensity > 0.01 and (_wake_rebuild_timer <= 0.0 or moved > WAKE_REBUILD_DIST):
-			_wake_rebuild_timer = WAKE_REBUILD_INTERVAL
-			_wake_last_build_pos = sub.global_position
-			_wake_center = sub.global_position
-			var result := _build_distance_field(sub.global_position, WAKE_GRID, WAKE_EXTENT)
-			if not result.is_empty():
-				_wake_distances = result.distances
-				_wake_active = true
-
-		if _wake_active and _wake_intensity > 0.01:
-			_update_wake_texture(sub.global_position)
-		elif _wake_active:
-			_wake_active = false
-			mat.set_shader_parameter("wake_rect_origin", Vector2(-2.0, -2.0))
 
 func _update_shock_texture() -> void:
 	# Compute union world rect of all active shockwaves
@@ -327,59 +266,3 @@ func _update_shock_texture() -> void:
 	mat.set_shader_parameter("shockwave_rect_origin", screen_origin)
 	mat.set_shader_parameter("shockwave_rect_size", screen_end - screen_origin)
 
-func _update_wake_texture(sub_pos: Vector2) -> void:
-	var back_dir := -_wake_direction
-	var cos_cone := cos(WAKE_CONE_HALF_ANGLE)
-	var cell_size := WAKE_EXTENT * 2.0 / float(WAKE_GRID)
-	var origin := _wake_center - Vector2.ONE * WAKE_EXTENT
-
-	var data := PackedByteArray()
-	data.resize(WAKE_GRID * WAKE_GRID)
-
-	for y in WAKE_GRID:
-		for x in WAKE_GRID:
-			var idx := y * WAKE_GRID + x
-			var d: float = _wake_distances[idx]
-			if d == INF or d < 0.5:
-				data[idx] = 0
-				continue
-
-			# Cell world position relative to current submarine
-			var cell_world := origin + Vector2(float(x) + 0.5, float(y) + 0.5) * cell_size
-			var rel := cell_world - sub_pos
-			var rel_len := rel.length()
-			if rel_len < 1.0:
-				data[idx] = 0
-				continue
-
-			# Cone check: is this cell behind the submarine?
-			var cos_angle := rel.dot(back_dir) / rel_len
-			if cos_angle < cos_cone:
-				data[idx] = 0
-				continue
-
-			# Angle-based fade (stronger near center of wake)
-			var angle := acos(clampf(cos_angle, -1.0, 1.0))
-			var angle_fade := 1.0 - angle / WAKE_CONE_HALF_ANGLE
-
-			# Distance fade
-			var dist_fade := 1.0 - clampf(d / WAKE_FADE_DIST, 0.0, 1.0)
-
-			# Animated ripple pattern
-			var ripple := sin(d * WAKE_RIPPLE_FREQ - _wake_time * WAKE_RIPPLE_SPEED) * 0.5 + 0.5
-
-			var value := ripple * angle_fade * dist_fade * _wake_intensity
-			data[idx] = clampi(int(value * 255.0), 0, 255)
-
-	var image := Image.create_from_data(WAKE_GRID, WAKE_GRID, false, Image.FORMAT_R8, data)
-	_wake_texture.set_image(image)
-
-	var mat := material as ShaderMaterial
-	var vp_size := get_viewport_rect().size
-	var canvas_transform := get_viewport().get_canvas_transform()
-	var min_corner := _wake_center - Vector2.ONE * WAKE_EXTENT
-	var max_corner := _wake_center + Vector2.ONE * WAKE_EXTENT
-	var screen_origin := (canvas_transform * min_corner) / vp_size
-	var screen_end := (canvas_transform * max_corner) / vp_size
-	mat.set_shader_parameter("wake_rect_origin", screen_origin)
-	mat.set_shader_parameter("wake_rect_size", screen_end - screen_origin)
