@@ -265,4 +265,3 @@ func _update_shock_texture() -> void:
 	var screen_end := (canvas_transform * max_corner) / vp_size
 	mat.set_shader_parameter("shockwave_rect_origin", screen_origin)
 	mat.set_shader_parameter("shockwave_rect_size", screen_end - screen_origin)
-
