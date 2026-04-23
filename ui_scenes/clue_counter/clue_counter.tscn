@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui_scenes/clue_counter/clue_counter.gd" id="1_script"]
+
+[node name="ClueCounter" type="CanvasLayer"]
+script = ExtResource("1_script")

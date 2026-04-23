@@ -1,5 +1,7 @@
 extends Area2D
 
+signal collected
+
 enum Action {
 	SPEECH_TEXT,
 	INFO_SCREEN,
@@ -13,6 +15,7 @@ const InfoScreenScene := preload("res://ui_scenes/info_screen/info_screen.tscn")
 @export var image: Texture2D
 @export var one_shot := true
 @export var set_invisible := false
+@export var required_for_next_level := false
 
 var _triggered := false
 var _time := 0.0
@@ -39,6 +42,7 @@ func _on_body_entered(body: Node2D) -> void:
 	_triggered = true
 	pickup_sound.play()
 	_execute_action(body)
+	collected.emit()
 	if one_shot:
 		_burst_and_free()
 
