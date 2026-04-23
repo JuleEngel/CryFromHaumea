@@ -1,5 +1,7 @@
 extends Area2D
 
+signal dismissed
+
 @export_multiline var info_text: String = "Information folgt."
 var info_image: Texture2D
 
@@ -116,6 +118,7 @@ func _dismiss() -> void:
 	tween.tween_property(_screen, "scale", Vector2(0.7, 0.7), 0.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
 	tween.chain().tween_callback(func():
 		get_tree().paused = false
+		dismissed.emit()
 		_canvas.queue_free()
 		queue_free()
 	)

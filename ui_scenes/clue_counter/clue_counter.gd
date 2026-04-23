@@ -92,10 +92,20 @@ func _animate_pulse() -> void:
 	tween.tween_property(_panel, "scale", Vector2.ONE, 0.2).set_ease(Tween.EASE_IN)
 
 func _on_all_collected() -> void:
-	# Brief delay so the player sees the final count.
-	await get_tree().create_timer(1.5).timeout
+	# Wait for the info_screen to appear and be dismissed before transitioning.
+	var info := await _await_info_screen()
+	if not info:
+		return
+	await info.dismissed
 	if next_scene:
 		CheckpointManager.clear()
 		var screen := LOADING_SCREEN.instantiate()
 		screen.next_scene = next_scene
 		get_tree().change_scene_to_node(screen)
+
+func _await_info_screen() -> Node:
+	while true:
+		var node: Node = await get_tree().node_added
+		if node.has_signal("dismissed"):
+			return node
+	return null

@@ -21,7 +21,7 @@
 [ext_resource type="Script" uid="uid://d218yx0d1ilsn" path="res://addons/rmsmartshape/normal_range.gd" id="16_sv5e8"]
 [ext_resource type="Texture2D" uid="uid://cer8v158l8inq" path="res://levels/background/background2.png" id="17_vnxxs"]
 [ext_resource type="PackedScene" uid="uid://bdqt3uux8pjt3" path="res://game_objects/jellyfish/jellyfish.tscn" id="21_i3cyh"]
-[ext_resource type="PackedScene" path="res://game_objects/plants/plant_6.tscn" id="22_lmria"]
+[ext_resource type="PackedScene" uid="uid://cms85u3sjxd73" path="res://game_objects/plants/plant_6.tscn" id="22_lmria"]
 [ext_resource type="PackedScene" uid="uid://o5kkadaw2lfk" path="res://game_objects/whale/whale.tscn" id="22_x6jsp"]
 [ext_resource type="PackedScene" uid="uid://d03rqk6g5ksj5" path="res://game_objects/fish/fish.tscn" id="23_rg68n"]
 [ext_resource type="PackedScene" path="res://visual_effects/floating_particles.tscn" id="24_float"]
@@ -34,13 +34,13 @@
 [ext_resource type="PackedScene" uid="uid://b24n4djhf23ft" path="res://game_objects/plants/plant_3.tscn" id="28_lcq5f"]
 [ext_resource type="Texture2D" uid="uid://benitdyq4xau" path="res://game_objects/clues/dead_fish.png" id="29_el2p7"]
 [ext_resource type="Texture2D" uid="uid://dvyi7ovbhq8yt" path="res://game_objects/clues/dead_alien.png" id="30_gg5ra"]
-[ext_resource type="PackedScene" path="res://game_objects/plants/plant_7.tscn" id="30_myek4"]
+[ext_resource type="PackedScene" uid="uid://bhu2kv4nansmu" path="res://game_objects/plants/plant_7.tscn" id="30_myek4"]
 [ext_resource type="Texture2D" uid="uid://ulq7qumev44a" path="res://game_objects/clues/damaged_plant.png" id="31_bmipv"]
-[ext_resource type="PackedScene" uid="uid://dh8j6omqocr8x" path="res://game_objects/plants/plant_4.tscn" id="32_28w46"]
+[ext_resource type="PackedScene" uid="uid://bac7mi85h6bjx" path="res://game_objects/plants/plant_4.tscn" id="32_28w46"]
 [ext_resource type="Texture2D" uid="uid://b28b8xlqk8bur" path="res://game_objects/clues/damaged_submarine_light.png" id="32_478y7"]
 [ext_resource type="PackedScene" uid="uid://b28md65dtep4l" path="res://game_objects/plants/plant_8.tscn" id="34_c4iql"]
 [ext_resource type="PackedScene" uid="uid://dxqeomcm08bwl" path="res://game_objects/plants/plant_5.tscn" id="36_jfcl3"]
-[ext_resource type="PackedScene" path="res://game_objects/plants/plant_2.tscn" id="38_ybuo5"]
+[ext_resource type="PackedScene" uid="uid://ff32mpkgslnx" path="res://game_objects/plants/plant_2.tscn" id="38_ybuo5"]
 [ext_resource type="PackedScene" uid="uid://bqxry4nalviv6" path="res://game_objects/plants/plant_9.tscn" id="40_70ubd"]
 [ext_resource type="PackedScene" path="res://ui_scenes/clue_counter/clue_counter.tscn" id="42_lo7lv"]
 [ext_resource type="Texture2D" uid="uid://dn3ybic3rgrdu" path="res://game_objects/clues/FinalClueWall.png" id="42_rak4e"]
@@ -6758,5 +6758,5 @@ set_invisible = true
 
 [node name="ClueCounter" parent="." unique_id=354676426 node_paths=PackedStringArray("_final_trigger_orb") instance=ExtResource("42_lo7lv")]
 next_scene = ExtResource("8_ulrxl")
-required_clues = 5
+required_clues = 1
 _final_trigger_orb = NodePath("../FinalTriggerOrb")
