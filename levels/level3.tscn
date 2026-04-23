@@ -6758,5 +6758,5 @@ set_invisible = true
 
 [node name="ClueCounter" parent="." unique_id=354676426 node_paths=PackedStringArray("_final_trigger_orb") instance=ExtResource("42_lo7lv")]
 next_scene = ExtResource("8_ulrxl")
-required_clues = 1
+required_clues = 5
 _final_trigger_orb = NodePath("../FinalTriggerOrb")
