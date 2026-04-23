@@ -1,3 +1,4 @@
+class_name TriggerOrb
 extends Area2D
 
 signal collected

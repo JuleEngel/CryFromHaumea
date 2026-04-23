@@ -12,6 +12,7 @@ var _collected := 0
 
 var _label: Label
 var _panel: PanelContainer
+@export var _final_trigger_orb: TriggerOrb
 
 func _ready() -> void:
 	layer = 100
@@ -72,6 +73,11 @@ func _on_orb_collected(_orb: Node) -> void:
 	_collected += 1
 	_update_label()
 	_animate_pulse()
+	if _collected == required_clues - 1:
+		for trigger_orb in get_tree().get_nodes_in_group("trigger_orb"):
+			if trigger_orb.required_for_next_level:
+				trigger_orb.text = _final_trigger_orb.text
+				trigger_orb.image = _final_trigger_orb.image
 	if _collected >= required_clues:
 		all_collected.emit()
 		_on_all_collected()

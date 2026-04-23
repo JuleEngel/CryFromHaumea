@@ -51,6 +51,10 @@ folder_colors={
 "res://visual_effects/": "yellow"
 }
 
+[global_group]
+
+trigger_orb="Class for trigger_orbs"
+
 [gui]
 
 theme/custom="res://ui_scenes/main_menu/menu_theme2.tres"
